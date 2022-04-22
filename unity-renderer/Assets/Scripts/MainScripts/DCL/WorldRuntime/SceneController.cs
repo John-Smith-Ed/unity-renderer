@@ -455,7 +455,8 @@ namespace DCL
                 }
                 catch (Exception e)
                 {
-                    Debug.LogException(e);
+                    Debug.LogWarning(e);
+                //TODO:A.B Debug.LogException(e);
                 }
 
                 await UniTask.Yield();

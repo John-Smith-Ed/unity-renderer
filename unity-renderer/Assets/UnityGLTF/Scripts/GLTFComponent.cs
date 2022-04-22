@@ -275,7 +275,8 @@ namespace UnityGLTF
                         return;
 #endif
 
-                    Debug.LogException(e);
+                    Debug.LogWarning(e);
+                //TODO:A.B Debug.LogException(e);
                 }
                 finally
                 {

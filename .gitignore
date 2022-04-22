@@ -2,11 +2,19 @@
 # =============== #
 # Unity generated #
 # =============== #
-Temp/
-Library/
-*.cache
-/obj/
+# A.B Smarter
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
 [Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+#Temp/
+#Library/
+*.cache
+#/obj/
+#[Bb]uild/
 TestResults/
 Assets/InitTestScene*.unity
 Assets/InitTestScene*.unity.meta
@@ -58,3 +66,10 @@ unity-renderer/Assets/TextMesh Pro/Resources/Fonts & Materials/Inter-Heavy SDF.a
 unity-renderer/Assets/TextMesh Pro/Resources/Fonts & Materials/Inter-Bold SDF.asset
 unity-renderer/Assets/Scripts/MainScripts/DCL/KernelConfiguration/KernelConfigTypes.cs
 unity-renderer/Assets/Scripts/MainScripts/DCL/Components/LoadableShapes/NFTShape/Materials/OriginalNFTFrame.mat
+
+
+# Unity3D Generated File On Crash Reports
+sysinfo.txt
+
+# Builds
+*.unitypackage

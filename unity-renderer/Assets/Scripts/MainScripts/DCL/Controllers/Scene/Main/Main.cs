@@ -37,7 +37,8 @@ namespace DCL
 
             if (!disableSceneDependencies)
                 InitializeSceneDependencies();
-
+            
+            //TODO: This local unity stuff - Look at later not needed to change now
             Settings.CreateSharedInstance(new DefaultSettingsFactory());
 
             if (!Configuration.EnvironmentSettings.RUNNING_TESTS)
@@ -144,7 +145,7 @@ namespace DCL
         
         protected virtual void InitializeSceneDependencies()
         {
-            gameObject.AddComponent<UserProfileController>();
+            gameObject.AddComponent<UserProfileController>(); // this looks to just create a data container to hold the user info once signed in
             gameObject.AddComponent<RenderingController>();
             gameObject.AddComponent<CatalogController>();
             gameObject.AddComponent<MinimapMetadataController>();

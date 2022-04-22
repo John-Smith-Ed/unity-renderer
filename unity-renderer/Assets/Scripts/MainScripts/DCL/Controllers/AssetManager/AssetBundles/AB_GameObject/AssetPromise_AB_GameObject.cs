@@ -112,7 +112,9 @@ namespace DCL
             else
             {
                 loadingException ??= new Exception($"AB sub-promise asset or container is null. Asset: {subPromise.asset}, container: {asset.container}");
-                Debug.LogException(loadingException);
+                Debug.LogWarning(loadingException);
+                
+               //TODO:A.B Debug.LogException(loadingException);
                 OnFail?.Invoke(loadingException);
             }
 
