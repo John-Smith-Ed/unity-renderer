@@ -5,6 +5,41 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MinimapMetadata", menuName = "MinimapMetadata")]
 public class MinimapMetadata : ScriptableObject
 {
+
+    /*
+        ABEY IS
+        "blank" -> road
+        0 ->    public
+        some kind of levels
+        1 -> level 1
+        2 -> level 2
+        3 -> level 3
+        4 -> level 4
+        
+     -- Map Key Redsign ABEY --
+        MyParcel = 0,
+        MyParcelsOnSale = 1,
+        MyEstates = 2,
+        MyEstatesOnSale = 3,
+        WithAccess = 4,
+        District = 5,
+        Contribution = 6,
+        Roads = 7,
+        Plaza = 8,
+        Taken = 9,
+        OnSale = 10,
+        Unowned = 11,
+        Background = 12,
+        Loading = 13
+
+        Class1-> 21
+        Class2-> 22
+        Class3-> 23
+        Class4-> 24
+
+
+
+    */
     public enum TileType
     {
         MyParcel = 0,
@@ -41,6 +76,9 @@ public class MinimapMetadata : ScriptableObject
     HashSet<MinimapSceneInfo> scenesInfo = new HashSet<MinimapSceneInfo>();
     Dictionary<Vector2Int, MinimapSceneInfo> sceneInfoMap = new Dictionary<Vector2Int, MinimapSceneInfo>();
 
+    // TODO:A.B  delete - added so we can visualize the data in the editor
+    [SerializeField] List<MinimapSceneInfo> infoMapList = new List<MinimapSceneInfo>();
+
     public MinimapSceneInfo GetSceneInfo(int x, int y)
     {
         if (sceneInfoMap.TryGetValue(new Vector2Int(x, y), out MinimapSceneInfo result))
@@ -68,6 +106,7 @@ public class MinimapMetadata : ScriptableObject
             }
 
             sceneInfoMap.Add(sceneInfo.parcels[i], sceneInfo);
+            infoMapList.Add(sceneInfo);
         }
 
         scenesInfo.Add(sceneInfo);
@@ -81,6 +120,8 @@ public class MinimapMetadata : ScriptableObject
         sceneInfoMap.Clear();
     }
 
+    // A.B Loads the scriptiable into a static ref
+    // The scriptable has no exposed props so why resouces? create a new instance
     private static MinimapMetadata minimapMetadata;
     public static MinimapMetadata GetMetadata()
     {
