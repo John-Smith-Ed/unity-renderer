@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Decentraland</title>
     <style>
-      #gameContainer {
+      .gameContainer {
         width: 100%;
         height: 100%;
         margin: auto;
@@ -17,7 +17,46 @@
         margin: auto;
       }
     </style>
-    <script src="%UNITY_WEBGL_LOADER_URL%"></script>
+
+    <!-- this is weird, really old version of unity loading way, why does DCL have it in the tpl???
+    <script src="%UNITY_WEBGL_LOADER_URL%"></script>-->
+
+
+
+      <!-- ADDED AB
+        DCL refs from live run
+        https://cdn.decentraland.org/@dcl/unity-renderer/1.0.32838-20220415090933.commit-43530d2/index.js
+        https://cdn.decentraland.org/@dcl/unity-renderer/1.0.32838-20220415090933.commit-43530d2/unity.framework.js.br?v=1.0.32838-20220415090933.commit-43530d2
+        https://cdn.decentraland.org/@dcl/kernel/1.0.0-2227136955.commit-c4944ec/index.js
+      -->
+      <script>
+      
+      //A.B commented out engineStartedFuture, future looked pointless, we will see
+	    //const engineStartedFuture = future();
+	    globalThis.DCL = {
+	        // This function get's called by the engine
+	        EngineStarted() {
+	          //  engineStartedFuture.resolve({});
+	        },
+	        // This function is called from the unity renderer to send messages back to the scenes
+	        MessageFromEngine(type, jsonEncodedMessage) {
+	            onMessageLegacy(type, jsonEncodedMessage);
+	        },
+	    };
+
+     
+
+      </script>
+
+
+
+
+
+
+
+
+
+
     <script>
       window.startDecentraland = function() {
         var gamejs = document.createElement("script");
@@ -25,16 +64,14 @@
         gamejs.src = "game.js";
         document.head.appendChild(gamejs);
 
-        window.dcl.TestSceneLoading();
+        // we dont need to run the test data but will leave it for now
+     //   window.dcl.TestSceneLoading();
       };
-    </script>
-    <script>
-      var gameInstance = UnityLoader.instantiate(
-        "gameContainer",
-        "%UNITY_WEBGL_BUILD_URL%"
-      );
-
+    
       window.DCL = {
+        EngineStarted() {
+	          //  engineStartedFuture.resolve({});
+	        },
         StartDecentraland() {
           console.log("StartDecentraland called");
         },
@@ -130,13 +167,55 @@
           );
         }
       };
+
+      
+
+
     </script>
   </head>
 
   <body>
-    <div
-      id="gameContainer"
-      style="width: 100%; height: 100%; margin: auto"
-    ></div>
+
+    <div class="gameContainer" style="width: 100%; height: 100%; margin: auto">
+      <canvas></canvas>
+    </div>
+
+    <script>
+      // This is the unity set up, its standard
+      var gameInstance;
+      var buildUrl  = "Build";
+      const config = {
+          dataUrl:  buildUrl + "/{{{ DATA_FILENAME }}}",
+	        frameworkUrl: buildUrl + "/{{{ FRAMEWORK_FILENAME }}}",
+	        codeUrl: buildUrl + "/{{{ CODE_FILENAME }}}",
+	        streamingAssetsUrl: "StreamingAssets",
+	        companyName: "{{{ COMPANY_NAME }}}",
+          productName: "{{{ PRODUCT_NAME }}}",
+          productVersion: "{{{ PRODUCT_VERSION }}}",
+
+	    };
+
+      var canvas = document.querySelector('#gameContainer');
+      var loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        // code for instantiating the build
+        createUnityInstance(canvas, config, (loadedPrecent)=>{onProgress(loadedPrecent);})
+        .then((instance)=>{
+          gameInstance = instance;
+          onProgress(1.0);
+        })
+        .catch((message)=>console.log(message));
+      };
+      document.body.appendChild(script);
+
+
+	  
+      function onProgress(loadedPrecent){
+        // update loading -> loadedPrecent =  0.0 to 1.0
+        // code here to updated some progress bar for the loading screen
+      }
+    </script>
   </body>
 </html>

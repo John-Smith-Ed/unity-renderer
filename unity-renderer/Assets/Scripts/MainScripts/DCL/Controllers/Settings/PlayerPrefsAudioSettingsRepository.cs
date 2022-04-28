@@ -71,7 +71,7 @@ namespace DCL.SettingsCommon
             }
             catch (Exception e)
             {
-                Debug.LogWarning(e);
+                Debug.LogWarning($"<color=red>{e}</color");
                 //TODO:A.B Debug.LogException(e);
             }
 

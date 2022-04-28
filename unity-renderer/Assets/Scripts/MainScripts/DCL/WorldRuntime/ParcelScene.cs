@@ -741,11 +741,15 @@ namespace DCL.Controllers
 
             if (gameObject == null)
             {
-                Debug.LogError($"Unknown disposableComponent {id} -- scene has been destroyed?");
+                Debug.LogWarning($"<color=red>Unknown disposableComponent {id} -- scene has been destroyed?</color>");
+                
+               //TODO:A.B Debug.LogError($"Unknown disposableComponent {id} -- scene has been destroyed?");
             }
             else
             {
-                Debug.LogError($"Unknown disposableComponent {id}", gameObject);
+                Debug.LogWarning($"<color=red>Unknown disposableComponent {id}</color>", gameObject);
+                
+               //TODO:A.B Debug.LogError($"Unknown disposableComponent {id}", gameObject);
             }
 
             return null;

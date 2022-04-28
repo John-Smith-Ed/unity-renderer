@@ -29,7 +29,9 @@ namespace DCL.Helpers
             currentPromise.OnFailEvent += (x, e) =>
             {
                 OnFail?.Invoke(e);
-                Debug.LogError($"Texture loading failed! {uri} {e.Message}");
+                //Debug.LogError($"Texture loading failed! {uri} {e.Message}");
+                //TODO:A.B
+                Debug.LogWarning($"<color=red>Texture loading failed! {uri} {e.Message}</color>");
             };
 
             AssetPromiseKeeper_Texture.i.Keep(currentPromise);

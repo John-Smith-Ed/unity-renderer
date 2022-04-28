@@ -96,6 +96,9 @@ namespace DCL
         {
             string finalUrl = baseUrl + hash;
 
+            //TODO:A.B
+            ABEY.LogWriter.Write("AssetBundleRequest", finalUrl);
+
             if (failedRequestUrls.Contains(finalUrl))
             {
                 OnFail?.Invoke(new Exception($"The url {finalUrl} has failed"));

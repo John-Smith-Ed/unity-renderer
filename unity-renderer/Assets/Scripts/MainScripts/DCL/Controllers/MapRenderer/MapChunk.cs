@@ -2,12 +2,15 @@ using DCL.Helpers;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 namespace DCL
 {
+    using ABEY;
     public class MapChunk : MonoBehaviour
     {
         private bool VERBOSE = false;
-        const string MAP_API_BASE = "https://api.decentraland.org/v1/map.png";
+        //const string MAP_API_BASE = "https://api.decentraland.org/v1/map.png";
+        string MAP_API_BASE => AbeyConfig.MapApiBaseUrl;
 
         public RawImage targetImage;
 
@@ -26,7 +29,9 @@ namespace DCL
             string url = $"{MAP_API_BASE}?center={center.x},{center.y}&width={size.x}&height={size.y}&size={tileSize}";
 
             Texture2D result = null;
-
+            
+            LogWriter.Write("MapChunks", url);
+           
             return Utils.FetchTexture(url, false, (x) =>
             {
                 result = x;

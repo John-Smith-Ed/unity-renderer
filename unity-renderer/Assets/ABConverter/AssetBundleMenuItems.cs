@@ -28,7 +28,9 @@ namespace DCL
             public MappingPair[] EP_12;
         }
 
-        private const string KERNEL_RELATIVE_PATH = "/../../../kernel"; // This has to be set manually according to the local paths 
+        private const string KERNEL_RELATIVE_PATH = "/../../../../decent-kernel";
+        //private const string KERNEL_RELATIVE_PATH = "/../../../kernel"; // This has to be set manually according to the local paths 
+
 
         [MenuItem("Decentraland/Asset Bundle Builder/Dump Default Empty Parcels")]
         public static void DumpEmptyParcels_Default() { DumpEmptyParcels(); }

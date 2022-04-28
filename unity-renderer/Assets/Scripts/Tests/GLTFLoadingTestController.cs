@@ -46,7 +46,7 @@ public class GLTFLoadingTestController : MonoBehaviour
 
         string parsedJSON = JsonUtility.ToJson(data);
 
-        StartCoroutine(PostRequest(dataTrackingURL, parsedJSON));
+        //TODO:A.B StartCoroutine(PostRequest(dataTrackingURL, parsedJSON));
     }
 
     IEnumerator PostRequest(string url, string json)

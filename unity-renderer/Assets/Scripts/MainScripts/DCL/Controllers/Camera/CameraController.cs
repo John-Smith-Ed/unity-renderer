@@ -101,8 +101,9 @@ namespace DCL.Camera
         {
             if (visibleState == prevVisibleState)
                 return;
-
-            camera.enabled = !visibleState && CommonScriptableObjects.rendererState.Get();
+            //TODO:A.B    
+            // THIS IS JUST STUPID!
+            //camera.enabled = !visibleState && CommonScriptableObjects.rendererState.Get();
         }
 
         void OnOutputTextureChange(RenderTexture current, RenderTexture previous)
@@ -125,6 +126,7 @@ namespace DCL.Camera
             return false;
         }
 
+        //TODO:A.B - why would they disable the one camera??? noobs!
         private void OnRenderingStateChanged(bool enabled, bool prevState) { camera.enabled = enabled && !CommonScriptableObjects.isFullscreenHUDOpen; }
 
         private void CameraBlocked_OnChange(bool current, bool previous)

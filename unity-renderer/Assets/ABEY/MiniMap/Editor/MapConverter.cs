@@ -11,7 +11,7 @@ public class MapConverter : EditorWindow {
 
     [MenuItem("ABEY/Create Mini Map Scriptable", false, 2)]
     public static void BuildAbeyMiniMap(){
-
+        return;
         string mapData          = File.ReadAllText("Assets/ABEY/MiniMap/Editor/Resources/ABW-Map-mapped.csv");     
         string[] tiles          = mapData.Split(',');           
         MinimapMetadata asset   = ScriptableObject.CreateInstance<MinimapMetadata>(); 

@@ -16,6 +16,8 @@ public class MinimapMetadataController : MonoBehaviour
     {
         var scenesInfo = Utils.ParseJsonArray<MinimapMetadata.MinimapSceneInfo[]>(scenesInfoJson);
 
+        ABEY.LogWriter.Write("MiniMapServerJson",scenesInfoJson);
+
         foreach (var sceneInfo in scenesInfo)
         {
             minimapMetadata.AddSceneInfo(sceneInfo);

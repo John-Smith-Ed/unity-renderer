@@ -145,24 +145,24 @@ namespace DCL
         
         protected virtual void InitializeSceneDependencies()
         {
-            gameObject.AddComponent<UserProfileController>(); // this looks to just create a data container to hold the user info once signed in
-            gameObject.AddComponent<RenderingController>();
-            gameObject.AddComponent<CatalogController>();
-            gameObject.AddComponent<MinimapMetadataController>();
-            gameObject.AddComponent<ChatController>();
-            gameObject.AddComponent<FriendsController>();
-            gameObject.AddComponent<HotScenesController>();
-            gameObject.AddComponent<GIFProcessingBridge>();
-            gameObject.AddComponent<RenderProfileBridge>();
-            gameObject.AddComponent<AssetCatalogBridge>();
-            gameObject.AddComponent<ScreenSizeWatcher>();
-            gameObject.AddComponent<SceneControllerBridge>();
+           gameObject.AddComponent<UserProfileController>(); // this looks to just create a data container to hold the user info once signed in
+           gameObject.AddComponent<RenderingController>();
+           gameObject.AddComponent<CatalogController>();
+           gameObject.AddComponent<MinimapMetadataController>();
+           gameObject.AddComponent<ChatController>();
+           gameObject.AddComponent<FriendsController>();
+           gameObject.AddComponent<HotScenesController>();
+           gameObject.AddComponent<GIFProcessingBridge>();
+           gameObject.AddComponent<RenderProfileBridge>();
+           gameObject.AddComponent<AssetCatalogBridge>();
+           gameObject.AddComponent<ScreenSizeWatcher>();
+           gameObject.AddComponent<SceneControllerBridge>();
 
-            MainSceneFactory.CreateBuilderInWorldBridge(gameObject);
-            MainSceneFactory.CreateBridges();
-            MainSceneFactory.CreateMouseCatcher();
-            MainSceneFactory.CreatePlayerSystems();
-            CreateEnvironment();
+           MainSceneFactory.CreateBuilderInWorldBridge(gameObject);
+           MainSceneFactory.CreateBridges();
+           MainSceneFactory.CreateMouseCatcher();
+           MainSceneFactory.CreatePlayerSystems();
+           CreateEnvironment();
             MainSceneFactory.CreateAudioHandler();
             MainSceneFactory.CreateHudController();
             MainSceneFactory.CreateSettingsController();

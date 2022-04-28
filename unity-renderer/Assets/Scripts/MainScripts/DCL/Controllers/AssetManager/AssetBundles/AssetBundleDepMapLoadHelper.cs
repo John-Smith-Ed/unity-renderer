@@ -63,7 +63,7 @@ public static class AssetBundleDepMapLoadHelper
     public static void LoadDepMapFromJSON(string metadataJSON, string hash)
     {
         AssetBundleMetadata metadata = JsonUtility.FromJson<AssetBundleMetadata>(metadataJSON);
-
+        ABEY.LogWriter.Write("LoadDepMapFromJSON", metadataJSON);
         if (VERBOSE)
         {
             Debug.Log($"DependencyMapLoadHelper: {hash} asset bundle version: " + metadata.version);

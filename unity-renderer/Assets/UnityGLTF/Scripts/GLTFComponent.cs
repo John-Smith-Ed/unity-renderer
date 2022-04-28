@@ -275,7 +275,7 @@ namespace UnityGLTF
                         return;
 #endif
 
-                    Debug.LogWarning(e);
+                    Debug.LogWarning($"<color=red>{e}</color>");
                 //TODO:A.B Debug.LogException(e);
                 }
                 finally

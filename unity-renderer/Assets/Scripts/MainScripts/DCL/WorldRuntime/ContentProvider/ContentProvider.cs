@@ -158,7 +158,9 @@ namespace DCL
             {
                 if (!fileToHash.ContainsKey(url))
                 {
-                    Debug.LogError($"GetContentsUrl >>> File {url} not found!!!");
+                    //Debug.LogError($"GetContentsUrl >>> File {url} not found!!!");
+                    //TODO:A.B
+                    Debug.LogWarning($"<color=red>GetContentsUrl >>> File {url} not found!!!</color>");
                     return false;
                 }
 

@@ -64,7 +64,7 @@ namespace DCL
             }
             catch (Exception e) when (!(e is OperationCanceledException))
             {
-                Debug.LogWarning(e);
+                Debug.LogWarning($"<color=red>{e}</color>");
                 //TODO:A.B Debug.LogException(e);
                 fail(e);
             }

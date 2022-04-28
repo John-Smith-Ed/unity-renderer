@@ -174,7 +174,7 @@ public class PlayerAvatarController : MonoBehaviour
             }
             catch (Exception e)
             {
-                Debug.LogWarning(e);
+                Debug.LogWarning($"<color=red>{e}</color>");
                 //TODO:A.B Debug.LogException(e);
                 WebInterface.ReportAvatarFatalError();
                 return;
