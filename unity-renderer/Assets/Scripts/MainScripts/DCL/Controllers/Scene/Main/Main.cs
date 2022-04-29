@@ -145,7 +145,7 @@ namespace DCL
         
         protected virtual void InitializeSceneDependencies()
         {
-           gameObject.AddComponent<UserProfileController>(); // this looks to just create a data container to hold the user info once signed in
+           gameObject.AddComponent<UserProfileController>(); // Awake() - this looks to just create a data container to hold the user info once signed, also has a really bad singleton "dont ever do this!"
            gameObject.AddComponent<RenderingController>();
            gameObject.AddComponent<CatalogController>();
            gameObject.AddComponent<MinimapMetadataController>();
@@ -158,8 +158,23 @@ namespace DCL
            gameObject.AddComponent<ScreenSizeWatcher>();
            gameObject.AddComponent<SceneControllerBridge>();
 
-           MainSceneFactory.CreateBuilderInWorldBridge(gameObject);
-           MainSceneFactory.CreateBridges();
+            // Creates empty object and attaches [BuilderInWorldBridge]
+            //BuilderInWorldBridge has no mono lifecycle methods
+            MainSceneFactory.CreateBuilderInWorldBridge(gameObject);
+
+            //Loads [Bridges] prefab from Resources and Instantiates it
+            //[Bridges] - Components
+            //[KernelConfigurationBridge] has no mono lifecycle methods  !has one method SetKernelConfiguration() this is overkill for a mono and needs to be designed better
+            //[FocusStateBridge] Awake loads a script able from resouces that holds only a bool ??? WTF! needs to be designed better
+            //[RealmsInfoBridge] has no mono lifecycle methods
+            //[MouseCatcherBridge] has no mono lifecycle methods - has a method exposed for browser - this is weird, there should be one manager for browser stuff this code is so bad
+            //[QuestsBridge] does some interaction with [QuestsController] singleton, hope its for UI connection else why only interact with a few things??? And only uses OnDestroy, so clean up with object is removed
+            //[UsersSearchBridge] Has Awake but it only implements a really bad singleton "dont ever do this" and it implemnets [IUsersSearchBridge]
+            //[DataStoreBridge] has no mono lifecycle methods - decodes json and passes to [DataStore]
+            //[LoadingBridge] has no mono lifecycle methods updates loading UI
+            MainSceneFactory.CreateBridges();
+
+
            MainSceneFactory.CreateMouseCatcher();
            MainSceneFactory.CreatePlayerSystems();
            CreateEnvironment();

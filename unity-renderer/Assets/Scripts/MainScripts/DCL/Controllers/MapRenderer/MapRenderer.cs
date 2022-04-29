@@ -100,6 +100,10 @@ namespace DCL
         [HideInInspector]
         public event System.Action<float, float> OnMovedParcelCursor;
 
+        // used in update to insure we sit at the right depth 'order in parent' so it renders above the real map and below all the markers
+        [SerializeField] Transform abeyMapOverlay;
+
+
         private void Awake()
         {
             i = this;
@@ -279,6 +283,10 @@ namespace DCL
 
         void Update()
         {
+            // -2 beacuse we dont want to be the last, the last child is the overlays 'markers' that render
+            // this is dumb but its the only good way with how badly the code is put togther
+            abeyMapOverlay.SetSiblingIndex(abeyMapOverlay.transform.parent.childCount-2);
+
             if (!parcelHighlightEnabled)
                 return;
 
