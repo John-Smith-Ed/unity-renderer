@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Runtime.InteropServices;
-
+/*
 namespace Kongregate {
     public class WebGLMemoryStats : MonoBehaviour {
         [Tooltip("Interval (in seconds) between log entries")]
@@ -46,3 +46,4 @@ namespace Kongregate {
 #endif
     }
 }
+*/

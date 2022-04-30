@@ -102,8 +102,9 @@ namespace DCL.Camera
             if (visibleState == prevVisibleState)
                 return;
             //TODO:A.B    
-            // THIS IS JUST STUPID!
+            // THIS IS JUST STUPID! - one camera should always be enabled
             //camera.enabled = !visibleState && CommonScriptableObjects.rendererState.Get();
+            camera.enabled = true;
         }
 
         void OnOutputTextureChange(RenderTexture current, RenderTexture previous)

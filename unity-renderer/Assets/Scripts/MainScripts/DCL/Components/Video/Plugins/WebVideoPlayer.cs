@@ -41,7 +41,9 @@ namespace DCL.Components.Video.Plugin
                     if ( newError != lastError )
                     {
                         lastError = newError;
-                        Debug.LogError(lastError);
+                        Debug.LogWarning($"<color=red>{lastError}</color>");
+                        //TODO:A.B
+                        //Debug.LogError(lastError);
                     }
 
                     break;

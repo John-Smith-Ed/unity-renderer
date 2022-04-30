@@ -130,7 +130,10 @@ namespace DCL
                 if (VERBOSE)
                     Debug.Log($"Request failed? {asyncOp.webRequest.error} ... {finalUrl}");
                 failedRequestUrls.Add(finalUrl);
+                Debug.LogWarning($"<color=red>Request failed? {asyncOp.webRequest.error} ... {finalUrl}</color>");
                 OnFail?.Invoke(new Exception($"Request failed? {asyncOp.webRequest.error} ... {finalUrl}"));
+                //TODO:A.B
+                //OnFail?.Invoke(new Exception($"Request failed? {asyncOp.webRequest.error} ... {finalUrl}"));
                 asyncOp.Dispose();
                 yield break;
             }

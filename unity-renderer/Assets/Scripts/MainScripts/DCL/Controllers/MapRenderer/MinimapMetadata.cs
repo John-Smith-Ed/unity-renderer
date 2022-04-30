@@ -77,6 +77,7 @@ public class MinimapMetadata : ScriptableObject
     Dictionary<Vector2Int, MinimapSceneInfo> sceneInfoMap = new Dictionary<Vector2Int, MinimapSceneInfo>();
 
     // TODO:A.B  delete - added so we can visualize the data in the editor
+    // f.y.i Dictionary are not serializeable so can not be inspected at run time in the editor, reason for a list here
     [SerializeField] List<MinimapSceneInfo> infoMapList = new List<MinimapSceneInfo>();
 
     public MinimapSceneInfo GetSceneInfo(int x, int y)
