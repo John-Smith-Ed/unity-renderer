@@ -59,6 +59,7 @@
           $abeyworld.SetGameInstance(instance)
           gameInstance = instance;
           onProgress(1.0);
+          $abeyworld.ActivateRendering();
         })
         .catch((message)=>console.log(message));
       };

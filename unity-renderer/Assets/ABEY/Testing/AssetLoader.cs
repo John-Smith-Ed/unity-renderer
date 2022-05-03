@@ -10,11 +10,16 @@ using UnityGLTF;
 using UnityGLTF.Cache;
 using UnityGLTF.Loader;
 
+
+
+
+
 public class AssetLoader : MonoBehaviour{
     
     [SerializeField] Text assetCount;
     [SerializeField] Text loadedCount;
     int loaded=0;
+
 
     string baseUrl="https://content-assets-as-bundle.decentraland.org/v22"; 
 
@@ -175,7 +180,6 @@ public class AssetLoader : MonoBehaviour{
     string[] localAssets = new string[]{   }; 
 
  
-
  
 
     IEnumerator Start() { 
@@ -183,7 +187,6 @@ public class AssetLoader : MonoBehaviour{
         LocalFiles();
         yield return null;
        //yield return RemoteFiles();  
-
     } 
 
 
