@@ -663,7 +663,7 @@ namespace DCL.Interface
      * This method is called after the first render. It marks the loading of the
      * rest of the JS client.
      */
-    [DllImport("__Internal")] public static extern void StartDecentraland();
+    //[DllImport("__Internal")] public static extern void StartDecentraland();
     [DllImport("__Internal")] public static extern void MessageFromEngine(string type, string message);
     [DllImport("__Internal")] public static extern string GetGraphicCard();
     [DllImport("__Internal")] public static extern bool CheckURLParam(string targetParam);
@@ -686,7 +686,7 @@ namespace DCL.Interface
 
         private static bool hasQueuedMessages = false;
         private static List<(string, string)> queuedMessages = new List<(string, string)>();
-        public static void StartDecentraland() { }
+        //public static void StartDecentraland() { }
         public static bool CheckURLParam(string targetParam) { return false; }
 
         public static void MessageFromEngine(string type, string message)

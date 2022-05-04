@@ -35,7 +35,7 @@ const $abeyworld = (function() {
         SetTutorialEnabledForUsersThatAlreadyDidTheTutorial:    (data) => this.SendToUnity("TutorialController","SetTutorialEnabledForUsersThatAlreadyDidTheTutorial",JSON.stringify(data)),//JSON.stringify(e)
       
 /***
- * Messages sent the the GameObject 'Main'
+ * Messages sent to the GameObject 'Main'
  */
         SetDebug:                       ()      => this.SendToUnity("Main","SetDebug"),
         LoadProfile:                    (data)  => this.SendToUnity("Main","LoadProfile",JSON.stringify(data)),//JSON.stringify(e)
@@ -87,7 +87,7 @@ const $abeyworld = (function() {
         TogglePreviewMenu:              (data)  => this.SendToUnity("Main","TogglePreviewMenu",JSON.stringify(data)),//JSON.stringify({enabled:!0})
 
 /***
- * Messages sent the the GameObject 'Bridges'
+ * Messages sent to the GameObject 'Bridges'
  */
         SetLoadingScreen:               (data)  => this.SendToUnity("Bridges","SetLoadingScreen",JSON.stringify(data)),//JSON.stringify(e)
         ReportFocusOn:                  ()      => this.SendToUnity("Bridges","ReportFocusOn"),
@@ -105,7 +105,7 @@ const $abeyworld = (function() {
 
 
 /***
- * Messages sent the the GameObject 'HUDController'
+ * Messages sent to the GameObject 'HUDController'
  */
         ShowNotificationFromJson:       (data)  => this.SendToUnity("HUDController","ShowNotificationFromJson",JSON.stringify(data)),//JSON.stringify(e)
         ConfigureHUDElement:            (data)  => this.SendToUnity("HUDController","ConfigureHUDElement",JSON.stringify(data)),//JSON.stringify({hudElementId:e,configuration:t,extraPayload:n?JSON.stringify(n):null})

@@ -7,7 +7,7 @@
     This is safe to use for any and all new singltons we write
 **/
 
-namespace ABEY {
+
 
     using UnityEngine;
 
@@ -61,4 +61,3 @@ namespace ABEY {
 			}
 		}
 	}
-}

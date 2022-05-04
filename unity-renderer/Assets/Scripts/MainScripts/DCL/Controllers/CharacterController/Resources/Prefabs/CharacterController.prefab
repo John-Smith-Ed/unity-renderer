@@ -205,6 +205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4710899382381041556}
   - component: {fileID: 7115442889188564318}
+  - component: {fileID: 8873998920089902283}
   m_Layer: 21
   m_Name: AvatarCollider
   m_TagString: Untagged
@@ -239,6 +240,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &8873998920089902283
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5357437800171952595}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6614764432315271185
 GameObject:
   m_ObjectHideFlags: 0

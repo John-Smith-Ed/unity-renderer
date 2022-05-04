@@ -108,7 +108,7 @@ namespace DCL
             DCL.Interface.WebInterface.SendSystemInfoReport();
 
             // We trigger the Decentraland logic once everything is initialized.
-            DCL.Interface.WebInterface.StartDecentraland();
+            //DCL.Interface.WebInterface.StartDecentraland();
         }
 
         protected virtual void Update()
@@ -175,9 +175,9 @@ namespace DCL
             MainSceneFactory.CreateBridges();
 
 
-           MainSceneFactory.CreateMouseCatcher();
-           MainSceneFactory.CreatePlayerSystems();
-           CreateEnvironment();
+            MainSceneFactory.CreateMouseCatcher();
+            MainSceneFactory.CreatePlayerSystems();
+           // CreateEnvironment(); // i droped the prefab in scene -a.b 'Environment.prefab'
             MainSceneFactory.CreateAudioHandler();
             MainSceneFactory.CreateHudController();
             MainSceneFactory.CreateSettingsController();
