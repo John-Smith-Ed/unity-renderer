@@ -2,16 +2,45 @@
 # =============== #
 # Unity generated #
 # =============== #
-Temp/
-Library/
-*.cache
-/obj/
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
 [Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+# refacterd above and added missing to catch all cases -a.b 5.5.2022
+*.cache
 TestResults/
 Assets/InitTestScene*.unity
 Assets/InitTestScene*.unity.meta
 **/CurrentTestImages/
 /AssetBundles/
-Logs/
 Assets/BuildReports*
 /CodeCoverage/
+
+#Others that were missing -a.b 5.5.2022
+
+# Unity Builds
+*.unitypackage
+
+# Unity3D generated meta files
+*.pidb.meta
+*.pdb.meta
+
+# Unity3D Generated File On Crash Reports
+sysinfo.txt
+
+#probuilder - unity
+ProjectSettings/Packages/com.unity.probuilder/Settings.json
+
+# Visual Studio cache directory
+.vs/
+.vscode/
+
+#log files
+*.log
+
+#Android
+.gradle/
+

@@ -44,7 +44,6 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Source: "C:\Users\AaronBuffie\Desktop\FullGame\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\AaronBuffie\Desktop\FullGame\UnityCrashHandler64.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\AaronBuffie\Desktop\FullGame\UnityPlayer.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\AaronBuffie\Desktop\FullGame\WinPixEventRuntime.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\AaronBuffie\Desktop\FullGame\DecentralandUnityClient_Data\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\AaronBuffie\Desktop\FullGame\MonoBleedingEdge\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
