@@ -42,7 +42,7 @@ public class KernelConfig
         {
             Initialize(newValue);
         }
-
+Debug.Log(newValue);
         if (newValue.Equals(value))
             return;
 

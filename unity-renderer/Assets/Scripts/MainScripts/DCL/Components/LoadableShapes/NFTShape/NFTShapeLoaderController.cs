@@ -206,8 +206,9 @@ public class NFTShapeLoaderController : MonoBehaviour
             },
             (exc) =>
             {
-                Debug.LogError(string.Format(COULD_NOT_FETCH_NFT_IMAGE, darURLRegistry, darURLAsset,
-                    nftInfo.previewImageUrl));
+                Debug.LogWarning($"<color=red>{string.Format(COULD_NOT_FETCH_NFT_IMAGE, darURLRegistry, darURLAsset,    nftInfo.previewImageUrl)}</color>");
+                //TODO:A.B
+                //Debug.LogError(string.Format(COULD_NOT_FETCH_NFT_IMAGE, darURLRegistry, darURLAsset,    nftInfo.previewImageUrl));
 
                 ShowErrorFeedback(true);
                 OnLoadingAssetFail?.Invoke();
