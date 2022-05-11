@@ -1,7 +1,6 @@
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 namespace ABEY{
 
@@ -23,22 +22,23 @@ namespace ABEY{
 
         static LogWriter(){
             Application.quitting+=WriteAll;
-        }
-
-        static LogQueue CreateLog(string filename){
             if(!Directory.Exists(Path)){
                 Directory.CreateDirectory(Path);
             }
+        }
+
+        static LogQueue CreateLog(string filename){
+            
             string logPath="";
             if(files.ContainsKey(filename)){
                 return files[filename];
             }else{
-                #if UNITY_EDITOR
-                logPath=AssetDatabase.GenerateUniqueAssetPath(FilePath(filename));
-                #else
+             //   #if UNITY_EDITOR
+             //   logPath=AssetDatabase.GenerateUniqueAssetPath(FilePath(filename));
+             //   #else
                 logPath=FilePath(filename);
-                #endif
-                File.Create(logPath);
+               // #endif
+                using (FileStream sw = File.Create(logPath)){}
                 LogQueue q = new LogQueue(){file=logPath};
                 files.Add(filename, q);
                 return q;
@@ -46,6 +46,7 @@ namespace ABEY{
         }
             
         public static void Write(string filename, string data, int writeAt=5){
+            
             LogQueue queue = CreateLog(filename);
             queue.data.Enqueue(data);
 
@@ -58,7 +59,12 @@ namespace ABEY{
         static void WriteQueue(LogQueue queue){
             // skiping the file right, this sometimes brakes the game, there is some weird 'sharing error' when writeing the log file
             // it does not always happen, this is just used to scrap info for areas that are loading api data
-            return;
+            //return;
+           
+               // #endif
+            
+            
+
             using (StreamWriter sw = File.AppendText(queue.file)) {
                 while(queue.data.Count>0){
                     sw.WriteLine(queue.data.Dequeue());
