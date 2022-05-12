@@ -95,12 +95,14 @@ namespace DCL.Camera
             SetInvertYAxis(DataStore.i.camera.invertYAxis.Get(), false);
 
             wasBlendingLastFrame = false;
+          
+            
         }
 
         void OnFullscreenUIVisibilityChange(bool visibleState, bool prevVisibleState)
         {
-            if (visibleState == prevVisibleState)
-                return;
+            //if (visibleState == prevVisibleState)
+                //return;
             //TODO:A.B    
             // THIS IS JUST STUPID! - one camera should always be enabled
             //camera.enabled = !visibleState && CommonScriptableObjects.rendererState.Get();
@@ -128,7 +130,10 @@ namespace DCL.Camera
         }
 
         //TODO:A.B - why would they disable the one camera??? noobs!
-        private void OnRenderingStateChanged(bool enabled, bool prevState) { camera.enabled = enabled && !CommonScriptableObjects.isFullscreenHUDOpen; }
+        private void OnRenderingStateChanged(bool enabled, bool prevState) {  
+         //   camera.enabled =true; 
+            camera.enabled = enabled && !CommonScriptableObjects.isFullscreenHUDOpen;
+        }
 
         private void CameraBlocked_OnChange(bool current, bool previous)
         {
