@@ -183,10 +183,13 @@ public class AssetLoader : MonoBehaviour{
  
 
     IEnumerator Start() { 
-        assetCount.text = assets.Length.ToString();
-        LocalFiles();
+        //assetCount.text = assets.Length.ToString();
+       // LocalFiles();
         yield return null;
        //yield return RemoteFiles();  
+
+       ABEY.LogWriter.Write("Foo", "one");
+       ABEY.LogWriter.Write("Foo", "Two", 10);
     } 
 
 

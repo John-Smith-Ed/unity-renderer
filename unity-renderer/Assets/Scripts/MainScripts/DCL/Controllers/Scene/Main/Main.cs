@@ -6,6 +6,7 @@ using DCL.Helpers;
 using DCL.SettingsCommon;
 using UnityEngine;
 using UnityEngine.Serialization;
+using ABEY;
 
 namespace DCL
 {
@@ -64,7 +65,11 @@ namespace DCL
 
         protected virtual void InitializeCommunication()
         {
-#if UNITY_WEBGL && !UNITY_EDITOR
+
+#if ABEY
+            kernelCommunication = new AbeyCommunicationBridge(Environment.i.world.sceneController);
+
+#elif UNITY_WEBGL && !UNITY_EDITOR
             Debug.Log("DCL Unity Build Version: " + DCL.Configuration.ApplicationSettings.version);
             Debug.unityLogger.logEnabled = false;
 

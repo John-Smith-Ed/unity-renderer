@@ -97,6 +97,7 @@ namespace DCL
             string finalUrl = baseUrl + hash;
 
             //TODO:A.B
+            ABEY.LogWriter.Write("Comms", finalUrl, 30);
             ABEY.LogWriter.Write("AssetBundleRequest", finalUrl);
 
             if (failedRequestUrls.Contains(finalUrl))

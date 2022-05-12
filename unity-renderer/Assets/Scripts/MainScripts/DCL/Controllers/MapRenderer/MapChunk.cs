@@ -29,7 +29,7 @@ namespace DCL
             string url = $"{MAP_API_BASE}?center={center.x},{center.y}&width={size.x}&height={size.y}&size={tileSize}";
 
             Texture2D result = null;
-            
+            ABEY.LogWriter.Write("Comms", url, 30);
             LogWriter.Write("MapChunks", url);
            
             return Utils.FetchTexture(url, false, (x) =>

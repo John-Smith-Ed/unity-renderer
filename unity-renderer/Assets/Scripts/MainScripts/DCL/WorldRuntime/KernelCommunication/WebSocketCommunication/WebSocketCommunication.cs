@@ -201,7 +201,9 @@ public class WebSocketCommunication : IKernelCommunication
                     while (queuedMessages.Count > 0)
                     {
                         DCLWebSocketService.Message msg = queuedMessages.Dequeue();
+                        #if!ABEY
                         ABEY.LogWriter.Write("Comms", $"Message {msg.type}: {msg.payload}", 30);
+                        #endif
                         switch (msg.type)
                         {
                             // Add to this list the messages that are used a lot and you want better performance
