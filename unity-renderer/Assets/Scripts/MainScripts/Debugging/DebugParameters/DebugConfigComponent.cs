@@ -81,6 +81,9 @@ namespace DCL
         public bool multithreaded = false;
         public DebugPanel debugPanelMode = DebugPanel.Off;
 
+        #if ABEY
+        void Awake() => Destroy(gameObject); // ABEY Dont Need this, but we might want to referance it later
+        #else
         private void Awake()
         {
             if (sharedInstance == null)
@@ -93,7 +96,7 @@ namespace DCL
             DataStore.i.performance.multithreading.Set(multithreaded);
             Texture.allowThreadedTextureCreation = multithreaded;
         }
-
+        #endif
         private void Start()
         {
             lock (DataStore.i.wsCommunication.communicationReady)

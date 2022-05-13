@@ -382,7 +382,9 @@ public class AbeyCommunicationBridge : IKernelCommunication {
                     while (queuedMessages.Count > 0)
                     {
                         DCLWebSocketService.Message msg = queuedMessages.Dequeue();
-                        ABEY.LogWriter.Write("Comms", $"Message {msg.type}: {msg.payload}", 30);
+                        #if!ABEY && UNITY_EDITOR
+                        ABEY.LogWriter.Write("Comms", $"Message {msg.ToJson()}", 30);
+                        #endif
                         switch (msg.type)
                         {
                             // Add to this list the messages that are used a lot and you want better performance

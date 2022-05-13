@@ -42,13 +42,14 @@ public class WebSocketCommunication : IKernelCommunication
                     SslConfiguration =
                     {
                         ServerCertificate = CertificateUtils.CreateSelfSignedCert(),
-                        ClientCertificateRequired = false,
-                        CheckCertificateRevocation = false,
+                        ClientCertificateRequired   = false,
+                        CheckCertificateRevocation  = false,
                         ClientCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true,
                         EnabledSslProtocols = System.Security.Authentication.SslProtocols.Tls12 
                     },
                     KeepClean = false
                 };
+               
             }
             else
             {
@@ -201,8 +202,8 @@ public class WebSocketCommunication : IKernelCommunication
                     while (queuedMessages.Count > 0)
                     {
                         DCLWebSocketService.Message msg = queuedMessages.Dequeue();
-                        #if!ABEY
-                        ABEY.LogWriter.Write("Comms", $"Message {msg.type}: {msg.payload}", 30);
+                        #if!ABEY && UNITY_EDITOR
+                        ABEY.LogWriter.Write("Comms", $"Message {msg.ToJson()}", 30);
                         #endif
                         switch (msg.type)
                         {

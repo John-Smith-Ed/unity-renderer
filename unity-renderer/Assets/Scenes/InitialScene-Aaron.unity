@@ -2701,7 +2701,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1444882337}
   - component: {fileID: 1444882336}
-  - component: {fileID: 1444882338}
   m_Layer: 0
   m_Name: DebugConfig
   m_TagString: Untagged
@@ -2716,7 +2715,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444882335}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73b83adac0a4ddd039a0a1c9c2a9a163, type: 3}
   m_Name: 
@@ -2758,41 +2757,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1444882338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1444882335}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73b83adac0a4ddd039a0a1c9c2a9a163, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debugConfig:
-    soloScene: 0
-    soloSceneCoords: {x: 0, y: 0}
-    ignoreGlobalScenes: 0
-    msgStepByStep: 0
-  openBrowserWhenStart: 1
-  webSocketSSL: 0
-  kernelVersion: 
-  useCustomContentServer: 0
-  customContentServerUrl: http://localhost:1338/
-  baseUrlMode: 1
-  baseUrlCustom: https://play.decentraland.zone/?
-  environment: 4
-  realm: loki
-  startInCoords: {x: 0, y: 0}
-  forceLocalComms: 0
-  allWearables: 0
-  testWearables: 0
-  enableTutorial: 0
-  builderInWorld: 0
-  soloScene: 0
-  multithreaded: 0
-  debugPanelMode: 0
 --- !u!1 &1511494356
 GameObject:
   m_ObjectHideFlags: 0

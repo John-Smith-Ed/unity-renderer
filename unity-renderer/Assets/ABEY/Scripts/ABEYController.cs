@@ -38,9 +38,9 @@
             //close hole position Vector3(17.3299999,104.57,3.67000008)
             // current player start position {\"x\":14.808116051111426,\"y\":206,\"z\":-4.2183475919324565}
             Debug.Log("SHOULD TELEPORT");
-           
-          //  DCLCharacterController.i.Teleport("{\"x\":18,\"y\":122,\"z\":-10.7} ");
-             OnMessage(MakeMessage("Teleport", "{\"x\":18,\"y\":122,\"z\":-10.7} "));
+          // Vector3(21,120.579994,-3.77999997)
+            DCLCharacterController.i.Teleport("{\"x\":18,\"y\":122,\"z\":-10.7} ");
+           //  OnMessage(MakeMessage("Teleport", "{\"x\":21,\"y\":120.579994,\"z\":-3.77999997} "));
         }
 
         void FakeSetUp(){
@@ -106,6 +106,7 @@
        //     OnMessage("ConfigureHUDElement", "{"hudElementId":22,"configuration":{"active":true,"visible":false},"extraPayload":null}
        //     OnMessage("ConfigureHUDElement", "{"hudElementId":23,"configuration":{"active":true,"visible":true},"extraPayload":null}
             OnMessage(MakeMessage("CreateGlobalScene", "{\"id\":\"dcl-gs-avatars\",\"name\":\"Avatars\",\"baseUrl\":\"https://play.decentraland.zone\",\"isPortableExperience\":false,\"contents\":[]}"));
+            OnMessage(MakeMessage("UpdateRealmsInfo", "{\"current\":{\"serverName\":\"loki\",\"layer\":\"\",\"domain\":\"https://interconnected.online\",\"contentServerUrl\":\"https://peer-lb.decentraland.org/content\"}}}"));
 
             OnMessage(MakeMessage("SetRotation","{\"x\":15.903898964861497,\"y\":106,\"z\":-5.222989489695095,\"cameraTarget\":{\"x\":14,\"y\":106,\"z\":40}}"));
             OnMessage(MakeMessage("ActivateRendering", null)); 
@@ -115,6 +116,7 @@
 
         // Fake socket listen
         public void OnMessage(string message) {
+            #if ABEY
             lock (AbeyCommunicationBridge.queuedMessages){ 
                 
                 DCLWebSocketService.Message finalMessage = JsonUtility.FromJson<DCLWebSocketService.Message>(message);
@@ -123,6 +125,7 @@
                 AbeyCommunicationBridge.queuedMessagesDirty = true;
                 
             }
+            #endif
         }
 
         public string MakeMessage(string type, string payload) => JsonUtility.ToJson(new DCLWebSocketService.Message{

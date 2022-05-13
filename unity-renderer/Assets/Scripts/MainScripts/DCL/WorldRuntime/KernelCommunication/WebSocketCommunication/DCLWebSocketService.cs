@@ -41,6 +41,7 @@ public class DCLWebSocketService : WebSocketBehavior
         public string payload;
 
         public override string ToString() { return string.Format("type = {0}... payload = {1}...", type, payload); }
+        public string ToJson() { return ("{'type':"+type+", 'payload':"+payload+"}").Replace('"', '\"').Replace('\'', '\"'); }
     }
 
     protected override void OnMessage(MessageEventArgs e)

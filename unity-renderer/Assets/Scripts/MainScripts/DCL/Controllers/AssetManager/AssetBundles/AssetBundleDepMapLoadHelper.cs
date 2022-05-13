@@ -43,7 +43,9 @@ public static class AssetBundleDepMapLoadHelper
         }
         
         string url = baseUrl + hash + ".depmap";
+         #if!ABEY && UNITY_EDITOR
         ABEY.LogWriter.Write("Comms", url, 30);
+        #endif
         downloadingDepmap.Add(hash);
         yield return DCL.Environment.i.platform.webRequest.Get(
             url: url,
