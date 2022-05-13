@@ -185,11 +185,13 @@ namespace DCL.Skybox
                 return;
             }
 
+            // Not sure why runtimeReflectionObj was not checked and just camera, but they camera disabling is just not how you do things and keeping it on breaks this
+            // because runtimeReflectionObj is null, adding the check fixes it for now but we gots lost of rewriting to do so its coded correctly, some many devs jump into unity and over engineer shit without looking at how you do it in unity....
+            // - a.b 5.13.2022
             // make probe a child of main camera
-            if (UnityEngine.Camera.main != null)
-            {
-                GameObject mainCam = UnityEngine.Camera.main.gameObject;
-                runtimeReflectionObj.followTransform = mainCam.transform;
+            if (runtimeReflectionObj!=null && UnityEngine.Camera.main != null) {                
+               // GameObject mainCam = UnityEngine.Camera.main.gameObject; // no need to create more varibles, this is not the right case for it
+                runtimeReflectionObj.followTransform = UnityEngine.Camera.main.transform;
                 probeParented = true;
             }
         }
