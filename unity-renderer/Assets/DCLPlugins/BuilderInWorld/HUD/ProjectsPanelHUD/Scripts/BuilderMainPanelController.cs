@@ -12,6 +12,7 @@ using UnityEngine;
 using Variables.RealmsInfo;
 using Environment = DCL.Environment;
 using Object = UnityEngine.Object;
+using Graph;
 
 public class BuilderMainPanelController : IHUD, IBuilderMainPanelController
 {

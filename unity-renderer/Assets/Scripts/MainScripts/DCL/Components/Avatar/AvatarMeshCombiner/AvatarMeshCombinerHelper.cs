@@ -31,7 +31,7 @@ namespace DCL
     public class AvatarMeshCombinerHelper : IAvatarMeshCombinerHelper
     {
         private static bool VERBOSE = false;
-        private static ILogger logger = new Logger(Debug.unityLogger.logHandler) { filterLogType = VERBOSE ? LogType.Log : LogType.Warning };
+        private static ILogger logger = new UnityEngine.Logger(Debug.unityLogger.logHandler) { filterLogType = VERBOSE ? LogType.Log : LogType.Warning };
 
         public GameObject container { get; private set; }
         public SkinnedMeshRenderer renderer { get; private set; }

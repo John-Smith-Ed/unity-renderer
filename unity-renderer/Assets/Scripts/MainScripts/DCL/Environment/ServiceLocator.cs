@@ -10,7 +10,7 @@ namespace DCL
     public class ServiceLocator : IDisposable
     {
         private static bool VERBOSE = false;
-        private static Logger logger = new Logger("ServiceLocator") { verboseEnabled = VERBOSE };
+        private static DCL.Logs.Logger logger = new DCL.Logs.Logger("ServiceLocator") { verboseEnabled = VERBOSE };
 
         private Dictionary<Type, IService> services = new Dictionary<Type, IService>();
         private Dictionary<Type, ServiceBuilder> serviceBuilders = new Dictionary<Type, ServiceBuilder>();

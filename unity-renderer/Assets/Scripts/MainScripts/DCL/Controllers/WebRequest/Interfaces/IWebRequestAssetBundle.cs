@@ -5,7 +5,7 @@ namespace DCL
     /// <summary>
     /// Our custom implementation of the UnityWebRequestAssetBundle.
     /// </summary>
-    public interface IWebRequestAssetBundle : IWebRequest
+    public interface IWebRequestAssetBundle : Controllers.WebRequest.IWebRequest
     {
         /// <summary>
         /// Configure a version hash for the request.

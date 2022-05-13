@@ -29,7 +29,7 @@ namespace DCL
         }
 
         private static bool VERBOSE = false;
-        private static Logger logger = new Logger("SceneMetricsCounter") { verboseEnabled = VERBOSE };
+        private static DCL.Logs.Logger logger = new DCL.Logs.Logger("SceneMetricsCounter") { verboseEnabled = VERBOSE };
         public event Action<ISceneMetricsCounter> OnMetricsUpdated;
 
         private SceneMetricsModel maxCountValue = new SceneMetricsModel();

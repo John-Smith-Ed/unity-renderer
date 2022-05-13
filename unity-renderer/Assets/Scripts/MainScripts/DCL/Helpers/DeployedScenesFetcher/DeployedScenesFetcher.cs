@@ -4,6 +4,7 @@ using DCL;
 using DCL.Builder;
 using DCL.Helpers;
 using UnityEngine;
+using Graph;
 
 public static class DeployedScenesFetcher
 {

@@ -17,7 +17,7 @@ namespace DCL
 
         private static bool VERBOSE = false;
         private const int MAX_TEXTURE_ID_COUNT = 12;
-        private static ILogger logger = new Logger(Debug.unityLogger.logHandler) { filterLogType = VERBOSE ? LogType.Log : LogType.Warning };
+        private static ILogger logger = new UnityEngine.Logger(Debug.unityLogger.logHandler) { filterLogType = VERBOSE ? LogType.Log : LogType.Warning };
         private static readonly int[] textureIds = new int[] { ShaderUtils.BaseMap, ShaderUtils.EmissionMap };
 
         /// <summary>

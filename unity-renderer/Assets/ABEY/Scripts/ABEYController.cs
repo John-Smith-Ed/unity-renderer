@@ -28,6 +28,7 @@
 
         // hack for now to start the player where we want
         IEnumerator Start(){
+            
             FakeSetUp();
             yield return null;
             while(!DCLCharacterController.i.enabled){
@@ -38,7 +39,8 @@
             // current player start position {\"x\":14.808116051111426,\"y\":206,\"z\":-4.2183475919324565}
             Debug.Log("SHOULD TELEPORT");
            
-            DCLCharacterController.i.Teleport("{\"x\":18,\"y\":122,\"z\":-10.7} ");
+          //  DCLCharacterController.i.Teleport("{\"x\":18,\"y\":122,\"z\":-10.7} ");
+             OnMessage(MakeMessage("Teleport", "{\"x\":18,\"y\":122,\"z\":-10.7} "));
         }
 
         void FakeSetUp(){

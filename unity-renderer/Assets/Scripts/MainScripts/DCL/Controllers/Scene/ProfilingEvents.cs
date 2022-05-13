@@ -1,5 +1,5 @@
 ﻿using System;
-
+/*
 namespace DCL
 {
     public static class ProfilingEvents
@@ -15,3 +15,4 @@ namespace DCL
         public static Action<string> OnMessageDecodeEnds;
     }
 }
+*/

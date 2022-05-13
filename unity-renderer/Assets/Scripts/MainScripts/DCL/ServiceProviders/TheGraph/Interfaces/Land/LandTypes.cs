@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+namespace Graph{
 public enum LandType
 {
     PARCEL,
@@ -113,4 +114,5 @@ internal class OperatorAuthorizationData
     public OwnerData owner;
     public bool isApproved;
     public string tokenAddress;
+}
 }

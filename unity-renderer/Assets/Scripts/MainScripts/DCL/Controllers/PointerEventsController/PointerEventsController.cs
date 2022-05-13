@@ -24,7 +24,7 @@ namespace DCL
         IPointerInputEvent pointerInputUpEvent;
         IRaycastHandler raycastHandler = new RaycastHandler();
 
-        Camera charCamera;
+        UnityEngine.Camera charCamera;
 
         GameObject lastHoveredObject = null;
         GameObject newHoveredGO = null;
@@ -288,7 +288,7 @@ namespace DCL
         {
             if (charCamera == null)
             {
-                charCamera = Camera.main;
+                charCamera = UnityEngine.Camera.main;
             }
         }
 

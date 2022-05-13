@@ -18,7 +18,7 @@ namespace DCL
         /// <param name="textureWebRequest"></param>
         /// <param name="audioWebRequest"></param>
         void Initialize(
-            IWebRequest genericWebRequest,
+            DCL.Controllers.WebRequest.IWebRequest genericWebRequest,
             IWebRequestAssetBundle assetBundleWebRequest,
             IWebRequestTexture textureWebRequest,
             IWebRequestAudio audioWebRequest);

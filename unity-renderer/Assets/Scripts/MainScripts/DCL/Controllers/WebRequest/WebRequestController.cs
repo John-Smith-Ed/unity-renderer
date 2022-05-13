@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-
+using DCL.Controllers.WebRequest;
 namespace DCL
 {
     public class WebRequestController : IWebRequestController
     {
-        private IWebRequest genericWebRequest;
+        private DCL.Controllers.WebRequest.IWebRequest genericWebRequest;
         private IWebRequestAssetBundle assetBundleWebRequest;
         private IWebRequestTexture textureWebRequest;
         private IWebRequestAudio audioClipWebRequest;
@@ -31,7 +31,7 @@ namespace DCL
         }
 
         public void Initialize(
-            IWebRequest genericWebRequest,
+            DCL.Controllers.WebRequest.IWebRequest genericWebRequest,
             IWebRequestAssetBundle assetBundleWebRequest,
             IWebRequestTexture textureWebRequest,
             IWebRequestAudio audioClipWebRequest)
@@ -117,7 +117,7 @@ namespace DCL
             bool disposeOnCompleted,
             Dictionary<string, string> headers = null,
             WebRequestAsyncOperation asyncOp = null
-        ) where T : IWebRequest
+        ) where T : DCL.Controllers.WebRequest.IWebRequest
         {
             int remainingAttemps = Mathf.Clamp(requestAttemps, 1, requestAttemps);
 

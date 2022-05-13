@@ -15,7 +15,7 @@ namespace DCL.Components
     public class DCLVideoTexture : DCLTexture
     {
         public static bool VERBOSE = false;
-        public static Logger logger = new Logger("DCLVideoTexture") {verboseEnabled = VERBOSE};
+        public static DCL.Logs.Logger logger = new DCL.Logs.Logger("DCLVideoTexture") {verboseEnabled = VERBOSE};
 
         private const float OUTOFSCENE_TEX_UPDATE_INTERVAL_IN_SECONDS = 1.5f;
         private const float VIDEO_PROGRESS_UPDATE_INTERVAL_IN_SECONDS = 1f;

@@ -71,9 +71,9 @@ namespace DCL.Components
 
         public void Update()
         {
-            if (cachedModel.billboard && Camera.main != null)
+            if (cachedModel.billboard && UnityEngine.Camera.main != null)
             {
-                transform.forward = Camera.main.transform.forward;
+                transform.forward = UnityEngine.Camera.main.transform.forward;
             }
         }
 

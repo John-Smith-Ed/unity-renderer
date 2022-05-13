@@ -1,10 +1,12 @@
-using Cinemachine;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+
 
 namespace DCL.Tutorial
 {
+    using Cinemachine;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using UnityEngine.UI;
+
     [CreateAssetMenu(fileName = "TutorialSettings", menuName = "TutorialSettings")]
     public class TutorialSettings : ScriptableObject
     {

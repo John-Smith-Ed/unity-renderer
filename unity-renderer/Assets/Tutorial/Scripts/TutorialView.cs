@@ -1,9 +1,11 @@
-using Cinemachine;
-using UnityEngine;
-using UnityEngine.UI;
+
 
 namespace DCL.Tutorial
 {
+    using Cinemachine;
+    using UnityEngine;
+    using UnityEngine.UI;
+
     public class TutorialView : MonoBehaviour
     {
         [Header("General Configuration")]

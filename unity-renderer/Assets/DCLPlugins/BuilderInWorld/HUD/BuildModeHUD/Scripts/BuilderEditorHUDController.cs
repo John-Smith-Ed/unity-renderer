@@ -95,7 +95,7 @@ public class BuilderEditorHUDController : IHUD, IBuilderEditorHUDController
             quickBarController = new QuickBarController(),
             entityInformationController = new EntityInformationController(),
             firstPersonModeController = new FirstPersonModeController(),
-            shortcutsController = new ShortcutsController(),
+            shortcutsController = new DCL.Builder.ShortcutsController(),
             dragAndDropSceneObjectController = new DragAndDropSceneObjectController(),
             publishBtnController = new PublishBtnController(),
             inspectorBtnController = new InspectorBtnController(),

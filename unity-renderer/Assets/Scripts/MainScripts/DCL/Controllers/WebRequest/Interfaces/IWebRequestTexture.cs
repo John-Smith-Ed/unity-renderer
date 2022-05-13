@@ -1,6 +1,9 @@
-﻿namespace DCL
+﻿
+namespace DCL
 {
-    public interface IWebRequestTexture : IWebRequest
+   
+
+    public interface IWebRequestTexture : Controllers.WebRequest.IWebRequest
     {
         public bool isReadable { get; set; }
     }

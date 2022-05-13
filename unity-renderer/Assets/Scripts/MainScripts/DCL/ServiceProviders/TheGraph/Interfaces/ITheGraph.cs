@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DCL.Helpers;
+using Graph;
 
 public enum TheGraphCache
 {

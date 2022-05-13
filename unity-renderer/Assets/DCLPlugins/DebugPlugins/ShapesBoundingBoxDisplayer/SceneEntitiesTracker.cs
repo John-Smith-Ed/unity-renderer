@@ -7,7 +7,7 @@ using DCLPlugins.DebugPlugins.Commons;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-internal class SceneEntitiesTracker : ISceneListener
+internal class SceneEntitiesTracker : DCLPlugins.DebugPlugins.Commons.ISceneListener
 {
     internal const string WIREFRAME_GAMEOBJECT_NAME = "ShapeBoundingBoxWireframe";
     internal const string WIREFRAME_PREFAB_NAME = "Prefabs/WireframeCubeMesh";
@@ -23,7 +23,7 @@ internal class SceneEntitiesTracker : ISceneListener
         this.updateEventHandler = updateEventHandler;
     }
 
-    void IDisposable.Dispose()
+    public void Dispose()
     {
         foreach (var handler in entityShapeHandler.Values)
         {
@@ -34,12 +34,12 @@ internal class SceneEntitiesTracker : ISceneListener
         DestroyWireframeOriginal();
     }
 
-    void ISceneListener.OnEntityAdded(IDCLEntity entity)
+    public void OnEntityAdded(IDCLEntity entity)
     {
         WatchEntityShape(entity);
     }
 
-    void ISceneListener.OnEntityRemoved(IDCLEntity entity)
+    public void OnEntityRemoved(IDCLEntity entity)
     {
         KillWatchEntityShape(entity);
     }

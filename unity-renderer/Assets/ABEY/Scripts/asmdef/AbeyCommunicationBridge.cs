@@ -323,11 +323,8 @@ public class AbeyCommunicationBridge : IKernelCommunication {
         messageTypeToBridgeName["ToggleSceneBoundingBoxes"] = "Main";
         messageTypeToBridgeName["TogglePreviewMenu"] = "Main";
         messageTypeToBridgeName["ToggleSceneSpawnPoints"] = "Main";
-
         messageTypeToBridgeName["Teleport"] = "CharacterController";
-
         messageTypeToBridgeName["SetRotation"] = "CameraController";
-
         messageTypeToBridgeName["ShowNotificationFromJson"] = "HUDController";
         messageTypeToBridgeName["ConfigureHUDElement"] = "HUDController";
         messageTypeToBridgeName["ShowTermsOfServices"] = "HUDController";

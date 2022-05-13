@@ -106,7 +106,7 @@ namespace DCL.Builder
                     landElementViews.Add(lands[i].id, landElementView);
                 }
 
-                bool isEstate = lands[i].type == LandType.ESTATE;
+                bool isEstate = lands[i].type == Graph.LandType.ESTATE;
                 landElementView.Setup(lands[i]);
                 landElementView.SetThumbnail(GetLandThumbnailUrl(lands[i], isEstate));
             }
