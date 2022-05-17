@@ -4,9 +4,9 @@ using DCL.Helpers;
 using UnityEngine;
 using Cinemachine;
 
-public class DCLCharacterController : MonoBehaviour
+public class DCLCharacterController : MonoSingleton<DCLCharacterController>
 {
-    public static DCLCharacterController i { get; private set; }
+    
 
     private const float CONTROLLER_DRIFT_OFFSET = 0.15f;
 
@@ -98,15 +98,9 @@ public class DCLCharacterController : MonoBehaviour
     public event System.Action OnHitGround;
     public event System.Action<float> OnMoved;
     
-    void Awake()
-    {
-        if (i != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
+    private void Awake(){
+        base.Awake();// I dont think this should ever destroy do to the nature of the app, for now we will not make it presist
 
-        i = this;
         originalGravity = gravity;
 
         SubscribeToInput();
@@ -156,19 +150,16 @@ public class DCLCharacterController : MonoBehaviour
         sprintAction.OnFinished += walkFinishedDelegate;
     }
 
-    void OnDestroy()
-    {
+    void OnDestroy() {
         CommonScriptableObjects.worldOffset.OnChange -= OnWorldReposition;
         jumpAction.OnStarted -= jumpStartedDelegate;
         jumpAction.OnFinished -= jumpFinishedDelegate;
         sprintAction.OnStarted -= walkStartedDelegate;
         sprintAction.OnFinished -= walkFinishedDelegate;
-        CommonScriptableObjects.rendererState.OnChange -= OnRenderingStateChanged;
-        i = null;
+        CommonScriptableObjects.rendererState.OnChange -= OnRenderingStateChanged;        
     }
 
-    void OnWorldReposition(Vector3 current, Vector3 previous)
-    {
+    void OnWorldReposition(Vector3 current, Vector3 previous) {
         Vector3 oldPos = this.transform.position;
         this.transform.position = characterPosition.unityPosition; //CommonScriptableObjects.playerUnityPosition;
 
@@ -178,18 +169,21 @@ public class DCLCharacterController : MonoBehaviour
         }
     }
 
-    public void SetPosition(Vector3 newPosition)
-    {
+   // [System.Obsolete("SetPosition is deprecated, please use Teleport instead.", true)]
+    //public void SetPosition(string positionVector) { Teleport(positionVector); }
+
+    public void SetPosition(Vector3 newPosition){Debug.Log($"SetPosition -> {newPosition}");
+        //TODO:A.B why do they just have a min and no max? review their work
         // failsafe in case something teleports the player below ground collisions
-        if (newPosition.y < minimumYPosition)
-        {
+        if (newPosition.y < minimumYPosition){
             newPosition.y = minimumYPosition + 2f;
         }
 
-        lastPosition = characterPosition.worldPosition;
+        lastPosition                    = characterPosition.worldPosition;
         characterPosition.worldPosition = newPosition;
-        transform.position = characterPosition.unityPosition;
-        Environment.i.platform.physicsSyncController?.MarkDirty();
+        transform.position              = characterPosition.unityPosition;
+        // updates physics - no need I turned it back on, this game does not reuqire manual udates, at least not now and it run better unity default, and all collision/tiggers work again
+        //Environment.i.platform.physicsSyncController?.MarkDirty();
 
         CommonScriptableObjects.playerUnityPosition.Set(characterPosition.unityPosition);
         CommonScriptableObjects.playerWorldPosition.Set(characterPosition.worldPosition);
@@ -197,55 +191,46 @@ public class DCLCharacterController : MonoBehaviour
         CommonScriptableObjects.playerCoords.Set(playerPosition);
         DataStore.i.player.playerPosition.Set(playerPosition);
 
-        if (Moved(lastPosition))
-        {
-            if (Moved(lastPosition, useThreshold: true))
-                ReportMovement();
+        if (Moved(lastPosition)){
+
+            if (initialPositionAlreadySet && Moved(lastPosition, useThreshold: true)){
+                ReportMovement(); // <- only runs if initialPositionAlreadySet
+            }
 
             OnCharacterMoved?.Invoke(characterPosition);
 
             float distance = Vector3.Distance(characterPosition.worldPosition, lastPosition) - movingPlatformSpeed;
 
-            if (distance > 0f && isGrounded)
+            if (distance > 0f && isGrounded){
                 OnMoved?.Invoke(distance);
+            }
+                
         }
 
         lastPosition = transform.position;
     }
 
-    public void Teleport(string teleportPayload)
-    {
+    public void Teleport(string jsonVector3) => Teleport(Utils.FromJsonWithNulls<Vector3>(jsonVector3));
+    public void Teleport(Vector3 position){
+        if(position==null){return;} // just incase the FromJsonWithNulls fails in the overload
+        Debug.Log($"Teleport -> {position}");
         ResetGround();
-
-        var payload = Utils.FromJsonWithNulls<Vector3>(teleportPayload);
-
-        var newPosition = new Vector3(payload.x, payload.y, payload.z);
-        SetPosition(newPosition);
-
-        if (OnPositionSet != null)
-        {
-            OnPositionSet.Invoke(characterPosition);
-        }
-
-        DataStore.i.player.lastTeleportPosition.Set(newPosition, true);
-
-        if (!initialPositionAlreadySet)
-        {
-            initialPositionAlreadySet = true;
-        }
+        SetPosition(position);
+        OnPositionSet?.Invoke(characterPosition);
+        DataStore.i.player.lastTeleportPosition.Set(position, true);
+        initialPositionAlreadySet = true; // bad naming, this just makes sure a position has been set at least once before brodcasting plyers position, no need for the if and if we do this right we dont need this var, i will come back to this       
     }
 
-    [System.Obsolete("SetPosition is deprecated, please use Teleport instead.", true)]
-    public void SetPosition(string positionVector) { Teleport(positionVector); }
+    
 
     public void SetEnabled(bool enabled) { this.enabled = enabled; }
 
-    bool Moved(Vector3 previousPosition, bool useThreshold = false)
-    {
-        if (useThreshold)
+    bool Moved(Vector3 previousPosition, bool useThreshold = false) {
+        if (useThreshold){
             return Vector3.Distance(characterPosition.worldPosition, previousPosition) > 0.001f;
-        else
+        }else{
             return characterPosition.worldPosition != previousPosition;
+        }
     }
 
     internal void LateUpdate()
@@ -255,6 +240,7 @@ public class DCLCharacterController : MonoBehaviour
 
         if (transform.position.y < minimumYPosition)
         {
+            Debug.LogError($"{transform.position.y} < {minimumYPosition}");
             SetPosition(characterPosition.worldPosition);
             return;
         }
@@ -339,7 +325,7 @@ public class DCLCharacterController : MonoBehaviour
             lastCharacterControllerCollision = characterController.Move(velocity * Time.deltaTime);
         }
 
-        SetPosition(PositionUtils.UnityToWorldPosition(transform.position));
+     //   SetPosition(PositionUtils.UnityToWorldPosition(transform.position));
 
         if ((DCLTime.realtimeSinceStartup - lastMovementReportTime) > PlayerSettings.POSITION_REPORTING_DELAY)
         {
@@ -524,8 +510,11 @@ public class DCLCharacterController : MonoBehaviour
         return result;
     }
 
-    void ReportMovement()
-    {
+    void ReportMovement(){
+        lastMovementReportTime = DCLTime.realtimeSinceStartup;
+        // no position has been assigned yet so exit;
+        if (!initialPositionAlreadySet){return;} // this is also a strange way to handle this., there is smarter ways to turn on the brodcast then checking position based on if teleport ran
+
         float height = 0.875f;
 
         var reportPosition = characterPosition.worldPosition + (Vector3.up * height);
@@ -533,16 +522,16 @@ public class DCLCharacterController : MonoBehaviour
         var playerHeight = height + (characterController.height / 2);
         var cameraRotation = Quaternion.LookRotation(cameraForward.Get());
 
+        // NOTE A.B This should not be an issue, find the shitty code/design and replace it
         //NOTE(Brian): We have to wait for a Teleport before sending the ReportPosition, because if not ReportPosition events will be sent
         //             When the spawn point is being selected / scenes being prepared to be sent and the Kernel gets crazy.
 
         //             The race conditions that can arise from not having this flag can result in:
         //                  - Scenes not being sent for loading, making ActivateRenderer never being sent, only in WSS mode.
         //                  - Random teleports to 0,0 or other positions that shouldn't happen.
-        if (initialPositionAlreadySet)
-            DCL.Interface.WebInterface.ReportPosition(reportPosition, compositeRotation, playerHeight, cameraRotation);
+        DCL.Interface.WebInterface.ReportPosition(reportPosition, compositeRotation, playerHeight, cameraRotation);
 
-        lastMovementReportTime = DCLTime.realtimeSinceStartup;
+        
     }
 
     public void PauseGravity()
