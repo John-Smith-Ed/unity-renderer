@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 namespace DCL
 {
-    using ABEY;
+    
     public class MapChunk : MonoBehaviour
     {
         private bool VERBOSE = false;
         //const string MAP_API_BASE = "https://api.decentraland.org/v1/map.png";
-        string MAP_API_BASE => AbeyConfig.MapApiBaseUrl;
+        string MAP_API_BASE => ABEYController.i.Config.MapApiBaseUrl;
 
         public RawImage targetImage;
 
@@ -32,7 +32,7 @@ namespace DCL
             #if!ABEY && UNITY_EDITOR
             ABEY.LogWriter.Write("Comms", url, 30);
             #endif
-            LogWriter.Write("MapChunks", url);
+            ABEY.LogWriter.Write("MapChunks", url);
            
             return Utils.FetchTexture(url, false, (x) =>
             {

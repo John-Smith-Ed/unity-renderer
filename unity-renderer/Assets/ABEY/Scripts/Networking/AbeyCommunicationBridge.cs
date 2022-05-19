@@ -21,7 +21,7 @@ public class AbeyCommunicationBridge : IKernelCommunication {
     public void Dispose() {}
 
     /*****************
-    * none socket
+    * non socket
     */
     private static string currentEntityId;
     private static string currentSceneId;
@@ -273,92 +273,128 @@ public class AbeyCommunicationBridge : IKernelCommunication {
     }
 
     private void InitMessageTypeToBridgeName() {
+        //A.B THIS IS THE WORST POSIBLE WAY TO HANDLE THIS, I Believe monos get cahced to offset how bad this is which might be exceptable after the fact but send message is super slow, more so when there is a ton of objects in scene
+        //["method"] = "GameObject";
+        // first it searches entire scene for gameobject if found puts it in a dict, this uses slow send message to call the method on any component that has a method with same name
+
         // Please, use `Bridges` as a bridge name, avoid adding messages here. The system will use `Bridges` as the default bridge name.
-        messageTypeToBridgeName["SetDebug"] = "Main";
-        messageTypeToBridgeName["SetSceneDebugPanel"] = "Main";
-        messageTypeToBridgeName["ShowFPSPanel"] = "Main";
-        messageTypeToBridgeName["HideFPSPanel"] = "Main";
-        messageTypeToBridgeName["SetEngineDebugPanel"] = "Main";
-        messageTypeToBridgeName["SendSceneMessage"] = "Main";
-        messageTypeToBridgeName["LoadParcelScenes"] = "Main";
-        messageTypeToBridgeName["UnloadScene"] = "Main";
-        messageTypeToBridgeName["Reset"] = "Main";
-        messageTypeToBridgeName["CreateGlobalScene"] = "Main";
-        messageTypeToBridgeName["BuilderReady"] = "Main";
-        messageTypeToBridgeName["UpdateParcelScenes"] = "Main";
-        messageTypeToBridgeName["LoadProfile"] = "Main";
-        messageTypeToBridgeName["AddUserProfileToCatalog"] = "Main";
-        messageTypeToBridgeName["AddUserProfilesToCatalog"] = "Main";
-        messageTypeToBridgeName["RemoveUserProfilesFromCatalog"] = "Main";
-        messageTypeToBridgeName["ActivateRendering"] = "Main";
-        messageTypeToBridgeName["DeactivateRendering"] = "Main";
-        messageTypeToBridgeName["ForceActivateRendering"] = "Main";
-        messageTypeToBridgeName["AddWearablesToCatalog"] = "Main";
-        messageTypeToBridgeName["WearablesRequestFailed"] = "Main";
-        messageTypeToBridgeName["RemoveWearablesFromCatalog"] = "Main";
-        messageTypeToBridgeName["ClearWearableCatalog"] = "Main";
-        messageTypeToBridgeName["InitializeFriends"] = "Main";
-        messageTypeToBridgeName["UpdateFriendshipStatus"] = "Main";
-        messageTypeToBridgeName["UpdateUserPresence"] = "Main";
-        messageTypeToBridgeName["FriendNotFound"] = "Main";
-        messageTypeToBridgeName["AddMessageToChatWindow"] = "Main";
-        messageTypeToBridgeName["UpdateMinimapSceneInformation"] = "Main";
-        messageTypeToBridgeName["UpdateHotScenesList"] = "Main";
-        messageTypeToBridgeName["SetRenderProfile"] = "Main";
-        messageTypeToBridgeName["CrashPayloadRequest"] = "Main";
-        messageTypeToBridgeName["SetDisableAssetBundles"] = "Main";
-        messageTypeToBridgeName["DumpRendererLockersInfo"] = "Main";
-        messageTypeToBridgeName["PublishSceneResult"] = "Main";
-        messageTypeToBridgeName["BuilderProjectInfo"] = "Main";
-        messageTypeToBridgeName["BuilderInWorldCatalogHeaders"] = "Main";
-        messageTypeToBridgeName["RequestedHeaders"] = "Main";
-        messageTypeToBridgeName["AddAssets"] = "Main";
-        messageTypeToBridgeName["RunPerformanceMeterTool"] = "Main";
-        messageTypeToBridgeName["InstantiateBotsAtWorldPos"] = "Main";
-        messageTypeToBridgeName["InstantiateBotsAtCoords"] = "Main";
-        messageTypeToBridgeName["StartBotsRandomizedMovement"] = "Main";
-        messageTypeToBridgeName["StopBotsMovement"] = "Main";
-        messageTypeToBridgeName["RemoveBot"] = "Main";
-        messageTypeToBridgeName["ClearBots"] = "Main";
-        messageTypeToBridgeName["ToggleSceneBoundingBoxes"] = "Main";
-        messageTypeToBridgeName["TogglePreviewMenu"] = "Main";
-        messageTypeToBridgeName["ToggleSceneSpawnPoints"] = "Main";
-        messageTypeToBridgeName["Teleport"] = "CharacterController";
-        messageTypeToBridgeName["SetRotation"] = "CameraController";
-        messageTypeToBridgeName["ShowNotificationFromJson"] = "HUDController";
-        messageTypeToBridgeName["ConfigureHUDElement"] = "HUDController";
-        messageTypeToBridgeName["ShowTermsOfServices"] = "HUDController";
-        messageTypeToBridgeName["RequestTeleport"] = "HUDController";
-        messageTypeToBridgeName["ShowAvatarEditorInSignUp"] = "HUDController";
-        messageTypeToBridgeName["SetUserTalking"] = "HUDController";
-        messageTypeToBridgeName["SetUsersMuted"] = "HUDController";
-        messageTypeToBridgeName["ShowWelcomeNotification"] = "HUDController";
-        messageTypeToBridgeName["UpdateBalanceOfMANA"] = "HUDController";
-        messageTypeToBridgeName["SetPlayerTalking"] = "HUDController";
-        messageTypeToBridgeName["SetVoiceChatEnabledByScene"] = "HUDController";
-        messageTypeToBridgeName["TriggerSelfUserExpression"] = "HUDController";
-        messageTypeToBridgeName["AirdroppingRequest"] = "HUDController";
+        // see Assets\Scripts\MainScripts\DCL\Environment\Factories\ServiceLocatorFactory\ServiceLocatorFactory.cs for some of the bridge reg of classes       
+/* components on main to seach for these methods, some of these may add more componets
+UserProfileController
+RenderingController
+CatalogController
+MinimapMetadataControl
+ChatController
+FriendsController
+HotScenesController
+GIFProcessingBridge
+RenderProfileBridge
+AssetCatalogBridge
+ScreenSizeWatcher
+SceneControllerBridge
+*/
+        //DebugBridge
+        messageTypeToBridgeName["SetDebug"]                         = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+        messageTypeToBridgeName["SetSceneDebugPanel"]               = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+        messageTypeToBridgeName["ShowFPSPanel"]                     = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+        messageTypeToBridgeName["HideFPSPanel"]                     = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+        messageTypeToBridgeName["SetEngineDebugPanel"]              = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+        messageTypeToBridgeName["CrashPayloadRequest"]              = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+        messageTypeToBridgeName["SetDisableAssetBundles"]           = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+        messageTypeToBridgeName["DumpRendererLockersInfo"]          = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+        //SceneController
+        messageTypeToBridgeName["SendSceneMessage"]                 = "Main"; // SceneControllerBridge Environment.Model [new ServiceLocator()]. -> SceneController Assets\Scripts\MainScripts\DCL\WorldRuntime\SceneController.cs
+        messageTypeToBridgeName["CreateGlobalScene"]                = "Main"; // SceneControllerBridge Environment.Model [new ServiceLocator()]. -> SceneController Assets\Scripts\MainScripts\DCL\WorldRuntime\SceneController.cs
+        messageTypeToBridgeName["LoadParcelScenes"]                 = "Main"; // SceneControllerBridge Environment.Model [new ServiceLocator()]. -> SceneController Assets\Scripts\MainScripts\DCL\WorldRuntime\SceneController.cs
+        messageTypeToBridgeName["UpdateParcelScenes"]               = "Main"; // SceneControllerBridge Environment.Model [new ServiceLocator()]. -> SceneController Assets\Scripts\MainScripts\DCL\WorldRuntime\SceneController.cs
+        messageTypeToBridgeName["UnloadScene"]                      = "Main"; // SceneControllerBridge Environment.Model [new ServiceLocator()]. -> SceneController Assets\Scripts\MainScripts\DCL\WorldRuntime\SceneController.cs
+        messageTypeToBridgeName["Reset"]                            = "Main";
+        //UserProfileController
+        messageTypeToBridgeName["LoadProfile"]                      = "Main"; // UserProfileController Assets\Scripts\MainScripts\DCL\UserProfile\UserProfileController.cs
+        messageTypeToBridgeName["AddUserProfileToCatalog"]          = "Main"; // UserProfileController Assets\Scripts\MainScripts\DCL\UserProfile\UserProfileController.cs
+        messageTypeToBridgeName["AddUserProfilesToCatalog"]         = "Main"; // UserProfileController Assets\Scripts\MainScripts\DCL\UserProfile\UserProfileController.cs
+        messageTypeToBridgeName["RemoveUserProfilesFromCatalog"]    = "Main"; // UserProfileController Assets\Scripts\MainScripts\DCL\UserProfile\UserProfileController.cs
+        //RenderingController
+        messageTypeToBridgeName["ActivateRendering"]                = "Main"; // RenderingController Assets\Scripts\MainScripts\DCL\Controllers\Rendering\RenderingController.cs
+        messageTypeToBridgeName["DeactivateRendering"]              = "Main"; // RenderingController Assets\Scripts\MainScripts\DCL\Controllers\Rendering\RenderingController.cs
+        messageTypeToBridgeName["ForceActivateRendering"]           = "Main"; // RenderingController Assets\Scripts\MainScripts\DCL\Controllers\Rendering\RenderingController.cs
+        //CatalogController
+        messageTypeToBridgeName["AddWearablesToCatalog"]            = "Main"; // CatalogController Assets\Scripts\MainScripts\DCL\Controllers\CatalogController\CatalogController.cs
+        messageTypeToBridgeName["WearablesRequestFailed"]           = "Main"; // CatalogController Assets\Scripts\MainScripts\DCL\Controllers\CatalogController\CatalogController.cs
+        messageTypeToBridgeName["RemoveWearablesFromCatalog"]       = "Main"; // CatalogController Assets\Scripts\MainScripts\DCL\Controllers\CatalogController\CatalogController.cs
+        messageTypeToBridgeName["ClearWearableCatalog"]             = "Main"; // CatalogController Assets\Scripts\MainScripts\DCL\Controllers\CatalogController\CatalogController.cs
+        //FriendsController
+        messageTypeToBridgeName["InitializeFriends"]                = "Main"; // FriendsController Assets\Scripts\MainScripts\DCL\Controllers\FriendsController\FriendsController.cs
+        messageTypeToBridgeName["UpdateFriendshipStatus"]           = "Main"; // FriendsController Assets\Scripts\MainScripts\DCL\Controllers\FriendsController\FriendsController.cs
+        messageTypeToBridgeName["UpdateUserPresence"]               = "Main"; // FriendsController Assets\Scripts\MainScripts\DCL\Controllers\FriendsController\FriendsController.cs
+        messageTypeToBridgeName["FriendNotFound"]                   = "Main"; // FriendsController Assets\Scripts\MainScripts\DCL\Controllers\FriendsController\FriendsController.cs
+        //ChatController
+        messageTypeToBridgeName["AddMessageToChatWindow"]           = "Main"; // ChatController Assets\Scripts\MainScripts\DCL\Controllers\ChatController\ChatController.cs
+        //MinimapMetadataController
+        messageTypeToBridgeName["UpdateMinimapSceneInformation"]    = "Main"; // MinimapMetadataController
+        //HotScenesController
+        messageTypeToBridgeName["UpdateHotScenesList"]              = "Main"; // HotScenesController Assets\Scripts\MainScripts\DCL\Controllers\HotScenesController\HotScenesController.cs
+
+        //RenderProfileBridge <- not used or should not be, comments say in favor of skybox
+        messageTypeToBridgeName["SetRenderProfile"]                 = "Main"; // RenderProfileBridge
         
-        messageTypeToBridgeName["GetMousePosition"] = "BuilderController";
-        messageTypeToBridgeName["SelectGizmo"] = "BuilderController";
-        messageTypeToBridgeName["ResetObject"] = "BuilderController";
-        messageTypeToBridgeName["ZoomDelta"] = "BuilderController";
-        messageTypeToBridgeName["SetPlayMode"] = "BuilderController";
-        messageTypeToBridgeName["TakeScreenshot"] = "BuilderController";
-        messageTypeToBridgeName["ResetBuilderScene"] = "BuilderController";
+        messageTypeToBridgeName["PublishSceneResult"]               = "Main";
+        messageTypeToBridgeName["BuilderProjectInfo"]               = "Main";
+        messageTypeToBridgeName["BuilderInWorldCatalogHeaders"]     = "Main";
+        messageTypeToBridgeName["RequestedHeaders"]                 = "Main";
+        messageTypeToBridgeName["AddAssets"]                        = "Main";
+        messageTypeToBridgeName["RunPerformanceMeterTool"]          = "Main";
+        messageTypeToBridgeName["InstantiateBotsAtWorldPos"]        = "Main";
+        messageTypeToBridgeName["InstantiateBotsAtCoords"]          = "Main";
+        messageTypeToBridgeName["StartBotsRandomizedMovement"]      = "Main";
+        messageTypeToBridgeName["StopBotsMovement"]                 = "Main";
+        messageTypeToBridgeName["RemoveBot"]                        = "Main";
+        messageTypeToBridgeName["ClearBots"]                        = "Main";
+        messageTypeToBridgeName["ToggleSceneBoundingBoxes"]         = "Main";
+        messageTypeToBridgeName["TogglePreviewMenu"]                = "Main";
+        messageTypeToBridgeName["ToggleSceneSpawnPoints"]           = "Main";
+        
+
+        messageTypeToBridgeName["Teleport"]     = "CharacterController";
+
+        messageTypeToBridgeName["SetRotation"]  = "CameraController";
+
+        messageTypeToBridgeName["ShowNotificationFromJson"]     = "HUDController";
+        messageTypeToBridgeName["ConfigureHUDElement"]          = "HUDController";
+        messageTypeToBridgeName["ShowTermsOfServices"]          = "HUDController";
+        messageTypeToBridgeName["RequestTeleport"]              = "HUDController";
+        messageTypeToBridgeName["ShowAvatarEditorInSignUp"]     = "HUDController";
+        messageTypeToBridgeName["SetUserTalking"]               = "HUDController";
+        messageTypeToBridgeName["SetUsersMuted"]                = "HUDController";
+        messageTypeToBridgeName["ShowWelcomeNotification"]      = "HUDController";
+        messageTypeToBridgeName["UpdateBalanceOfMANA"]          = "HUDController";
+        messageTypeToBridgeName["SetPlayerTalking"]             = "HUDController";
+        messageTypeToBridgeName["SetVoiceChatEnabledByScene"]   = "HUDController";
+        messageTypeToBridgeName["TriggerSelfUserExpression"]    = "HUDController";
+        messageTypeToBridgeName["AirdroppingRequest"]           = "HUDController";
+
+        // in main but opens Builder so part of the builder group flow
+        messageTypeToBridgeName["BuilderReady"]             = "Main"; // SceneControllerBridge Assets\Scripts\MainScripts\DCL\WorldRuntime\Bridge\SceneControllerBridge.cs note this just loads scene "Aditive" i.e on top of current loaded scene        
+        messageTypeToBridgeName["GetMousePosition"]         = "BuilderController";
+        messageTypeToBridgeName["SelectGizmo"]              = "BuilderController";
+        messageTypeToBridgeName["ResetObject"]              = "BuilderController";
+        messageTypeToBridgeName["ZoomDelta"]                = "BuilderController";
+        messageTypeToBridgeName["SetPlayMode"]              = "BuilderController";
+        messageTypeToBridgeName["TakeScreenshot"]           = "BuilderController";
+        messageTypeToBridgeName["ResetBuilderScene"]        = "BuilderController";
         messageTypeToBridgeName["SetBuilderCameraPosition"] = "BuilderController";
         messageTypeToBridgeName["SetBuilderCameraRotation"] = "BuilderController";
-        messageTypeToBridgeName["ResetBuilderCameraZoom"] = "BuilderController";
-        messageTypeToBridgeName["SetGridResolution"] = "BuilderController";
-        messageTypeToBridgeName["OnBuilderKeyDown"] = "BuilderController";
-        messageTypeToBridgeName["UnloadBuilderScene"] = "BuilderController";
-        messageTypeToBridgeName["SetSelectedEntities"] = "BuilderController";
-        messageTypeToBridgeName["GetCameraTargetBuilder"] = "BuilderController";
-        messageTypeToBridgeName["PreloadFile"] = "BuilderController";
-        messageTypeToBridgeName["SetBuilderConfiguration"] = "BuilderController";
+        messageTypeToBridgeName["ResetBuilderCameraZoom"]   = "BuilderController";
+        messageTypeToBridgeName["SetGridResolution"]        = "BuilderController";
+        messageTypeToBridgeName["OnBuilderKeyDown"]         = "BuilderController";
+        messageTypeToBridgeName["UnloadBuilderScene"]       = "BuilderController";
+        messageTypeToBridgeName["SetSelectedEntities"]      = "BuilderController";
+        messageTypeToBridgeName["GetCameraTargetBuilder"]   = "BuilderController";
+        messageTypeToBridgeName["PreloadFile"]              = "BuilderController";
+        messageTypeToBridgeName["SetBuilderConfiguration"]  = "BuilderController";
 
-        messageTypeToBridgeName["SetTutorialEnabled"] = "TutorialController";
-        messageTypeToBridgeName["SetTutorialEnabledForUsersThatAlreadyDidTheTutorial"] = "TutorialController";
+        messageTypeToBridgeName["SetTutorialEnabled"]                                   = "TutorialController";
+        messageTypeToBridgeName["SetTutorialEnabledForUsersThatAlreadyDidTheTutorial"]  = "TutorialController";
     }
 
     // ugly for now but is a huge fix

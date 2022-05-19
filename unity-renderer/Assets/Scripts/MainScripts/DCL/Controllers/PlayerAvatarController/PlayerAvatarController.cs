@@ -37,7 +37,7 @@ public class PlayerAvatarController : MonoBehaviour
     private string VISIBILITY_CONSTRAIN;
 
     private void Start()
-    {
+    { 
         DataStore.i.common.isPlayerRendererLoaded.Set(false);
         IAnalytics analytics = DCL.Environment.i.platform.serviceProviders.analytics;
         playerAvatarAnalytics = new PlayerAvatarAnalytics(analytics, CommonScriptableObjects.playerCoords);

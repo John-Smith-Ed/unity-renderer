@@ -1,0 +1,30 @@
+{
+    "id": "bafkreiggg445wr77olvk4a74n4adnzry25s6yddo3m5qb4wt76uv6xb7he",
+    "basePosition": {
+        "x": -9,
+        "y": -9
+    },
+    "name": "Genesis Plaza",
+    "parcels": [
+        {
+            "x": -9,
+            "y": -9
+        },
+        {
+            "x": -9,
+            "y": -8
+        }
+    ],
+    "baseUrl": "https://peer-lb.decentraland.org/content/contents/",
+    "baseUrlBundles": "https://s3.amazonaws.com/contract-vuer.com/abw-content/",
+    "contents": [
+        {
+            "file": "models/buildings.png",
+            "hash": "models/bafkreial5jhyosed2sgnqde3jcea2x6jcojwfk7kth7ddjqv3y5vl4q6wq.wasm"
+        },
+        {
+            "file": "models/buildings.png",
+            "hash": "models/bafkreial5jhyosed2sgnqde3jcea2x6jcojwfk7kth7ddjqv3y5vl4q6wq.wasm"
+        }
+    ]
+}

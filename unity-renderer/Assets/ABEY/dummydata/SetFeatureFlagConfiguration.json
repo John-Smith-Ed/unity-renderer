@@ -1,0 +1,100 @@
+{
+    "flags": {
+        "asset_bundles": true,
+        "avatar_lods": true,
+        "avatar_skins": true,
+        "banned_users": true,
+        "builder-dev": true,
+        "builder_in_world": true,
+        "cull-opaque-heuristic": true,
+        "emotes_customization": true,
+        "explorev2": true,
+        "max_visible_peers": true,
+        "parcel-denylist": true,
+        "pick_realm_algorithm_config": true,
+        "procedural_skybox": true,
+        "retry_matrix_login": true,
+        "rollout-unity-renderer-version": true,
+        "social_bar_v1": true,
+        "third_party_collections": true,
+        "tutorial": true,
+        "unsafe-request": true,
+        "wearable_asset_bundles": true
+    },
+    "variants": {
+        "banned_users": {
+            "name": "banned_users",
+            "payload": {
+                "type": "json",
+                "value": {
+                    "0x2d923d4846b958b19662c1b3d2c686b4b8b2aadf": [
+                        {
+                            "type": "VOICE_CHAT_AND_CHAT",
+                            "expiration": 1642611240000
+                        }
+                    ]
+                }
+            },
+            "enabled": true
+        },
+        "builder-dev": {
+            "name": "builder-dev",
+            "payload": {
+                "type": "string",
+                "value": "azul"
+            },
+            "enabled": true
+        },
+        "max_visible_peers": {
+            "name": "max_visible_peers",
+            "payload": {
+                "type": "string",
+                "value": "100"
+            },
+            "enabled": true
+        },
+        "parcel-denylist": {
+            "name": "parcel-denylist",
+            "payload": {
+                "type": "string",
+                "value": "-27,-47"
+            },
+            "enabled": true
+        },
+        "pick_realm_algorithm_config": {
+            "name": "pick_realm_algorithm_config",
+            "payload": {
+                "type": "json",
+                "value": [
+                    {
+                        "type": "LARGE_LATENCY",
+                        "config": {
+                            "largeLatencyThreshold": 300
+                        }
+                    },
+                    {
+                        "type": "ALL_PEERS_SCORE"
+                    },
+                    {
+                        "type": "CLOSE_PEERS_SCORE"
+                    },
+                    {
+                        "type": "LOAD_BALANCING"
+                    }
+                ]
+            },
+            "enabled": true
+        },
+        "rollout-unity-renderer-version": {
+            "name": "rollout-unity-renderer-version",
+            "payload": {
+                "type": "json",
+                "value": {
+                    "resolved": "https:\/\/cdn.decentraland.org/@dcl/unity-renderer/1.0.7792",
+                    "version": "1.0.7792"
+                }
+            },
+            "enabled": true
+        }
+    }
+}

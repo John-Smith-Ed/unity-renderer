@@ -28,6 +28,7 @@ namespace DCL
         }
 
         // Beware this SetDebug() may be called before Awake() somehow...
+        // comment above is a big red flag, need to find the point of bad code, good chance its in the messeging
         [ContextMenu("Set Debug mode")]
         public void SetDebug() { debugController.SetDebug(); }
 

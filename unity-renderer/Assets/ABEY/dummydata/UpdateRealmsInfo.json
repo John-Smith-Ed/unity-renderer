@@ -1,0 +1,8 @@
+{
+    "current": {
+        "serverName": "loki",
+        "layer": "",
+        "domain": "https://interconnected.online",
+        "contentServerUrl": "https://peer-lb.decentraland.org/content"
+    }
+}
