@@ -217,10 +217,13 @@ public class BIWModeController : BIWController, IBIWModeController
         SetSnapActive(!isSnapActive);
         InputDone();
 
-        if (isSnapActive)
-            AudioScriptableObjects.enable.Play();
-        else
-            AudioScriptableObjects.disable.Play();
+        if (isSnapActive){
+            ABEYController.i.AudioEvents.enable.Play();
+            //AudioScriptableObjects.enable.Play();
+        }else{
+            ABEYController.i.AudioEvents.disable.Play();
+          //  AudioScriptableObjects.disable.Play();
+        }
     }
 
     public void SetSnapActive(bool isActive)

@@ -150,16 +150,16 @@ namespace DCL.Huds.QuestsPanel
             }
         }
 
-        public void Show()
-        {
+        public void Show() {
             gameObject.SetActive(true);
-            AudioScriptableObjects.dialogOpen.Play();
+            ABEYController.i.AudioEvents.dialogOpen.Play();
+            //AudioScriptableObjects.dialogOpen.Play();
         }
 
-        public void Close()
-        {
+        public void Close() {
             gameObject.SetActive(false);
-            AudioScriptableObjects.dialogClose.Play();
+            ABEYController.i.AudioEvents.dialogClose.Play();
+            //AudioScriptableObjects.dialogClose.Play();
         }
 
         private void Update()

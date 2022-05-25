@@ -15,7 +15,7 @@ public static class NotificationScriptableObjects
 public static class AudioScriptableObjects
 {
     // Builder
-
+/*
     private static AudioEvent builderEnterEvent;
     public static AudioEvent builderEnter => CommonScriptableObjects.GetOrLoad(ref builderEnterEvent, "ScriptableObjects/AudioEvents/Builder/BuilderEnter");
 
@@ -98,6 +98,7 @@ public static class AudioScriptableObjects
 
     private static AudioEvent tooltipPopupEvent;
     public static AudioEvent tooltipPopup => CommonScriptableObjects.GetOrLoad(ref tooltipPopupEvent, "ScriptableObjects/AudioEvents/HUDCommon/TooltipPopup");
+    */
 }
 
 public static class CommonScriptableObjects

@@ -146,8 +146,10 @@ public class CatalogItemAdapter : MonoBehaviour, IBeginDragHandler, IEndDragHand
             thumbnailImg.texture = texture.texture;
             favImg.gameObject.SetActive(true);
 
-            if (gameObject.activeInHierarchy && ItemAdapterIsOnScreen())
-                AudioScriptableObjects.listItemAppear.Play();
+            if (gameObject.activeInHierarchy && ItemAdapterIsOnScreen()){
+                ABEYController.i.AudioEvents.listItemAppear.Play();
+                //AudioScriptableObjects.listItemAppear.Play();
+            }
         }
 
         SetLoadingActive(false);

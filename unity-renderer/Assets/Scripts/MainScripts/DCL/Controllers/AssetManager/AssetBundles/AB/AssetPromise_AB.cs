@@ -97,7 +97,7 @@ namespace DCL
             string finalUrl = baseUrl + hash;
 
             //TODO:A.B
-             #if!ABEY && UNITY_EDITOR
+            #if !ABEY && UNITY_EDITOR
             ABEY.LogWriter.Write("Comms", finalUrl, 30);
             #endif
             ABEY.LogWriter.Write("AssetBundleRequest", finalUrl);

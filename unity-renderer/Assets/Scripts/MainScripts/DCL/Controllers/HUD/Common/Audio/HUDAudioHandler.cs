@@ -48,11 +48,13 @@ public class HUDAudioHandler : MonoBehaviour
             snapshotOutOfWorld.TransitionTo(0.2f);
     }
 
-    void OnAllUIHiddenChange(bool current, bool previous)
-    {
-        if (current)
-            AudioScriptableObjects.UIHide.Play(true);
-        else
-            AudioScriptableObjects.UIShow.Play(true);
+    void OnAllUIHiddenChange(bool current, bool previous) {
+        if (current){
+            ABEYController.i.AudioEvents.UIHide.Play(true);
+            //AudioScriptableObjects.UIHide.Play(true);
+        }else{
+            ABEYController.i.AudioEvents.UIShow.Play(true);
+           // AudioScriptableObjects.UIShow.Play(true);
+        }
     }
 }

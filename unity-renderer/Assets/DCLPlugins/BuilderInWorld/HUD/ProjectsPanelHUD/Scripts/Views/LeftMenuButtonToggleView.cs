@@ -85,27 +85,23 @@ namespace DCL.Builder
 
         void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
         {
-            if (isOn || isDisabled)
-                return;
+            if (isOn || isDisabled){return;}
 
             SetSelectColor();
         }
 
         void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
         {
-            if (isOn || isDisabled)
-                return;
+            if (isOn || isDisabled){return;}
 
             SetDefaultColor();
         }
 
-        void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
-        {
-            AudioScriptableObjects.buttonClick.Play(true);
+        void IPointerClickHandler.OnPointerClick(PointerEventData eventData) {
+            ABEYController.i.AudioEvents.buttonClick.Play(true);
+            //AudioScriptableObjects.buttonClick.Play(true);
 
-            if (isOn || isDisabled)
-                return;
-
+            if (isOn || isDisabled){return;}
             isOn = true;
         }
 

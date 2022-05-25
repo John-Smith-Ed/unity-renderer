@@ -11,9 +11,9 @@ public class SliderHandleAudioHandler : MonoBehaviour, IPointerEnterHandler
     {
         if (slider != null && !Input.GetMouseButton(0))
         {
-            if (slider.interactable)
-            {
-                AudioScriptableObjects.buttonHover.Play(true);
+            if (slider.interactable){
+                ABEYController.i.AudioEvents.buttonHover.Play(true);
+               //AudioScriptableObjects.buttonHover.Play(true);
             }
         }
     }

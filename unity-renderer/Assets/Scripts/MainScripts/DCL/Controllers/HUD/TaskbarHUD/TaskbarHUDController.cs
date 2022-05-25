@@ -195,6 +195,7 @@ public class TaskbarHUDController : IHUD
             btn.SetToggleState(false);
         }
 
+        if(worldChatWindowHud==null){return;}
         worldChatWindowHud.SetVisibility(true);
         worldChatWindowHud.view.ActivatePreview();
 

@@ -17,8 +17,10 @@ public class DCLCharacterPosition
         get { return worldPositionValue; }
         set
         {
+            string d = ($"OLD -> {unityPositionValue}");
             worldPositionValue = value;
             unityPositionValue = PositionUtils.WorldToUnityPosition(worldPositionValue);
+            Debug.Log($"d\n new -> {unityPositionValue}");
             CheckAndRepositionWorld();
         }
     }

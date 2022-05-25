@@ -50,7 +50,8 @@ public class ControlsHUDController : IHUD
             view.showHideAnimator.Hide();
             OnControlsClosed?.Invoke();
 
-            AudioScriptableObjects.fadeOut.Play(true);
+            ABEYController.i.AudioEvents.fadeOut.Play(true);
+            //AudioScriptableObjects.fadeOut.Play(true);
         }
         else if (!IsVisible() && visible)
         {
@@ -59,7 +60,8 @@ public class ControlsHUDController : IHUD
             view.gameObject.SetActive(true);
             view.showHideAnimator.Show();
             OnControlsOpened?.Invoke();
-            AudioScriptableObjects.fadeIn.Play(true);
+            ABEYController.i.AudioEvents.fadeIn.Play(true);
+            //AudioScriptableObjects.fadeIn.Play(true);
         }
     }
 

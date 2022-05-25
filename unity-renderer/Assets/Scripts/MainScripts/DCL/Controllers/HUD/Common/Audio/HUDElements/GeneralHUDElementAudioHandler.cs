@@ -8,28 +8,27 @@ public class GeneralHUDElementAudioHandler : MonoBehaviour, IPointerEnterHandler
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
-        if (!playHover)
-            return;
+        if (!playHover){return;}
+            
 
-        if (!Input.GetMouseButton(0))
-        {
-            AudioScriptableObjects.buttonHover.Play(true);
+        if (!Input.GetMouseButton(0)){
+            ABEYController.i.AudioEvents.buttonHover.Play(true);
+            //AudioScriptableObjects.buttonHover.Play(true);
         }
     }
 
-    public virtual void OnPointerDown(PointerEventData eventData)
-    {
-        if (!playClick)
-            return;
-
-        AudioScriptableObjects.buttonClick.Play(true);
+    public virtual void OnPointerDown(PointerEventData eventData) {
+        if (!playClick){return;}
+            
+        ABEYController.i.AudioEvents.buttonClick.Play(true);
+       // AudioScriptableObjects.buttonClick.Play(true);
     }
 
     public virtual void OnPointerUp(PointerEventData eventData)
     {
-        if (!playRelease)
-            return;
-
-        AudioScriptableObjects.buttonRelease.Play(true);
+        if (!playRelease){return;}
+            
+        ABEYController.i.AudioEvents.buttonRelease.Play(true);
+     //   AudioScriptableObjects.buttonRelease.Play(true);
     }
 }

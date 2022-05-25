@@ -21,79 +21,69 @@ public class Notification : MonoBehaviour, INotification
 
     ShowHideAnimator showHideAnimator;
 
-    private void OnEnable()
-    {
-        if (actionButton != null)
+    private void OnEnable(){
+        if (actionButton != null){
             actionButton.onClick.AddListener(Dismiss);
-
-        AudioScriptableObjects.notification.Play(true);
+        }
+        ABEYController.i.AudioEvents.notification.Play(true);
+        //AudioScriptableObjects.notification.Play(true);
     }
 
-    private void OnDisable()
-    {
-        if (actionButton != null)
+    private void OnDisable() {
+        if (actionButton != null){
             actionButton.onClick.RemoveAllListeners();
-
+        }
         StopTimer();
 
-        if (showHideAnimator != null)
+        if (showHideAnimator != null){
             showHideAnimator.OnWillFinishHide -= DismissInternal;
+        }
     }
 
-    private void OnDestroy()
-    {
-        if (showHideAnimator != null)
+    private void OnDestroy() {
+        if (showHideAnimator != null){
             showHideAnimator.OnWillFinishHide -= DismissInternal;
-
+        }
         StopTimer();
     }
 
-    public void Show(Model model)
-    {
+    public void Show(Model model){
         gameObject.SetActive(true);
 
-        if (showHideAnimator == null)
+        if (showHideAnimator == null){
             showHideAnimator = GetComponent<ShowHideAnimator>();
-
-        if (showHideAnimator != null)
-        {
+        }
+        if (showHideAnimator != null){
             showHideAnimator.OnWillFinishHide -= DismissInternal;
             showHideAnimator.Show();
         }
 
         this.model = model;
 
-        if (!string.IsNullOrEmpty(this.model.message))
-        {
+        if (!string.IsNullOrEmpty(this.model.message)){
             messageLabel.text = this.model.message;
         }
 
-        if (!string.IsNullOrEmpty(this.model.buttonMessage))
-        {
+        if (!string.IsNullOrEmpty(this.model.buttonMessage)){
             actionButtonLabel.text = this.model.buttonMessage;
         }
 
-        if (this.model.timer > 0)
-        {
+        if (this.model.timer > 0){
             StopTimer();
             timerCoroutine = CoroutineStarter.Start(TimerCoroutine(this.model.timer));
         }
 
-        if (!string.IsNullOrEmpty(this.model.scene))
-        {
+        if (!string.IsNullOrEmpty(this.model.scene)){
             string sceneID = CommonScriptableObjects.sceneID ?? string.Empty;
             CurrentSceneUpdated(sceneID, string.Empty);
         }
 
-        if (actionButton != null)
-        {
-            if (this.model.callback != null)
-            {
+        if (actionButton != null){
+            if (this.model.callback != null){
                 actionButton.onClick.AddListener(this.model.callback.Invoke);
             }
 
-            if (!string.IsNullOrEmpty(this.model.externalCallbackID))
-            {
+            if (!string.IsNullOrEmpty(this.model.externalCallbackID)){
                 actionButton.onClick.AddListener(() =>
                 {
                     // TODO: send message to kernel with callbackID
@@ -102,61 +92,51 @@ public class Notification : MonoBehaviour, INotification
         }
     }
 
-    private IEnumerator TimerCoroutine(float timer)
-    {
+    private IEnumerator TimerCoroutine(float timer){
         yield return WaitForSecondsCache.Get(timer);
         Dismiss();
     }
 
-    private void CurrentSceneUpdated(string current, string previous)
-    {
-        if (string.CompareOrdinal(current, model.scene) != 0)
-        {
+    private void CurrentSceneUpdated(string current, string previous){
+        if (string.CompareOrdinal(current, model.scene) != 0){
             Dismiss();
         }
     }
 
     protected virtual void Dismiss() { Dismiss(false); }
 
-    public void Dismiss(bool instant)
-    {
+    public void Dismiss(bool instant){
         StopTimer();
 
-        if (!instant && showHideAnimator != null)
-        {
+        if (!instant && showHideAnimator != null){
             showHideAnimator.OnWillFinishHide -= DismissInternal;
             showHideAnimator.OnWillFinishHide += DismissInternal;
             showHideAnimator.Hide();
-        }
-        else
-        {
+        }else{
             DismissInternal();
         }
 
-        if (this != null)
-        {
+        if (this != null){
             OnNotificationDismissed?.Invoke(this);
         }
     }
 
-    private void DismissInternal(ShowHideAnimator animator = null)
-    {
-        if (this == null)
+    private void DismissInternal(ShowHideAnimator animator = null){
+        if (this == null){
             return;
-
-        if (showHideAnimator != null)
+        }
+        if (showHideAnimator != null){
             showHideAnimator.OnWillFinishHide -= DismissInternal;
-
-        if (model.destroyOnFinish)
+        }
+        if (model.destroyOnFinish){
             Destroy(gameObject);
-        else
+        }else{
             gameObject.SetActive(false);
+        }
     }
 
-    private void StopTimer()
-    {
-        if (timerCoroutine != null)
-        {
+    private void StopTimer(){
+        if (timerCoroutine != null){
             CoroutineStarter.Stop(timerCoroutine);
             timerCoroutine = null;
         }

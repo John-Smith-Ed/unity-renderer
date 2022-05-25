@@ -16,27 +16,28 @@ public class SliderAudioHandler : MonoBehaviour, IPointerDownHandler, IPointerUp
     {
         if (slider != null)
         {
-            if (slider.interactable)
-            {
-                AudioScriptableObjects.buttonClick.Play(true);
+            if (slider.interactable){
+                ABEYController.i.AudioEvents.buttonClick.Play(true);
+                //AudioScriptableObjects.buttonClick.Play(true);
             }
         }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (slider != null)
-        {
-            if (slider.interactable)
-            {
-                AudioScriptableObjects.buttonRelease.Play(true);
+        if (slider != null){
+            if (slider.interactable){
+                ABEYController.i.AudioEvents.buttonRelease.Play(true);
+                //AudioScriptableObjects.buttonRelease.Play(true);
             }
         }
     }
 
-    void OnValueChanged(float value)
-    {
-        AudioScriptableObjects.sliderValueChange.SetPitch(1f + ((slider.value - slider.minValue) / (slider.maxValue - slider.minValue)) * 1.5f);
-        AudioScriptableObjects.sliderValueChange.Play(true);
+    void OnValueChanged(float value){
+        ABEYController.i.AudioEvents.sliderValueChange.SetPitch(1f + ((slider.value - slider.minValue) / (slider.maxValue - slider.minValue)) * 1.5f);
+        ABEYController.i.AudioEvents.sliderValueChange.Play(true);
+
+        //AudioScriptableObjects.sliderValueChange.SetPitch(1f + ((slider.value - slider.minValue) / (slider.maxValue - slider.minValue)) * 1.5f);
+        //AudioScriptableObjects.sliderValueChange.Play(true);
     }
 }

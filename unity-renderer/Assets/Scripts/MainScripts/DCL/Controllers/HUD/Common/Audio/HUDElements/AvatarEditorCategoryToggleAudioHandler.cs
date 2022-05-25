@@ -10,8 +10,10 @@ public class AvatarEditorCategoryToggleAudioHandler : ButtonAudioHandler
 
         if (selectable != null)
         {
-            if (selectable.interactable)
-                AudioScriptableObjects.listItemAppear.ResetPitch();
+            if (selectable.interactable){
+                ABEYController.i.AudioEvents.listItemAppear.ResetPitch();
+                //AudioScriptableObjects.listItemAppear.ResetPitch();
+            }
         }
     }
 }

@@ -28,9 +28,15 @@ public class ShortcutsView : MonoBehaviour, IShortcutsView
 
     private void Awake() { closeButton.onClick.AddListener(OnCloseClick); }
 
-    private void OnEnable() { AudioScriptableObjects.dialogOpen.Play(); }
+    private void OnEnable() {
+        ABEYController.i.AudioEvents.dialogOpen.Play();
+        // AudioScriptableObjects.dialogOpen.Play(); 
+    }
 
-    private void OnDisable() { AudioScriptableObjects.dialogClose.Play(); }
+    private void OnDisable() { 
+        ABEYController.i.AudioEvents.dialogClose.Play();
+        // AudioScriptableObjects.dialogClose.Play(); 
+    }
 
     public void SetActive(bool isActive) { gameObject.SetActive(isActive); }
 

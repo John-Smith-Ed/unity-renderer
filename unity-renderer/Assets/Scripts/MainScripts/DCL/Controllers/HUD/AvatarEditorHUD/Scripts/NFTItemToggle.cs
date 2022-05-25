@@ -45,18 +45,20 @@ public class NFTItemToggle : ItemToggle
 
     private void ShowInfo()
     {
-        if (!nftItemInfo.gameObject.activeSelf)
-            AudioScriptableObjects.dialogOpen.Play(true);
-
+        if (!nftItemInfo.gameObject.activeSelf){
+            ABEYController.i.AudioEvents.dialogOpen.Play(true);
+            //AudioScriptableObjects.dialogOpen.Play(true);
+        }
         OnHideAllInfos?.Invoke();
         nftItemInfo.SetActive(true);
     }
 
     private void HideInfo()
     {
-        if (nftItemInfo.gameObject.activeSelf)
-            AudioScriptableObjects.dialogClose.Play(true);
-
+        if (nftItemInfo.gameObject.activeSelf){
+            ABEYController.i.AudioEvents.dialogClose.Play(true);
+           // AudioScriptableObjects.dialogClose.Play(true);
+        }
         nftItemInfo.SetActive(false);
     }
 

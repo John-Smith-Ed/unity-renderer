@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 274326366bcccad48a628e6f91f38fc2, type: 3}
+  m_Name: AbeyConfig
+  m_EditorClassIdentifier: 
+  applicationConfig: {fileID: 11400000, guid: 8bcc6e503e7abc649907926610aeff94, type: 2}
+  environmentConfig: {fileID: 11400000, guid: da7af6d37b4d2854c9c8a0202a134c06, type: 2}
+  endPointConfig: {fileID: 11400000, guid: e5de69c719b338348b81a2e40916fee3, type: 2}
+  inputConfig: {fileID: 11400000, guid: 2292fe2f4e103b04791764d8ed419b49, type: 2}
+  audioEvents: {fileID: 11400000, guid: be70e63bdab678947b10fe7f997cba4b, type: 2}
+  parcelConfig: {fileID: 11400000, guid: 8792e4d99d243a4479a82ab14e48c1fb, type: 2}
+  playerConfig: {fileID: 11400000, guid: b2b75b1c1c39db0459cefd09bbf8a8e2, type: 2}
+  testConfig: {fileID: 11400000, guid: 5021a00ba97ab4747bd0765fe33fe560, type: 2}
+  assetManagerConfig: {fileID: 11400000, guid: f8cf85ea3deacf44e9429a1d6f79057c, type: 2}
+  messageThrottlingConfig: {fileID: 11400000, guid: 499f388af239c7947997d13e5e03dd36,
+    type: 2}

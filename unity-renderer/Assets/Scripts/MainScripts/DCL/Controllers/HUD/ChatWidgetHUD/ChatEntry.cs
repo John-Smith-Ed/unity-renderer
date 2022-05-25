@@ -171,26 +171,31 @@ public class ChatEntry : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
                 {
                     case ChatMessage.Type.PUBLIC:
                         // Check whether or not the message was sent by the local player
-                        if (chatEntryModel.senderId == UserProfile.GetOwnUserProfile().userId)
-                            AudioScriptableObjects.chatSend.Play(true);
-                        else
-                            AudioScriptableObjects.chatReceiveGlobal.Play(true);
+                        if (chatEntryModel.senderId == UserProfile.GetOwnUserProfile().userId){
+                            ABEYController.i.AudioEvents.chatSend.Play(true);
+                           // AudioScriptableObjects.chatSend.Play(true);
+                        }else{
+                            ABEYController.i.AudioEvents.chatReceiveGlobal.Play(true);
+                           // AudioScriptableObjects.chatReceiveGlobal.Play(true);
+                        }
                         break;
                     case ChatMessage.Type.PRIVATE:
-                        switch (chatEntryModel.subType)
-                        {
+                        switch (chatEntryModel.subType){
                             case Model.SubType.PRIVATE_FROM:
-                                AudioScriptableObjects.chatReceivePrivate.Play(true);
+                                ABEYController.i.AudioEvents.chatReceivePrivate.Play(true);
+                                //AudioScriptableObjects.chatReceivePrivate.Play(true);
                                 break;
                             case Model.SubType.PRIVATE_TO:
-                                AudioScriptableObjects.chatSend.Play(true);
+                                ABEYController.i.AudioEvents.chatSend.Play(true);
+                               // AudioScriptableObjects.chatSend.Play(true);
                                 break;
                             default:
                                 break;
                         }
                         break;
                     case ChatMessage.Type.SYSTEM:
-                        AudioScriptableObjects.chatReceiveGlobal.Play(true);
+                        ABEYController.i.AudioEvents.chatReceiveGlobal.Play(true);
+                        //AudioScriptableObjects.chatReceiveGlobal.Play(true);
                         break;
                     default:
                         break;

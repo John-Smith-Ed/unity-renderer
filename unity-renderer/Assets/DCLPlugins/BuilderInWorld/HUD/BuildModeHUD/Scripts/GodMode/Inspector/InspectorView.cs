@@ -62,9 +62,15 @@ public class InspectorView : MonoBehaviour, IInspectorView
             sceneLimitsController.Dispose();
     }
 
-    private void OnEnable() { AudioScriptableObjects.dialogOpen.Play(); }
+    private void OnEnable() {
+        ABEYController.i.AudioEvents.dialogOpen.Play();
+        // AudioScriptableObjects.dialogOpen.Play(); 
+    }
 
-    private void OnDisable() { AudioScriptableObjects.dialogClose.Play(); }
+    private void OnDisable() { 
+        ABEYController.i.AudioEvents.dialogClose.Play();
+        // AudioScriptableObjects.dialogClose.Play(); 
+    }
 
     public void EntityActionInvoked(EntityAction action, BIWEntity entityToApply, EntityListAdapter adapter) { OnEntityActionInvoked?.Invoke(action, entityToApply, adapter); }
 

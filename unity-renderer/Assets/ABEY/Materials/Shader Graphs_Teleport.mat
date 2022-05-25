@@ -37,9 +37,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_e3da3cfe9c25498c8c6a4e46183e6681: 1.59
+    - ENUM_85A02518D47A4751844237BAEDB353C9: 0
+    - Vector1_e3da3cfe9c25498c8c6a4e46183e6681: 0.1
     - _EdgeSize: 0.08
     - _Overlay: -0.44
     m_Colors:
-    - _MainColor: {r: 21.112127, g: 18.793934, b: 0, a: 1}
+    - _MainColor: {r: 891.4439, g: 285.9642, b: 0, a: 1}
   m_BuildTextureStacks: []

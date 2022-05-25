@@ -14,7 +14,7 @@ namespace DCL
     /// This is the InitialScene entry point.
     /// Most of the application subsystems should be initialized from this class Awake() event.
     /// </summary>
-    public class Main : MonoBehaviour
+    public class Main : MonoBehaviour   
     {
         [SerializeField] private bool disableSceneDependencies;
         public static Main i { get; private set; }
@@ -23,6 +23,7 @@ namespace DCL
 
         private PerformanceMetricsController performanceMetricsController;
         protected IKernelCommunication kernelCommunication;
+        public IKernelCommunication KernelCommunication => kernelCommunication;
 
         protected PluginSystem pluginSystem;
         
@@ -181,7 +182,7 @@ namespace DCL
 
 
             MainSceneFactory.CreateMouseCatcher();
-            MainSceneFactory.CreatePlayerSystems();
+         //   MainSceneFactory.CreatePlayerSystems();
            // CreateEnvironment(); // i droped the prefab in scene -a.b 'Environment.prefab'
             MainSceneFactory.CreateAudioHandler();
             MainSceneFactory.CreateHudController();

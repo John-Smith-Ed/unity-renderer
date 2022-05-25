@@ -11,9 +11,9 @@ public class ScrollbarHandleAudioHandler : MonoBehaviour, IPointerEnterHandler, 
     {
         if (selectable != null && !Input.GetMouseButton(0))
         {
-            if (selectable.interactable)
-            {
-                AudioScriptableObjects.buttonHover.Play(true);
+            if (selectable.interactable){
+                ABEYController.i.AudioEvents.buttonHover.Play(true);
+               // AudioScriptableObjects.buttonHover.Play(true);
             }
         }
     }
@@ -22,9 +22,9 @@ public class ScrollbarHandleAudioHandler : MonoBehaviour, IPointerEnterHandler, 
     {
         if (selectable != null)
         {
-            if (selectable.interactable)
-            {
-                AudioScriptableObjects.buttonClick.Play(true);
+            if (selectable.interactable) {
+                ABEYController.i.AudioEvents.buttonClick.Play(true);
+               // AudioScriptableObjects.buttonClick.Play(true);
             }
         }
     }

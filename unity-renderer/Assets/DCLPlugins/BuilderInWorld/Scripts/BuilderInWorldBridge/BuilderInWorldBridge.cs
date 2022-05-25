@@ -37,17 +37,14 @@ public class BuilderInWorldBridge : MonoBehaviour
     {
         PublishSceneResultPayload publishSceneResultPayload = JsonUtility.FromJson<PublishSceneResultPayload>(payload);
 
-        if (publishSceneResultPayload.ok)
-        {
+        if (publishSceneResultPayload.ok) {
             OnPublishEnd?.Invoke(true, "");
-
-            AudioScriptableObjects.confirm.Play();
-        }
-        else
-        {
+            ABEYController.i.AudioEvents.confirm.Play();
+            //AudioScriptableObjects.confirm.Play();
+        }else{
             OnPublishEnd?.Invoke(false, publishSceneResultPayload.error);
-
-            AudioScriptableObjects.error.Play();
+            ABEYController.i.AudioEvents.error.Play();
+            //AudioScriptableObjects.error.Play();
         }
     }
 

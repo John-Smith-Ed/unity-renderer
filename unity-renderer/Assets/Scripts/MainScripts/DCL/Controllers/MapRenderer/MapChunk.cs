@@ -10,7 +10,7 @@ namespace DCL
     {
         private bool VERBOSE = false;
         //const string MAP_API_BASE = "https://api.decentraland.org/v1/map.png";
-        string MAP_API_BASE => ABEYController.i.Config.MapApiBaseUrl;
+        string MAP_API_BASE => ABEYController.i.EndPointConfig.MapApiBaseUrl;
 
         public RawImage targetImage;
 

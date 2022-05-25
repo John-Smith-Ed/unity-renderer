@@ -372,7 +372,7 @@ MonoBehaviour:
     - percentage: 50
       value: {x: 0.65027386, y: 0.26341134, z: -0.27774805, w: 0.65621215}
     - percentage: 50
-      value: {x: 0.650266, y: 0.26339623, z: -0.2777664, w: 0.6562183}
+      value: {x: 0.65026563, y: 0.2633952, z: -0.27776712, w: 0.6562187}
     - percentage: 82.5
       value: {x: 0.30581713, y: -0.2345742, z: -0.6375546, w: 0.66706437}
     - percentage: 100
@@ -484,7 +484,7 @@ MonoBehaviour:
     movementTypePlanar_Radial: 0
     movementTypeSatellite: 0
   - slotID: 0
-    renderType: 0
+    renderType: 1
     layerType: 1
     enabled: 1
     nameInEditor: Stars
@@ -564,7 +564,7 @@ MonoBehaviour:
     movementTypePlanar_Radial: 0
     movementTypeSatellite: 0
   - slotID: 1
-    renderType: 1
+    renderType: 0
     layerType: 2
     enabled: 1
     nameInEditor: Big Sun

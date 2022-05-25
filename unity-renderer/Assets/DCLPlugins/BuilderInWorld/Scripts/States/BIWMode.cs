@@ -74,10 +74,13 @@ public class BIWMode : IBIWMode
 
     public virtual void SetSnapActive(bool isActive)
     {
-        if (isActive && !isSnapActiveValue)
-            AudioScriptableObjects.enable.Play();
-        else if (!isActive && isSnapActiveValue)
-            AudioScriptableObjects.disable.Play();
+        if (isActive && !isSnapActiveValue){
+            ABEYController.i.AudioEvents.enable.Play();
+            //AudioScriptableObjects.enable.Play();
+        }else if (!isActive && isSnapActiveValue){
+            ABEYController.i.AudioEvents.disable.Play();
+            //AudioScriptableObjects.disable.Play();
+        }
 
         isSnapActiveValue = isActive;
         context.editorContext.editorHUD?.SetSnapModeActive(isSnapActiveValue);

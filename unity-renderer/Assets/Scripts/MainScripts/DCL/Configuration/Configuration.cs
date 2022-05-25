@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: Remove All of this for proper configs
 namespace DCL.Configuration
 {
+    // work on this class last
     public static class BIWSettings
     {
         //Note: Don't use these URL directly, you need to get them in the BuilderInWorldUtils to take into account the ENV
@@ -127,70 +129,71 @@ namespace DCL.Configuration
         public const float LAND_CHECK_MESSAGE_TIMER = 5f;
     }
 
+    // Done - when ready comment it out find the errors and update to use correct config
     public static class ApplicationSettings
     {
-        public static string version = "1.0";
+        public static string version => ABEYController.i.ApplicationConfig.Version;
     }
-
+    // Done - when ready comment it out find the errors and update to use correct config
     public static class EnvironmentSettings
     {
-        public static bool RUNNING_TESTS = false;
-        public static bool DEBUG = true;
-        public static readonly Vector3 MORDOR = new Vector3(10000, 10000, 10000);
-        public static readonly int MORDOR_SCALAR = 10000;
-        public const float UNINITIALIZED_FLOAT = 999999f;
-        public static readonly string AVATAR_GLOBAL_SCENE_ID = "dcl-gs-avatars";
+        public static bool RUNNING_TESTS            => ABEYController.i.EnvironmentConfig.RunningTests;
+        public static bool DEBUG                    => ABEYController.i.EnvironmentConfig.Debug;
+        public static Vector3 MORDOR                => ABEYController.i.EnvironmentConfig.Mordor;
+        public static int MORDOR_SCALAR             => ABEYController.i.EnvironmentConfig.MordorScalar;
+        public static float UNINITIALIZED_FLOAT     => ABEYController.i.EnvironmentConfig.UninitializedFloat;
+        public static string AVATAR_GLOBAL_SCENE_ID => ABEYController.i.EnvironmentConfig.AvatarGlobalSceneId;
     }
-
+    // Done - when ready comment it out find the errors and update to use correct config
     public static class InputSettings
     {
-        public static KeyCode PrimaryButtonKeyCode = KeyCode.E;
-        public static KeyCode SecondaryButtonKeyCode = KeyCode.F;
-        public static KeyCode ForwardButtonKeyCode = KeyCode.W;
-        public static KeyCode BackwardButtonKeyCode = KeyCode.S;
-        public static KeyCode LeftButtonKeyCode = KeyCode.A;
-        public static KeyCode RightButtonKeyCode = KeyCode.D;
-        public static KeyCode ForwardButtonKeyCodeAlt = KeyCode.UpArrow;
-        public static KeyCode BackwardButtonKeyCodeAlt = KeyCode.DownArrow;
-        public static KeyCode LeftButtonKeyCodeAlt = KeyCode.LeftArrow;
-        public static KeyCode RightButtonKeyCodeAlt = KeyCode.RightArrow;
-        public static KeyCode JumpButtonKeyCode = KeyCode.Space;
-        public static KeyCode WalkButtonKeyCode = KeyCode.LeftShift;
-        public static KeyCode PlusKeyCode = KeyCode.KeypadPlus;
-        public static KeyCode MinusKeyCode = KeyCode.KeypadMinus;
-        public static KeyCode ActionButton3Keycode = KeyCode.Alpha1;
-        public static KeyCode ActionButton4Keycode = KeyCode.Alpha2;
-        public static KeyCode ActionButton5Keycode = KeyCode.Alpha3;
-        public static KeyCode ActionButton6Keycode = KeyCode.Alpha4;
+        public static KeyCode PrimaryButtonKeyCode      => ABEYController.i.InputConfig.PrimaryButtonKeyCode;
+        public static KeyCode SecondaryButtonKeyCode    => ABEYController.i.InputConfig.SecondaryButtonKeyCode;
+        public static KeyCode ForwardButtonKeyCode      => ABEYController.i.InputConfig.ForwardButtonKeyCode;
+        public static KeyCode BackwardButtonKeyCode     => ABEYController.i.InputConfig.BackwardButtonKeyCode;
+        public static KeyCode LeftButtonKeyCode         => ABEYController.i.InputConfig.LeftButtonKeyCode;
+        public static KeyCode RightButtonKeyCode        => ABEYController.i.InputConfig.RightButtonKeyCode;
+        public static KeyCode ForwardButtonKeyCodeAlt   => ABEYController.i.InputConfig.ForwardButtonKeyCodeAlt;
+        public static KeyCode BackwardButtonKeyCodeAlt  => ABEYController.i.InputConfig.BackwardButtonKeyCodeAlt;
+        public static KeyCode LeftButtonKeyCodeAlt      => ABEYController.i.InputConfig.LeftButtonKeyCodeAlt;
+        public static KeyCode RightButtonKeyCodeAlt     => ABEYController.i.InputConfig.RightButtonKeyCodeAlt;
+        public static KeyCode JumpButtonKeyCode         => ABEYController.i.InputConfig.JumpButtonKeyCode;
+        public static KeyCode WalkButtonKeyCode         => ABEYController.i.InputConfig.WalkButtonKeyCode;
+        public static KeyCode PlusKeyCode               => ABEYController.i.InputConfig.PlusKeyCode;
+        public static KeyCode MinusKeyCode              => ABEYController.i.InputConfig.MinusKeyCode;
+        public static KeyCode ActionButton3Keycode      => ABEYController.i.InputConfig.ActionButton3Keycode;
+        public static KeyCode ActionButton4Keycode      => ABEYController.i.InputConfig.ActionButton4Keycode;
+        public static KeyCode ActionButton5Keycode      => ABEYController.i.InputConfig.ActionButton5Keycode;
+        public static KeyCode ActionButton6Keycode      => ABEYController.i.InputConfig.ActionButton6Keycode;
     }
-
+    // Done - when ready comment it out find the errors and update to use correct config
     public static class PlayerSettings
     {
-        public static float POSITION_REPORTING_DELAY = 0.1f; // In seconds
-        public static float WORLD_REPOSITION_MINIMUM_DISTANCE = 100f;
+        public static float POSITION_REPORTING_DELAY            => ABEYController.i.PlayerConfig.PositionReportingDelay;
+        public static float WORLD_REPOSITION_MINIMUM_DISTANCE   => ABEYController.i.PlayerConfig.WorldRepositionMinimumDistance;
     }
-
+    // Done - when ready comment it out find the errors and update to use correct config
     public static class ParcelSettings
     {
-        public static float DEBUG_FLOOR_HEIGHT = -0.1f;
-        public static float PARCEL_SIZE = 16f;
-        public static float PARCEL_BOUNDARIES_THRESHOLD = 0.01f;
-        public static float UNLOAD_DISTANCE = PARCEL_SIZE * 12f;
-        public static bool VISUAL_LOADING_ENABLED = true;
+        public static float DEBUG_FLOOR_HEIGHT          => ABEYController.i.ParcelConfig.DebugFloorHeight;
+        public static float PARCEL_SIZE                 => ABEYController.i.ParcelConfig.ParcelSize;
+        public static float PARCEL_BOUNDARIES_THRESHOLD => ABEYController.i.ParcelConfig.ParcelBoundariesThreshold;
+        public static float UNLOAD_DISTANCE             => ABEYController.i.ParcelConfig.UnloadDistance;
+        public static bool VISUAL_LOADING_ENABLED       = ABEYController.i.ParcelConfig.VisualLoadingEnabled; // value changed in code, this is bad need to fix the logic, scriptables should neve be altered at run time unless cloning but then you still need to have a reason
     }
-
+    // Done - when ready comment it out find the errors and update to use correct config
     public static class TestSettings
     {
-        public static int VISUAL_TESTS_APPROVED_AFFINITY = 95;
-        public static float VISUAL_TESTS_PIXELS_CHECK_THRESHOLD = 5.0f;
-        public static int VISUAL_TESTS_SNAPSHOT_WIDTH = 1280;
-        public static int VISUAL_TESTS_SNAPSHOT_HEIGHT = 720;
+        public static int VISUAL_TESTS_APPROVED_AFFINITY        => ABEYController.i.TestConfig.VisualTestsApprovedAffinity;
+        public static float VISUAL_TESTS_PIXELS_CHECK_THRESHOLD => ABEYController.i.TestConfig.VisualTestsPixelsCheckThreshold;
+        public static int VISUAL_TESTS_SNAPSHOT_WIDTH           => ABEYController.i.TestConfig.VisualTestsSnapshotWidth;
+        public static int VISUAL_TESTS_SNAPSHOT_HEIGHT          => ABEYController.i.TestConfig.VisualTestsSnapshotHeight;
     }
-
+    // Done - when ready comment it out find the errors and update to use correct config
     public static class AssetManagerSettings
     {
         //When library item count gets above this threshold, unused items will get pruned on Get() method.
-        public static int LIBRARY_CLEANUP_THRESHOLD = 10;
+        public static int LIBRARY_CLEANUP_THRESHOLD = ABEYController.i.AssetManagerConfig.LibraryCleanupThreshold;
     }
 
     public static class MessageThrottlingSettings

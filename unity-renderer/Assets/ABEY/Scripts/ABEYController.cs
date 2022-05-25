@@ -17,8 +17,19 @@
         [SerializeField] DummyDataScriptable dummyData; 
         
         [Header("Configs")]
-        [SerializeField] ConfigScriptable abeyConfig; 
-        public ConfigScriptable Config => abeyConfig;
+        [SerializeField] ConfigScriptable abeyConfig;
+        // short access to configs
+        public ConfigScriptable                     Config                  => abeyConfig;
+        public ApplicationConfigScriptable          ApplicationConfig       => abeyConfig.ApplicationConfig;
+        public EnvironmentConfigScriptable          EnvironmentConfig       => abeyConfig.EnvironmentConfig;
+        public EndPointConfigScriptable             EndPointConfig          => abeyConfig.EndPointConfig;
+        public InputConfigScriptable                InputConfig             => abeyConfig.InputConfig;        
+        public AudioEventsScriptable                AudioEvents             => abeyConfig.AudioEvents;
+        public PlayerConfigScriptable               PlayerConfig            => abeyConfig.PlayerConfig;
+        public ParcelConfigScriptable               ParcelConfig            => abeyConfig.ParcelConfig;    
+        public TestConfigScriptable                 TestConfig              => abeyConfig.TestConfig;        
+        public AssetManagerConfigScriptable         AssetManagerConfig      => abeyConfig.AssetManagerConfig;
+        public MessageThrottlingConfigScriptable    MessageThrottlingConfig => abeyConfig.MessageThrottlingConfig;
 
         // Do not modify the base call
         // true passed will ensure this does not destroy on a scene change 
@@ -32,15 +43,17 @@
             
             FakeSetUp();
             yield return null;
-            while(!DCLCharacterController.i.enabled){
-                yield return null;
-            }
-            yield return null;
+           // while(!DCLCharacterController.i.enabled){
+           //     yield return null;
+           // }
+            yield return new WaitForSeconds(5f);
             //close hole position Vector3(17.3299999,104.57,3.67000008)
             // current player start position {\"x\":14.808116051111426,\"y\":206,\"z\":-4.2183475919324565}
             Debug.Log("SHOULD TELEPORT");
           // Vector3(21,120.579994,-3.77999997)
-            DCLCharacterController.i.Teleport("{\"x\":18,\"y\":122,\"z\":-10.7} ");
+          DCLCharacterController.i.enabled=true;
+         DCLCharacterController.i.Teleport(new Vector3(18f, 122f,-10.7f));
+            //
            //  OnMessage(MakeMessage("Teleport", "{\"x\":21,\"y\":120.579994,\"z\":-3.77999997} "));
         }
 
@@ -79,12 +92,16 @@
             // turns of UI overlay with loading info, this for sure needs to be done right but not a huge issue right now
             - SetLoadingScreen
 ---*/
-
+/*
             OnMessage(MakeMessage("Reset",null)); 
             OnMessage(MakeMessage("DeactivateRendering",null)); 
+
+            CreateAllHuds();
+
             OnMessage(MakeMessage("LoadParcelScenes",dummyData.GetData("LoadParcelScenes")));
 
             OnMessage(MakeMessage("SetLoadingScreen", dummyData.GetLoadingScreen(true, "Getting ABEYWORLD ready...", true)));
+            */
         /*    
             OnMessage(MakeMessage("SetLoadingScreen", dummyData.GetLoadingScreen(true, "Getting ABEYWORLD ready...", true)));
             OnMessage(MakeMessage("SetLoadingScreen", dummyData.GetLoadingScreen(true, "Getting ABEYWORLD ready...", true)));
@@ -92,37 +109,13 @@
             OnMessage(MakeMessage("SetLoadingScreen", dummyData.GetLoadingScreen(true, "Getting ABEYWORLD ready...", true)));
             OnMessage(MakeMessage("SetLoadingScreen", dummyData.GetLoadingScreen(true, "Getting ABEYWORLD ready...", true)));
         */
+        /*
             OnMessage(MakeMessage("SetKernelConfiguration", dummyData.GetData("SetKernelConfiguration")));
             OnMessage(MakeMessage("SetLoadingScreen",  dummyData.GetLoadingScreen(true, "Getting ABEYWORLD ready...", true)));
            // OnMessage(MakeMessage("SetLoadingScreen",  dummyData.GetLoadingScreen(true, "Getting ABEYWORLD ready...", true)));
             
             OnMessage(MakeMessage("SetFeatureFlagConfiguration",dummyData.GetData("SetFeatureFlagConfiguration")));
             
-            OnMessage(MakeMessage("SetRenderProfile", "{\"id\":0}"));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(1, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(3, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(4, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(29, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(30, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(31, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(5, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(6, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(32, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(7, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(8, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(9, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(14, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(16, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(17, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(26, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(27, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(2, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(2, true,true, new DummyDataScriptable.ExtraPayload(){enableVoiceChat=true,enableQuestPanel=false}) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(10, true,true,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(18, true,false,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(20, true,false,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(22, true,false,null) ));
-            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(23, true,true,null) ));
             
             OnMessage(MakeMessage("CreateGlobalScene", dummyData.GetData("CreateGlobalScene")));
             OnMessage(MakeMessage("UpdateRealmsInfo", dummyData.GetData("UpdateRealmsInfo")));
@@ -141,21 +134,12 @@
        OnMessage(MakeMessage("ForceActivateRendering", null));
             OnMessage(MakeMessage("ReportFocusOn",null));
             DCLCharacterController.i.enabled=true;
-
+*/
         }
 
         // Fake socket listen
         public void OnMessage(string message) {
-            #if ABEY
-            lock (AbeyCommunicationBridge.queuedMessages){ 
-                
-                DCLWebSocketService.Message finalMessage = JsonUtility.FromJson<DCLWebSocketService.Message>(message);
-
-                AbeyCommunicationBridge.queuedMessages.Enqueue(finalMessage);
-                AbeyCommunicationBridge.queuedMessagesDirty = true;
-                
-            }
-            #endif
+            ((AbeyCommunicationBridge)DCL.Main.i.KernelCommunication).FakeMessage(message);
         }
 
         public string MakeMessage(string type, string payload) => JsonUtility.ToJson(new DCLWebSocketService.Message{
@@ -165,7 +149,19 @@
 
        
         
-     
+
+        void CreateAllHuds(){
+            // this is so weird, all these elements are in the project, so why do you need the backend creating them?
+            // i would understand if they were assetbundles stored on the backend and downloaded but they are here, should be built into the scene 
+            for(int i=1; i < (int)DCL.HUDElementID.COUNT; i++){
+                
+                OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement(i, true, i==(int)DCL.HUDElementID.WORLD_CHAT_WINDOW, null) ));
+            }
+            // this one had some data passed in the request we captured so running it again - note the request captured ran alot of duplicated messages
+            OnMessage(MakeMessage("ConfigureHUDElement", dummyData.GetConfigureHUDElement((int)DCL.HUDElementID.PROFILE_HUD, true,false, new DummyDataScriptable.ExtraPayload(){enableVoiceChat=true,enableQuestPanel=false}) ));
+           
+            
+        }
      
     
     

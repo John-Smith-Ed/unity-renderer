@@ -124,12 +124,12 @@ internal class NFTPromptHUDView : MonoBehaviour, INFTPromptHUDView
         nftAssetLoadHelper?.Dispose();
         nftAsset?.Dispose();
 
-        if (fetchNFTImageRoutine != null)
+        if (fetchNFTImageRoutine != null){
             StopCoroutine(fetchNFTImageRoutine);
-
+        }
         fetchNFTImageRoutine = null;
-
-        AudioScriptableObjects.dialogClose.Play(true);
+        ABEYController.i.AudioEvents.dialogClose.Play(true);
+        //AudioScriptableObjects.dialogClose.Play(true);
     }
 
     IOwnersPopupView INFTPromptHUDView.GetOwnersPopup() { return ownersPopup; }

@@ -51,13 +51,12 @@ public class TermsOfServiceHUDView : MonoBehaviour
     {
         content.SetActive(visible);
 
-        if (visible)
-        {
-            AudioScriptableObjects.dialogOpen.Play(true);
-        }
-        else
-        {
-            AudioScriptableObjects.dialogClose.Play(true);
+        if (visible){
+            ABEYController.i.AudioEvents.dialogOpen.Play(true);
+            //AudioScriptableObjects.dialogOpen.Play(true);
+        }else{
+            ABEYController.i.AudioEvents.dialogClose.Play(true);
+            //AudioScriptableObjects.dialogClose.Play(true);
         }
     }
 

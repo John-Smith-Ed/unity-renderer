@@ -54,7 +54,8 @@ namespace GotoPanel
         public void ClosePanel()
         {
             DataStore.i.HUDs.gotoPanelVisible.Set(false);
-            AudioScriptableObjects.dialogClose.Play(true);
+            ABEYController.i.AudioEvents.dialogClose.Play(true);
+           // AudioScriptableObjects.dialogClose.Play(true);
         }
 
     }

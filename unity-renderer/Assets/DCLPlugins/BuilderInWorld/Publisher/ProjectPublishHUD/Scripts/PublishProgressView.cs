@@ -216,7 +216,8 @@ namespace DCL.Builder
             if (fakeProgressCoroutine != null)
                 StopCoroutine(fakeProgressCoroutine);
             fakeProgressCoroutine = StartCoroutine(FakePublishProgress());
-            AudioScriptableObjects.enable.Play();
+            ABEYController.i.AudioEvents.enable.Play();
+            //AudioScriptableObjects.enable.Play();
         }
 
         public void ShowProjectPublishSucces()

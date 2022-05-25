@@ -65,18 +65,15 @@ namespace DCL.EmotesWheel
                 return;
 
             gameObject.SetActive(visible);
-            if (visible)
-            {
-                foreach (GameObject go in gameObjectsToHideWhenCustomizeFFIsDeactivated)
-                {
+            if (visible){
+                foreach (GameObject go in gameObjectsToHideWhenCustomizeFFIsDeactivated){
                     go.SetActive(isEmotesCustomizationFFEnabled);
                 }
-
-                AudioScriptableObjects.dialogOpen.Play(true);
-            }
-            else
-            {
-                AudioScriptableObjects.dialogClose.Play(true);
+                ABEYController.i.AudioEvents.dialogOpen.Play(true);
+               // AudioScriptableObjects.dialogOpen.Play(true);
+            }else{
+                ABEYController.i.AudioEvents.dialogClose.Play(true);
+                //AudioScriptableObjects.dialogClose.Play(true);
             }
         }
 

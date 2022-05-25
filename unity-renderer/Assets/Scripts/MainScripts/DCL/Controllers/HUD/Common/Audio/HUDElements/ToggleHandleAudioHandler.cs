@@ -11,9 +11,9 @@ public class ToggleHandleAudioHandler : MonoBehaviour, IPointerEnterHandler
     {
         if (toggle != null && !Input.GetMouseButton(0))
         {
-            if (toggle.interactable)
-            {
-                AudioScriptableObjects.buttonHover.Play(true);
+            if (toggle.interactable) {
+                ABEYController.i.AudioEvents.buttonHover.Play(true);
+               // AudioScriptableObjects.buttonHover.Play(true);
             }
         }
     }

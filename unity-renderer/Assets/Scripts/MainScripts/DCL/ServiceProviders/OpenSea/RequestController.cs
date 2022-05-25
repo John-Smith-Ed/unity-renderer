@@ -9,10 +9,8 @@ namespace DCL.Helpers.NFT.Markets.OpenSea_Internal
     {
         private const bool VERBOSE = false;
 
-        private const string EDITOR_USER_AGENT =
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36";
-
-        private const string EDITOR_REFERRER = "https://play.decentraland.org"; 
+        string EDITOR_USER_AGENT => ABEYController.i.EndPointConfig.EditorUserAgent;
+        string EDITOR_REFERRER   => ABEYController.i.EndPointConfig.EditorReferrer; 
 
         internal readonly RequestScheduler requestScheduler = new RequestScheduler();
         private readonly Dictionary<string, RequestBase<AssetResponse>> cacheAssetResponses = new Dictionary<string, RequestBase<AssetResponse>>();

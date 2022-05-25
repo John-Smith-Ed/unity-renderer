@@ -247,10 +247,10 @@ public class ExploreV2MenuComponentView : BaseComponentView, IExploreV2MenuCompo
                 }
             }
         }
-        else
-        {
+        else{
             Hide();
-            AudioScriptableObjects.dialogClose.Play(true);
+            ABEYController.i.AudioEvents.dialogClose.Play(true);
+            //AudioScriptableObjects.dialogClose.Play(true);
         }
     }
 
@@ -270,8 +270,11 @@ public class ExploreV2MenuComponentView : BaseComponentView, IExploreV2MenuCompo
 
         sectionSelector.GetSection((int)section)?.SelectToggle(true);
 
-        AudioScriptableObjects.dialogOpen.Play(true);
-        AudioScriptableObjects.listItemAppear.ResetPitch();
+        ABEYController.i.AudioEvents.dialogOpen.Play(true);
+        ABEYController.i.AudioEvents.listItemAppear.ResetPitch();
+
+        //AudioScriptableObjects.dialogOpen.Play(true);
+        //AudioScriptableObjects.listItemAppear.ResetPitch();
     }
 
     public void SetSectionActive(ExploreSection section, bool isActive) { sectionSelector.GetSection((int)section).SetActive(isActive); }

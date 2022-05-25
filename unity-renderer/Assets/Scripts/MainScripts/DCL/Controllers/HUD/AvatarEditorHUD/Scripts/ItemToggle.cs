@@ -126,8 +126,10 @@ public class ItemToggle : UIButton, IPointerEnterHandler, IPointerExitHandler
 
         if (view != null)
         {
-            if (view.avatarEditorCanvas.enabled)
-                AudioScriptableObjects.listItemAppear.Play(true);
+            if (view.avatarEditorCanvas.enabled){
+                ABEYController.i.AudioEvents.listItemAppear.Play(true);
+                //AudioScriptableObjects.listItemAppear.Play(true);
+            }
         }
     }
 

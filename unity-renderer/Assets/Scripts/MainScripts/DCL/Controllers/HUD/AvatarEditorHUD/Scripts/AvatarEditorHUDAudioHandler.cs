@@ -200,9 +200,10 @@ public class AvatarEditorHUDAudioHandler : MonoBehaviour
         }
     }
 
-    void OnSetAvatarEditorVisibility(bool visible)
-    {
-        AudioScriptableObjects.listItemAppear.ResetPitch();
+    void OnSetAvatarEditorVisibility(bool visible) {
+
+        ABEYController.i.AudioEvents.listItemAppear.ResetPitch();
+        //AudioScriptableObjects.listItemAppear.ResetPitch();
 
         if (visible)
         {

@@ -70,8 +70,8 @@ public class NFTPromptHUDController : IHUD
             HideOwnersTooltip(true);
             HideOwnersPopup(true);
         }
-
-        AudioScriptableObjects.dialogOpen.Play(true);
+        ABEYController.i.AudioEvents.dialogOpen.Play(true);
+       // AudioScriptableObjects.dialogOpen.Play(true);
     }
 
     public void Dispose()

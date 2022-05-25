@@ -33,8 +33,8 @@ public class TeleportPromptHUDController : IHUD
         {
             view.content.SetActive(true);
             view.contentAnimator.Show();
-
-            AudioScriptableObjects.fadeIn.Play(true);
+            ABEYController.i.AudioEvents.fadeIn.Play(true);
+            //AudioScriptableObjects.fadeIn.Play(true);
         }
     }
 

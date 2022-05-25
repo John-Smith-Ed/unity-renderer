@@ -148,8 +148,8 @@ public class TeleportPromptHUDView : MonoBehaviour
     {
         OnCloseEvent?.Invoke();
         contentAnimator.Hide(true);
-
-        AudioScriptableObjects.dialogClose.Play(true);
+        ABEYController.i.AudioEvents.dialogClose.Play(true);
+        //AudioScriptableObjects.dialogClose.Play(true);
     }
 
     private void OnTeleportPressed()

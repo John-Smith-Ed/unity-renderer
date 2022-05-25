@@ -53,9 +53,10 @@ namespace DCL
 
         public void Populate(Vector2Int coordinates, MinimapMetadata.MinimapSceneInfo sceneInfo)
         {
-            if (!gameObject.activeSelf)
-                AudioScriptableObjects.dialogOpen.Play(true);
-
+            if (!gameObject.activeSelf){
+                ABEYController.i.AudioEvents.dialogOpen.Play(true);
+                //AudioScriptableObjects.dialogOpen.Play(true);
+            }
             bool sceneInfoExists = sceneInfo != null;
 
             gameObject.SetActive(true);
@@ -151,8 +152,11 @@ namespace DCL
 
         public void OnCloseClick()
         {
-            if (gameObject.activeSelf)
-                AudioScriptableObjects.dialogClose.Play(true);
+            if (gameObject.activeSelf){
+                ABEYController.i.AudioEvents.dialogClose.Play(true);
+                //AudioScriptableObjects.dialogClose.Play(true);
+            }
+                
 
             gameObject.SetActive(false);
         }

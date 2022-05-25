@@ -268,22 +268,19 @@ public class FriendsHUDController : IHUD
     {
         view.gameObject.SetActive(visible);
 
-        if (visible)
-        {
+        if (visible){
             UpdateNotificationsCounter();
 
-            if (view.friendsButton.interactable)
+            if (view.friendsButton.interactable){
                 view.friendsButton.onClick.Invoke();
-
+            }
             OnFriendsOpened?.Invoke();
-
-            AudioScriptableObjects.dialogOpen.Play(true);
-        }
-        else
-        {
+            ABEYController.i.AudioEvents.dialogOpen.Play(true);
+           // AudioScriptableObjects.dialogOpen.Play(true);
+        }else{
             OnFriendsClosed?.Invoke();
-
-            AudioScriptableObjects.dialogClose.Play(true);
+            ABEYController.i.AudioEvents.dialogClose.Play(true);
+            //AudioScriptableObjects.dialogClose.Play(true);
         }
     }
 }

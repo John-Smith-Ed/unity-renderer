@@ -191,10 +191,12 @@ public class BuilderInWorldAudioHandler : MonoBehaviour
             switch (current)
             {
                 case IBIWModeController.EditModeState.FirstPerson:
-                    AudioScriptableObjects.cameraFadeIn.Play();
+                    ABEYController.i.AudioEvents.cameraFadeIn.Play();
+                    //AudioScriptableObjects.cameraFadeIn.Play();
                     break;
                 case IBIWModeController.EditModeState.GodMode:
-                    AudioScriptableObjects.cameraFadeOut.Play();
+                    ABEYController.i.AudioEvents.cameraFadeOut.Play();
+                    //AudioScriptableObjects.cameraFadeOut.Play();
                     break;
                 default:
                     break;

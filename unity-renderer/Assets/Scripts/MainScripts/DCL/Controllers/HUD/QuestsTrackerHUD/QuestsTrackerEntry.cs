@@ -57,8 +57,8 @@ namespace DCL.Huds.QuestsTracker
             SetExpandCollapseState(true);
             expandCollapseButton.onClick.AddListener(() => SetExpandCollapseState(!isExpanded));
             StartCoroutine(OutDelayRoutine());
-
-            AudioScriptableObjects.fadeIn.Play();
+            ABEYController.i.AudioEvents.fadeIn.Play();
+            //AudioScriptableObjects.fadeIn.Play();
         }
 
         private IEnumerator OutDelayRoutine()
@@ -293,9 +293,9 @@ namespace DCL.Huds.QuestsTracker
 
         public void StartDestroy() { StartCoroutine(DestroySequence()); }
 
-        private IEnumerator DestroySequence()
-        {
-            AudioScriptableObjects.fadeOut.Play();
+        private IEnumerator DestroySequence(){
+            ABEYController.i.AudioEvents.fadeOut.Play();
+           // AudioScriptableObjects.fadeOut.Play();
             containerAnimator.SetTrigger(OUT_ANIM_TRIGGER);
             yield return WaitForSecondsCache.Get(DELAY_TO_DESTROY);
 

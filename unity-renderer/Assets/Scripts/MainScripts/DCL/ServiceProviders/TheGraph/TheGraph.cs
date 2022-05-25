@@ -9,14 +9,17 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Graph;
 
-public class TheGraph : ITheGraph
-{
-    private const float DEFAULT_CACHE_TIME = 5 * 60;
-    private const string LAND_SUBGRAPH_URL_ORG = "https://api.thegraph.com/subgraphs/name/decentraland/land-manager";
-    private const string LAND_SUBGRAPH_URL_ZONE = "https://api.thegraph.com/subgraphs/name/decentraland/land-manager-ropsten";
-    private const string LAND_SUBGRAPH_URL_MATIC = "https://api.thegraph.com/subgraphs/name/decentraland/mana-matic-mainnet";
-    private const string NFT_COLLECTIONS_SUBGRAPH_URL_ETHEREUM = "https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-mainnet";
-    private const string NFT_COLLECTIONS_SUBGRAPH_URL_MATIC = "https://api.thegraph.com/subgraphs/name/decentraland/collections-matic-mainnet";
+public class TheGraph : ITheGraph {
+
+    static ABEY.EndPointConfigScriptable Config => ABEYController.i.EndPointConfig;
+
+
+    float DEFAULT_CACHE_TIME = 5 * 60;
+    string LAND_SUBGRAPH_URL_ORG                    => Config.LandSubgraphUrlOrg;
+    string LAND_SUBGRAPH_URL_ZONE                   => Config.LandSubgraphUrlZone;
+    string LAND_SUBGRAPH_URL_MATIC                  => Config.LandSubgraphUrlMatic;
+    string NFT_COLLECTIONS_SUBGRAPH_URL_ETHEREUM    => Config.NftCollectionsSubgraphUrlEthereum;
+    string NFT_COLLECTIONS_SUBGRAPH_URL_MATIC       => Config.NftCollectionsSubgraphUrlMatic;
 
     private readonly IDataCache<List<Land>> landQueryCache = new DataCache<List<Land>>();
 

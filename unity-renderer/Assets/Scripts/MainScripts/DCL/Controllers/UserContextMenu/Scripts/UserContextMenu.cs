@@ -144,8 +144,8 @@ public class UserContextMenu : MonoBehaviour
         OnPassport?.Invoke(userId);
         currentPlayerId.Set(userId);
         Hide();
-
-        AudioScriptableObjects.dialogOpen.Play(true);
+        ABEYController.i.AudioEvents.dialogOpen.Play(true);
+        //AudioScriptableObjects.dialogOpen.Play(true);
     }
 
     private void OnReportUserButtonPressed()

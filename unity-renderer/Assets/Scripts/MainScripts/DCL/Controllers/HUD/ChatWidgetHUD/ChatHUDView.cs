@@ -85,9 +85,15 @@ public class ChatHUDView : MonoBehaviour
         OnSendMessage?.Invoke(currentMessage);
     }
 
-    private void OnInputFieldSelect(string message) { AudioScriptableObjects.inputFieldFocus.Play(true); }
+    private void OnInputFieldSelect(string message) { 
+        ABEYController.i.AudioEvents.inputFieldFocus.Play(true); 
+       // AudioScriptableObjects.inputFieldFocus.Play(true); 
+    }
 
-    private void OnInputFieldDeselect(string message) { AudioScriptableObjects.inputFieldUnfocus.Play(true); }
+    private void OnInputFieldDeselect(string message) {
+        ABEYController.i.AudioEvents.inputFieldUnfocus.Play(true); 
+        //AudioScriptableObjects.inputFieldUnfocus.Play(true); 
+    }
 
     public void ResetInputField()
     {

@@ -40,18 +40,20 @@ public class CatalogAssetPackListView : ListView<CatalogItemPack>
         foreach (CatalogItemPack catalogItemPack in contentList)
         {
             //TODO: SmartItems This quit all the smart items from the catalog
-            if (catalogItemPack.id == BIWSettings.SMART_ITEM_ASSETS_PACK_ID)
+            if (catalogItemPack.id == BIWSettings.SMART_ITEM_ASSETS_PACK_ID){
                 continue;
+            }
 
             CatalogAssetPackAdapter adapter = Instantiate(prefabToUse, transformToUse).GetComponent<CatalogAssetPackAdapter>();
             adapter.SetContent(catalogItemPack);
             adapter.OnCatalogItemPackClick += SceneAssetPackClick;
         }
 
-        if (dynamicScrollSensitivity != null)
+        if (dynamicScrollSensitivity != null){
             dynamicScrollSensitivity.RecalculateSensitivity();
-
-        AudioScriptableObjects.listItemAppear.ResetPitch();
+        }
+        ABEYController.i.AudioEvents.listItemAppear.ResetPitch();
+        //AudioScriptableObjects.listItemAppear.ResetPitch();
     }
 
     public override void RemoveAdapters()

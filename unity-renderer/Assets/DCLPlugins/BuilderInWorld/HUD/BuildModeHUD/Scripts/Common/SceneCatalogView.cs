@@ -102,29 +102,33 @@ public class SceneCatalogView : MonoBehaviour, ISceneCatalogView
         toggleCatalogBtn.onClick.RemoveListener(ToggleCatalogExpanse);
     }
 
-    private void OnEnable() { AudioScriptableObjects.dialogOpen.Play(); }
+    private void OnEnable() {
+        ABEYController.i.AudioEvents.dialogOpen.Play();
+        // AudioScriptableObjects.dialogOpen.Play(); 
+    }
 
-    private void OnDisable() { AudioScriptableObjects.dialogClose.Play(); }
+    private void OnDisable() { 
+        ABEYController.i.AudioEvents.dialogClose.Play();
+        // AudioScriptableObjects.dialogClose.Play(); 
+    }
 
-    public void ToggleCatalogExpanse()
-    {
-        if (isCatalogExpanded)
-        {
+    public void ToggleCatalogExpanse(){
+        if (isCatalogExpanded){
             BIWUtils.CopyRectTransform(panelRT, panelMinSizeRT);
             BIWUtils.CopyRectTransform(headerRT, headerMinSizeRT);
             BIWUtils.CopyRectTransform(searchBarRT, searchBarMinSizeRT);
             BIWUtils.CopyRectTransform(assetPackRT, assetPackMinSizeRT);
             BIWUtils.CopyRectTransform(categoryRT, assetPackMinSizeRT);
-            AudioScriptableObjects.dialogClose.Play();
-        }
-        else
-        {
+            ABEYController.i.AudioEvents.dialogClose.Play();
+            //AudioScriptableObjects.dialogClose.Play();
+        }else{
             BIWUtils.CopyRectTransform(panelRT, panelMaxSizeRT);
             BIWUtils.CopyRectTransform(headerRT, headerMaxSizeRT);
             BIWUtils.CopyRectTransform(searchBarRT, searchBarMaxSizeRT);
             BIWUtils.CopyRectTransform(assetPackRT, assetPackMaxSizeRT);
             BIWUtils.CopyRectTransform(categoryRT, assetPackMaxSizeRT);
-            AudioScriptableObjects.dialogOpen.Play();
+            ABEYController.i.AudioEvents.dialogOpen.Play();
+           // AudioScriptableObjects.dialogOpen.Play();
         }
 
         isCatalogExpanded = !isCatalogExpanded;

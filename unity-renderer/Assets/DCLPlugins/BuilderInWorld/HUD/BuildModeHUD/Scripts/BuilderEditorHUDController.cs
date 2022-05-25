@@ -460,13 +460,15 @@ public class BuilderEditorHUDController : IHUD, IBuilderEditorHUDController
         if (IsVisible() && !visible)
         {
             view.AnimatorShow(false);
-            AudioScriptableObjects.fadeOut.Play(true);
+            ABEYController.i.AudioEvents.fadeOut.Play(true);
+          //  AudioScriptableObjects.fadeOut.Play(true);
         }
         else if (!IsVisible() && visible)
         {
             view.SetActive(true);
             view.AnimatorShow(true);
-            AudioScriptableObjects.fadeIn.Play(true);
+            ABEYController.i.AudioEvents.fadeIn.Play(true);
+          //  AudioScriptableObjects.fadeIn.Play(true);
         }
     }
 

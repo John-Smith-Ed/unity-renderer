@@ -16,6 +16,7 @@ namespace AvatarSystem
 
         public async UniTask<Rendereable> Retrieve(GameObject container, ContentProvider contentProvider, string baseUrl, string mainFile, CancellationToken ct = default)
         {
+            Debug.Log(baseUrl);
             ct.ThrowIfCancellationRequested();
 
             try

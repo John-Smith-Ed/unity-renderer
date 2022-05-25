@@ -27,18 +27,15 @@ public class ExternalUrlPromptHUDController : IHUD
     {
         view.gameObject.SetActive(visible);
 
-        if (visible)
-        {
+        if (visible){
             view.content.SetActive(true);
             view.showHideAnimator.Show();
-
-            AudioScriptableObjects.dialogOpen.Play(true);
-        }
-        else
-        {
+            ABEYController.i.AudioEvents.dialogOpen.Play(true);
+            //AudioScriptableObjects.dialogOpen.Play(true);
+        } else {
             view.showHideAnimator.Hide();
-
-            AudioScriptableObjects.dialogClose.Play(true);
+            ABEYController.i.AudioEvents.dialogClose.Play(true);
+           // AudioScriptableObjects.dialogClose.Play(true);
         }
     }
 

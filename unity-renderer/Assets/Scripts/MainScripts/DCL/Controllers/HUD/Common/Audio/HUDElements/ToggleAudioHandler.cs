@@ -16,9 +16,9 @@ public class ToggleAudioHandler : MonoBehaviour, IPointerDownHandler
     {
         if (toggle != null)
         {
-            if (toggle.interactable)
-            {
-                AudioScriptableObjects.buttonClick.Play(true);
+            if (toggle.interactable){
+                ABEYController.i.AudioEvents.buttonClick.Play(true);
+               // AudioScriptableObjects.buttonClick.Play(true);
             }
         }
     }
@@ -29,13 +29,12 @@ public class ToggleAudioHandler : MonoBehaviour, IPointerDownHandler
         {
             if (toggle.interactable)
             {
-                if (isOn)
-                {
-                    AudioScriptableObjects.enable.Play(true);
-                }
-                else
-                {
-                    AudioScriptableObjects.disable.Play(true);
+                if (isOn){
+                    ABEYController.i.AudioEvents.enable.Play(true);
+                   // AudioScriptableObjects.enable.Play(true);
+                }else{
+                    ABEYController.i.AudioEvents.disable.Play(true);
+                   // AudioScriptableObjects.disable.Play(true);
                 }
             }
         }

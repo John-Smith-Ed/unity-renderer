@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 274326366bcccad48a628e6f91f38fc2, type: 3}
-  m_Name: ConfigScriptable
+  m_Script: {fileID: 11500000, guid: 98cdce45fb57b8542b8b0e309e3e96e3, type: 3}
+  m_Name: ApplicationConfig
   m_EditorClassIdentifier: 
-  mapApiBaseUrl: http://debugmode.online:5000/v1/map.png
+  version: 1.0
