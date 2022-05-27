@@ -195,42 +195,37 @@ namespace DCL.Configuration
         //When library item count gets above this threshold, unused items will get pruned on Get() method.
         public static int LIBRARY_CLEANUP_THRESHOLD = ABEYController.i.AssetManagerConfig.LibraryCleanupThreshold;
     }
-
+    // Done - when ready comment it out find the errors and update to use correct config
     public static class MessageThrottlingSettings
     {
-        public static float SIXTY_FPS_TIME = 1.0f / 60.0f;
-        public static float GLOBAL_FRAME_THROTTLING_TIME = SIXTY_FPS_TIME / 8.0f;
-        public static float LOAD_PARCEL_SCENES_THROTTLING_TIME = SIXTY_FPS_TIME / 4.0f;
+        public static float SIXTY_FPS_TIME                      => ABEYController.i.MessageThrottlingConfig.SixtyFpsTime;
+        public static float GLOBAL_FRAME_THROTTLING_TIME        => ABEYController.i.MessageThrottlingConfig.GlobalFrameThrottlingTime;
+        public static float LOAD_PARCEL_SCENES_THROTTLING_TIME  => ABEYController.i.MessageThrottlingConfig.LoadParcelScenesThrottlingTime;
     }
-
+    // Done - when ready comment it out find the errors and update to use correct config
     public static class UISettings
     {
-        public static float RESERVED_CANVAS_TOP_PERCENTAGE = 10f;
+        public static float RESERVED_CANVAS_TOP_PERCENTAGE = ABEYController.i.UIConfig.ReservedCanvasTopPercentage;
     }
-
+    // Done - when ready comment it out find the errors and update to use correct config
     public static class NFTDataFetchingSettings
     {
-        public static UnityEngine.Vector2
-            NORMALIZED_DIMENSIONS =
-                new UnityEngine.Vector2(512f, 512f); // The image dimensions that correspond to Vector3.One scale
-
-        public static string DAR_API_URL = "https://schema.decentraland.org/dar";
+        public static UnityEngine.Vector2   NORMALIZED_DIMENSIONS   => ABEYController.i.NFTDataFetchingConfig.NormalizedDimensions;
+        public static string                DAR_API_URL             => ABEYController.i.NFTDataFetchingConfig.DarApiUrl;
     }
-
+    // Done - when ready comment it out find the errors and update to use correct config
     public static class PhysicsLayers
     {
-        public static int defaultLayer = LayerMask.NameToLayer("Default");
-        public static int onPointerEventLayer = LayerMask.NameToLayer("OnPointerEvent");
-        public static int characterLayer = LayerMask.NameToLayer("CharacterController");
-        public static int characterOnlyLayer = LayerMask.NameToLayer("CharacterOnly");
-        public static LayerMask physicsCastLayerMask = 1 << onPointerEventLayer;
+        public static int defaultLayer          => ABEYController.i.PhysicsLayersConfig.DefaultLayer;
+        public static int onPointerEventLayer   => ABEYController.i.PhysicsLayersConfig.OnPointerEventLayer;
+        public static int characterLayer        => ABEYController.i.PhysicsLayersConfig.CharacterLayer;
+        public static int characterOnlyLayer    => ABEYController.i.PhysicsLayersConfig.CharacterOnlyLayer;
+        public static int friendsHUDPlayerMenu  => ABEYController.i.PhysicsLayersConfig.FriendsHUDPlayerMenu;
+        public static int playerInfoCardMenu    => ABEYController.i.PhysicsLayersConfig.PlayerInfoCardMenu;
+        public static int avatarTriggerMask     => ABEYController.i.PhysicsLayersConfig.AvatarTriggerMask;
 
-        public static LayerMask physicsCastLayerMaskWithoutCharacter = (physicsCastLayerMask | (1 << defaultLayer))
-                                                                       & ~(1 << characterLayer)
-                                                                       & ~(1 << characterOnlyLayer);
+        public static LayerMask physicsCastLayerMask                 => ABEYController.i.PhysicsLayersConfig.PhysicsCastLayerMask;
+        public static LayerMask physicsCastLayerMaskWithoutCharacter => ABEYController.i.PhysicsLayersConfig.PhysicsCastLayerMaskWithoutCharacter;
 
-        public static int friendsHUDPlayerMenu = LayerMask.NameToLayer("FriendsHUDPlayerMenu");
-        public static int playerInfoCardMenu = LayerMask.NameToLayer("PlayerInfoCardMenu");
-        public static int avatarTriggerMask = LayerMask.GetMask("AvatarTriggerDetection");
     }
 }

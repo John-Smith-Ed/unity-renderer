@@ -113,7 +113,7 @@ namespace SignupHUD
 
         public static SignupHUDView CreateView()
         {
-            SignupHUDView view = Instantiate(Resources.Load<GameObject>("SignupHUD")).GetComponent<SignupHUDView>();
+            SignupHUDView view = Instantiate(ABEYController.i.GetPrefab("SignupHUD")).GetComponent<SignupHUDView>();
             view.gameObject.name = "_SignupHUD";
             return view;
         }

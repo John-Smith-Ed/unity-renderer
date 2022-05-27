@@ -16,7 +16,7 @@ public class NotificationHUDView : MonoBehaviour
 
     internal static NotificationHUDView Create()
     {
-        NotificationHUDView view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<NotificationHUDView>();
+        NotificationHUDView view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<NotificationHUDView>();
         view.Initialize();
         return view;
     }

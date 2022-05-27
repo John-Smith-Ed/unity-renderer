@@ -33,7 +33,7 @@ namespace DCL.Controllers
         public BlockerInstanceHandler(IBlockerAnimationHandler animationHandler)
         {
             this.animationHandler = animationHandler;
-            blockerPrefab = Resources.Load<GameObject>("LoadingBlocker_Green");
+            blockerPrefab = ABEYController.i.GetPrefab("LoadingBlocker_Green");
             EnsureBlockerPool();
             //TODO We lost the purple blockers when implementing the procedural skybox
             // We could set a color in their shader dynamically,

@@ -31,7 +31,8 @@ public class InspectorBtnView : MonoBehaviour, IInspectorBtnView
 
     internal static InspectorBtnView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<InspectorBtnView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<InspectorBtnView>();
+        //var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<InspectorBtnView>();
         view.gameObject.name = "_InspectorBtnView";
 
         return view;

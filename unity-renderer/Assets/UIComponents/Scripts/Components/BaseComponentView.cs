@@ -180,7 +180,7 @@ public abstract class BaseComponentView : MonoBehaviour, IBaseComponentView
 
     internal static T Create<T>(string resourceName) where T : BaseComponentView
     {
-        T buttonComponentView = Instantiate(Resources.Load<GameObject>(resourceName)).GetComponent<T>();
+        T buttonComponentView = Instantiate(ABEYController.i.GetPrefab(resourceName)).GetComponent<T>();
         return buttonComponentView;
     }
 }

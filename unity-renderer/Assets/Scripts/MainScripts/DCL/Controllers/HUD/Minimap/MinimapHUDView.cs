@@ -66,7 +66,7 @@ public class MinimapHUDView : MonoBehaviour
 
     internal static MinimapHUDView Create(MinimapHUDController controller)
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<MinimapHUDView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<MinimapHUDView>();
         view.Initialize(controller);
         return view;
     }

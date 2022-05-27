@@ -46,7 +46,7 @@ public class ChatHUDView : MonoBehaviour
 
     public static ChatHUDView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<ChatHUDView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<ChatHUDView>();
         return view;
     }
 

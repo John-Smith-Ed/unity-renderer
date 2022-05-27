@@ -133,7 +133,7 @@ namespace DCL.Controllers
         {
             // Wireframe that shows the boundaries to the dev (We don't use the GameObject.Instantiate(prefab, parent)
             // overload because we need to set the position and scale before parenting, to deal with scaled objects)
-            GameObject wireframeObject = Object.Instantiate(Resources.Load<GameObject>(WIREFRAME_PREFAB_NAME));
+            GameObject wireframeObject = Object.Instantiate(ABEYController.i.GetPrefab(WIREFRAME_PREFAB_NAME));
             wireframeObject.transform.position = target.bounds.center;
             wireframeObject.transform.localScale = target.bounds.size * 1.01f;
             wireframeObject.transform.SetParent(parent);

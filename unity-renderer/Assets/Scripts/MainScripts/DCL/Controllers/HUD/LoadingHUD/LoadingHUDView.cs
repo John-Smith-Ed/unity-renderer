@@ -11,12 +11,18 @@ public class LoadingHUDView : MonoBehaviour
     [SerializeField] internal GameObject tipsContainer;
     [SerializeField] internal GameObject noTipsContainer;
     [SerializeField] internal ShowHideAnimator showHideAnimator;
+    
 
     private bool isDestroyed = false;
 
-    public static LoadingHUDView CreateView()
+    public static LoadingHUDView CreateView() 
     {
-        LoadingHUDView view = Instantiate(Resources.Load<GameObject>("LoadingHUD")).GetComponent<LoadingHUDView>();
+        Debug.Log($"CreateView");
+        GameObject go = ABEYController.i.GetPrefab("LoadingHUD");
+        //ABEYController.i.GetPrefab("LoadingHUD");
+        Debug.Log($"CreateView go is {go}"); 
+        LoadingHUDView view = Instantiate(go).GetComponent<LoadingHUDView>();
+        Debug.Log($"CreateView go is {go} view is {view}"); 
         view.gameObject.name = "_LoadingHUD";
         return view;
     }
@@ -65,7 +71,7 @@ public class LoadingHUDView : MonoBehaviour
         noTipsContainer.gameObject.SetActive(!showTips);
     }
 
-    private void OnDestroy() { isDestroyed = true; }
+    private void OnDestroy() {Debug.LogError("Loading destroyed?"); isDestroyed = true; }
 
     public void Dispose()
     {

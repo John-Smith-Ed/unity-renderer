@@ -15,6 +15,9 @@ namespace ABEY {
         [SerializeField] TestConfigScriptable               testConfig;
         [SerializeField] AssetManagerConfigScriptable       assetManagerConfig;
         [SerializeField] MessageThrottlingConfigScriptable  messageThrottlingConfig;
+        [SerializeField] UIConfigScriptable                 uIConfig;
+        [SerializeField] NFTDataFetchingConfigScriptable    nFTDataFetchingConfig;
+        [SerializeField] PhysicsLayersConfigScriptable      physicsLayersConfig;
 
         public ApplicationConfigScriptable          ApplicationConfig       => applicationConfig;
         public EnvironmentConfigScriptable          EnvironmentConfig       => environmentConfig;
@@ -26,7 +29,9 @@ namespace ABEY {
         public TestConfigScriptable                 TestConfig              => TestConfig;
         public AssetManagerConfigScriptable         AssetManagerConfig      => assetManagerConfig;
         public MessageThrottlingConfigScriptable    MessageThrottlingConfig => messageThrottlingConfig;
-        
+        public UIConfigScriptable                   UIConfig                => uIConfig;
+        public NFTDataFetchingConfigScriptable      NFTDataFetchingConfig   => nFTDataFetchingConfig;
+        public PhysicsLayersConfigScriptable        PhysicsLayersConfig     => physicsLayersConfig;
 
 
         

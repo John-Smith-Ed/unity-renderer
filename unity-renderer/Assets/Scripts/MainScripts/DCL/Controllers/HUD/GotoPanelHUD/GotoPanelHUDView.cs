@@ -42,7 +42,7 @@ namespace GotoPanel
 
         public static IGotoPanelHUDView CreateView()
         {
-            GotoPanelHUDView view = UnityEngine.Object.Instantiate(Resources.Load<GameObject>("GotoPanelHUD")).GetComponent<GotoPanelHUDView>();
+            GotoPanelHUDView view = UnityEngine.Object.Instantiate(ABEYController.i.GetPrefab("GotoPanelHUD")).GetComponent<GotoPanelHUDView>();
             view.name = "_GotoPanelHUD";
             return view;
         }

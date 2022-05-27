@@ -32,7 +32,8 @@ public class CatalogBtnView : MonoBehaviour, ICatalogBtnView
 
     internal static CatalogBtnView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<CatalogBtnView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<CatalogBtnView>();
+        //var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<CatalogBtnView>();
         view.gameObject.name = "_CatalogBtnView";
 
         return view;

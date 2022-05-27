@@ -23,3 +23,8 @@ MonoBehaviour:
   assetManagerConfig: {fileID: 11400000, guid: f8cf85ea3deacf44e9429a1d6f79057c, type: 2}
   messageThrottlingConfig: {fileID: 11400000, guid: 499f388af239c7947997d13e5e03dd36,
     type: 2}
+  uIConfig: {fileID: 11400000, guid: 85d4ba09b217aa14ab96ef26af2b7866, type: 2}
+  nFTDataFetchingConfig: {fileID: 11400000, guid: 673e59b2c67b50e4d861f26417c17978,
+    type: 2}
+  physicsLayersConfig: {fileID: 11400000, guid: 5bab84cc9824bb94791e81a85773421f,
+    type: 2}

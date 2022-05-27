@@ -34,7 +34,7 @@ public class AirdroppingHUDView : MonoBehaviour
     [SerializeField] internal GameObject summaryNoItemsScreen;
     [SerializeField] internal Button summaryNoItemsDoneButton;
 
-    internal static AirdroppingHUDView Create() { return Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<AirdroppingHUDView>(); }
+    internal static AirdroppingHUDView Create() { return Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<AirdroppingHUDView>(); }
 
     public void Initialize(UnityAction nextStateCallback)
     {

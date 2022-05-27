@@ -37,7 +37,7 @@ namespace DCL.Huds.QuestsTracker
 
         public static QuestsTrackerHUDView Create()
         {
-            QuestsTrackerHUDView view = Instantiate(Resources.Load<GameObject>("QuestsTrackerHUD")).GetComponent<QuestsTrackerHUDView>();
+            QuestsTrackerHUDView view = Instantiate(ABEYController.i.GetPrefab("QuestsTrackerHUD")).GetComponent<QuestsTrackerHUDView>();
 
 #if UNITY_EDITOR
             view.gameObject.name = "_QuestsTrackerHUDView";

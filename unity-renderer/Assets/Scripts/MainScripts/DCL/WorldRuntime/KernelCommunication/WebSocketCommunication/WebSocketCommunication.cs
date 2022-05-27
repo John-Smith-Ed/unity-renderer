@@ -203,7 +203,7 @@ public class WebSocketCommunication : IKernelCommunication
                     {
                         DCLWebSocketService.Message msg = queuedMessages.Dequeue();
                         #if!ABEY && UNITY_EDITOR
-                        ABEY.LogWriter.Write("Comms", $"Message {msg.ToJson()}", 30);
+                        ABEY.LogWriter.Write("Comms", $"Message {JsonUtility.ToJson(msg)}", 30);
                         #endif
                         switch (msg.type)
                         {

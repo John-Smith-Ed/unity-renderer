@@ -45,7 +45,7 @@ public class BuilderInWorldLoadingView : MonoBehaviour, IBuilderInWorldLoadingVi
 
     internal static BuilderInWorldLoadingView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<BuilderInWorldLoadingView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<BuilderInWorldLoadingView>();
         view.gameObject.name = "_BuilderInWorldLoadingView";
 
         return view;

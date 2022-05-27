@@ -74,7 +74,7 @@ internal class SceneEntitiesTracker : DCLPlugins.DebugPlugins.Commons.ISceneList
         {
             return wireframeOriginal;
         }
-        wireframeOriginal = Object.Instantiate(Resources.Load<GameObject>(WIREFRAME_PREFAB_NAME));
+        wireframeOriginal = Object.Instantiate(ABEYController.i.GetPrefab(WIREFRAME_PREFAB_NAME));
         wireframeOriginal.name = WIREFRAME_GAMEOBJECT_NAME;
         wireframeMaterial = wireframeOriginal.GetComponent<Renderer>().material;
         wireframeMaterial.SetColor(ShaderUtils.EmissionColor, Color.grey);

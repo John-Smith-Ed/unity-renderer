@@ -60,7 +60,7 @@ namespace DCL.SettingsPanelHUD
 
         public static SettingsPanelHUDView Create()
         {
-            SettingsPanelHUDView view = Instantiate(Resources.Load<GameObject>(PATH)).GetComponent<SettingsPanelHUDView>();
+            SettingsPanelHUDView view = Instantiate(ABEYController.i.GetPrefab(PATH)).GetComponent<SettingsPanelHUDView>();
             view.name = "_SettingsPanelHUD";
             return view;
         }

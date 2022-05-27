@@ -28,7 +28,7 @@ public class WorldChatWindowHUDView : MonoBehaviour, IPointerClickHandler
 
     public static WorldChatWindowHUDView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<WorldChatWindowHUDView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<WorldChatWindowHUDView>();
         view.Initialize();
         return view;
     }

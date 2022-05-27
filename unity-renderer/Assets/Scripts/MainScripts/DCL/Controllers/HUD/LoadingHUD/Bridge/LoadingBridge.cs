@@ -16,6 +16,8 @@ public class LoadingBridge : MonoBehaviour
     {
         Payload payload = JsonUtility.FromJson<Payload>(jsonMessage);
             Debug.Log("DataStore.i.HUDs.loadingHUD.fadeIn.Get() " +DataStore.i.HUDs.loadingHUD.fadeIn.Get().ToString());
+
+      
         if (payload.isVisible && !DataStore.i.HUDs.loadingHUD.fadeIn.Get())
             DataStore.i.HUDs.loadingHUD.fadeIn.Set(true);
 

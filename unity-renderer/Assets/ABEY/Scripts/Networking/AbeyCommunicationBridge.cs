@@ -17,31 +17,25 @@ using WebSocketSharp;
 
 namespace ABEY{
 
+    public class Message {
+
+        public string type;
+        public string payload;
+        public override string ToString() { return string.Format("type = {0}... payload = {1}...", type, payload); }
+    }
+
     public class AbeyCommunicationBridge : IKernelCommunication {
 
-        public class Message {
-            public string type;
-            public string payload;
-            public override string ToString() { return string.Format("type = {0}... payload = {1}...", type, payload); }
-        }
+        
 
         WebSocket ws;
 
-        // this is a cached list of gameobjects that handle messages
-        // i need to see if there is a better way, current this is ok but its the least prefomant way to do it
-        // its stupid simple though
-        Dictionary<string, GameObject> bridgeGameObjects = new Dictionary<string, GameObject>();
-
-        // Public to be able to modify it from `explorer-desktop` <- I dont understand the thinking going on in the head of thses coders.....
-        // this is a message map to gameobject, it enforce who gets messeges and what, kind of removes the dynamicness and makes bridgeGameObjects look lazy coding as shit
-        public Dictionary<string, string> messageTypeToBridgeName = new Dictionary<string, string>(); 
-
-
+        
         // ugly for now but is a huge fix - GameObject.Find like SendMessage is fucking slow, even docs for unity advise not using it unless you need to and know why
         GameObject _hudControllerGO = GameObject.Find("HUDController");
         GameObject _mainGO          = GameObject.Find("Main");
         GameObject hudControllerGO  => _hudControllerGO==null ? GameObject.Find("HUDController") : _hudControllerGO;
-        GameObject mainGO           => _mainGO==null ? GameObject.Find("Main") : _mainGO;
+        GameObject mainGO           => Main.i.gameObject;
        
 
         /*****************
@@ -60,24 +54,35 @@ namespace ABEY{
             queueHandler = _queueHandler; 
 
             ws = new WebSocket("ws://localhost:5000/abw");             
-            InitMessageTypeToBridgeName(); // this Bridge idea is really bad, and the nameing here has nothing to do whith the Bridge Desgin used else where, all brides need to go, its way over complacated then it needs to be
-
             ws.EmitOnPing   = true;
             ws.OnMessage    += OnMessage; 
             ws.OnError      += OnError;         
             ws.OnClose      += OnClose; 
             ws.Connect();
+
+            DataStore.i.wsCommunication.url = "ws://localhost:5000/abw";
+            DataStore.i.wsCommunication.communicationReady.Set(true);
+
+            Application.quitting += () => Dispose();
         }
 
+        public void FakeMessage(Message message){
+            Debug.LogError($"<color=yellow>Fake Text</color> {message}");
+            ProcessJsonMessage(message);
+        }
         public void FakeMessage(string message){
-            Debug.Log($"<color=yelloe>Fake Text</color> {message}");
+            Debug.LogError($"<color=yellow>Fake Text</color> {message}");
             ProcessJsonMessage(message);
         }
 
         void OnMessage(object sender, MessageEventArgs e){            
             if (e.IsText==true) {
-                Debug.Log($"<color=green>Socket Text</color> {e.Data}");
-                ProcessJsonMessage(e.Data);
+                //Debug.Log($"<color=green>Socket Text</color> {e.Data}");
+                Message m = JsonUtility.FromJson<Message>(e.Data);
+                if(m==null){
+                    Debug.LogWarning($"Message is null -> {e.Data}"); 
+                }
+                ProcessJsonMessage(m);
                 return;
             }
             if (e.IsBinary) {            
@@ -327,181 +332,42 @@ namespace ABEY{
         public bool isServerReady => true;
 
     
-
-        void InitMessageTypeToBridgeName() {
-            /*A.B THIS IS THE WORST POSIBLE WAY TO HANDLE THIS, 
-            Game Objects do get cached though, which offsets how bad this is
-            Unity SendMessage is then used to pass the call on and is super slow
-            it is however the simplest way yo make the messaging as dynamic as possible
-
-            logic flow
-            messageTypeToBridgeName["method"] = "GameObject Name (has to match in scene)";
-            1. check if we added the GameObject to the Dictionary
-                a. if not search 'ALL' objects in scene til we find first object with name that matches
-                b. add found object or null to the cache Dictionary
-            2. then use SendMessege on game object to call the method on one of its componenets - this uses reflection under the hood and other things which make it so heavy
-            
-            */
-            // Please, use `Bridges` as a bridge name, avoid adding messages here. The system will use `Bridges` as the default bridge name.
-            // see Assets\Scripts\MainScripts\DCL\Environment\Factories\ServiceLocatorFactory\ServiceLocatorFactory.cs for some of the bridge reg of classes       
-  
-            //DebugBridge
-            messageTypeToBridgeName["SetDebug"]                         = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
-            messageTypeToBridgeName["SetSceneDebugPanel"]               = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
-            messageTypeToBridgeName["ShowFPSPanel"]                     = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
-            messageTypeToBridgeName["HideFPSPanel"]                     = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
-            messageTypeToBridgeName["SetEngineDebugPanel"]              = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
-            messageTypeToBridgeName["CrashPayloadRequest"]              = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
-            messageTypeToBridgeName["SetDisableAssetBundles"]           = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
-            messageTypeToBridgeName["DumpRendererLockersInfo"]          = "Main"; // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
-            //SceneController
-            messageTypeToBridgeName["SendSceneMessage"]                 = "Main"; // SceneControllerBridge Environment.Model [new ServiceLocator()]. -> SceneController Assets\Scripts\MainScripts\DCL\WorldRuntime\SceneController.cs
-            messageTypeToBridgeName["CreateGlobalScene"]                = "Main"; // SceneControllerBridge Environment.Model [new ServiceLocator()]. -> SceneController Assets\Scripts\MainScripts\DCL\WorldRuntime\SceneController.cs
-            messageTypeToBridgeName["LoadParcelScenes"]                 = "Main"; // SceneControllerBridge Environment.Model [new ServiceLocator()]. -> SceneController Assets\Scripts\MainScripts\DCL\WorldRuntime\SceneController.cs
-            messageTypeToBridgeName["UpdateParcelScenes"]               = "Main"; // SceneControllerBridge Environment.Model [new ServiceLocator()]. -> SceneController Assets\Scripts\MainScripts\DCL\WorldRuntime\SceneController.cs
-            messageTypeToBridgeName["UnloadScene"]                      = "Main"; // SceneControllerBridge Environment.Model [new ServiceLocator()]. -> SceneController Assets\Scripts\MainScripts\DCL\WorldRuntime\SceneController.cs
-            messageTypeToBridgeName["Reset"]                            = "Main";
-            //UserProfileController
-            messageTypeToBridgeName["LoadProfile"]                      = "Main"; // UserProfileController Assets\Scripts\MainScripts\DCL\UserProfile\UserProfileController.cs
-            messageTypeToBridgeName["AddUserProfileToCatalog"]          = "Main"; // UserProfileController Assets\Scripts\MainScripts\DCL\UserProfile\UserProfileController.cs
-            messageTypeToBridgeName["AddUserProfilesToCatalog"]         = "Main"; // UserProfileController Assets\Scripts\MainScripts\DCL\UserProfile\UserProfileController.cs
-            messageTypeToBridgeName["RemoveUserProfilesFromCatalog"]    = "Main"; // UserProfileController Assets\Scripts\MainScripts\DCL\UserProfile\UserProfileController.cs
-            //RenderingController
-            messageTypeToBridgeName["ActivateRendering"]                = "Main"; // RenderingController Assets\Scripts\MainScripts\DCL\Controllers\Rendering\RenderingController.cs
-            messageTypeToBridgeName["DeactivateRendering"]              = "Main"; // RenderingController Assets\Scripts\MainScripts\DCL\Controllers\Rendering\RenderingController.cs
-            messageTypeToBridgeName["ForceActivateRendering"]           = "Main"; // RenderingController Assets\Scripts\MainScripts\DCL\Controllers\Rendering\RenderingController.cs
-            //CatalogController
-            messageTypeToBridgeName["AddWearablesToCatalog"]            = "Main"; // CatalogController Assets\Scripts\MainScripts\DCL\Controllers\CatalogController\CatalogController.cs
-            messageTypeToBridgeName["WearablesRequestFailed"]           = "Main"; // CatalogController Assets\Scripts\MainScripts\DCL\Controllers\CatalogController\CatalogController.cs
-            messageTypeToBridgeName["RemoveWearablesFromCatalog"]       = "Main"; // CatalogController Assets\Scripts\MainScripts\DCL\Controllers\CatalogController\CatalogController.cs
-            messageTypeToBridgeName["ClearWearableCatalog"]             = "Main"; // CatalogController Assets\Scripts\MainScripts\DCL\Controllers\CatalogController\CatalogController.cs
-            //FriendsController
-            messageTypeToBridgeName["InitializeFriends"]                = "Main"; // FriendsController Assets\Scripts\MainScripts\DCL\Controllers\FriendsController\FriendsController.cs
-            messageTypeToBridgeName["UpdateFriendshipStatus"]           = "Main"; // FriendsController Assets\Scripts\MainScripts\DCL\Controllers\FriendsController\FriendsController.cs
-            messageTypeToBridgeName["UpdateUserPresence"]               = "Main"; // FriendsController Assets\Scripts\MainScripts\DCL\Controllers\FriendsController\FriendsController.cs
-            messageTypeToBridgeName["FriendNotFound"]                   = "Main"; // FriendsController Assets\Scripts\MainScripts\DCL\Controllers\FriendsController\FriendsController.cs
-            //ChatController
-            messageTypeToBridgeName["AddMessageToChatWindow"]           = "Main"; // ChatController Assets\Scripts\MainScripts\DCL\Controllers\ChatController\ChatController.cs
-            //MinimapMetadataController
-            messageTypeToBridgeName["UpdateMinimapSceneInformation"]    = "Main"; // MinimapMetadataController
-            //HotScenesController
-            messageTypeToBridgeName["UpdateHotScenesList"]              = "Main"; // HotScenesController Assets\Scripts\MainScripts\DCL\Controllers\HotScenesController\HotScenesController.cs
-
-            //RenderProfileBridge <- not used or should not be, comments say in favor of skybox
-            messageTypeToBridgeName["SetRenderProfile"]                 = "Main"; // RenderProfileBridge
-            
-            messageTypeToBridgeName["PublishSceneResult"]               = "Main";
-            messageTypeToBridgeName["BuilderProjectInfo"]               = "Main";
-            messageTypeToBridgeName["BuilderInWorldCatalogHeaders"]     = "Main";
-            messageTypeToBridgeName["RequestedHeaders"]                 = "Main";
-            messageTypeToBridgeName["AddAssets"]                        = "Main";
-            messageTypeToBridgeName["RunPerformanceMeterTool"]          = "Main";
-            messageTypeToBridgeName["InstantiateBotsAtWorldPos"]        = "Main";
-            messageTypeToBridgeName["InstantiateBotsAtCoords"]          = "Main";
-            messageTypeToBridgeName["StartBotsRandomizedMovement"]      = "Main";
-            messageTypeToBridgeName["StopBotsMovement"]                 = "Main";
-            messageTypeToBridgeName["RemoveBot"]                        = "Main";
-            messageTypeToBridgeName["ClearBots"]                        = "Main";
-            messageTypeToBridgeName["ToggleSceneBoundingBoxes"]         = "Main";
-            messageTypeToBridgeName["TogglePreviewMenu"]                = "Main";
-            messageTypeToBridgeName["ToggleSceneSpawnPoints"]           = "Main";
-            
-
-            messageTypeToBridgeName["Teleport"]     = "CharacterController";
-
-            messageTypeToBridgeName["SetRotation"]  = "CameraController";
-
-            messageTypeToBridgeName["ShowNotificationFromJson"]     = "HUDController";
-            messageTypeToBridgeName["ConfigureHUDElement"]          = "HUDController";
-            messageTypeToBridgeName["ShowTermsOfServices"]          = "HUDController";
-            messageTypeToBridgeName["RequestTeleport"]              = "HUDController";
-            messageTypeToBridgeName["ShowAvatarEditorInSignUp"]     = "HUDController";
-            messageTypeToBridgeName["SetUserTalking"]               = "HUDController";
-            messageTypeToBridgeName["SetUsersMuted"]                = "HUDController";
-            messageTypeToBridgeName["ShowWelcomeNotification"]      = "HUDController";
-            messageTypeToBridgeName["UpdateBalanceOfMANA"]          = "HUDController";
-            messageTypeToBridgeName["SetPlayerTalking"]             = "HUDController";
-            messageTypeToBridgeName["SetVoiceChatEnabledByScene"]   = "HUDController";
-            messageTypeToBridgeName["TriggerSelfUserExpression"]    = "HUDController";
-            messageTypeToBridgeName["AirdroppingRequest"]           = "HUDController";
-
-            // in main but opens Builder so part of the builder group flow
-            messageTypeToBridgeName["BuilderReady"]             = "Main"; // SceneControllerBridge Assets\Scripts\MainScripts\DCL\WorldRuntime\Bridge\SceneControllerBridge.cs note this just loads scene "Aditive" i.e on top of current loaded scene        
-            messageTypeToBridgeName["GetMousePosition"]         = "BuilderController";
-            messageTypeToBridgeName["SelectGizmo"]              = "BuilderController";
-            messageTypeToBridgeName["ResetObject"]              = "BuilderController";
-            messageTypeToBridgeName["ZoomDelta"]                = "BuilderController";
-            messageTypeToBridgeName["SetPlayMode"]              = "BuilderController";
-            messageTypeToBridgeName["TakeScreenshot"]           = "BuilderController";
-            messageTypeToBridgeName["ResetBuilderScene"]        = "BuilderController";
-            messageTypeToBridgeName["SetBuilderCameraPosition"] = "BuilderController";
-            messageTypeToBridgeName["SetBuilderCameraRotation"] = "BuilderController";
-            messageTypeToBridgeName["ResetBuilderCameraZoom"]   = "BuilderController";
-            messageTypeToBridgeName["SetGridResolution"]        = "BuilderController";
-            messageTypeToBridgeName["OnBuilderKeyDown"]         = "BuilderController";
-            messageTypeToBridgeName["UnloadBuilderScene"]       = "BuilderController";
-            messageTypeToBridgeName["SetSelectedEntities"]      = "BuilderController";
-            messageTypeToBridgeName["GetCameraTargetBuilder"]   = "BuilderController";
-            messageTypeToBridgeName["PreloadFile"]              = "BuilderController";
-            messageTypeToBridgeName["SetBuilderConfiguration"]  = "BuilderController";
-
-            messageTypeToBridgeName["SetTutorialEnabled"]                                   = "TutorialController";
-            messageTypeToBridgeName["SetTutorialEnabledForUsersThatAlreadyDidTheTutorial"]  = "TutorialController";
-        }
-
         
 
         void ProcessJsonMessage(string json){
             #if!ABEY && UNITY_EDITOR
             ABEY.LogWriter.Write("Comms", $"Message {json}", 30);
             #endif
-            Debug.Log($"<color=orange>Message</color> {json}");
+            //Debug.Log($"<color=orange>Message</color> {json}");
             ProcessJsonMessage(JsonUtility.FromJson<Message>(json));
         }
         void ProcessJsonMessage(Message msg){           
-        
+            Debug.Log($"<color=orange>ProcessJsonMessage</color> : {msg.type}");
             switch (msg.type) {
                 // Add to this list the messages that are used a lot and you want better performance
-                case "SendSceneMessage":
-                    DCL.Environment.i.world.sceneController.SendSceneMessage(msg.payload);
-                    break;
-                case "Reset":
-                    DCL.Environment.i.world.sceneController.UnloadAllScenesQueued();
-                    break;
-                case "SetVoiceChatEnabledByScene":// The payload should be `string`, this will be changed in a `renderer-protocol` refactor
-                    if (int.TryParse(msg.payload, out int value)) {
-                        hudControllerGO.SendMessage(msg.type, value);
-                    }
-                    break;
-                case "RunPerformanceMeterTool":// The payload should be `string`, this will be changed in a `renderer-protocol` refactor
-                    if (float.TryParse(msg.payload, out float durationInSeconds))  {
-                        mainGO.SendMessage(msg.type, durationInSeconds);
-                    }
-                    break;
-                default:
-                    string bridgeName = "Bridges"; // Default bridge
-                    messageTypeToBridgeName.TryGetValue(msg.type, out bridgeName);
-                    if(bridgeName==null){
-                        Debug.Log($"{msg.type} No Object for this message");
-                        bridgeName = "Bridges";
-                    }
-                    // See if we cached the object, if not Search entire scene 'All gameObjects' and cache it
-                    if (bridgeGameObjects.TryGetValue(bridgeName, out GameObject bridgeObject) == false) {
-                        bridgeObject = GameObject.Find(bridgeName);
-                        if(bridgeObject==null){Debug.Log($"No GO in scene for name {bridgeName}"); }
-                        bridgeGameObjects.Add(bridgeName, bridgeObject); // caches null if not found - this could cause a bug if does not exsits yet
-                    }
+                case "SendSceneMessage"             : HandleMessage.SendSceneMessage(msg.payload);              break;
+                case "Reset"                        : HandleMessage.Reset();                                    break;
+                case "SetVoiceChatEnabledByScene"   : HandleMessage.SetVoiceChatEnabledByScene(msg);            break;
+                case "RunPerformanceMeterTool"      : HandleMessage.RunPerformanceMeterTool(msg);               break;
+                //HUDController
+                case "ConfigureHUDElement"          : HandleHUDMessage.ConfigureHUDElement(msg.payload);        break;
+                case "ShowTermsOfServices"          : HandleHUDMessage.ShowTermsOfServices(msg.payload);        break;
+                case "RequestTeleport"              : HandleHUDMessage.RequestTeleport(msg.payload);            break;
+                case "ShowAvatarEditorInSignUp"     : HandleHUDMessage.ShowAvatarEditorInSignUp();              break;
+                case "SetUserTalking"               : HandleHUDMessage.SetUserTalking(msg.payload);             break;
+                case "SetUsersMuted"                : HandleHUDMessage.SetUsersMuted(msg.payload);              break;
+                case "UpdateBalanceOfMANA"          : HandleHUDMessage.UpdateBalanceOfMANA(msg.payload);        break;
+                case "SetPlayerTalking"             : HandleHUDMessage.SetPlayerTalking(msg.payload);           break;
+                case "TriggerSelfUserExpression"    : HandleHUDMessage.TriggerSelfUserExpression(msg.payload);  break;
+                case "AirdroppingRequest"           : HandleHUDMessage.AirdroppingRequest(msg.payload);         break;
 
-                    // use the slow 'send' message to call the method
-                    if (bridgeObject != null) {
-                        bridgeObject.SendMessage(msg.type, msg.payload);
-                    }
-                    break;
+                default                             : HandleMessage.Default(msg); break;
             }                                 
                     
         }
 
         public void Dispose() {
+            Debug.Log("Dispose");
             ws.OnMessage    -= OnMessage; 
             ws.OnError      -= OnError;         
             ws.OnClose      -= OnClose; 
@@ -509,5 +375,193 @@ namespace ABEY{
         }
 
     }
+
+    // The main messeging handling
+    public class HandleMessage{
+        // this is a cached list of gameobjects that handle messages
+        // i need to see if there is a better way, current this is ok but its the least prefomant way to do it
+        // its stupid simple though
+        static Dictionary<string, GameObject> bridgeGameObjects = new Dictionary<string, GameObject>();
+
+        // Public to be able to modify it from `explorer-desktop` <- I dont understand the thinking going on in the head of these coders.....
+        // this is a message map to gameobject, it enforce who gets messeges and what, kind of removes the dynamicness and makes bridgeGameObjects look lazy coding as shit
+        // this is the slow message handling messegs
+        public static Dictionary<string, string> messageTypeToBridgeName = new Dictionary<string, string>(){
+            //DebugBridge
+            {"SetDebug",                         "Main"}, // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+            {"SetSceneDebugPanel",               "Main"}, // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+            {"ShowFPSPanel",                     "Main"}, // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+            {"HideFPSPanel",                     "Main"}, // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+            {"SetEngineDebugPanel",              "Main"}, // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+            {"CrashPayloadRequest",              "Main"}, // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+            {"SetDisableAssetBundles",           "Main"}, // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+            {"DumpRendererLockersInfo",          "Main"}, // DebugBridge Assets\Scripts\MainScripts\DCL\Controllers\DebugController\DebugBridge.cs
+            //SceneController
+            {"CreateGlobalScene",                "Main"}, // SceneControllerBridge Environment.Model [new ServiceLocator()]. -> SceneController Assets\Scripts\MainScripts\DCL\WorldRuntime\SceneController.cs
+            {"LoadParcelScenes",                 "Main"}, // SceneControllerBridge Environment.Model [new ServiceLocator()]. -> SceneController Assets\Scripts\MainScripts\DCL\WorldRuntime\SceneController.cs
+            {"UpdateParcelScenes",               "Main"}, // SceneControllerBridge Environment.Model [new ServiceLocator()]. -> SceneController Assets\Scripts\MainScripts\DCL\WorldRuntime\SceneController.cs
+            {"UnloadScene",                      "Main"}, // SceneControllerBridge Environment.Model [new ServiceLocator()]. -> SceneController Assets\Scripts\MainScripts\DCL\WorldRuntime\SceneController.cs
+            //UserProfileController
+            {"LoadProfile",                      "Main"}, // UserProfileController Assets\Scripts\MainScripts\DCL\UserProfile\UserProfileController.cs
+            {"AddUserProfileToCatalog",          "Main"}, // UserProfileController Assets\Scripts\MainScripts\DCL\UserProfile\UserProfileController.cs
+            {"AddUserProfilesToCatalog",         "Main"}, // UserProfileController Assets\Scripts\MainScripts\DCL\UserProfile\UserProfileController.cs
+            {"RemoveUserProfilesFromCatalog",    "Main"}, // UserProfileController Assets\Scripts\MainScripts\DCL\UserProfile\UserProfileController.cs
+            //RenderingController
+            {"ActivateRendering",                "Main"}, // RenderingController Assets\Scripts\MainScripts\DCL\Controllers\Rendering\RenderingController.cs
+            {"DeactivateRendering",              "Main"}, // RenderingController Assets\Scripts\MainScripts\DCL\Controllers\Rendering\RenderingController.cs
+            {"ForceActivateRendering",           "Main"}, // RenderingController Assets\Scripts\MainScripts\DCL\Controllers\Rendering\RenderingController.cs
+            //CatalogController
+            {"AddWearablesToCatalog",            "Main"}, // CatalogController Assets\Scripts\MainScripts\DCL\Controllers\CatalogController\CatalogController.cs
+            {"WearablesRequestFailed",           "Main"}, // CatalogController Assets\Scripts\MainScripts\DCL\Controllers\CatalogController\CatalogController.cs
+            {"RemoveWearablesFromCatalog",       "Main"}, // CatalogController Assets\Scripts\MainScripts\DCL\Controllers\CatalogController\CatalogController.cs
+            {"ClearWearableCatalog",             "Main"}, // CatalogController Assets\Scripts\MainScripts\DCL\Controllers\CatalogController\CatalogController.cs
+            //FriendsController
+            {"InitializeFriends",                "Main"}, // FriendsController Assets\Scripts\MainScripts\DCL\Controllers\FriendsController\FriendsController.cs
+            {"UpdateFriendshipStatus",           "Main"}, // FriendsController Assets\Scripts\MainScripts\DCL\Controllers\FriendsController\FriendsController.cs
+            {"UpdateUserPresence",               "Main"}, // FriendsController Assets\Scripts\MainScripts\DCL\Controllers\FriendsController\FriendsController.cs
+            {"FriendNotFound",                   "Main"}, // FriendsController Assets\Scripts\MainScripts\DCL\Controllers\FriendsController\FriendsController.cs
+            //ChatController
+            {"AddMessageToChatWindow",           "Main"}, // ChatController Assets\Scripts\MainScripts\DCL\Controllers\ChatController\ChatController.cs
+            //MinimapMetadataController
+            {"UpdateMinimapSceneInformation",    "Main"}, // MinimapMetadataController
+            //HotScenesController
+            {"UpdateHotScenesList",              "Main"}, // HotScenesController Assets\Scripts\MainScripts\DCL\Controllers\HotScenesController\HotScenesController.cs
+            //RenderProfileBridge <- not used or should not be, comments say in favor of skybox
+            {"SetRenderProfile",                 "Main"}, // RenderProfileBridge
+            {"PublishSceneResult",               "Main"},
+            {"BuilderProjectInfo",               "Main"},
+            {"BuilderInWorldCatalogHeaders",     "Main"},
+            {"RequestedHeaders",                 "Main"},
+            {"AddAssets",                        "Main"},
+            {"InstantiateBotsAtWorldPos",        "Main"},
+            {"InstantiateBotsAtCoords",          "Main"},
+            {"StartBotsRandomizedMovement",      "Main"},
+            {"StopBotsMovement",                 "Main"},
+            {"RemoveBot",                        "Main"},
+            {"ClearBots",                        "Main"},
+            {"ToggleSceneBoundingBoxes",         "Main"},
+            {"TogglePreviewMenu",                "Main"},
+            {"ToggleSceneSpawnPoints",           "Main"},
+            //HUDController
+            {"ShowWelcomeNotification",         "HUDController"},
+            {"ShowNotificationFromJson",        "HUDController"},
+
+            {"Teleport",     "CharacterController"},
+            {"SetRotation",  "CameraController"},
+            //BuilderController
+            // in main but opens Builder so part of the builder group flow
+            {"BuilderReady",             "Main"}, // SceneControllerBridge Assets\Scripts\MainScripts\DCL\WorldRuntime\Bridge\SceneControllerBridge.cs note this just loads scene "Aditive" i.e on top of current loaded scene        
+            {"GetMousePosition",         "BuilderController"},
+            {"SelectGizmo",              "BuilderController"},
+            {"ResetObject",              "BuilderController"},
+            {"ZoomDelta",                "BuilderController"},
+            {"SetPlayMode",              "BuilderController"},
+            {"TakeScreenshot",           "BuilderController"},
+            {"ResetBuilderScene",        "BuilderController"},
+            {"SetBuilderCameraPosition", "BuilderController"},
+            {"SetBuilderCameraRotation", "BuilderController"},
+            {"ResetBuilderCameraZoom",   "BuilderController"},
+            {"SetGridResolution",        "BuilderController"},
+            {"OnBuilderKeyDown",         "BuilderController"},
+            {"UnloadBuilderScene",       "BuilderController"},
+            {"SetSelectedEntities",      "BuilderController"},
+            {"GetCameraTargetBuilder",   "BuilderController"},
+            {"PreloadFile",              "BuilderController"},
+            {"SetBuilderConfiguration",  "BuilderController"},
+            {"SetTutorialEnabled",                                  "TutorialController"},
+            {"SetTutorialEnabledForUsersThatAlreadyDidTheTutorial",  "TutorialController"}
+        }; 
+
+        // Direct message handing calls
+        public static void SendSceneMessage(string payload) => DCL.Environment.i.world.sceneController.SendSceneMessage(payload);
+        public static void Reset() => DCL.Environment.i.world.sceneController.UnloadAllScenesQueued();
+        
+        public static void SetVoiceChatEnabledByScene(Message msg){
+            if (int.TryParse(msg.payload, out int value)) {
+                HUDController.i.taskbarHud?.SetVoiceChatEnabledByScene((value!=0));
+            }
+        }
+        public static void RunPerformanceMeterTool(Message msg){
+            if (float.TryParse(msg.payload, out float durationInSeconds))  {
+                Main.i.gameObject.SendMessage(msg.type, durationInSeconds);
+            }
+        }
+        
+        // The slow way - if not direct check for in dict and then run slow gameobject serching send/reflection
+        public static void Default(Message msg){
+            Debug.Log($"DEFAULT: {msg.type}");
+            string bridgeName = "Bridges"; // Default bridge
+            messageTypeToBridgeName.TryGetValue(msg.type, out bridgeName);
+            if(bridgeName==null){
+                Debug.Log($"{msg.type} No Object for this message");
+                bridgeName = "Bridges";
+            }
+            // See if we cached the object, if not Search entire scene 'All gameObjects' and cache it
+            if (bridgeGameObjects.TryGetValue(bridgeName, out GameObject bridgeObject) == false) {
+                bridgeObject = GameObject.Find(bridgeName);
+                if(bridgeObject==null){Debug.Log($"No GO in scene for name {bridgeName}"); }
+                bridgeGameObjects.Add(bridgeName, bridgeObject); // caches null if not found - this could cause a bug if does not exsits yet
+            }
+
+            // use the slow 'send' message to call the method
+            if (bridgeObject != null) {
+                bridgeObject.SendMessage(msg.type, msg.payload);
+            }
+        }
+    }
+
+
+    // HUD messeging handling
+    public class HandleHUDMessage{
+
+        [System.Serializable]
+        class ConfigureHUDElementMessage {
+            public HUDElementID hudElementId;
+            public HUDConfiguration configuration;
+            public string extraPayload;
+        }
+
+        public static void ConfigureHUDElement(string payload)  {
+            ConfigureHUDElementMessage message = JsonUtility.FromJson<ConfigureHUDElementMessage>(payload);
+            if(message==null){
+                Debug.LogError($"failed {payload}");
+            }
+            
+            HUDController.i.ConfigureHUDElement(message.hudElementId, message.configuration, message.extraPayload);
+        }
+
+        public static void TriggerSelfUserExpression(string id)             => UserProfile.GetOwnUserProfile().SetAvatarExpression(id); 
+        public static void AirdroppingRequest(string payload)               => HUDController.i.airdroppingHud.AirdroppingRequested(JsonUtility.FromJson<AirdroppingHUDController.Model>(payload));
+        public static void ShowTermsOfServices(string payload)              => HUDController.i.termsOfServiceHud?.ShowTermsOfService(JsonUtility.FromJson<TermsOfServiceHUDController.Model>(payload));
+        public static void SetPlayerTalking(string talking)                 => HUDController.i.taskbarHud?.SetVoiceChatRecording("true".Equals(talking)); 
+        public static void SetVoiceChatEnabledByScene(int enabledPayload)   => HUDController.i.taskbarHud?.SetVoiceChatEnabledByScene((enabledPayload != 0));
+        public static void RequestTeleport(string teleportDataJson)         => HUDController.i.teleportHud?.RequestTeleport(teleportDataJson);
+        public static void UpdateBalanceOfMANA(string balance)              => HUDController.i.profileHud?.SetManaBalance(balance);
+
+        public static void SetUserTalking(string payload) {
+            UserTalkingModel model = JsonUtility.FromJson<UserTalkingModel>(payload);
+            HUDController.i.usersAroundListHud?.SetUserRecording(model.userId, model.talking);
+        }
+
+        public static void SetUsersMuted(string payload) {
+            UserMutedModel model = JsonUtility.FromJson<UserMutedModel>(payload);
+            HUDController.i.usersAroundListHud?.SetUsersMuted(model.usersId, model.muted);
+        }
+
+        
+
+        public static void ShowAvatarEditorInSignUp(){
+            if (HUDController.i.avatarEditorHud != null){
+                DataStore.i.common.isSignUpFlow.Set(true);
+                HUDController.i.avatarEditorHud?.SetVisibility(true);
+            }
+        }
+
+    
+    }
+    
+
+
+
 
 }

@@ -52,7 +52,8 @@ public class ExtraActionsView : MonoBehaviour, IExtraActionsView
 
     internal static ExtraActionsView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<ExtraActionsView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<ExtraActionsView>();
+        //var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<ExtraActionsView>();
         view.gameObject.name = "_ExtraActionsView";
 
         return view;

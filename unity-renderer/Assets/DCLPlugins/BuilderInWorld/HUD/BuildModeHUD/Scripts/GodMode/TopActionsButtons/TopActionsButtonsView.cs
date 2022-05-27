@@ -147,7 +147,8 @@ public class TopActionsButtonsView : MonoBehaviour, ITopActionsButtonsView
 
     internal static TopActionsButtonsView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<TopActionsButtonsView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<TopActionsButtonsView>();
+        //var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<TopActionsButtonsView>();
         view.gameObject.name = "_TopActionsButtonsView";
 
         return view;

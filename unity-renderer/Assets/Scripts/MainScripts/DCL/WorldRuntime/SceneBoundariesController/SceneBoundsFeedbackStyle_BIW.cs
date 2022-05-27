@@ -121,7 +121,7 @@ public class SceneBoundsFeedbackStyle_BIW : ISceneBoundsFeedbackStyle
         {
             // Wireframe that shows the boundaries to the dev (We don't use the GameObject.Instantiate(prefab, parent)
             // overload because we need to set the position and scale before parenting, to deal with scaled objects)
-            GameObject wireframeObject = GameObject.Instantiate(Resources.Load<GameObject>(WIREFRAME_PREFAB_NAME));
+            GameObject wireframeObject = GameObject.Instantiate(ABEYController.i.GetPrefab(WIREFRAME_PREFAB_NAME));
             wireframeObject.transform.position = entityRenderers[i].bounds.center;
             wireframeObject.transform.localScale = entityRenderers[i].bounds.size * 1.01f;
             wireframeObject.transform.SetParent(meshesInfo.innerGameObject.transform);

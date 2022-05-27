@@ -20,7 +20,8 @@ public class ShortcutsView : MonoBehaviour, IShortcutsView
 
     internal static ShortcutsView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<ShortcutsView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<ShortcutsView>();
+        //var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<ShortcutsView>();
         view.gameObject.name = "_ShortcutsView";
 
         return view;

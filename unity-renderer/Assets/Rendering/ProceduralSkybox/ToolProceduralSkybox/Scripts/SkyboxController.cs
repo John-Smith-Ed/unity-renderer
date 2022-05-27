@@ -147,7 +147,7 @@ namespace DCL.Skybox
             if (skyboxProbe == null)
             {
                 // Instantiate new probe from the resources
-                GameObject temp = Resources.Load<GameObject>("SkyboxReflectionProbe/SkyboxProbe");
+                GameObject temp = ABEYController.i.GetPrefab("SkyboxReflectionProbe/SkyboxProbe");
                 GameObject probe = GameObject.Instantiate<GameObject>(temp);
                 probe.name = "SkyboxProbe";
                 skyboxProbe = probe.GetComponent<ReflectionProbe>();

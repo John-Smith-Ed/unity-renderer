@@ -43,7 +43,7 @@ namespace DCL.Huds.QuestsPanel
 
         internal static QuestsPanelHUDView Create()
         {
-            var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<QuestsPanelHUDView>();
+            var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<QuestsPanelHUDView>();
 #if UNITY_EDITOR
             view.gameObject.name = "_QuestsPanelHUDView";
 #endif

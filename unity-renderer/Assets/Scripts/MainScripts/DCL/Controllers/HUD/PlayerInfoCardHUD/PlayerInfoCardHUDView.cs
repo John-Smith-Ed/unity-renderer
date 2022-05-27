@@ -61,7 +61,7 @@ public class PlayerInfoCardHUDView : MonoBehaviour
 
     public static PlayerInfoCardHUDView CreateView()
     {
-        return Instantiate(Resources.Load<GameObject>(PREFAB_PATH)).GetComponent<PlayerInfoCardHUDView>();
+        return Instantiate(ABEYController.i.GetPrefab(PREFAB_PATH)).GetComponent<PlayerInfoCardHUDView>();
     }
 
     public void Initialize(UnityAction cardClosedCallback,

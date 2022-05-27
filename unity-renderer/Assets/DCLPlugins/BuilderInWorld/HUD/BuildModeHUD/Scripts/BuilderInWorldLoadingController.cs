@@ -37,7 +37,9 @@ public class BuilderInWorldLoadingController : IBuilderInWorldLoadingController
 
     private IBuilderInWorldLoadingView CreateView()
     {
-        var view = UnityEngine.Object.Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<IBuilderInWorldLoadingView>();
+        
+        var view = UnityEngine.Object.Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<IBuilderInWorldLoadingView>();
+        //var view = UnityEngine.Object.Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<IBuilderInWorldLoadingView>();
         view.gameObject.name = "_BuildModeLoadingHUD";
 
         return view;

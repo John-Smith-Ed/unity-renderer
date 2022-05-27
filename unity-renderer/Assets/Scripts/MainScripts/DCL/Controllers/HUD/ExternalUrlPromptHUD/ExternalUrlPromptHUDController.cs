@@ -15,7 +15,7 @@ public class ExternalUrlPromptHUDController : IHUD
 
     public ExternalUrlPromptHUDController()
     {
-        view = UnityEngine.Object.Instantiate(Resources.Load<GameObject>("ExternalUrlPromptHUD")).GetComponent<ExternalUrlPromptView>();
+        view = UnityEngine.Object.Instantiate(ABEYController.i.GetPrefab("ExternalUrlPromptHUD")).GetComponent<ExternalUrlPromptView>();
         view.name = "_ExternalUrlPromptHUD";
         view.content.SetActive(false);
 

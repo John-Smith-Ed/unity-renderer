@@ -2,7 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using DCL;
 using UnityEngine;
-
+/// <summary>
+///  This class is completely static yet it was a created as a heavery MonoBehaviour which was searched from in the scene tied to a gameObject....
+///  created a new handler for this
+/// HandleHUDMessage
+/// -a.b 5.26.2022
+/// </summary>
 public class HUDBridge : MonoBehaviour
 {
     #region MessagesFromKernel

@@ -47,7 +47,7 @@ namespace DCL.HelpAndSupportHUD
 
         public static HelpAndSupportHUDView Create()
         {
-            HelpAndSupportHUDView view = Instantiate(Resources.Load<GameObject>(PATH)).GetComponent<HelpAndSupportHUDView>();
+            HelpAndSupportHUDView view = Instantiate(ABEYController.i.GetPrefab(PATH)).GetComponent<HelpAndSupportHUDView>();
             view.Initialize();
             return view;
         }

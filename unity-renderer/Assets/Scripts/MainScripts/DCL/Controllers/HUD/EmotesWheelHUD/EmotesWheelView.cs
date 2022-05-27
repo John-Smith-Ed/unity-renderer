@@ -39,7 +39,7 @@ namespace DCL.EmotesWheel
 
         private bool isEmotesCustomizationFFEnabled => DataStore.i.featureFlags.flags.Get().IsFeatureEnabled(EMOTES_CUSTOMIZATION_FEATURE_FLAG);
 
-        public static EmotesWheelView Create() { return Instantiate(Resources.Load<GameObject>(PATH)).GetComponent<EmotesWheelView>(); }
+        public static EmotesWheelView Create() { return Instantiate(ABEYController.i.GetPrefab(PATH)).GetComponent<EmotesWheelView>(); }
 
         private void Awake()
         {

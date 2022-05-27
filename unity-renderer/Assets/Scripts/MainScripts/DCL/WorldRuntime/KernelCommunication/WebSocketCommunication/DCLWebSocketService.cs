@@ -51,7 +51,7 @@ public class DCLWebSocketService : WebSocketBehavior
         lock (WebSocketCommunication.queuedMessages)
         { 
             Debug.Log($"<color=green>Message:</color> {e.Data}");
-            
+           
             Message finalMessage = JsonUtility.FromJson<Message>(e.Data);
 
             WebSocketCommunication.queuedMessages.Enqueue(finalMessage);

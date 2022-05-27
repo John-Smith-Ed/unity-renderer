@@ -68,7 +68,7 @@ public class BuildModeHUDView : MonoBehaviour, IBuildModeHUDView
 
     internal static BuildModeHUDView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<BuildModeHUDView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<BuildModeHUDView>();
         view.gameObject.name = "_BuildModeHUD";
 
         return view;

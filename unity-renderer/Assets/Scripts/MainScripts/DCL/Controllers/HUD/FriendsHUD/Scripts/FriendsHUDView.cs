@@ -26,7 +26,7 @@ public class FriendsHUDView : MonoBehaviour
 
     public static FriendsHUDView Create(FriendsHUDController controller)
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<FriendsHUDView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<FriendsHUDView>();
         view.Initialize(controller);
         return view;
     }

@@ -223,7 +223,7 @@ public class AvatarEditorHUDView : MonoBehaviour
 
     internal static AvatarEditorHUDView Create(AvatarEditorHUDController controller)
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<AvatarEditorHUDView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<AvatarEditorHUDView>();
         view.Initialize(controller);
         return view;
     }

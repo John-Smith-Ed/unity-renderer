@@ -57,7 +57,8 @@ public class QuickBarView : MonoBehaviour, IQuickBarView
 
     internal static QuickBarView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<QuickBarView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<QuickBarView>();
+        //var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<QuickBarView>();
         view.gameObject.name = "_QuickBarView";
 
         return view;

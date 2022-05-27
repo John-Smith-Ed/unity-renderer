@@ -236,7 +236,7 @@ namespace DCL.EmotesCustomization
 
         internal static IEmotesCustomizationComponentView Create()
         {
-            EmotesCustomizationComponentView emotesCustomizationComponentView = Instantiate(Resources.Load<GameObject>("EmotesCustomization/EmotesCustomizationSection")).GetComponent<EmotesCustomizationComponentView>();
+            EmotesCustomizationComponentView emotesCustomizationComponentView = Instantiate(ABEYController.i.GetPrefab("EmotesCustomization/EmotesCustomizationSection")).GetComponent<EmotesCustomizationComponentView>();
             emotesCustomizationComponentView.name = "_EmotesCustomizationSection";
 
             return emotesCustomizationComponentView;

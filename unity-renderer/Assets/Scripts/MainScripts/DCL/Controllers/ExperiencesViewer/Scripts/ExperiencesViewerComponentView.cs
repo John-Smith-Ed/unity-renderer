@@ -202,7 +202,7 @@ namespace DCL.ExperiencesViewer
 
         internal static ExperiencesViewerComponentView Create()
         {
-            ExperiencesViewerComponentView experiencesViewerComponentView = Instantiate(Resources.Load<GameObject>("ExperiencesViewer")).GetComponent<ExperiencesViewerComponentView>();
+            ExperiencesViewerComponentView experiencesViewerComponentView = Instantiate(ABEYController.i.GetPrefab("ExperiencesViewer")).GetComponent<ExperiencesViewerComponentView>();
             experiencesViewerComponentView.name = "_ExperiencesViewer";
 
             return experiencesViewerComponentView;

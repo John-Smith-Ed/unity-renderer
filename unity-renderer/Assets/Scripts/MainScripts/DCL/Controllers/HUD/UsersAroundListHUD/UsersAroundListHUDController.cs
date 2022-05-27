@@ -26,7 +26,7 @@ public class UsersAroundListHUDController : IHUD
 
     public UsersAroundListHUDController()
     {
-        UsersAroundListHUDListView view = Object.Instantiate(Resources.Load<GameObject>("UsersAroundListHUD")).GetComponent<UsersAroundListHUDListView>();
+        UsersAroundListHUDListView view = Object.Instantiate(ABEYController.i.GetPrefab("UsersAroundListHUD")).GetComponent<UsersAroundListHUDListView>();
         view.name = "_UsersAroundListHUD";
         view.gameObject.SetActive(false);
         Initialize(view);

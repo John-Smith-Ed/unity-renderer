@@ -21,7 +21,7 @@ public class NFTPromptHUDController : IHUD
 
     public NFTPromptHUDController()
     {
-        view = Object.Instantiate(Resources.Load<GameObject>(VIEW_PREFAB_PATH))
+        view = Object.Instantiate(ABEYController.i.GetPrefab(VIEW_PREFAB_PATH))
             .GetComponent<NFTPromptHUDView>();
         view.SetActive(false);
 

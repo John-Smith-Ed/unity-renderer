@@ -17,7 +17,7 @@ public class TeleportPromptHUDController : IHUD
 
     public TeleportPromptHUDController()
     {
-        view = UnityEngine.Object.Instantiate(Resources.Load<GameObject>("TeleportPromptHUD")).GetComponent<TeleportPromptHUDView>();
+        view = UnityEngine.Object.Instantiate(ABEYController.i.GetPrefab("TeleportPromptHUD")).GetComponent<TeleportPromptHUDView>();
         view.name = "_TeleportPromptHUD";
         view.content.SetActive(false);
         view.OnTeleportEvent += OnTeleportPressed;

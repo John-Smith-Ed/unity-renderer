@@ -115,7 +115,7 @@ namespace AvatarSystem
 
         private Renderer CreateImpostor()
         {
-            GameObject quadImpostorContainer = Object.Instantiate(Resources.Load<GameObject>("QuadImpostor"), impostorContainer.transform);
+            GameObject quadImpostorContainer = Object.Instantiate(ABEYController.i.GetPrefab("QuadImpostor"), impostorContainer.transform);
             return quadImpostorContainer.GetComponent<Renderer>();
         }
 

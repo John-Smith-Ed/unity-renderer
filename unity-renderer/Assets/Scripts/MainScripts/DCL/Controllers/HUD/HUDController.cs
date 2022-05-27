@@ -76,6 +76,7 @@ public class HUDController : IHUDController
     public TaskbarHUDController taskbarHud => GetHUDElement(HUDElementID.TASKBAR) as TaskbarHUDController;
 
     public LoadingHUDController loadingHud => GetHUDElement(HUDElementID.LOADING) as LoadingHUDController;
+    //public LoadingHUDController loadingController => GetHUDElement(HUDElementID.LOADING) as LoadingHUDController;
 
     public WorldChatWindowHUDController worldChatWindowHud =>
         GetHUDElement(HUDElementID.WORLD_CHAT_WINDOW) as WorldChatWindowHUDController;
@@ -97,7 +98,7 @@ public class HUDController : IHUDController
     public QuestsPanelHUDController questsPanelHUD => GetHUDElement(HUDElementID.QUESTS_PANEL) as QuestsPanelHUDController;
     public QuestsTrackerHUDController questsTrackerHUD => GetHUDElement(HUDElementID.QUESTS_TRACKER) as QuestsTrackerHUDController;
     public SignupHUDController signupHUD => GetHUDElement(HUDElementID.SIGNUP) as SignupHUDController;
-    public LoadingHUDController loadingController => GetHUDElement(HUDElementID.LOADING) as LoadingHUDController;
+    
 
     public Dictionary<HUDElementID, IHUD> hudElements { get; private set; } = new Dictionary<HUDElementID, IHUD>();
 
@@ -146,6 +147,7 @@ public class HUDController : IHUDController
         //
         //             This will allow us to unify the serialized factory objects design,
         //             like we already do with ECS components.
+
 
         switch (hudElementId)
         {
@@ -328,12 +330,23 @@ public class HUDController : IHUDController
 
                 break;
             case HUDElementID.LOADING:
+            /*    CreateHudElement(configuration, hudElementId);
+                var l = GetHUDElement(hudElementId);
+                if (l != null){
+                    ((LoadingHUDController)l).Initialize();
+                    l.SetVisibility(true);
+                }else{
+                    Debug.LogError($"loadingHud null {(l != null)} ");
+                }
+            return;*/
                 if (loadingHud == null)
                 {
                     CreateHudElement(configuration, hudElementId);
-                    if (loadingHud != null && configuration.active)
-                        loadingController.Initialize();
-
+                    if (loadingHud != null && configuration.active){
+                        loadingHud.Initialize();
+                    }
+                    Debug.LogError($"loadingHud null {(loadingHud != null)} active {configuration.active}");
+                    
                 }
                 break;
             case HUDElementID.AVATAR_NAMES:
@@ -358,7 +371,7 @@ public class HUDController : IHUDController
     public void CreateHudElement(HUDConfiguration config, HUDElementID id)
     {
         bool controllerCreated = hudElements.ContainsKey(id);
-
+        Debug.Log($"CreateHudElement {id} {controllerCreated}");
         if (config.active && !controllerCreated)
         {
             hudElements.Add(id, hudFactory.CreateHUD(id));

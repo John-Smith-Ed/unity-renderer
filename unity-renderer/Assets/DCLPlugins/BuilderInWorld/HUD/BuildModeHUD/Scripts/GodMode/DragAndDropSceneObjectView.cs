@@ -21,7 +21,8 @@ public class DragAndDropSceneObjectView : MonoBehaviour, IDragAndDropSceneObject
 
     internal static DragAndDropSceneObjectView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<DragAndDropSceneObjectView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<DragAndDropSceneObjectView>();
+        //var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<DragAndDropSceneObjectView>();
         view.gameObject.name = "_DragAndDropSceneObjectView";
 
         return view;

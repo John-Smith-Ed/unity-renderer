@@ -30,7 +30,7 @@ public class PrivateChatWindowHUDView : MonoBehaviour
 
     public static PrivateChatWindowHUDView Create(PrivateChatWindowHUDController controller)
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<PrivateChatWindowHUDView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<PrivateChatWindowHUDView>();
         view.Initialize(controller);
         return view;
     }

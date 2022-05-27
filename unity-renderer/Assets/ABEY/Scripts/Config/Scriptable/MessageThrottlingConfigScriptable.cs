@@ -1,7 +1,7 @@
 namespace ABEY {
     using UnityEngine;
 
-    [CreateAssetMenu(fileName = "MessageThrottlingConfigScriptable", menuName = "ABEY/MessageThrottlingConfig", order = 0)]
+    [CreateAssetMenu(fileName = "MessageThrottlingConfig", menuName = "ABEY/MessageThrottlingConfig", order = 0)]
     public class MessageThrottlingConfigScriptable : ScriptableObject {
         //TODO: NOTE The division should be cached at some point here
         // however the trade off from their missuse of Resources greatly outweighs 

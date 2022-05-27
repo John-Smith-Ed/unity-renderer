@@ -86,7 +86,8 @@ public class EntityInformationView : MonoBehaviour, IEntityInformationView
 
     internal static EntityInformationView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<EntityInformationView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<EntityInformationView>();
+        //var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<EntityInformationView>();
         view.gameObject.name = "_EntityInformationView";
 
         return view;

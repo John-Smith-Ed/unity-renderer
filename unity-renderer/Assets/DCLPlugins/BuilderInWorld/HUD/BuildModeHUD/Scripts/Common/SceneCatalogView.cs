@@ -82,7 +82,8 @@ public class SceneCatalogView : MonoBehaviour, ISceneCatalogView
 
     internal static SceneCatalogView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<SceneCatalogView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<SceneCatalogView>();
+        //var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<SceneCatalogView>();
         view.gameObject.name = "_SceneCatalogView";
 
         return view;

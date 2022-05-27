@@ -29,7 +29,8 @@ public class PublishBtnView : MonoBehaviour, IPublishBtnView
 
     internal static PublishBtnView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<PublishBtnView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<PublishBtnView>();
+        //var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<PublishBtnView>();
         view.gameObject.name = "_PublishBtnView";
 
         return view;

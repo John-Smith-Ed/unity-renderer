@@ -42,7 +42,8 @@ public class LandPublisherView : MonoBehaviour, ILandPublisherView
 
     internal static LandPublisherView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<LandPublisherView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<LandPublisherView>();
+        //var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<LandPublisherView>();
         view.gameObject.name = "_PublicationDetailsView";
 
         return view;

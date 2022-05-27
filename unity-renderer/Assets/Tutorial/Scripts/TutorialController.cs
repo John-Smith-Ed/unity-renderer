@@ -81,7 +81,7 @@ namespace DCL.Tutorial
 
         internal TutorialView CreateTutorialView()
         {
-            GameObject tutorialGO = GameObject.Instantiate(Resources.Load<GameObject>("TutorialView"));
+            GameObject tutorialGO = GameObject.Instantiate(ABEYController.i.GetPrefab("TutorialView"));
             tutorialGO.name = "TutorialController";
             TutorialView tutorialView = tutorialGO.GetComponent<TutorialView>();
             tutorialView.ConfigureView(this);

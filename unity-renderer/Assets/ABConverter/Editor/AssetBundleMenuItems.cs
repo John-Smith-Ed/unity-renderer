@@ -32,13 +32,13 @@ namespace DCL
         //private const string KERNEL_RELATIVE_PATH = "/../../../kernel"; // This has to be set manually according to the local paths 
 
 
-        [MenuItem("Decentraland/Asset Bundle Builder/Dump Default Empty Parcels")]
+        [MenuItem("ABEY/Decentraland/Asset Bundle Builder/Dump Default Empty Parcels")]
         public static void DumpEmptyParcels_Default() { DumpEmptyParcels(); }
 
-        [MenuItem("Decentraland/Asset Bundle Builder/Dump Halloween Empty Parcels")]
+        [MenuItem("ABEY/Decentraland/Asset Bundle Builder/Dump Halloween Empty Parcels")]
         public static void DumpEmptyParcels_Halloween() { DumpEmptyParcels("halloween"); }
         
-        [MenuItem("Decentraland/Asset Bundle Builder/Dump XMas Empty Parcels")]
+        [MenuItem("ABEY/Decentraland/Asset Bundle Builder/Dump XMas Empty Parcels")]
         public static void DumpEmptyParcels_XMas() { DumpEmptyParcels("xmas"); }
 
         public static void DumpEmptyParcels(string folderName = "common")
@@ -85,25 +85,25 @@ namespace DCL
             core.Convert(mappings.ToArray());
         }
 
-        [MenuItem("Decentraland/Asset Bundle Builder/Dump All Body-Wearables")]
+        [MenuItem("ABEY/Decentraland/Asset Bundle Builder/Dump All Body-Wearables")]
         public static void DumpAllBodiesWearables() { ABConverter.WearablesCollectionClient.DumpAllBodyshapeWearables(); }
 
-        [MenuItem("Decentraland/Asset Bundle Builder/Dump All Non-Body-Wearables (Optimized)")]
+        [MenuItem("ABEY/Decentraland/Asset Bundle Builder/Dump All Non-Body-Wearables (Optimized)")]
         public static void DumpAllNonBodiesWearables() { ABConverter.WearablesCollectionClient.DumpAllNonBodyshapeWearables(); }
         
-        [MenuItem("Decentraland/Asset Bundle Builder/Dump Single Wearables Collection")]
+        [MenuItem("ABEY/Decentraland/Asset Bundle Builder/Dump Single Wearables Collection")]
         public static void DumpSingleWearablesCollection() { ABConverter.WearablesCollectionClient.DumpSingleWearablesCollection("urn:decentraland:ethereum:collections-v1:atari_launch"); }
 
-        [MenuItem("Decentraland/Start Visual Tests")]
+        [MenuItem("ABEY/Decentraland/Start Visual Tests")]
         public static void StartVisualTests() { EditorCoroutineUtility.StartCoroutineOwnerless(VisualTests.TestConvertedAssets()); }
 
-        [MenuItem("Decentraland/Asset Bundle Builder/Dump Org -110,-110")]
+        [MenuItem("ABEY/Decentraland/Asset Bundle Builder/Dump Org -110,-110")]
         public static void DumpArea() { ABConverter.SceneClient.DumpArea(new Vector2Int(-110, -110), new Vector2Int(1, 1)); }
 
-        [MenuItem("Decentraland/Asset Bundle Builder/Dump scene QmXMzPLZNx5EHiYi3tK9MT5g9HqjAqgyAoZUu2LfAXJcSM")]
+        [MenuItem("ABEY/Decentraland/Asset Bundle Builder/Dump scene QmXMzPLZNx5EHiYi3tK9MT5g9HqjAqgyAoZUu2LfAXJcSM")]
         public static void DumpSceneId() { ABConverter.SceneClient.DumpScene("QmXMzPLZNx5EHiYi3tK9MT5g9HqjAqgyAoZUu2LfAXJcSM"); }
 
-        [MenuItem("Decentraland/Asset Bundle Builder/Dump Single Asset")]
+        [MenuItem("ABEY/Decentraland/Asset Bundle Builder/Dump Single Asset")]
         public static void DumpSingleAsset()
         {
             // TODO: Make an editor window to setup these values from editor (for other dump-modes as well)
@@ -112,17 +112,17 @@ namespace DCL
                 "QmXMzPLZNx5EHiYi3tK9MT5g9HqjAqgyAoZUu2LfAXJcSM");
         }
 
-        [MenuItem("Decentraland/Asset Bundle Builder/Dump Org -6,30")]
+        [MenuItem("ABEY/Decentraland/Asset Bundle Builder/Dump Org -6,30")]
         public static void DumpOrg() { ABConverter.SceneClient.DumpArea(new Vector2Int(-6, 30), new Vector2Int(15, 15)); }
 
-        [MenuItem("Decentraland/Asset Bundle Builder/Dump Org 0,0")]
+        [MenuItem("ABEY/Decentraland/Asset Bundle Builder/Dump Org 0,0")]
         public static void DumpCenterPlaza()
         {
             var zoneArray = Utils.GetCenteredZoneArray(new Vector2Int(0, 0), new Vector2Int(1, 1));
             ABConverter.SceneClient.DumpArea(zoneArray);
         }
 
-        [MenuItem("Decentraland/Asset Bundle Builder/Only Build Bundles")]
+        [MenuItem("ABEY/Decentraland/Asset Bundle Builder/Only Build Bundles")]
         public static void OnlyBuildBundles() { BuildPipeline.BuildAssetBundles(ABConverter.Config.ASSET_BUNDLES_PATH_ROOT, BuildAssetBundleOptions.UncompressedAssetBundle | BuildAssetBundleOptions.ForceRebuildAssetBundle, BuildTarget.WebGL); }
     }
 }

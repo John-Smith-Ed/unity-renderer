@@ -66,7 +66,8 @@ public class SceneLimitsView : MonoBehaviour, ISceneLimitsView
 
     internal static SceneLimitsView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<SceneLimitsView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<SceneLimitsView>();
+        //var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<SceneLimitsView>();
         view.gameObject.name = "_SceneLimitsView";
 
         return view;

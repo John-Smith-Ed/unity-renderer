@@ -28,7 +28,8 @@ public class FirstPersonModeView : MonoBehaviour, IFirstPersonModeView
 
     internal static FirstPersonModeView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<FirstPersonModeView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<FirstPersonModeView>();
+        //var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<FirstPersonModeView>();
         view.gameObject.name = "_FirstPersonModeView";
 
         return view;

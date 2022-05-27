@@ -30,7 +30,8 @@ public class TooltipView : MonoBehaviour, ITooltipView
 
     internal static TooltipView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<TooltipView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<TooltipView>();
+        //var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<TooltipView>();
         view.gameObject.name = "_TooltipView";
 
         return view;

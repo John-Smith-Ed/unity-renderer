@@ -34,7 +34,7 @@ public class BuildModeConfirmationModalView : MonoBehaviour, IBuildModeConfirmat
 
     internal static BuildModeConfirmationModalView Create()
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<BuildModeConfirmationModalView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<BuildModeConfirmationModalView>();
         view.gameObject.name = "_ExitFromBiWModalView";
 
         return view;

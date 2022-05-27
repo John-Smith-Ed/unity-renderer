@@ -58,7 +58,7 @@ public class TaskbarHUDView : MonoBehaviour
     internal static TaskbarHUDView Create(TaskbarHUDController controller, IChatController chatController,
         IFriendsController friendsController)
     {
-        var view = Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<TaskbarHUDView>();
+        var view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<TaskbarHUDView>();
         view.Initialize(controller, chatController, friendsController);
         return view;
     }

@@ -15,7 +15,10 @@ public class LoadingHUDController : IHUD
 
     public void Initialize()
     {
+        Debug.Log("LoadingHUDController Initialize");
         view = CreateView();
+        Debug.Log($"view is {view}");
+        //view = CreateView();
         ClearEvents();
         SetViewVisible(fadeIn.Get(), true);
         view?.SetMessage(message.Get());

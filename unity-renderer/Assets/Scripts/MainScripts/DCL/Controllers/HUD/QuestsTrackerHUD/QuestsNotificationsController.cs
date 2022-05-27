@@ -19,7 +19,7 @@ namespace DCL.Huds.QuestsTracker
 
         internal static QuestsNotificationsController Create()
         {
-            QuestsNotificationsController view = Instantiate(Resources.Load<GameObject>("QuestsNotificationsHUD")).GetComponent<QuestsNotificationsController>();
+            QuestsNotificationsController view = Instantiate(ABEYController.i.GetPrefab("QuestsNotificationsHUD")).GetComponent<QuestsNotificationsController>();
 #if UNITY_EDITOR
             view.gameObject.name = "_QuestsNotificationsHUDView";
 #endif

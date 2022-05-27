@@ -11,7 +11,7 @@ public class TermsOfServiceHUDView : MonoBehaviour
     private static readonly string TITLE = $"Terms of Service - {SCENE_NAME_VAR}";
     private static readonly string DESCRIPTION = $"Welcome to {SCENE_NAME_VAR}. Before you proceed, please read carefully.";
 
-    public static TermsOfServiceHUDView CreateView() => Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<TermsOfServiceHUDView>();
+    public static TermsOfServiceHUDView CreateView() => Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<TermsOfServiceHUDView>();
 
     [SerializeField] internal GameObject content;
     [SerializeField] internal TextMeshProUGUI titleText;
