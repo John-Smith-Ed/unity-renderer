@@ -44,7 +44,7 @@ namespace DCL
         public void Initialize ()
         {
             removeEntitiesCoroutine = CoroutineStarter.Start(CleanupEntitiesCoroutine());
-            CommonScriptableObjects.rendererState.OnChange += OnRendererStateChange;
+            ABEYController.i.CommonScriptables.rendererState.OnChange += OnRendererStateChange;
         }
 
         private void OnRendererStateChange(bool isEnable, bool prevState)
@@ -165,7 +165,7 @@ namespace DCL
             if (removeEntitiesCoroutine != null)
                 CoroutineStarter.Stop(removeEntitiesCoroutine);
 
-            CommonScriptableObjects.rendererState.OnChange -= OnRendererStateChange;
+            ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRendererStateChange;
             Environment.i.platform.memoryManager.OnCriticalMemory -= CleanMarkedEntities;
         }
     }

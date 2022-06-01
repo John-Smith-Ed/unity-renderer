@@ -56,15 +56,15 @@ namespace DCL.Components
 
         public override IEnumerator ApplyChanges(BaseModel baseModel)
         {
-            yield return new WaitUntil(() => CommonScriptableObjects.rendererState.Get());
+            yield return new WaitUntil(() => ABEYController.i.CommonScriptables.rendererState.Get());
 
             //If the scene creates and destroy an audiosource before our renderer has been turned on bad things happen!
             //TODO: Analyze if we can catch this upstream and stop the IEnumerator
             if (isDestroyed)
                 yield break;
 
-            CommonScriptableObjects.sceneID.OnChange -= OnCurrentSceneChanged;
-            CommonScriptableObjects.sceneID.OnChange += OnCurrentSceneChanged;
+            ABEYController.i.CommonScriptables.sceneID.OnChange -= OnCurrentSceneChanged;
+            ABEYController.i.CommonScriptables.sceneID.OnChange += OnCurrentSceneChanged;
 
             ApplyCurrentModel();
 
@@ -142,7 +142,7 @@ namespace DCL.Components
                     audioSettingsData.masterVolume);
             }
 
-            bool isCurrentScene = scene.isPersistent || scene.sceneData.id == CommonScriptableObjects.sceneID.Get();
+            bool isCurrentScene = scene.isPersistent || scene.sceneData.id == ABEYController.i.CommonScriptables.sceneID.Get();
 
             audioSource.volume = isCurrentScene ? newVolume : 0f;
         }
@@ -166,7 +166,7 @@ namespace DCL.Components
         private void OnDestroy()
         {
             isDestroyed = true;
-            CommonScriptableObjects.sceneID.OnChange -= OnCurrentSceneChanged;
+            ABEYController.i.CommonScriptables.sceneID.OnChange -= OnCurrentSceneChanged;
 
             //NOTE(Brian): Unsubscribe events.
             InitDCLAudioClip(null);

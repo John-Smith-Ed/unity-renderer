@@ -32,7 +32,7 @@ public class AvatarEditorHUDController : IHUD
 
     internal UserProfile userProfile;
     private BaseDictionary<string, WearableItem> catalog;
-    bool renderingEnabled => CommonScriptableObjects.rendererState.Get();
+    bool renderingEnabled => ABEYController.i.CommonScriptables.rendererState.Get();
     bool isPlayerRendererLoaded => DataStore.i.common.isPlayerRendererLoaded.Get();
     BaseVariable<bool> avatarEditorVisible => DataStore.i.HUDs.avatarEditorVisible;
     BaseVariable<Transform> configureBackpackInFullscreenMenu => DataStore.i.exploreV2.configureBackpackInFullscreenMenu;
@@ -82,9 +82,9 @@ public class AvatarEditorHUDController : IHUD
 
         exploreV2IsOpen.OnChange += ExploreV2IsOpenChanged;
 
-        skinColorList = Resources.Load<ColorList>("SkinTone");
-        hairColorList = Resources.Load<ColorList>("HairColor");
-        eyeColorList = Resources.Load<ColorList>("EyeColor");
+        skinColorList = ABEYController.i.GetColorList("SkinTone");
+        hairColorList = ABEYController.i.GetColorList("HairColor");
+        eyeColorList  = ABEYController.i.GetColorList("EyeColor");
         view.SetColors(skinColorList.colors, hairColorList.colors, eyeColorList.colors);
 
         SetCatalog(catalog);
@@ -667,7 +667,7 @@ public class AvatarEditorHUDController : IHUD
             asset.renderScale = prevRenderScale;
 
             if (DataStore.i.common.isSignUpFlow.Get())
-                CommonScriptableObjects.isFullscreenHUDOpen.Set(false);
+                ABEYController.i.CommonScriptables.isFullscreenHUDOpen.Set(false);
 
             DataStore.i.common.isPlayerRendererLoaded.OnChange -= PlayerRendererLoaded;
 
@@ -700,7 +700,7 @@ public class AvatarEditorHUDController : IHUD
             asset.renderScale = 1.0f;
 
             if (DataStore.i.common.isSignUpFlow.Get())
-                CommonScriptableObjects.isFullscreenHUDOpen.Set(true);
+                ABEYController.i.CommonScriptables.isFullscreenHUDOpen.Set(true);
 
             DataStore.i.common.isPlayerRendererLoaded.OnChange += PlayerRendererLoaded;
 

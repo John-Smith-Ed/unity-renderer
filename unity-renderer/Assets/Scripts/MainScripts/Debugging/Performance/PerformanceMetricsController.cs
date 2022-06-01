@@ -14,15 +14,15 @@ namespace DCL
 
         [SerializeField] private PerformanceMetricsDataVariable performanceMetricsDataVariable;
 
-        public PerformanceMetricsController() { performanceMetricsDataVariable = Resources.Load<PerformanceMetricsDataVariable>("ScriptableObjects/PerformanceMetricsData"); }
+        public PerformanceMetricsController() { performanceMetricsDataVariable = ABEYController.i.OtherRefs.PerformanceMetricsDataVariable; }
 
         public void Update()
         {
 #if !UNITY_EDITOR && UNITY_WEBGL
-            if (!CommonScriptableObjects.focusState.Get())
+            if (!ABEYController.i.CommonScriptables.focusState.Get())
                 return;
 #endif
-            if (!CommonScriptableObjects.rendererState.Get())
+            if (!ABEYController.i.CommonScriptables.rendererState.Get())
                 return;
 
             var deltaInMs = Time.deltaTime * 1000;

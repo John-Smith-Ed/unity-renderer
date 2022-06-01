@@ -1,5 +1,5 @@
 using UnityEngine;
-
+/*
 public static class NotificationScriptableObjects
 {
     private static FloatVariable newApprovedFriendsValue;
@@ -15,90 +15,90 @@ public static class NotificationScriptableObjects
 public static class AudioScriptableObjects
 {
     // Builder
-/*
+
     private static AudioEvent builderEnterEvent;
-    public static AudioEvent builderEnter => CommonScriptableObjects.GetOrLoad(ref builderEnterEvent, "ScriptableObjects/AudioEvents/Builder/BuilderEnter");
+    public static AudioEvent builderEnter => ABEYController.i.CommonScriptables.GetOrLoad(ref builderEnterEvent, "ScriptableObjects/AudioEvents/Builder/BuilderEnter");
 
     private static AudioEvent builderReadyEvent;
-    public static AudioEvent builderReady => CommonScriptableObjects.GetOrLoad(ref builderReadyEvent, "ScriptableObjects/AudioEvents/Builder/BuilderReady");
+    public static AudioEvent builderReady => ABEYController.i.CommonScriptables.GetOrLoad(ref builderReadyEvent, "ScriptableObjects/AudioEvents/Builder/BuilderReady");
 
     // Common UI
 
     private static AudioEvent cameraFadeInEvent;
-    public static AudioEvent cameraFadeIn => CommonScriptableObjects.GetOrLoad(ref cameraFadeInEvent, "ScriptableObjects/AudioEvents/HUDCommon/CameraFadeIn");
+    public static AudioEvent cameraFadeIn => ABEYController.i.CommonScriptables.GetOrLoad(ref cameraFadeInEvent, "ScriptableObjects/AudioEvents/HUDCommon/CameraFadeIn");
 
     private static AudioEvent cameraFadeOutEvent;
-    public static AudioEvent cameraFadeOut => CommonScriptableObjects.GetOrLoad(ref cameraFadeOutEvent, "ScriptableObjects/AudioEvents/HUDCommon/CameraFadeOut");
+    public static AudioEvent cameraFadeOut => ABEYController.i.CommonScriptables.GetOrLoad(ref cameraFadeOutEvent, "ScriptableObjects/AudioEvents/HUDCommon/CameraFadeOut");
 
     private static AudioEvent buttonHoverEvent;
-    public static AudioEvent buttonHover => CommonScriptableObjects.GetOrLoad(ref buttonHoverEvent, "ScriptableObjects/AudioEvents/HUDCommon/ButtonHover");
+    public static AudioEvent buttonHover => ABEYController.i.CommonScriptables.GetOrLoad(ref buttonHoverEvent, "ScriptableObjects/AudioEvents/HUDCommon/ButtonHover");
 
     private static AudioEvent buttonClickEvent;
-    public static AudioEvent buttonClick => CommonScriptableObjects.GetOrLoad(ref buttonClickEvent, "ScriptableObjects/AudioEvents/HUDCommon/ButtonClick");
+    public static AudioEvent buttonClick => ABEYController.i.CommonScriptables.GetOrLoad(ref buttonClickEvent, "ScriptableObjects/AudioEvents/HUDCommon/ButtonClick");
 
     private static AudioEvent buttonReleaseEvent;
-    public static AudioEvent buttonRelease => CommonScriptableObjects.GetOrLoad(ref buttonReleaseEvent, "ScriptableObjects/AudioEvents/HUDCommon/ButtonRelease");
+    public static AudioEvent buttonRelease => ABEYController.i.CommonScriptables.GetOrLoad(ref buttonReleaseEvent, "ScriptableObjects/AudioEvents/HUDCommon/ButtonRelease");
 
     private static AudioEvent cancelEvent;
-    public static AudioEvent cancel => CommonScriptableObjects.GetOrLoad(ref cancelEvent, "ScriptableObjects/AudioEvents/HUDCommon/Cancel");
+    public static AudioEvent cancel => ABEYController.i.CommonScriptables.GetOrLoad(ref cancelEvent, "ScriptableObjects/AudioEvents/HUDCommon/Cancel");
 
     private static AudioEvent confirmEvent;
-    public static AudioEvent confirm => CommonScriptableObjects.GetOrLoad(ref confirmEvent, "ScriptableObjects/AudioEvents/HUDCommon/Confirm");
+    public static AudioEvent confirm => ABEYController.i.CommonScriptables.GetOrLoad(ref confirmEvent, "ScriptableObjects/AudioEvents/HUDCommon/Confirm");
 
     private static AudioEvent dialogOpenEvent;
-    public static AudioEvent dialogOpen => CommonScriptableObjects.GetOrLoad(ref dialogOpenEvent, "ScriptableObjects/AudioEvents/HUDCommon/DialogOpen");
+    public static AudioEvent dialogOpen => ABEYController.i.CommonScriptables.GetOrLoad(ref dialogOpenEvent, "ScriptableObjects/AudioEvents/HUDCommon/DialogOpen");
 
     private static AudioEvent dialogCloseEvent;
-    public static AudioEvent dialogClose => CommonScriptableObjects.GetOrLoad(ref dialogCloseEvent, "ScriptableObjects/AudioEvents/HUDCommon/DialogClose");
+    public static AudioEvent dialogClose => ABEYController.i.CommonScriptables.GetOrLoad(ref dialogCloseEvent, "ScriptableObjects/AudioEvents/HUDCommon/DialogClose");
 
     private static AudioEvent enableEvent;
-    public static AudioEvent enable => CommonScriptableObjects.GetOrLoad(ref enableEvent, "ScriptableObjects/AudioEvents/HUDCommon/Enable");
+    public static AudioEvent enable => ABEYController.i.CommonScriptables.GetOrLoad(ref enableEvent, "ScriptableObjects/AudioEvents/HUDCommon/Enable");
 
     private static AudioEvent errorEvent;
-    public static AudioEvent error => CommonScriptableObjects.GetOrLoad(ref errorEvent, "ScriptableObjects/AudioEvents/HUDCommon/Error");
+    public static AudioEvent error => ABEYController.i.CommonScriptables.GetOrLoad(ref errorEvent, "ScriptableObjects/AudioEvents/HUDCommon/Error");
 
     private static AudioEvent disableEvent;
-    public static AudioEvent disable => CommonScriptableObjects.GetOrLoad(ref disableEvent, "ScriptableObjects/AudioEvents/HUDCommon/Disable");
+    public static AudioEvent disable => ABEYController.i.CommonScriptables.GetOrLoad(ref disableEvent, "ScriptableObjects/AudioEvents/HUDCommon/Disable");
 
     private static AudioEvent fadeInEvent;
-    public static AudioEvent fadeIn => CommonScriptableObjects.GetOrLoad(ref fadeInEvent, "ScriptableObjects/AudioEvents/HUDCommon/FadeIn");
+    public static AudioEvent fadeIn => ABEYController.i.CommonScriptables.GetOrLoad(ref fadeInEvent, "ScriptableObjects/AudioEvents/HUDCommon/FadeIn");
 
     private static AudioEvent fadeOutEvent;
-    public static AudioEvent fadeOut => CommonScriptableObjects.GetOrLoad(ref fadeOutEvent, "ScriptableObjects/AudioEvents/HUDCommon/FadeOut");
+    public static AudioEvent fadeOut => ABEYController.i.CommonScriptables.GetOrLoad(ref fadeOutEvent, "ScriptableObjects/AudioEvents/HUDCommon/FadeOut");
 
     private static AudioEvent_WithPitchIncrement listItemAppearEvent;
-    public static AudioEvent_WithPitchIncrement listItemAppear => CommonScriptableObjects.GetOrLoad(ref listItemAppearEvent, "ScriptableObjects/AudioEvents/HUDCommon/ListItemAppear");
+    public static AudioEvent_WithPitchIncrement listItemAppear => ABEYController.i.CommonScriptables.GetOrLoad(ref listItemAppearEvent, "ScriptableObjects/AudioEvents/HUDCommon/ListItemAppear");
 
     private static AudioEvent chatReceiveGlobalEvent;
-    public static AudioEvent chatReceiveGlobal => CommonScriptableObjects.GetOrLoad(ref chatReceiveGlobalEvent, "ScriptableObjects/AudioEvents/HUDCommon/ChatReceiveGlobal");
+    public static AudioEvent chatReceiveGlobal => ABEYController.i.CommonScriptables.GetOrLoad(ref chatReceiveGlobalEvent, "ScriptableObjects/AudioEvents/HUDCommon/ChatReceiveGlobal");
 
     private static AudioEvent chatReceivePrivateEvent;
-    public static AudioEvent chatReceivePrivate => CommonScriptableObjects.GetOrLoad(ref chatReceivePrivateEvent, "ScriptableObjects/AudioEvents/HUDCommon/ChatReceivePrivate");
+    public static AudioEvent chatReceivePrivate => ABEYController.i.CommonScriptables.GetOrLoad(ref chatReceivePrivateEvent, "ScriptableObjects/AudioEvents/HUDCommon/ChatReceivePrivate");
 
     private static AudioEvent chatSendEvent;
-    public static AudioEvent chatSend => CommonScriptableObjects.GetOrLoad(ref chatSendEvent, "ScriptableObjects/AudioEvents/HUDCommon/ChatSend");
+    public static AudioEvent chatSend => ABEYController.i.CommonScriptables.GetOrLoad(ref chatSendEvent, "ScriptableObjects/AudioEvents/HUDCommon/ChatSend");
 
     private static AudioEvent notificationEvent;
-    public static AudioEvent notification => CommonScriptableObjects.GetOrLoad(ref notificationEvent, "ScriptableObjects/AudioEvents/HUDCommon/Notification");
+    public static AudioEvent notification => ABEYController.i.CommonScriptables.GetOrLoad(ref notificationEvent, "ScriptableObjects/AudioEvents/HUDCommon/Notification");
 
     private static AudioEvent sliderValueChangeEvent;
-    public static AudioEvent sliderValueChange => CommonScriptableObjects.GetOrLoad(ref sliderValueChangeEvent, "ScriptableObjects/AudioEvents/HUDCommon/SliderValueChange");
+    public static AudioEvent sliderValueChange => ABEYController.i.CommonScriptables.GetOrLoad(ref sliderValueChangeEvent, "ScriptableObjects/AudioEvents/HUDCommon/SliderValueChange");
 
     private static AudioEvent inputFieldFocusEvent;
-    public static AudioEvent inputFieldFocus => CommonScriptableObjects.GetOrLoad(ref inputFieldFocusEvent, "ScriptableObjects/AudioEvents/HUDCommon/InputFieldFocus");
+    public static AudioEvent inputFieldFocus => ABEYController.i.CommonScriptables.GetOrLoad(ref inputFieldFocusEvent, "ScriptableObjects/AudioEvents/HUDCommon/InputFieldFocus");
 
     private static AudioEvent inputFieldUnfocusEvent;
-    public static AudioEvent inputFieldUnfocus => CommonScriptableObjects.GetOrLoad(ref inputFieldUnfocusEvent, "ScriptableObjects/AudioEvents/HUDCommon/InputFieldUnfocus");
+    public static AudioEvent inputFieldUnfocus => ABEYController.i.CommonScriptables.GetOrLoad(ref inputFieldUnfocusEvent, "ScriptableObjects/AudioEvents/HUDCommon/InputFieldUnfocus");
 
     private static AudioEvent UIHideEvent;
-    public static AudioEvent UIHide => CommonScriptableObjects.GetOrLoad(ref UIHideEvent, "ScriptableObjects/AudioEvents/HUDCommon/UIHide");
+    public static AudioEvent UIHide => ABEYController.i.CommonScriptables.GetOrLoad(ref UIHideEvent, "ScriptableObjects/AudioEvents/HUDCommon/UIHide");
 
     private static AudioEvent UIShowEvent;
-    public static AudioEvent UIShow => CommonScriptableObjects.GetOrLoad(ref UIShowEvent, "ScriptableObjects/AudioEvents/HUDCommon/UIUnhide");
+    public static AudioEvent UIShow => ABEYController.i.CommonScriptables.GetOrLoad(ref UIShowEvent, "ScriptableObjects/AudioEvents/HUDCommon/UIUnhide");
 
     private static AudioEvent tooltipPopupEvent;
-    public static AudioEvent tooltipPopup => CommonScriptableObjects.GetOrLoad(ref tooltipPopupEvent, "ScriptableObjects/AudioEvents/HUDCommon/TooltipPopup");
-    */
+    public static AudioEvent tooltipPopup => ABEYController.i.CommonScriptables.GetOrLoad(ref tooltipPopupEvent, "ScriptableObjects/AudioEvents/HUDCommon/TooltipPopup");
+   
 }
 
 public static class CommonScriptableObjects
@@ -208,4 +208,6 @@ public static class CommonScriptableObjects
 
         return variable;
     }
+    
 }
+*/

@@ -19,7 +19,7 @@ namespace DCL.Components
 
         public override void Unload()
         {
-            CommonScriptableObjects.rendererState.OnChange -= OnRendererStateChanged;
+            ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRendererStateChanged;
             loaderController.OnLoadingAssetSuccess -= OnLoadingAssetSuccess;
 
             Object.Destroy(loaderController);
@@ -51,13 +51,13 @@ namespace DCL.Components
 
             assetUrl = src;
 
-            if (CommonScriptableObjects.rendererState.Get())
+            if (ABEYController.i.CommonScriptables.rendererState.Get())
             {
                 LoadAsset();
             }
             else
             {
-                CommonScriptableObjects.rendererState.OnChange += OnRendererStateChanged;
+                ABEYController.i.CommonScriptables.rendererState.OnChange += OnRendererStateChanged;
             }
 
             // NOTE: frame meshes are already included in the build, there is no need lock renderer just to wait for the images.
@@ -89,7 +89,7 @@ namespace DCL.Components
         {
             if (current)
             {
-                CommonScriptableObjects.rendererState.OnChange -= OnRendererStateChanged;
+                ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRendererStateChanged;
                 LoadAsset();
             }
         }

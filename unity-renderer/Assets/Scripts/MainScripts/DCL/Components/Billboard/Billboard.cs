@@ -19,7 +19,7 @@ namespace DCL
         }
 
         Transform entityTransform;
-        Vector3Variable cameraPosition => CommonScriptableObjects.cameraPosition;
+        Vector3Variable cameraPosition => ABEYController.i.CommonScriptables.cameraPosition;
         Vector3 lastPosition;
 
         private void Awake() { model = new Model(); }

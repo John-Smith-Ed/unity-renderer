@@ -9,8 +9,8 @@ namespace UnityGLTF
 
         public GLTFThrottlingCounter ()
         {
-            throttlingCounter.enabled = CommonScriptableObjects.rendererState;
-            CommonScriptableObjects.rendererState.OnChange += OnRendererStateChange;
+            throttlingCounter.enabled = ABEYController.i.CommonScriptables.rendererState;
+            ABEYController.i.CommonScriptables.rendererState.OnChange += OnRendererStateChange;
         }
 
         public bool enabled

@@ -1,5 +1,6 @@
 namespace DCL.SettingsCommon
 {
+    /*
     public static class CommonSettingsScriptableObjects
     {
         private static BooleanVariable shadowsDisabledValue;
@@ -9,6 +10,7 @@ namespace DCL.SettingsCommon
         public static BooleanVariable detailObjectCullingDisabled => CommonScriptableObjects.GetOrLoad(ref detailObjectCullingDisabledValue, "ScriptableObjects/DetailObjectCullingDisabled");
 
         private static BooleanVariable dynamicSkyboxDisabledValue;
-        public static BooleanVariable dynamicSkyboxDisabled => CommonScriptableObjects.GetOrLoad(ref dynamicSkyboxDisabledValue, "ScriptableObjects/DynamicSkyboxDisabled");
+        public static BooleanVariable dynamicSkyboxDisabled => CommonScriptableObjects..GetOrLoad(ref dynamicSkyboxDisabledValue, "ScriptableObjects/DynamicSkyboxDisabled");
     }
+    */
 }

@@ -26,7 +26,7 @@ namespace DCL
             positionTracker = new CrashPayloadPositionTracker();
             isFPSPanelVisible = DataStore.i.debugConfig.isFPSPanelVisible;
             isFPSPanelVisible.OnChange += OnFPSPanelToggle;
-            GameObject view = Object.Instantiate(Resources.Load("DebugView")) as GameObject;
+            GameObject view = Object.Instantiate(ABEYController.i.GetPrefab("DebugView")) as GameObject;
             debugView = view.GetComponent<DebugView>();
             this.botsController = botsController;
 

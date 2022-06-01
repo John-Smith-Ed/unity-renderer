@@ -113,8 +113,8 @@ namespace DCL.Bots
             CatalogController.i.AddWearablesToCatalog(newWearables);
         }
 
-        private Vector3 playerUnityPosition => CommonScriptableObjects.playerUnityPosition.Get();
-        private Vector3 playerWorldPosition => CommonScriptableObjects.playerWorldPosition.Get();
+        private Vector3 playerUnityPosition => ABEYController.i.CommonScriptables.playerUnityPosition.Get();
+        private Vector3 playerWorldPosition => ABEYController.i.CommonScriptables.playerWorldPosition.Get();
         private WorldPosInstantiationConfig lastConfigUsed;
         /// <summary>
         /// Instantiates bots using the config file param values. It defaults some uninitialized values using the player's position

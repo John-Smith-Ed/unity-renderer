@@ -20,7 +20,7 @@ namespace DCL.Builder
         private Dictionary<string, ISceneCardView> scenesViews = new Dictionary<string, ISceneCardView>();
 
         public SectionScenesController() : this(
-            Object.Instantiate(Resources.Load<SectionPlacesView>(VIEW_PREFAB_PATH))
+            Object.Instantiate(ABEYController.i.GetPrefab(VIEW_PREFAB_PATH)).GetComponent<SectionPlacesView>()
         ) { }
 
         public SectionScenesController(SectionPlacesView view)

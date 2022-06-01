@@ -29,7 +29,7 @@ namespace DCL
         public int pendingMessagesCount;
         public long processedMessagesCount { get; set; }
 
-        private static bool renderingIsDisabled => !CommonScriptableObjects.rendererState.Get();
+        private static bool renderingIsDisabled => !ABEYController.i.CommonScriptables.rendererState.Get();
         private float timeBudgetValue;
 
         public CustomYieldInstruction msgYieldInstruction;

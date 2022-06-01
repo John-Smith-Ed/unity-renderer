@@ -32,7 +32,7 @@ namespace DCL.Components
 
         public override IEnumerator ApplyChanges(BaseModel newModel)
         {
-            yield return new WaitUntil(() => CommonScriptableObjects.rendererState.Get());
+            yield return new WaitUntil(() => ABEYController.i.CommonScriptables.rendererState.Get());
 
             //If the scene creates and destroy the component before our renderer has been turned on bad things happen!
             //TODO: Analyze if we can catch this upstream and stop the IEnumerator
@@ -50,8 +50,8 @@ namespace DCL.Components
 
         private void Start()
         {
-            CommonScriptableObjects.sceneID.OnChange += OnSceneChanged;
-            CommonScriptableObjects.rendererState.OnChange += OnRendererStateChanged;
+            ABEYController.i.CommonScriptables.sceneID.OnChange += OnSceneChanged;
+            ABEYController.i.CommonScriptables.rendererState.OnChange += OnRendererStateChanged;
             Settings.i.audioSettings.OnChanged += OnSettingsChanged;
             DataStore.i.virtualAudioMixer.sceneSFXVolume.OnChange += SceneSFXVolume_OnChange;
         }
@@ -59,8 +59,8 @@ namespace DCL.Components
         private void OnDestroy()
         {
             isDestroyed = true;
-            CommonScriptableObjects.sceneID.OnChange -= OnSceneChanged;
-            CommonScriptableObjects.rendererState.OnChange -= OnRendererStateChanged;
+            ABEYController.i.CommonScriptables.sceneID.OnChange -= OnSceneChanged;
+            ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRendererStateChanged;
             Settings.i.audioSettings.OnChanged -= OnSettingsChanged;
             DataStore.i.virtualAudioMixer.sceneSFXVolume.OnChange -= SceneSFXVolume_OnChange;
             StopStreaming();
@@ -73,8 +73,8 @@ namespace DCL.Components
                 return;
             }
 
-            bool canPlayStream = scene.isPersistent || scene.sceneData.id == CommonScriptableObjects.sceneID.Get();
-            canPlayStream &= CommonScriptableObjects.rendererState;
+            bool canPlayStream = scene.isPersistent || scene.sceneData.id == ABEYController.i.CommonScriptables.sceneID.Get();
+            canPlayStream &= ABEYController.i.CommonScriptables.rendererState;
             
             Model model = (Model) this.model;
             bool shouldStopStream = (isPlaying && !model.playing) || (isPlaying && !canPlayStream);

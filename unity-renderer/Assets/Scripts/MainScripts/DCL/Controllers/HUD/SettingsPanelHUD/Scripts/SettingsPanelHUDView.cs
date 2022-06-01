@@ -201,7 +201,7 @@ namespace DCL.SettingsPanelHUD
 
             worldPreviewWindowTransform.gameObject.SetActive(isActive);
             DataStore.i.camera.outputTexture.Set(isActive ? worldPreviewRawImage.texture as RenderTexture : null);
-            CommonScriptableObjects.isFullscreenHUDOpen.Set(DataStore.i.exploreV2.isOpen.Get() && !isActive);
+            ABEYController.i.CommonScriptables.isFullscreenHUDOpen.Set(DataStore.i.exploreV2.isOpen.Get() && !isActive);
         }
 
         private void OpenAction_OnTriggered(DCLAction_Trigger action)

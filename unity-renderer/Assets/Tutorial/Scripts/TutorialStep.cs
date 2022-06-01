@@ -84,7 +84,7 @@ namespace DCL.Tutorial
             OnJustAfterStepExecuted?.Invoke();
             yield return PlayAndWaitForHideAnimation();
             yield return null;
-            yield return new WaitUntil(() => !CommonScriptableObjects.cameraIsBlending.Get());
+            yield return new WaitUntil(() => !ABEYController.i.CommonScriptables.cameraIsBlending.Get());
         }
 
         /// <summary>

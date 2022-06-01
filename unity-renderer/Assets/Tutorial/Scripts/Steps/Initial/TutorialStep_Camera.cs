@@ -16,14 +16,14 @@ namespace DCL.Tutorial
         {
             base.OnStepStart();
 
-            CommonScriptableObjects.cameraMode.OnChange += CameraMode_OnChange;
+            ABEYController.i.CommonScriptables.cameraMode.OnChange += CameraMode_OnChange;
         }
 
         public override void OnStepFinished()
         {
             base.OnStepFinished();
 
-            CommonScriptableObjects.cameraMode.OnChange -= CameraMode_OnChange;
+            ABEYController.i.CommonScriptables.cameraMode.OnChange -= CameraMode_OnChange;
         }
 
         public override IEnumerator OnStepExecute()

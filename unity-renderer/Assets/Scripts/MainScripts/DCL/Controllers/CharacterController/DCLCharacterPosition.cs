@@ -38,8 +38,8 @@ public class DCLCharacterPosition
 
     public DCLCharacterPosition()
     {
-        CommonScriptableObjects.worldOffset.Set(Vector3.zero);
-        CommonScriptableObjects.playerWorldPosition.Set(Vector3.zero);
+        ABEYController.i.CommonScriptables.worldOffset.Set(Vector3.zero);
+        ABEYController.i.CommonScriptables.playerWorldPosition.Set(Vector3.zero);
     }
 
     private void CheckAndRepositionWorld()
@@ -69,8 +69,8 @@ public class DCLCharacterPosition
 
             lastRepositionFrame = Time.frameCount;
 
-            CommonScriptableObjects.playerWorldPosition.Set(worldPositionValue);
-            CommonScriptableObjects.worldOffset.Set(offset);
+            ABEYController.i.CommonScriptables.playerWorldPosition.Set(worldPositionValue);
+            ABEYController.i.CommonScriptables.worldOffset.Set(offset);
             DCL.Environment.i.platform.physicsSyncController.MarkDirty();
         }
     }

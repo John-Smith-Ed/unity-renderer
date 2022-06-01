@@ -17,8 +17,8 @@ namespace DCL
         private const int GENERIC_IMPOSTORS_ATLAS_COLUMNS = 4;
         private const int GENERIC_IMPOSTORS_ATLAS_ROWS = 2;
 
-        private static Texture2D genericImpostorsTexture = Resources.Load<Texture2D>("Textures/avatar-impostors-atlas");
-        private static Texture2D transparentPixelTexture = Resources.Load<Texture2D>("Textures/transparent-pixel");
+        private static Texture2D genericImpostorsTexture = ABEYController.i.GetTexture2D("Textures/avatar-impostors-atlas");
+        private static Texture2D transparentPixelTexture = ABEYController.i.GetTexture2D("Textures/transparent-pixel");
 
         public static void RandomizeAndApplyGenericImpostor(Mesh impostorMesh, Material impostorMaterial)
         {

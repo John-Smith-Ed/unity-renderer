@@ -46,7 +46,7 @@ namespace DCL.EmotesWheel
 
         public EmotesWheelController(UserProfile userProfile, BaseDictionary<string, WearableItem> catalog)
         {
-            closeWindow = Resources.Load<InputAction_Trigger>("CloseWindow");
+            closeWindow = ABEYController.i.GetInputActionTrigger("CloseWindow");
             closeWindow.OnTriggered += OnCloseWindowPressed;
 
             view = EmotesWheelView.Create();
@@ -241,70 +241,70 @@ namespace DCL.EmotesWheel
 
         private void ConfigureShortcuts()
         {
-            closeWindow = Resources.Load<InputAction_Trigger>("CloseWindow");
+            closeWindow = ABEYController.i.GetInputActionTrigger("CloseWindow");
             closeWindow.OnTriggered += OnCloseWindowPressed;
 
-            openEmotesCustomizationInputAction = Resources.Load<InputAction_Hold>("DefaultConfirmAction");
+            openEmotesCustomizationInputAction = ABEYController.i.GetInputActionHold("DefaultConfirmAction");
             openEmotesCustomizationInputAction.OnFinished += OnOpenEmotesCustomizationInputActionTriggered;
 
-            shortcut0InputAction = Resources.Load<InputAction_Trigger>("ToggleEmoteShortcut0");
+            shortcut0InputAction = ABEYController.i.GetInputActionTrigger("ToggleEmoteShortcut0");
             shortcut0InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
 
-            shortcut1InputAction = Resources.Load<InputAction_Trigger>("ToggleEmoteShortcut1");
+            shortcut1InputAction = ABEYController.i.GetInputActionTrigger("ToggleEmoteShortcut1");
             shortcut1InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
 
-            shortcut2InputAction = Resources.Load<InputAction_Trigger>("ToggleEmoteShortcut2");
+            shortcut2InputAction = ABEYController.i.GetInputActionTrigger("ToggleEmoteShortcut2");
             shortcut2InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
 
-            shortcut3InputAction = Resources.Load<InputAction_Trigger>("ToggleEmoteShortcut3");
+            shortcut3InputAction = ABEYController.i.GetInputActionTrigger("ToggleEmoteShortcut3");
             shortcut3InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
 
-            shortcut4InputAction = Resources.Load<InputAction_Trigger>("ToggleEmoteShortcut4");
+            shortcut4InputAction = ABEYController.i.GetInputActionTrigger("ToggleEmoteShortcut4");
             shortcut4InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
 
-            shortcut5InputAction = Resources.Load<InputAction_Trigger>("ToggleEmoteShortcut5");
+            shortcut5InputAction = ABEYController.i.GetInputActionTrigger("ToggleEmoteShortcut5");
             shortcut5InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
 
-            shortcut6InputAction = Resources.Load<InputAction_Trigger>("ToggleEmoteShortcut6");
+            shortcut6InputAction = ABEYController.i.GetInputActionTrigger("ToggleEmoteShortcut6");
             shortcut6InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
 
-            shortcut7InputAction = Resources.Load<InputAction_Trigger>("ToggleEmoteShortcut7");
+            shortcut7InputAction = ABEYController.i.GetInputActionTrigger("ToggleEmoteShortcut7");
             shortcut7InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
 
-            shortcut8InputAction = Resources.Load<InputAction_Trigger>("ToggleEmoteShortcut8");
+            shortcut8InputAction = ABEYController.i.GetInputActionTrigger("ToggleEmoteShortcut8");
             shortcut8InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
 
-            shortcut9InputAction = Resources.Load<InputAction_Trigger>("ToggleEmoteShortcut9");
+            shortcut9InputAction = ABEYController.i.GetInputActionTrigger("ToggleEmoteShortcut9");
             shortcut9InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
 
-            auxShortcut0InputAction = Resources.Load<InputAction_Trigger>("ToggleShortcut0");
+            auxShortcut0InputAction = ABEYController.i.GetInputActionTrigger("ToggleShortcut0");
             auxShortcut0InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
 
-            auxShortcut1InputAction = Resources.Load<InputAction_Trigger>("ToggleShortcut1");
+            auxShortcut1InputAction = ABEYController.i.GetInputActionTrigger("ToggleShortcut1");
             auxShortcut1InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
             
-            auxShortcut2InputAction = Resources.Load<InputAction_Trigger>("ToggleShortcut2");
+            auxShortcut2InputAction = ABEYController.i.GetInputActionTrigger("ToggleShortcut2");
             auxShortcut2InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
             
-            auxShortcut3InputAction = Resources.Load<InputAction_Trigger>("ToggleShortcut3");
+            auxShortcut3InputAction = ABEYController.i.GetInputActionTrigger("ToggleShortcut3");
             auxShortcut3InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
 
-            auxShortcut4InputAction = Resources.Load<InputAction_Trigger>("ToggleShortcut4");
+            auxShortcut4InputAction = ABEYController.i.GetInputActionTrigger("ToggleShortcut4");
             auxShortcut4InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
             
-            auxShortcut5InputAction = Resources.Load<InputAction_Trigger>("ToggleShortcut5");
+            auxShortcut5InputAction = ABEYController.i.GetInputActionTrigger("ToggleShortcut5");
             auxShortcut5InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
             
-            auxShortcut6InputAction = Resources.Load<InputAction_Trigger>("ToggleShortcut6");
+            auxShortcut6InputAction = ABEYController.i.GetInputActionTrigger("ToggleShortcut6");
             auxShortcut6InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
             
-            auxShortcut7InputAction = Resources.Load<InputAction_Trigger>("ToggleShortcut7");
+            auxShortcut7InputAction = ABEYController.i.GetInputActionTrigger("ToggleShortcut7");
             auxShortcut7InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
             
-            auxShortcut8InputAction = Resources.Load<InputAction_Trigger>("ToggleShortcut8");
+            auxShortcut8InputAction = ABEYController.i.GetInputActionTrigger("ToggleShortcut8");
             auxShortcut8InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
             
-            auxShortcut9InputAction = Resources.Load<InputAction_Trigger>("ToggleShortcut9");
+            auxShortcut9InputAction = ABEYController.i.GetInputActionTrigger("ToggleShortcut9");
             auxShortcut9InputAction.OnTriggered += OnNumericShortcutInputActionTriggered;
         }
 

@@ -17,11 +17,11 @@ namespace DCL.Camera
         private Vector3 freeLookMidRigOriginalBodyDamping;
         private Vector3 freeLookBotRigOriginalBodyDamping;
 
-        protected Vector3Variable characterPosition => CommonScriptableObjects.playerUnityPosition;
-        protected Vector3NullableVariable characterForward => CommonScriptableObjects.characterForward;
-        protected Vector3Variable cameraForward => CommonScriptableObjects.cameraForward;
-        protected Vector3Variable cameraRight => CommonScriptableObjects.cameraRight;
-        protected Vector3Variable cameraPosition => CommonScriptableObjects.cameraPosition;
+        protected Vector3Variable characterPosition => ABEYController.i.CommonScriptables.playerUnityPosition;
+        protected Vector3NullableVariable characterForward => ABEYController.i.CommonScriptables.characterForward;
+        protected Vector3Variable cameraForward => ABEYController.i.CommonScriptables.cameraForward;
+        protected Vector3Variable cameraRight => ABEYController.i.CommonScriptables.cameraRight;
+        protected Vector3Variable cameraPosition => ABEYController.i.CommonScriptables.cameraPosition;
 
         public FollowWithDamping cameraTargetProbe;
 
@@ -67,10 +67,10 @@ namespace DCL.Camera
 
         private void OnEnable()
         {
-            CommonScriptableObjects.playerIsOnMovingPlatform.OnChange += UpdateMovingPlatformCamera;
+            ABEYController.i.CommonScriptables.playerIsOnMovingPlatform.OnChange += UpdateMovingPlatformCamera;
         }
 
-        private void OnDisable() { CommonScriptableObjects.playerIsOnMovingPlatform.OnChange -= UpdateMovingPlatformCamera; }
+        private void OnDisable() { ABEYController.i.CommonScriptables.playerIsOnMovingPlatform.OnChange -= UpdateMovingPlatformCamera; }
 
         void UpdateMovingPlatformCamera(bool isOnMovingPlatform, bool wasOnMovingPlatform)
         {

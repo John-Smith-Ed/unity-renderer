@@ -402,7 +402,7 @@ namespace DCL.Builder
             sceneToEdit = targetScene;
 
             NotificationsController.i.allowNotifications = false;
-            CommonScriptableObjects.allUIHidden.Set(true);
+            ABEYController.i.CommonScriptables.allUIHidden.Set(true);
             NotificationsController.i.allowNotifications = true;
             inputController.inputTypeMode = InputTypeMode.BUILD_MODE_LOADING;
 
@@ -558,7 +558,7 @@ namespace DCL.Builder
             {
                 inputController.inputTypeMode = InputTypeMode.BUILD_MODE;
                 context.editorContext.editorHUD?.SetVisibility(true);
-                CommonScriptableObjects.allUIHidden.Set(true);
+                ABEYController.i.CommonScriptables.allUIHidden.Set(true);
             });
 
             DCLCharacterController.OnPositionSet += ExitAfterCharacterTeleport;
@@ -577,7 +577,7 @@ namespace DCL.Builder
             DataStore.i.HUDs.loadingHUD.visible.Set(true);
             initialLoadingController.Hide(true);
             inputController.inputTypeMode = InputTypeMode.GENERAL;
-            CommonScriptableObjects.allUIHidden.Set(false);
+            ABEYController.i.CommonScriptables.allUIHidden.Set(false);
             context.cameraController.DeactivateCamera();
             context.editor.ExitEditMode();
 

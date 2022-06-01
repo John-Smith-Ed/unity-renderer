@@ -219,7 +219,7 @@ namespace DCL.Components
 
             uiGameObject =
                 Object.Instantiate(
-                    Resources.Load(prefabPath),
+                    ABEYController.i.GetPrefab(prefabPath),
                     parentUIComponent != null ? parentUIComponent.childHookRectTransform : null) as GameObject;
 
             referencesContainer = uiGameObject.GetComponent<T>();
@@ -244,9 +244,9 @@ namespace DCL.Components
                     continue;
 
                 // When running tests this is empty.
-                if (!string.IsNullOrEmpty(CommonScriptableObjects.sceneID))
+                if (!string.IsNullOrEmpty(ABEYController.i.CommonScriptables.sceneID))
                 {
-                    if (CommonScriptableObjects.sceneID.Get() != scene.sceneData.id)
+                    if (ABEYController.i.CommonScriptables.sceneID.Get() != scene.sceneData.id)
                         continue;
                 }
 

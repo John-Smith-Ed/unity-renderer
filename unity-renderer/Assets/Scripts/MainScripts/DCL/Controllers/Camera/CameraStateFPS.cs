@@ -5,8 +5,8 @@ namespace DCL.Camera
 {
     public class CameraStateFPS : CameraStateBase
     {
-        protected Vector3Variable cameraForward => CommonScriptableObjects.cameraForward;
-        protected Vector3NullableVariable characterForward => CommonScriptableObjects.characterForward;
+        protected Vector3Variable cameraForward => ABEYController.i.CommonScriptables.cameraForward;
+        protected Vector3NullableVariable characterForward => ABEYController.i.CommonScriptables.characterForward;
 
         private CinemachinePOV pov;
 

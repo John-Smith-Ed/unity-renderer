@@ -39,7 +39,7 @@ namespace DCL
         //NOTE(Brian): Master promise id -> blocked promises HashSet
         protected Dictionary<object, HashSet<AssetPromiseType>> masterToBlockedPromises = new Dictionary<object, HashSet<AssetPromiseType>>(100);
 
-        public bool useTimeBudget => CommonScriptableObjects.rendererState.Get();
+        public bool useTimeBudget => ABEYController.i.CommonScriptables.rendererState.Get();
 
         float startTime;
 

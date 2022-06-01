@@ -21,10 +21,10 @@ public class FirstPersonCameraEntityReference : MonoBehaviour
         firstPersonParent = cameraController.GetCamera().transform;
 
         // Listen to changes on the camera mode
-        CommonScriptableObjects.cameraMode.OnChange += OnCameraModeChange;
+        ABEYController.i.CommonScriptables.cameraMode.OnChange += OnCameraModeChange;
 
         // Trigger the initial camera set
-        OnCameraModeChange(CommonScriptableObjects.cameraMode, CommonScriptableObjects.cameraMode);
+        OnCameraModeChange(ABEYController.i.CommonScriptables.cameraMode, ABEYController.i.CommonScriptables.cameraMode);
 
         //There is no blend in the first set so we parent to the correct initial transform
         SetNextParent();
@@ -34,17 +34,17 @@ public class FirstPersonCameraEntityReference : MonoBehaviour
 
     private void OnDestroy()
     {
-        CommonScriptableObjects.cameraMode.OnChange -= OnCameraModeChange;
-        CommonScriptableObjects.cameraForward.OnChange -= UpdateForward;
+        ABEYController.i.CommonScriptables.cameraMode.OnChange -= OnCameraModeChange;
+        ABEYController.i.CommonScriptables.cameraForward.OnChange -= UpdateForward;
     }
 
     private void OnCameraModeChange(CameraMode.ModeId newMode, CameraMode.ModeId prev)
     {
-        CommonScriptableObjects.cameraForward.OnChange -= UpdateForward;
+        ABEYController.i.CommonScriptables.cameraForward.OnChange -= UpdateForward;
 
         if (newMode == CameraMode.ModeId.FirstPerson)
         {
-            CommonScriptableObjects.cameraForward.OnChange += UpdateForward;
+            ABEYController.i.CommonScriptables.cameraForward.OnChange += UpdateForward;
             nextParent = firstPersonParent;
 
             if (cameraController != null)

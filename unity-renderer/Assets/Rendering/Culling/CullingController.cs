@@ -69,8 +69,8 @@ namespace DCL.Rendering
                 return;
 
             running = true;
-            CommonScriptableObjects.rendererState.OnChange += OnRendererStateChange;
-            CommonScriptableObjects.playerUnityPosition.OnChange += OnPlayerUnityPositionChange;
+            ABEYController.i.CommonScriptables.rendererState.OnChange += OnRendererStateChange;
+            ABEYController.i.CommonScriptables.playerUnityPosition.OnChange += OnPlayerUnityPositionChange;
             MeshesInfo.OnAnyUpdated += MarkDirty;
             objectsTracker?.MarkDirty();
             StartInternal();
@@ -95,8 +95,8 @@ namespace DCL.Rendering
                 return;
 
             running = false;
-            CommonScriptableObjects.rendererState.OnChange -= OnRendererStateChange;
-            CommonScriptableObjects.playerUnityPosition.OnChange -= OnPlayerUnityPositionChange;
+            ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRendererStateChange;
+            ABEYController.i.CommonScriptables.playerUnityPosition.OnChange -= OnPlayerUnityPositionChange;
             MeshesInfo.OnAnyUpdated -= MarkDirty;
             StopInternal();
             objectsTracker?.ForcePopulateRenderersList(true);
@@ -155,7 +155,7 @@ namespace DCL.Rendering
 
                 //NOTE(Brian): Need to retrieve positions every frame to take into account
                 //             world repositioning.
-                Vector3 playerPosition = CommonScriptableObjects.playerUnityPosition;
+                Vector3 playerPosition = ABEYController.i.CommonScriptables.playerUnityPosition;
 
                 Bounds bounds = r.GetSafeBounds();
 
@@ -299,7 +299,7 @@ namespace DCL.Rendering
                 float startTime = Time.realtimeSinceStartup;
                 Transform t = anim.transform;
 
-                Vector3 playerPosition = CommonScriptableObjects.playerUnityPosition;
+                Vector3 playerPosition = ABEYController.i.CommonScriptables.playerUnityPosition;
                 float distance = Vector3.Distance(playerPosition, t.position);
 
                 if (distance > settings.enableAnimationCullingDistance)

@@ -11,7 +11,7 @@ public class NFTShapeFactory : ScriptableObject
         {
             if (instance == null)
             {
-                instance = Resources.Load<NFTShapeFactory>("NFTShapeFactory");
+                instance = ABEYController.i.OtherRefs.NFTShapeFactory;
             }
             return instance;
         }
@@ -23,7 +23,7 @@ public class NFTShapeFactory : ScriptableObject
         {
             return Object.Instantiate(i.loaderControllersPrefabs[index]);
         }
-        return Object.Instantiate(Resources.Load("NFTShapeLoader_Classic") as GameObject);
+        return Object.Instantiate(ABEYController.i.GetPrefab("NFTShapeLoader_Classic") as GameObject);
     }
 
     private NFTShapeFactory() { }

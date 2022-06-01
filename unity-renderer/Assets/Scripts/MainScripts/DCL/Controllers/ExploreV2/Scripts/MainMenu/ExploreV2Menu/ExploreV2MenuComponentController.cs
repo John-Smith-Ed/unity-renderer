@@ -55,7 +55,7 @@ public class ExploreV2MenuComponentController : IExploreV2MenuComponentControlle
     internal BaseVariable<bool> controlsVisible => DataStore.i.HUDs.controlsVisible;
     internal BaseVariable<bool> emotesVisible => DataStore.i.HUDs.emotesVisible;
     internal BaseVariable<bool> chatInputVisible => DataStore.i.HUDs.chatInputVisible;
-    internal BooleanVariable playerInfoCardVisible => CommonScriptableObjects.playerInfoCardVisibleState;
+    internal BooleanVariable playerInfoCardVisible => ABEYController.i.CommonScriptables.playerInfoCardVisibleState;
     internal MouseCatcher mouseCatcher;
 
     public void Initialize()
@@ -234,7 +234,7 @@ public class ExploreV2MenuComponentController : IExploreV2MenuComponentControlle
         }
         else
         {
-            CommonScriptableObjects.isFullscreenHUDOpen.Set(false);
+            ABEYController.i.CommonScriptables.isFullscreenHUDOpen.Set(false);
             placesAndEventsVisible.Set(false);
             avatarEditorVisible.Set(false);
             profileCardIsOpen.Set(false);
@@ -247,7 +247,7 @@ public class ExploreV2MenuComponentController : IExploreV2MenuComponentControlle
         view.SetVisible(visible);
     }
 
-    internal void OnAfterShowAnimation() { CommonScriptableObjects.isFullscreenHUDOpen.Set(true); }
+    internal void OnAfterShowAnimation() { ABEYController.i.CommonScriptables.isFullscreenHUDOpen.Set(true); }
 
     internal void IsPlacesAndEventsSectionInitializedChanged(bool current, bool previous)
     {

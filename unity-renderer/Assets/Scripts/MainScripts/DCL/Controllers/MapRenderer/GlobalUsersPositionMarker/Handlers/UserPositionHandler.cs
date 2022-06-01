@@ -11,11 +11,11 @@ internal class UserPositionHandler : IDisposable
 
     public UserPositionHandler()
     {
-        playerCoords = CommonScriptableObjects.playerCoords.Get();
-        CommonScriptableObjects.playerCoords.OnChange += OnPlayerCoords;
+        playerCoords = ABEYController.i.CommonScriptables.playerCoords.Get();
+        ABEYController.i.CommonScriptables.playerCoords.OnChange += OnPlayerCoords;
     }
 
-    public void Dispose() { CommonScriptableObjects.playerCoords.OnChange -= OnPlayerCoords; }
+    public void Dispose() { ABEYController.i.CommonScriptables.playerCoords.OnChange -= OnPlayerCoords; }
 
     private void OnPlayerCoords(Vector2Int current, Vector2Int prev)
     {

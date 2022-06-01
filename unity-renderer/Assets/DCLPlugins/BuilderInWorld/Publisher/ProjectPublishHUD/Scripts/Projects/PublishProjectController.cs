@@ -47,7 +47,7 @@ namespace DCL.Builder
 
         private PublishInfo.ProjectRotation projectRotation = PublishInfo.ProjectRotation.NORTH;
 
-        public PublishProjectController() { detailView = GameObject.Instantiate(Resources.Load<PublishProjectDetailView>(DETAIL_PREFAB_PATH)); }
+        public PublishProjectController() { detailView = GameObject.Instantiate(ABEYController.i.GetPrefab(DETAIL_PREFAB_PATH).GetComponent<PublishProjectDetailView>()); }
 
         public void Initialize()
         {

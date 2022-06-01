@@ -40,14 +40,14 @@ public class UnreadNotificationBadge : MonoBehaviour
         currentChatController = chatController;
         currentUserId = userId;
 
-        CommonScriptableObjects.lastReadChatMessages.TryGetValue(currentUserId, out currentTimestampReading);
+        ABEYController.i.CommonScriptables.lastReadChatMessages.TryGetValue(currentUserId, out currentTimestampReading);
         UpdateUnreadMessages();
 
         currentChatController.OnAddMessage -= ChatController_OnAddMessage;
         currentChatController.OnAddMessage += ChatController_OnAddMessage;
 
-        CommonScriptableObjects.lastReadChatMessages.OnAdded -= LastReadChatMessages_OnAdded;
-        CommonScriptableObjects.lastReadChatMessages.OnAdded += LastReadChatMessages_OnAdded;
+        ABEYController.i.CommonScriptables.lastReadChatMessages.OnAdded -= LastReadChatMessages_OnAdded;
+        ABEYController.i.CommonScriptables.lastReadChatMessages.OnAdded += LastReadChatMessages_OnAdded;
     }
 
     private void OnDestroy()
@@ -56,7 +56,7 @@ public class UnreadNotificationBadge : MonoBehaviour
             return;
 
         currentChatController.OnAddMessage -= ChatController_OnAddMessage;
-        CommonScriptableObjects.lastReadChatMessages.OnAdded -= LastReadChatMessages_OnAdded;
+        ABEYController.i.CommonScriptables.lastReadChatMessages.OnAdded -= LastReadChatMessages_OnAdded;
     }
 
     private void ChatController_OnAddMessage(ChatMessage newMessage)

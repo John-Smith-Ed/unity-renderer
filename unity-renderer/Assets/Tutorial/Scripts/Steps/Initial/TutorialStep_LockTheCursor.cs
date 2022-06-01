@@ -11,7 +11,7 @@ namespace DCL.Tutorial
         {
             base.OnStepStart();
 
-            CommonScriptableObjects.featureKeyTriggersBlocked.Set(true);
+            ABEYController.i.CommonScriptables.featureKeyTriggersBlocked.Set(true);
 
             tutorialController?.hudController?.taskbarHud?.SetVisibility(false);
         }

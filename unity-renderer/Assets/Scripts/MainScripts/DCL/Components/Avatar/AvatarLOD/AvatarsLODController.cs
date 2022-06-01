@@ -28,7 +28,7 @@ namespace DCL
 
         public AvatarsLODController ()
         {
-            gpuSkinningThrottlingCurve = Resources.Load<GPUSkinningThrottlingCurveSO>("GPUSkinningThrottlingCurve");
+            gpuSkinningThrottlingCurve = ABEYController.i.OtherRefs.GPUSkinningThrottlingCurveSO;
             DataStore.i.featureFlags.flags.OnChange += OnFeatureFlagChanged;
         }
 
@@ -92,8 +92,8 @@ namespace DCL
             if (!enabled)
                 return;
 
-            cameraPosition = CommonScriptableObjects.cameraPosition.Get();
-            cameraForward = CommonScriptableObjects.cameraForward.Get();
+            cameraPosition = ABEYController.i.CommonScriptables.cameraPosition.Get();
+            cameraForward = ABEYController.i.CommonScriptables.cameraForward.Get();
 
             UpdateAllLODs(maxAvatars.Get(), maxImpostors.Get());
         }
@@ -106,7 +106,7 @@ namespace DCL
             int impostorCount = 0; //Impostor
 
             float simpleAvatarDistance = this.simpleAvatarDistance.Get();
-            Vector3 ownPlayerPosition = CommonScriptableObjects.playerUnityPosition.Get();
+            Vector3 ownPlayerPosition = ABEYController.i.CommonScriptables.playerUnityPosition.Get();
 
             overlappingTracker.Reset();
 
@@ -155,7 +155,7 @@ namespace DCL
 
         private bool IsInInvisibleDistance(float distance)
         {
-            bool firstPersonCamera = CommonScriptableObjects.cameraMode.Get() == CameraMode.ModeId.FirstPerson;
+            bool firstPersonCamera = ABEYController.i.CommonScriptables.cameraMode.Get() == CameraMode.ModeId.FirstPerson;
 
             return firstPersonCamera ? distance < AVATARS_INVISIBILITY_DISTANCE : distance < 0f; // < 0 is behind camera
         }

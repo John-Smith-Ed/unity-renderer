@@ -19,12 +19,12 @@ internal class SpawnPointIndicator : ISpawnPointIndicator
     public SpawnPointIndicator(SpawnPointIndicatorMonoBehaviour spawnPointIndicatorBehaviour)
     {
         this.spawnPointIndicatorBehaviour = spawnPointIndicatorBehaviour;
-        CommonScriptableObjects.worldOffset.OnChange += OnWorldReposition;
+        ABEYController.i.CommonScriptables.worldOffset.OnChange += OnWorldReposition;
     }
 
     void IDisposable.Dispose()
     {
-        CommonScriptableObjects.worldOffset.OnChange -= OnWorldReposition;
+        ABEYController.i.CommonScriptables.worldOffset.OnChange -= OnWorldReposition;
         if (!spawnPointIndicatorBehaviour.isDestroyed)
         {
             Object.Destroy(spawnPointIndicatorBehaviour.gameObject);

@@ -56,8 +56,8 @@ namespace DCL.SettingsCommon
 
         public Settings Build()
         {
-            var graphicsQualitySettingsPreset = Resources.Load<QualitySettingsData>(graphicsQualitySettingsPresetPath);
-            var audioMixer = Resources.Load<AudioMixer>(audioMixerPath);
+            var graphicsQualitySettingsPreset = ABEYController.i.OtherRefs.QualitySettingsData;
+            var audioMixer = ABEYController.i.OtherRefs.AudioMixer;;
 
             return new Settings(graphicsQualitySettingsPreset,
                 audioMixer,

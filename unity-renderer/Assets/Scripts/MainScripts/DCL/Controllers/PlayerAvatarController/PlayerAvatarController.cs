@@ -40,7 +40,7 @@ public class PlayerAvatarController : MonoBehaviour
     { 
         DataStore.i.common.isPlayerRendererLoaded.Set(false);
         IAnalytics analytics = DCL.Environment.i.platform.serviceProviders.analytics;
-        playerAvatarAnalytics = new PlayerAvatarAnalytics(analytics, CommonScriptableObjects.playerCoords);
+        playerAvatarAnalytics = new PlayerAvatarAnalytics(analytics, ABEYController.i.CommonScriptables.playerCoords);
 
         AvatarAnimatorLegacy animator = GetComponentInChildren<AvatarAnimatorLegacy>();
         avatar = new AvatarSystem.Avatar(
@@ -59,7 +59,7 @@ public class PlayerAvatarController : MonoBehaviour
             UserProfileController.i.OnBaseWereablesFail += OnBaseWereablesFail;
         }
 
-        CommonScriptableObjects.rendererState.AddLock(this);
+        ABEYController.i.CommonScriptables.rendererState.AddLock(this);
 
 #if UNITY_WEBGL
         fatalErrorReporter = new WebFatalErrorReporter();
@@ -154,7 +154,7 @@ public class PlayerAvatarController : MonoBehaviour
                 wearableItems.Add(profile.avatar.bodyShape);
 
                 //temporarily hardcoding the embedded emotes until the user profile provides the equipped ones
-                var embeddedEmotesSo = Resources.Load<EmbeddedEmotesSO>("EmbeddedEmotes");
+                var embeddedEmotesSo = ABEYController.i.OtherRefs.EmbeddedEmotes;
                 wearableItems.AddRange(embeddedEmotesSo.emotes.Select(x => x.id));
 
                 await avatar.Load(wearableItems, new AvatarSettings
@@ -196,7 +196,7 @@ public class PlayerAvatarController : MonoBehaviour
 
         enableCameraCheck = true;
         avatarCollider.gameObject.SetActive(true);
-        CommonScriptableObjects.rendererState.RemoveLock(this);
+        ABEYController.i.CommonScriptables.rendererState.RemoveLock(this);
         DataStore.i.common.isPlayerRendererLoaded.Set(true);
     }
 

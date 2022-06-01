@@ -83,7 +83,7 @@ namespace DCL
                 return;
             }
 
-            bool renderingEnabled = CommonScriptableObjects.rendererState.Get();
+            bool renderingEnabled = ABEYController.i.CommonScriptables.rendererState.Get();
 
             if (!renderingEnabled || !useMaterialTransition)
             {

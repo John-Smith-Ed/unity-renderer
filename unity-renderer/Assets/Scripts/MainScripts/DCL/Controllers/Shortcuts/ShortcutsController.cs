@@ -16,14 +16,14 @@ public class ShortcutsController : IDisposable
 
     public ShortcutsController()
     {
-        toggleQuestsPanel = Resources.Load<InputAction_Trigger>("ToggleQuestsPanelHUD");
-        toggleAvatarNames = Resources.Load<InputAction_Trigger>("ToggleAvatarNames");
-        toggleControls = Resources.Load<InputAction_Trigger>("ToggleControlsHud");
-        toggleAvatarEditor = Resources.Load<InputAction_Trigger>("ToggleAvatarEditorHud");
-        toggleStartMenu = Resources.Load<InputAction_Trigger>("ToggleStartMenu");
-        toggleNavMap = Resources.Load<InputAction_Trigger>("ToggleNavMap");
-        togglePlacesAndEvents = Resources.Load<InputAction_Trigger>("TogglePlacesAndEventsHud");
-        toggleExpressionsHUD = Resources.Load<InputAction_Hold>("OpenExpressions");
+        toggleQuestsPanel = ABEYController.i.GetInputActionTrigger("ToggleQuestsPanelHUD");
+        toggleAvatarNames = ABEYController.i.GetInputActionTrigger("ToggleAvatarNames");
+        toggleControls = ABEYController.i.GetInputActionTrigger("ToggleControlsHud");
+        toggleAvatarEditor = ABEYController.i.GetInputActionTrigger("ToggleAvatarEditorHud");
+        toggleStartMenu = ABEYController.i.GetInputActionTrigger("ToggleStartMenu");
+        toggleNavMap = ABEYController.i.GetInputActionTrigger("ToggleNavMap");
+        togglePlacesAndEvents = ABEYController.i.GetInputActionTrigger("TogglePlacesAndEventsHud");
+        toggleExpressionsHUD = ABEYController.i.GetInputActionHold("OpenExpressions");
 
         Subscribe();
     }

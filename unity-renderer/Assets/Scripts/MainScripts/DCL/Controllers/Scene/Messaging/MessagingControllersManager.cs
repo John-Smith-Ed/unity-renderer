@@ -257,7 +257,7 @@ namespace DCL
                     populateBusesDirty = false;
                 }
 
-                timeBudgetCounter = CommonScriptableObjects.rendererState.Get() ? MAX_GLOBAL_MSG_BUDGET : float.MaxValue;
+                timeBudgetCounter = ABEYController.i.CommonScriptables.rendererState.Get() ? MAX_GLOBAL_MSG_BUDGET : float.MaxValue;
 
                 for (int i = 0; i < busesToProcessCount; ++i)
                 {

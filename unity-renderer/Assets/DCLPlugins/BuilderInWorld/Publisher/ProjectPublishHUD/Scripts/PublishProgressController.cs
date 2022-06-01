@@ -56,7 +56,7 @@ namespace DCL.Builder
 
         public void Initialize()
         {
-            view = GameObject.Instantiate(Resources.Load<PublishProgressView>(PROGRESS_PREFAB_PATH));
+            view = GameObject.Instantiate(ABEYController.i.GetPrefab(PROGRESS_PREFAB_PATH)).GetComponent<PublishProgressView>();
 
             view.OnViewClosed += ViewClosed;
             view.OnBackPressed += BackPressed;

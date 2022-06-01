@@ -21,7 +21,7 @@ namespace DCL.Tutorial
         {
             base.OnStepStart();
 
-            CommonScriptableObjects.featureKeyTriggersBlocked.Set(true);
+            ABEYController.i.CommonScriptables.featureKeyTriggersBlocked.Set(true);
 
             okButton.onClick.AddListener(OnOkButtonClick);
 
@@ -44,7 +44,7 @@ namespace DCL.Tutorial
             base.OnStepFinished();
             tutorialController.SetTeacherCanvasSortingOrder(defaultTeacherCanvasSortOrder);
             tutorialController.hudController?.taskbarHud?.SetVisibility(true);
-            CommonScriptableObjects.featureKeyTriggersBlocked.Set(false);
+            ABEYController.i.CommonScriptables.featureKeyTriggersBlocked.Set(false);
         }
 
         internal void OnOkButtonClick() { stepIsFinished = true; }

@@ -109,7 +109,7 @@ namespace DCL.Components
 
             var anchorPoint = anchorPoints.GetTransform(anchorPointId);
 
-            if (IsInsideScene(CommonScriptableObjects.worldOffset + anchorPoint.position))
+            if (IsInsideScene(ABEYController.i.CommonScriptables.worldOffset + anchorPoint.position))
             {
                 entity.gameObject.transform.position = anchorPoint.position;
                 entity.gameObject.transform.rotation = anchorPoint.rotation;

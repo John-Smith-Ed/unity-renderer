@@ -49,7 +49,7 @@ public class UsersAroundListHUDController : IHUD
         otherPlayers.OnAdded -= OnOtherPlayersStatusAdded;
         otherPlayers.OnRemoved -= OnOtherPlayerStatusRemoved;
 
-        CommonScriptableObjects.rendererState.OnChange -= OnRendererStateChanged;
+        ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRendererStateChanged;
         profile.OnUpdate -= OnUserProfileUpdate;
 
         if (usersListView != null)
@@ -120,7 +120,7 @@ public class UsersAroundListHUDController : IHUD
         otherPlayers.OnAdded += OnOtherPlayersStatusAdded;
         otherPlayers.OnRemoved += OnOtherPlayerStatusRemoved;
 
-        CommonScriptableObjects.rendererState.OnChange += OnRendererStateChanged;
+        ABEYController.i.CommonScriptables.rendererState.OnChange += OnRendererStateChanged;
         profile.OnUpdate += OnUserProfileUpdate;
     }
 

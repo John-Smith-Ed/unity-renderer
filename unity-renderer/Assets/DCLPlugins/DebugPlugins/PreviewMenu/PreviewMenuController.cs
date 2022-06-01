@@ -19,23 +19,23 @@ internal class PreviewMenuController : IDisposable
 
     public PreviewMenuController()
     {
-        var menuViewResource = Resources.Load<PreviewMenuView>(MENU_VIEW_RES_PATH);
-        menuView = Object.Instantiate(menuViewResource);
+      
+        menuView = Object.Instantiate(ABEYController.i.GetPrefab(MENU_VIEW_RES_PATH)).GetComponent<PreviewMenuView>();
         menuView.name = "_PreviewMenu";
         menuView.SetVisible(false);
 
-        var visibilityToggleViewResource = Resources.Load<PreviewMenuVisibilityToggleView>(TOGGLEVISIBILITY_VIEW_RES_PATH);
-        showFps = Object.Instantiate(visibilityToggleViewResource);
+        var visibilityToggleViewResource = ABEYController.i.GetPrefab(TOGGLEVISIBILITY_VIEW_RES_PATH);
+        showFps = Object.Instantiate(visibilityToggleViewResource).GetComponent<PreviewMenuVisibilityToggleView>();
         showFps.SetUp("FPS PANEL", IsFPSPanelOn, OnFPSPanelToggle);
 
-        showBoundingBox = Object.Instantiate(visibilityToggleViewResource);
+        showBoundingBox = Object.Instantiate(visibilityToggleViewResource).GetComponent<PreviewMenuVisibilityToggleView>();
         showBoundingBox.SetUp("BOUNDING BOXES", IsBoundingBoxOn, OnBoundingBoxToggle);
 
-        spawnPoints = Object.Instantiate(visibilityToggleViewResource);
+        spawnPoints = Object.Instantiate(visibilityToggleViewResource).GetComponent<PreviewMenuVisibilityToggleView>();
         spawnPoints.SetUp("SPAWN POINTS", IsSpawnPointsOn, OnSpawnPointsToggle);
 
-        var positionViewResource = Resources.Load<PreviewMenuPositionView>(POSITION_VIEW_RES_PATH);
-        positionView = Object.Instantiate(positionViewResource);
+        
+        positionView = Object.Instantiate(ABEYController.i.GetPrefab(POSITION_VIEW_RES_PATH)).GetComponent<PreviewMenuPositionView>();
 
         menuView.AddMenuItem(positionView.transform);
         menuView.AddMenuItem(showFps.transform);

@@ -98,7 +98,7 @@ namespace DCL
 
         private static GameObject LoadAndInstantiate(string name)
         {
-            GameObject instance = UnityEngine.Object.Instantiate(Resources.Load(name)) as GameObject;
+            GameObject instance = UnityEngine.Object.Instantiate(ABEYController.i.GetPrefab(name)) as GameObject;
             instance.name = name;
             return instance;
         }

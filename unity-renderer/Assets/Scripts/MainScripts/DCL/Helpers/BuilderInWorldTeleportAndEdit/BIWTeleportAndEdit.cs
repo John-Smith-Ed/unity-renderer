@@ -36,7 +36,7 @@ public static class BIWTeleportAndEdit
         yield return new WaitUntil(() => isPlayerTeleported);
         DataStore.i.player.lastTeleportPosition.OnChange -= OnPlayerTeleportToNewPosition;
 
-        yield return new WaitUntil(() => CommonScriptableObjects.rendererState.Get());
+        yield return new WaitUntil(() => ABEYController.i.CommonScriptables.rendererState.Get());
         yield return null;
 
         inProgress = false;

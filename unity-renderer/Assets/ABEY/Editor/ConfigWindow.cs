@@ -49,10 +49,10 @@ namespace ABEY.ABEYEditor {
 
             if(editingConfig!=null){
                 GUILayout.Label(editingConfig.name);
-                editingConfig.DrawDefaultInspector();  
+                editingConfig.DrawDefaultInspector();
             }
             
-         
+            
         }
 
         void LoadConfigs(SerializedProperty parent){

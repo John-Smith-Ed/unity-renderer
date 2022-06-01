@@ -374,10 +374,26 @@ namespace ABEY{
             ws.Close();
         }
 
+        public void ProccessQueue(){
+            // due to the use of unity's SendMessage with sockets we run into the bug of running SendMessage in the wrong thread which fails quitely
+            // for now we will use the same slow ass queueing proccess they did till I rewrite this garbage
+            if(HandleMessage.messages.Count>0){
+                HandleMessage.Process(HandleMessage.messages.Dequeue());
+            }if(HandleHUDMessage.messages.Count>0){
+                HandleHUDMessage.ConfigureHUDElementMessage h =  HandleHUDMessage.messages.Dequeue();
+                HUDController.i.ConfigureHUDElement( h.hudElementId,  h.configuration,  h.extraPayload);
+            }
+            
+        }
+
     }
 
     // The main messeging handling
     public class HandleMessage{
+        // due to the use of unity's SendMessage with sockets we run into the bug of running SendMessage in the wrong thread which fails quitely
+        // for now we will use the same slow ass queueing proccess they did till I rewrite this garbage
+        public static Queue<Message> messages = new Queue<Message>();
+
         // this is a cached list of gameobjects that handle messages
         // i need to see if there is a better way, current this is ok but its the least prefomant way to do it
         // its stupid simple though
@@ -487,8 +503,13 @@ namespace ABEY{
             }
         }
         
-        // The slow way - if not direct check for in dict and then run slow gameobject serching send/reflection
+        // due to the use of unity's SendMessage with sockets we run into the bug of running SendMessage in the wrong thread which fails quitely
+        // for now we will use the same slow ass queueing proccess they did till I rewrite this garbage
         public static void Default(Message msg){
+            messages.Enqueue(msg);
+        }
+        // The slow way - if not direct check for in dict and then run slow gameobject serching send/reflection
+        public static void Process(Message msg){
             Debug.Log($"DEFAULT: {msg.type}");
             string bridgeName = "Bridges"; // Default bridge
             messageTypeToBridgeName.TryGetValue(msg.type, out bridgeName);
@@ -505,6 +526,7 @@ namespace ABEY{
 
             // use the slow 'send' message to call the method
             if (bridgeObject != null) {
+                Debug.Log($"SendMessage({msg.type}, {msg.payload})");
                 bridgeObject.SendMessage(msg.type, msg.payload);
             }
         }
@@ -513,9 +535,10 @@ namespace ABEY{
 
     // HUD messeging handling
     public class HandleHUDMessage{
+        public static Queue<ConfigureHUDElementMessage> messages = new Queue<ConfigureHUDElementMessage>();
 
         [System.Serializable]
-        class ConfigureHUDElementMessage {
+        public class ConfigureHUDElementMessage {
             public HUDElementID hudElementId;
             public HUDConfiguration configuration;
             public string extraPayload;
@@ -526,8 +549,8 @@ namespace ABEY{
             if(message==null){
                 Debug.LogError($"failed {payload}");
             }
-            
-            HUDController.i.ConfigureHUDElement(message.hudElementId, message.configuration, message.extraPayload);
+            messages.Enqueue(message);
+            //HUDController.i.ConfigureHUDElement(message.hudElementId, message.configuration, message.extraPayload);
         }
 
         public static void TriggerSelfUserExpression(string id)             => UserProfile.GetOwnUserProfile().SetAvatarExpression(id); 

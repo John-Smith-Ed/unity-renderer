@@ -60,7 +60,7 @@ namespace DCL.Tutorial
                 controlsHasBeenOpened = true;
 
             tutorialController?.hudController?.taskbarHud?.SetVisibility(true);
-            CommonScriptableObjects.featureKeyTriggersBlocked.Set(false);
+            ABEYController.i.CommonScriptables.featureKeyTriggersBlocked.Set(false);
         }
 
         internal void ControlsHud_OnControlsClosed()

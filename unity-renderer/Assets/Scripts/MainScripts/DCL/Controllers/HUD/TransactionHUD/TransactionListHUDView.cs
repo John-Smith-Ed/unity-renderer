@@ -16,7 +16,7 @@ public class TransactionListHUDView : MonoBehaviour
 
     internal static TransactionListHUDView Create()
     {
-        TransactionListHUDView view = Instantiate(Resources.Load<TransactionListHUDView>(VIEW_PATH));
+        TransactionListHUDView view = Instantiate(ABEYController.i.GetPrefab(VIEW_PATH)).GetComponent<TransactionListHUDView>();
         view.Initialize();
         return view;
     }
@@ -37,7 +37,7 @@ public class TransactionListHUDView : MonoBehaviour
         if (transactionModel == null)
             return null;
         
-        TransactionHUD transactionHUD = Instantiate(Resources.Load<TransactionHUD>(VIEW_CHILD_PATH), transactionPanel);
+        TransactionHUD transactionHUD = Instantiate(ABEYController.i.GetPrefab(VIEW_CHILD_PATH), transactionPanel).GetComponent<TransactionHUD>();
         ShowTransaction(transactionHUD, transactionModel);
         return transactionHUD;
     }

@@ -9,7 +9,7 @@ namespace DCL
     {
         public delegate void ButtonListenerCallback(WebInterface.ACTION_BUTTON buttonId, EVENT eventType, bool useRaycast, bool enablePointerEvent);
         
-        private static bool renderingEnabled => CommonScriptableObjects.rendererState.Get();
+        private static bool renderingEnabled => ABEYController.i.CommonScriptables.rendererState.Get();
         private static InputController_Legacy instance = null;
 
         public static InputController_Legacy i
@@ -126,7 +126,7 @@ namespace DCL
                 switch (btnMap.type)
                 {
                     case BUTTON_TYPE.MOUSE:
-                        if (CommonScriptableObjects.allUIHidden.Get())
+                        if (ABEYController.i.CommonScriptables.allUIHidden.Get())
                             break;
                         if (Input.GetMouseButtonDown(btnMap.buttonNum))
                             RaiseEvent(btnMap.buttonId, EVENT.BUTTON_DOWN, btnMap.useRaycast, btnMap.enablePointerEvent);
@@ -134,7 +134,7 @@ namespace DCL
                             RaiseEvent(btnMap.buttonId, EVENT.BUTTON_UP, btnMap.useRaycast, btnMap.enablePointerEvent);
                         break;
                     case BUTTON_TYPE.KEYBOARD:
-                        if (CommonScriptableObjects.allUIHidden.Get())
+                        if (ABEYController.i.CommonScriptables.allUIHidden.Get())
                             break;
                         if (Input.GetKeyDown((KeyCode) btnMap.buttonNum))
                             RaiseEvent(btnMap.buttonId, EVENT.BUTTON_DOWN, btnMap.useRaycast, btnMap.enablePointerEvent);

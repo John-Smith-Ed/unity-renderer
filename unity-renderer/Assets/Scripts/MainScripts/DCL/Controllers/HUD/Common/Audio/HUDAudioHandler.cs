@@ -24,14 +24,14 @@ public class HUDAudioHandler : MonoBehaviour
         i = this;
 
         RefreshChatLastCheckedTimestamp();
-        CommonScriptableObjects.rendererState.OnChange += OnRendererStateChange;
-        CommonScriptableObjects.allUIHidden.OnChange += OnAllUIHiddenChange;
+        ABEYController.i.CommonScriptables.rendererState.OnChange += OnRendererStateChange;
+        ABEYController.i.CommonScriptables.allUIHidden.OnChange += OnAllUIHiddenChange;
     }
 
     private void OnDestroy()
     {
-        CommonScriptableObjects.rendererState.OnChange -= OnRendererStateChange;
-        CommonScriptableObjects.allUIHidden.OnChange -= OnAllUIHiddenChange;
+        ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRendererStateChange;
+        ABEYController.i.CommonScriptables.allUIHidden.OnChange -= OnAllUIHiddenChange;
     }
 
     public void RefreshChatLastCheckedTimestamp()

@@ -166,8 +166,8 @@ namespace DCL.Tutorial
             DataStore.i.common.isTutorialRunning.Set(true);
             DataStore.i.virtualAudioMixer.sceneSFXVolume.Set(0f);
             this.userAlreadyDidTheTutorial = userAlreadyDidTheTutorial;
-            CommonScriptableObjects.allUIHidden.Set(false);
-            CommonScriptableObjects.tutorialActive.Set(true);
+            ABEYController.i.CommonScriptables.allUIHidden.Set(false);
+            ABEYController.i.CommonScriptables.tutorialActive.Set(true);
             openedFromDeepLink = Convert.ToBoolean(fromDeepLink);
             this.tutorialType = tutorialType;
 
@@ -178,8 +178,8 @@ namespace DCL.Tutorial
 
             WebInterface.SetDelightedSurveyEnabled(false);
 
-            if (!CommonScriptableObjects.rendererState.Get())
-                CommonScriptableObjects.rendererState.OnChange += OnRenderingStateChanged;
+            if (!ABEYController.i.CommonScriptables.rendererState.Get())
+                ABEYController.i.CommonScriptables.rendererState.OnChange += OnRenderingStateChanged;
             else
                 OnRenderingStateChanged(true, false);
 
@@ -191,7 +191,7 @@ namespace DCL.Tutorial
         /// </summary>
         public void SetTutorialDisabled()
         {
-            CommonScriptableObjects.featureKeyTriggersBlocked.Set(false);
+            ABEYController.i.CommonScriptables.featureKeyTriggersBlocked.Set(false);
 
             if (executeStepsCoroutine != null)
             {
@@ -220,9 +220,9 @@ namespace DCL.Tutorial
 
             hudController?.settingsPanelHud?.SetTutorialButtonEnabled(true);
 
-            CommonScriptableObjects.tutorialActive.Set(false);
+            ABEYController.i.CommonScriptables.tutorialActive.Set(false);
 
-            CommonScriptableObjects.rendererState.OnChange -= OnRenderingStateChanged;
+            ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRenderingStateChanged;
 
             OnTutorialDisabled?.Invoke();
         }
@@ -434,7 +434,7 @@ namespace DCL.Tutorial
             if (!renderingEnabled)
                 return;
 
-            CommonScriptableObjects.rendererState.OnChange -= OnRenderingStateChanged;
+            ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRenderingStateChanged;
 
             playerIsInGenesisPlaza = IsPlayerInsideGenesisPlaza();
 
@@ -669,12 +669,12 @@ namespace DCL.Tutorial
                 hudController?.profileHud?.SetVisibility(false);
             }
 
-            CommonScriptableObjects.cameraBlocked.Set(true);
+            ABEYController.i.CommonScriptables.cameraBlocked.Set(true);
 
             yield return null;
-            yield return new WaitUntil(() => !CommonScriptableObjects.cameraIsBlending.Get());
+            yield return new WaitUntil(() => !ABEYController.i.CommonScriptables.cameraIsBlending.Get());
 
-            CommonScriptableObjects.cameraBlocked.Set(false);
+            ABEYController.i.CommonScriptables.cameraBlocked.Set(false);
 
             if (!hideUIs)
             {

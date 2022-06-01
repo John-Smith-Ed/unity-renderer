@@ -46,11 +46,11 @@ namespace DCL.Components
             OnPointerExitReport?.Invoke();
         }
 
-        void Awake() { CommonScriptableObjects.playerInfoCardVisibleState.OnChange += ReEnableOnInfoCardClosed; }
+        void Awake() { ABEYController.i.CommonScriptables.playerInfoCardVisibleState.OnChange += ReEnableOnInfoCardClosed; }
 
         void OnDestroy()
         {
-            CommonScriptableObjects.playerInfoCardVisibleState.OnChange -= ReEnableOnInfoCardClosed;
+            ABEYController.i.CommonScriptables.playerInfoCardVisibleState.OnChange -= ReEnableOnInfoCardClosed;
             eventHandler?.Dispose();
             CollidersManager.i.RemoveEntityCollider(entity, collider);
         }
@@ -151,7 +151,7 @@ namespace DCL.Components
                 return false;
             }
 
-            string playerSceneId = CommonScriptableObjects.sceneID.Get();
+            string playerSceneId = ABEYController.i.CommonScriptables.sceneID.Get();
 
             if (string.IsNullOrEmpty(playerSceneId))
             {

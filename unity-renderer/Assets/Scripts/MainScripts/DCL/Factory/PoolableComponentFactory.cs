@@ -34,7 +34,7 @@ namespace DCL
 
         Dictionary<CLASS_ID_COMPONENT, Item> factoryDict;
 
-        public static PoolableComponentFactory Create() { return Resources.Load("RuntimeComponentFactory") as PoolableComponentFactory; }
+        public static PoolableComponentFactory Create() { return ABEYController.i.OtherRefs.PoolableComponentFactory; }
 
         public void EnsureFactoryDictionary()
         {

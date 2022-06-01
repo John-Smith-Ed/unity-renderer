@@ -37,7 +37,7 @@ namespace NFTShape_Internal
 
         public void Dispose()
         {
-            CommonScriptableObjects.playerUnityPosition.OnChange -= OnPlayerPositionChanged;
+            ABEYController.i.CommonScriptables.playerUnityPosition.OnChange -= OnPlayerPositionChanged;
             asset.Dispose();
         }
 
@@ -94,8 +94,8 @@ namespace NFTShape_Internal
             camera = Camera.main;
             nftControllerT = hqImageConfig.controller.transform;
 
-            CommonScriptableObjects.playerUnityPosition.OnChange += OnPlayerPositionChanged;
-            OnPlayerPositionChanged(CommonScriptableObjects.playerUnityPosition, Vector3.zero);
+            ABEYController.i.CommonScriptables.playerUnityPosition.OnChange += OnPlayerPositionChanged;
+            OnPlayerPositionChanged(ABEYController.i.CommonScriptables.playerUnityPosition, Vector3.zero);
         }
 
         private void OnPlayerPositionChanged(Vector3 current, Vector3 prev)

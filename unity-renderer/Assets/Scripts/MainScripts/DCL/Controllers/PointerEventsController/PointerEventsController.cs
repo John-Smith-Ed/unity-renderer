@@ -15,7 +15,7 @@ namespace DCL
 {
     public class PointerEventsController : IPointerEventsController
     {
-        private static bool renderingEnabled => CommonScriptableObjects.rendererState.Get();
+        private static bool renderingEnabled => ABEYController.i.CommonScriptables.rendererState.Get();
         public System.Action OnPointerHoverStarts;
         public System.Action OnPointerHoverEnds;
 
@@ -72,7 +72,7 @@ namespace DCL
             if ( charCamera == null )
                 RetrieveCamera();
 
-            if (!CommonScriptableObjects.rendererState.Get() || charCamera == null)
+            if (!ABEYController.i.CommonScriptables.rendererState.Get() || charCamera == null)
                 return;
             if (!Utils.IsCursorLocked) return;
 

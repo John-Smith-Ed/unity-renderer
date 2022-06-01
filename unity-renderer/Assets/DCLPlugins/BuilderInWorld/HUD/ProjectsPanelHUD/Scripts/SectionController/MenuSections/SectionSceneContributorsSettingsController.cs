@@ -21,7 +21,7 @@ namespace DCL.Builder
         private string sceneId;
 
         public SectionSceneContributorsSettingsController() : this(
-            Object.Instantiate(Resources.Load<SectionSceneContributorsSettingsView>(VIEW_PREFAB_PATH)),
+            Object.Instantiate(ABEYController.i.GetPrefab(VIEW_PREFAB_PATH)).GetComponent<SectionSceneContributorsSettingsView>(),
             FriendsController.i
         ) { }
 

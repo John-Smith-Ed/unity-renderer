@@ -7,8 +7,8 @@ public class MinimapHUDController : IHUD
     private static bool VERBOSE = false;
 
     public MinimapHUDView view;
-    private FloatVariable minimapZoom => CommonScriptableObjects.minimapZoom;
-    private StringVariable currentSceneId => CommonScriptableObjects.sceneID;
+    private FloatVariable minimapZoom => ABEYController.i.CommonScriptables.minimapZoom;
+    private StringVariable currentSceneId => ABEYController.i.CommonScriptables.sceneID;
 
     public MinimapHUDModel model { get; private set; } = new MinimapHUDModel();
 
@@ -16,8 +16,8 @@ public class MinimapHUDController : IHUD
 
     public MinimapHUDController(MinimapHUDModel model)
     {
-        CommonScriptableObjects.playerCoords.OnChange += OnPlayerCoordsChange;
-        CommonScriptableObjects.builderInWorldNotNecessaryUIVisibilityStatus.OnChange += ChangeVisibilityForBuilderInWorld;
+        ABEYController.i.CommonScriptables.playerCoords.OnChange += OnPlayerCoordsChange;
+        ABEYController.i.CommonScriptables.builderInWorldNotNecessaryUIVisibilityStatus.OnChange += ChangeVisibilityForBuilderInWorld;
         minimapZoom.Set(1f);
         UpdateData(model);
     }
@@ -35,8 +35,8 @@ public class MinimapHUDController : IHUD
         if (view != null)
             UnityEngine.Object.Destroy(view.gameObject);
 
-        CommonScriptableObjects.playerCoords.OnChange -= OnPlayerCoordsChange;
-        CommonScriptableObjects.builderInWorldNotNecessaryUIVisibilityStatus.OnChange -= ChangeVisibilityForBuilderInWorld;
+        ABEYController.i.CommonScriptables.playerCoords.OnChange -= OnPlayerCoordsChange;
+        ABEYController.i.CommonScriptables.builderInWorldNotNecessaryUIVisibilityStatus.OnChange -= ChangeVisibilityForBuilderInWorld;
         MinimapMetadata.GetMetadata().OnSceneInfoUpdated -= OnOnSceneInfoUpdated;
     }
 
@@ -120,7 +120,7 @@ public class MinimapHUDController : IHUD
 
     private void OnOnSceneInfoUpdated(MinimapMetadata.MinimapSceneInfo sceneInfo)
     {
-        if (sceneInfo.parcels.Contains(CommonScriptableObjects.playerCoords.Get()))
+        if (sceneInfo.parcels.Contains(ABEYController.i.CommonScriptables.playerCoords.Get()))
         {
             MinimapMetadata.GetMetadata().OnSceneInfoUpdated -= OnOnSceneInfoUpdated;
             UpdateSceneName(sceneInfo.name);

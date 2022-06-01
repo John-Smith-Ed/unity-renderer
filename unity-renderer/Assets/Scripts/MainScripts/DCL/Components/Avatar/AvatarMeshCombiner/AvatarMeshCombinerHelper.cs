@@ -56,7 +56,7 @@ namespace DCL
         /// </summary>
         /// <param name="bonesContainer">A SkinnedMeshRenderer that must contain the bones and bindposes that will be used by the combined avatar.</param>
         /// <param name="renderersToCombine">A list of avatar parts to be combined</param>
-        public bool Combine(SkinnedMeshRenderer bonesContainer, SkinnedMeshRenderer[] renderersToCombine) { return Combine(bonesContainer, renderersToCombine, Resources.Load<Material>("Avatar Material")); }
+        public bool Combine(SkinnedMeshRenderer bonesContainer, SkinnedMeshRenderer[] renderersToCombine) { return Combine(bonesContainer, renderersToCombine, ABEYController.i.GetMaterial("Avatar Material")); }
 
         /// <summary>
         /// Combine will use AvatarMeshCombiner to generate a combined avatar mesh.

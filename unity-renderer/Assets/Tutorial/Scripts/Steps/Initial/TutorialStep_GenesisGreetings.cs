@@ -26,7 +26,7 @@ namespace DCL.Tutorial
         {
             base.OnStepStart();
 
-            CommonScriptableObjects.featureKeyTriggersBlocked.Set(true);
+            ABEYController.i.CommonScriptables.featureKeyTriggersBlocked.Set(true);
 
             titleText.text = titleText.text.Replace("{userName}", UserProfile.GetOwnUserProfile().userName);
 

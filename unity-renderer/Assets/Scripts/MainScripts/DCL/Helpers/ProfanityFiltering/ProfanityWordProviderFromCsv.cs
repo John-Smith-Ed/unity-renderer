@@ -20,7 +20,7 @@ public class ProfanityWordProviderFromCsv : IProfanityWordProvider
 
     private IEnumerable<string> Load(string csvFilePath)
     {
-        var asset = Resources.Load<TextAsset>(csvFilePath);
+        var asset = ABEYController.i.GetTextAsset(csvFilePath);
         return asset.text.Split(new[] {","}, StringSplitOptions.RemoveEmptyEntries);
     }
 }

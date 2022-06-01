@@ -58,9 +58,9 @@ namespace DCL
             currentWorldPosition = Vector3.zero;
         }
 
-        void OnEnable() { CommonScriptableObjects.worldOffset.OnChange += OnWorldReposition; }
+        void OnEnable() { ABEYController.i.CommonScriptables.worldOffset.OnChange += OnWorldReposition; }
 
-        void OnDisable() { CommonScriptableObjects.worldOffset.OnChange -= OnWorldReposition; }
+        void OnDisable() { ABEYController.i.CommonScriptables.worldOffset.OnChange -= OnWorldReposition; }
 
         void OnWorldReposition(Vector3 current, Vector3 previous) { avatarTransform.position = PositionUtils.WorldToUnityPosition(currentWorldPosition); }
 

@@ -40,7 +40,8 @@ public class LoadingHUDController : IHUD
     private void OnShowTipsChanged(bool current, bool previous) { view?.SetTips(current); }
     private void OnFadeInChange(bool current, bool previous)
     {
-        if (current)
+        Debug.Log("OnFadeInChange " + current);
+       // if (current)
             SetViewVisible(true, false);
     }
     private void OnFadeOutChange(bool current, bool previous)

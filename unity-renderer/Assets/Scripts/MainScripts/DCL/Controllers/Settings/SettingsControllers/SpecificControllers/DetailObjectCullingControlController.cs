@@ -24,7 +24,7 @@ namespace DCL.SettingsCommon.SettingsControllers.SpecificControllers
                 cullingController.MarkDirty();
             }
 
-            CommonSettingsScriptableObjects.detailObjectCullingDisabled.Set(!newBoolValue);
+            ABEYController.i.CommonScriptables.detailObjectCullingDisabled.Set(!newBoolValue);
         }
     }
 }

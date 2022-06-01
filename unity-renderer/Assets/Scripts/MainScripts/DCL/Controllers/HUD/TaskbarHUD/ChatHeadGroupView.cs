@@ -38,8 +38,8 @@ public class ChatHeadGroupView : MonoBehaviour
             friendsController.OnInitialized += FriendsController_OnInitialized;
         }
 
-        CommonScriptableObjects.rendererState.OnChange -= RendererState_OnChange;
-        CommonScriptableObjects.rendererState.OnChange += RendererState_OnChange;
+        ABEYController.i.CommonScriptables.rendererState.OnChange -= RendererState_OnChange;
+        ABEYController.i.CommonScriptables.rendererState.OnChange += RendererState_OnChange;
     }
 
     private void Start()
@@ -80,7 +80,7 @@ public class ChatHeadGroupView : MonoBehaviour
     private void RendererState_OnChange(bool current, bool previous)
     {
         rendererStateTimeMark = (ulong) System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-        CommonScriptableObjects.rendererState.OnChange -= RendererState_OnChange;
+        ABEYController.i.CommonScriptables.rendererState.OnChange -= RendererState_OnChange;
     }
 
     private void OnDestroy()
@@ -95,12 +95,12 @@ public class ChatHeadGroupView : MonoBehaviour
             friendsController.OnInitialized -= FriendsController_OnInitialized;
         }
 
-        CommonScriptableObjects.rendererState.OnChange -= RendererState_OnChange;
+        ABEYController.i.CommonScriptables.rendererState.OnChange -= RendererState_OnChange;
     }
 
     private void ChatController_OnAddMessage(DCL.Interface.ChatMessage obj)
     {
-        if (!CommonScriptableObjects.rendererState.Get() ||
+        if (!ABEYController.i.CommonScriptables.rendererState.Get() ||
             obj.messageType != DCL.Interface.ChatMessage.Type.PRIVATE ||
             obj.timestamp < rendererStateTimeMark)
             return;
@@ -151,7 +151,7 @@ public class ChatHeadGroupView : MonoBehaviour
 
             if (saveStatusInStorage)
             {
-                LatestOpenChatsList.Model existingHeadInStorage = CommonScriptableObjects.latestOpenChats.GetList().FirstOrDefault(c => c.userId == userId);
+                LatestOpenChatsList.Model existingHeadInStorage = ABEYController.i.CommonScriptables.latestOpenChats.GetList().FirstOrDefault(c => c.userId == userId);
                 if (existingHeadInStorage != null)
                 {
                     existingHeadInStorage.lastTimestamp = timestamp;
@@ -167,7 +167,7 @@ public class ChatHeadGroupView : MonoBehaviour
             gameObject.SetActive(true);
         }
 
-        GameObject prefab = Resources.Load(CHAT_HEAD_PATH) as GameObject;
+        GameObject prefab = ABEYController.i.GetPrefab(CHAT_HEAD_PATH) as GameObject;
         GameObject instance = Instantiate(prefab, container);
         ChatHeadButton chatHead = instance.GetComponent<ChatHeadButton>();
 
@@ -192,7 +192,7 @@ public class ChatHeadGroupView : MonoBehaviour
 
         if (saveStatusInStorage)
         {
-            CommonScriptableObjects.latestOpenChats.Add(new LatestOpenChatsList.Model { userId = userId, lastTimestamp = timestamp });
+            ABEYController.i.CommonScriptables.latestOpenChats.Add(new LatestOpenChatsList.Model { userId = userId, lastTimestamp = timestamp });
             SaveLatestOpenChats();
         }
 
@@ -246,8 +246,8 @@ public class ChatHeadGroupView : MonoBehaviour
 
         if (saveStatusInStorage)
         {
-            LatestOpenChatsList.Model chatHeadToRemove = CommonScriptableObjects.latestOpenChats.GetList().FirstOrDefault(c => c.userId == chatHead.profile.userId);
-            CommonScriptableObjects.latestOpenChats.Remove(chatHeadToRemove);
+            LatestOpenChatsList.Model chatHeadToRemove = ABEYController.i.CommonScriptables.latestOpenChats.GetList().FirstOrDefault(c => c.userId == chatHead.profile.userId);
+            ABEYController.i.CommonScriptables.latestOpenChats.Remove(chatHeadToRemove);
             SaveLatestOpenChats();
         }
     }
@@ -260,13 +260,13 @@ public class ChatHeadGroupView : MonoBehaviour
 
     private void SaveLatestOpenChats()
     {
-        PlayerPrefsUtils.SetString(PLAYER_PREFS_LATEST_OPEN_CHATS, JsonConvert.SerializeObject(CommonScriptableObjects.latestOpenChats.GetList()));
+        PlayerPrefsUtils.SetString(PLAYER_PREFS_LATEST_OPEN_CHATS, JsonConvert.SerializeObject(ABEYController.i.CommonScriptables.latestOpenChats.GetList()));
         PlayerPrefsUtils.Save();
     }
 
     private void LoadLatestOpenChats()
     {
-        CommonScriptableObjects.latestOpenChats.Clear();
+        ABEYController.i.CommonScriptables.latestOpenChats.Clear();
         List<LatestOpenChatsList.Model> latestOpenChatsFromStorage = JsonConvert.DeserializeObject<List<LatestOpenChatsList.Model>>(PlayerPrefs.GetString(PLAYER_PREFS_LATEST_OPEN_CHATS));
         if (latestOpenChatsFromStorage != null)
         {
@@ -275,7 +275,7 @@ public class ChatHeadGroupView : MonoBehaviour
                 if (UserProfileController.userProfilesCatalog.Get(item.userId) == null)
                     continue;
 
-                CommonScriptableObjects.latestOpenChats.Add(item);
+                ABEYController.i.CommonScriptables.latestOpenChats.Add(item);
                 AddChatHead(item.userId, item.lastTimestamp, false, forceLayoutUpdate: false);
             }
 

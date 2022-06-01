@@ -168,20 +168,20 @@ public class WorldChatWindowHUDController : IHUD
         if (timestamp != null && timestamp.Value > timeMark)
             timeMark = timestamp.Value;
 
-        CommonScriptableObjects.lastReadWorldChatMessages.Set(timeMark);
+        ABEYController.i.CommonScriptables.lastReadWorldChatMessages.Set(timeMark);
         SaveLatestReadWorldChatMessagesStatus();
     }
 
     private void SaveLatestReadWorldChatMessagesStatus()
     {
-        PlayerPrefsUtils.SetString(PLAYER_PREFS_LAST_READ_WORLD_CHAT_MESSAGES, CommonScriptableObjects.lastReadWorldChatMessages.Get().ToString());
+        PlayerPrefsUtils.SetString(PLAYER_PREFS_LAST_READ_WORLD_CHAT_MESSAGES, ABEYController.i.CommonScriptables.lastReadWorldChatMessages.Get().ToString());
         PlayerPrefsUtils.Save();
     }
 
     private void LoadLatestReadWorldChatMessagesStatus()
     {
-        CommonScriptableObjects.lastReadWorldChatMessages.Set(0);
+        ABEYController.i.CommonScriptables.lastReadWorldChatMessages.Set(0);
         string storedLastReadWorldChatMessagesString = PlayerPrefsUtils.GetString(PLAYER_PREFS_LAST_READ_WORLD_CHAT_MESSAGES);
-        CommonScriptableObjects.lastReadWorldChatMessages.Set(System.Convert.ToInt64(string.IsNullOrEmpty(storedLastReadWorldChatMessagesString) ? 0 : System.Convert.ToInt64(storedLastReadWorldChatMessagesString)));
+        ABEYController.i.CommonScriptables.lastReadWorldChatMessages.Set(System.Convert.ToInt64(string.IsNullOrEmpty(storedLastReadWorldChatMessagesString) ? 0 : System.Convert.ToInt64(storedLastReadWorldChatMessagesString)));
     }
 }

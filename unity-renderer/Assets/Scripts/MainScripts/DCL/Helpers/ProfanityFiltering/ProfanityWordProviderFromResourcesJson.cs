@@ -12,14 +12,14 @@ public class ProfanityWordProviderFromResourcesJson : IProfanityWordProvider
 
     public IEnumerable<string> GetExplicitWords()
     {
-        var asset = Resources.Load<TextAsset>(jsonFilePath);
+        var asset = ABEYController.i.GetTextAsset(jsonFilePath);
         var json = JsonUtility.FromJson<ProfanityWordsJsonStructure>(asset.text);
         return json.explicitWords;
     }
 
     public IEnumerable<string> GetNonExplicitWords()
     {
-        var asset = Resources.Load<TextAsset>(jsonFilePath);
+        var asset = ABEYController.i.GetTextAsset(jsonFilePath);
         var json = JsonUtility.FromJson<ProfanityWordsJsonStructure>(asset.text);
         return json.nonExplicitWords;
     }

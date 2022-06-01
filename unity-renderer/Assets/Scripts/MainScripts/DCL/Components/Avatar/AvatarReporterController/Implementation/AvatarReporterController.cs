@@ -44,7 +44,7 @@ public class AvatarReporterController : IAvatarReporterController
         if (wasInLoadedScene && !HasMoved(position))
             return;
 
-        Vector2Int coords = Utils.WorldToGridPosition(CommonScriptableObjects.worldOffset + position);
+        Vector2Int coords = Utils.WorldToGridPosition(ABEYController.i.CommonScriptables.worldOffset + position);
 
         if (wasInLoadedScene && lastCoords == coords)
         {

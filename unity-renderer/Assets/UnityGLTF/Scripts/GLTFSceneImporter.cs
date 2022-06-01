@@ -112,7 +112,7 @@ namespace UnityGLTF
         /// </summary>
         public bool initialVisibility { get; set; }
 
-        private static bool renderingIsDisabled => !CommonScriptableObjects.rendererState.Get();
+        private static bool renderingIsDisabled => !ABEYController.i.CommonScriptables.rendererState.Get();
 
         public bool forceGPUOnlyMesh = true;
         public bool forceGPUOnlyTex = true;

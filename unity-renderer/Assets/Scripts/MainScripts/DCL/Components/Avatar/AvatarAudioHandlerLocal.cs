@@ -62,7 +62,7 @@ namespace DCL
         // Faking footsteps when in first-person mode, since animations won't play
         void OnWalk(float distance)
         {
-            if (CommonScriptableObjects.cameraMode.Get() != CameraMode.ModeId.FirstPerson)
+            if (ABEYController.i.CommonScriptables.cameraMode.Get() != CameraMode.ModeId.FirstPerson)
                 return;
 
             if (intervalTimer < 0f)

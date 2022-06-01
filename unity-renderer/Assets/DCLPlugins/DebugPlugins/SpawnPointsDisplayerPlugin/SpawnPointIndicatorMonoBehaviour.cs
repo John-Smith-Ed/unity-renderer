@@ -23,7 +23,7 @@ internal class SpawnPointIndicatorMonoBehaviour : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 lookAtDir = areaTextTransform.position - CommonScriptableObjects.cameraPosition;
+        Vector3 lookAtDir = areaTextTransform.position - ABEYController.i.CommonScriptables.cameraPosition;
         areaTextTransform.forward = lookAtDir.normalized;
     }
 

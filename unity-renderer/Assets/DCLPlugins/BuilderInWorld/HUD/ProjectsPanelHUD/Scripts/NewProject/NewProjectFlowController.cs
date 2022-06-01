@@ -45,8 +45,8 @@ public class NewProjectFlowController : INewProjectFlowController
 
     public NewProjectFlowController()
     {
-        var prefab = Resources.Load<NewProjectFlowView>(VIEW_PATH);
-        var instantiateView = Object.Instantiate(prefab);
+        var prefab = ABEYController.i.GetPrefab(VIEW_PATH);
+        var instantiateView = Object.Instantiate(prefab).GetComponent<NewProjectFlowView>();
         Initilizate(instantiateView);
     }
 

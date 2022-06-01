@@ -68,7 +68,7 @@ public class BuilderMainPanelController : IHUD, IBuilderMainPanelController
 
     public BuilderMainPanelController()
     {
-        SetView(Object.Instantiate(Resources.Load<BuilderMainPanelView>(VIEW_PREFAB_PATH)));
+        SetView(Object.Instantiate(ABEYController.i.GetPrefab(VIEW_PREFAB_PATH).GetComponent<BuilderMainPanelView>()));
 
         configureBuilderInFullscreenMenu.OnChange += ConfigureBuilderInFullscreenMenuChanged;
         ConfigureBuilderInFullscreenMenuChanged(configureBuilderInFullscreenMenu.Get(), null);

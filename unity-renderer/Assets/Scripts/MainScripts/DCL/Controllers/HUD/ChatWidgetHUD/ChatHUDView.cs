@@ -147,7 +147,7 @@ public class ChatHUDView : MonoBehaviour
         if (IsSpamming(chatEntryModel.senderName))
             return;
 
-        var chatEntryGO = Instantiate(Resources.Load(ENTRY_PATH) as GameObject, chatEntriesContainer);
+        var chatEntryGO = Instantiate(ABEYController.i.GetPrefab(ENTRY_PATH) as GameObject, chatEntriesContainer);
         ChatEntry chatEntry = chatEntryGO.GetComponent<ChatEntry>();
 
         if (enableFadeoutMode && EntryIsVisible(chatEntry))

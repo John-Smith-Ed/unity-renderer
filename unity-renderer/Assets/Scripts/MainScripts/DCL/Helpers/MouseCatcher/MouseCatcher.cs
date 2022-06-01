@@ -21,7 +21,7 @@ namespace DCL
         [SerializeField] private InputAction_Trigger unlockInputAction;
 
         public bool isLocked => Utils.IsCursorLocked;
-        bool renderingEnabled => CommonScriptableObjects.rendererState.Get();
+        bool renderingEnabled => ABEYController.i.CommonScriptables.rendererState.Get();
 
         public event Action OnMouseUnlock;
         public event Action OnMouseLock;

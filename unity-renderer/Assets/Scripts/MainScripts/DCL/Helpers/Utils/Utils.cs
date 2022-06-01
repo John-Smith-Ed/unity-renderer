@@ -31,7 +31,7 @@ namespace DCL.Helpers
 
             if (!staticMaterials.ContainsKey(path))
             {
-                Material material = Resources.Load(path) as Material;
+                Material material = ABEYController.i.GetMaterial(path) as Material;
 
                 if (material != null)
                 {
@@ -270,7 +270,7 @@ namespace DCL.Helpers
         {
             var placeholderRenderer = GameObject.CreatePrimitive(PrimitiveType.Cube).GetComponent<MeshRenderer>();
 
-            placeholderRenderer.material = Resources.Load<Material>("Materials/AssetLoading");
+            placeholderRenderer.material = ABEYController.i.GetMaterial("Materials/AssetLoading");
             placeholderRenderer.transform.SetParent(targetTransform);
             placeholderRenderer.transform.localPosition = Vector3.zero;
             placeholderRenderer.name = "PlaceholderRenderer";

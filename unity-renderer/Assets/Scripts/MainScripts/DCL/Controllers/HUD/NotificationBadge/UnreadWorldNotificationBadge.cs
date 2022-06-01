@@ -38,14 +38,14 @@ public class UnreadWorldNotificationBadge : MonoBehaviour
             return;
 
         currentChatController = chatController;
-        currentTimestampReading = CommonScriptableObjects.lastReadWorldChatMessages.Get();
+        currentTimestampReading = ABEYController.i.CommonScriptables.lastReadWorldChatMessages.Get();
         UpdateUnreadMessages();
 
         currentChatController.OnAddMessage -= ChatController_OnAddMessage;
         currentChatController.OnAddMessage += ChatController_OnAddMessage;
 
-        CommonScriptableObjects.lastReadWorldChatMessages.OnChange -= LastReadWorldChatMessages_OnChange;
-        CommonScriptableObjects.lastReadWorldChatMessages.OnChange += LastReadWorldChatMessages_OnChange;
+        ABEYController.i.CommonScriptables.lastReadWorldChatMessages.OnChange -= LastReadWorldChatMessages_OnChange;
+        ABEYController.i.CommonScriptables.lastReadWorldChatMessages.OnChange += LastReadWorldChatMessages_OnChange;
     }
 
     private void OnDestroy()
@@ -54,7 +54,7 @@ public class UnreadWorldNotificationBadge : MonoBehaviour
             return;
 
         currentChatController.OnAddMessage -= ChatController_OnAddMessage;
-        CommonScriptableObjects.lastReadWorldChatMessages.OnChange -= LastReadWorldChatMessages_OnChange;
+        ABEYController.i.CommonScriptables.lastReadWorldChatMessages.OnChange -= LastReadWorldChatMessages_OnChange;
     }
 
     private void ChatController_OnAddMessage(ChatMessage newMessage)

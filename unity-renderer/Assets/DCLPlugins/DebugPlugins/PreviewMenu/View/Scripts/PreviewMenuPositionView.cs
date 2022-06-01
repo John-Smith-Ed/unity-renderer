@@ -65,7 +65,7 @@ public class PreviewMenuPositionView : MonoBehaviour, IDisposable
 
     internal void LateUpdate()
     {
-        Vector3 position = WorldStateUtils.ConvertUnityToScenePosition(CommonScriptableObjects.playerUnityPosition.Get());
+        Vector3 position = WorldStateUtils.ConvertUnityToScenePosition(ABEYController.i.CommonScriptables.playerUnityPosition.Get());
         xValueInputField.text = FormatFloatValue(position.x);
         yValueInputField.text = FormatFloatValue(position.y);
         zValueInputField.text = FormatFloatValue(position.z);

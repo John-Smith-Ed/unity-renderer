@@ -91,7 +91,7 @@ namespace DCL.Components
 
             if (!stackContainers.ContainsKey(childComponent.id))
             {
-                stackContainer = Object.Instantiate(Resources.Load("UIContainerStackChild")) as GameObject;
+                stackContainer = Object.Instantiate(ABEYController.i.GetPrefab("UIContainerStackChild")) as GameObject;
 #if UNITY_EDITOR
                 stackContainer.name = "UIContainerStackChild - " + childComponent.id;
 #endif

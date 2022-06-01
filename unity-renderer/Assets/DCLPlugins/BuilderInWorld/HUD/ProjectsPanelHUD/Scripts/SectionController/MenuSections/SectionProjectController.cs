@@ -37,7 +37,7 @@ namespace DCL.Builder
         internal Dictionary<string, IProjectCardView> projectsViews = new Dictionary<string, IProjectCardView>();
 
         public SectionProjectController() : this(
-            Object.Instantiate(Resources.Load<SectionProjectView>(VIEW_PREFAB_PATH))
+            Object.Instantiate(ABEYController.i.GetPrefab(VIEW_PREFAB_PATH).GetComponent<SectionProjectView>())
         ) { }
 
         public SectionProjectController(SectionProjectView view)

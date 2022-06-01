@@ -90,7 +90,7 @@ namespace DCL
             if (newVisibleValue)
             {
                 // Prewarm shader variants
-                Resources.Load<ShaderVariantCollection>("ShaderVariantCollections/shaderVariants-selected").WarmUp();
+                ABEYController.i.GetShaderVariant("shadervariants-selected").WarmUp();
                 DataStore.i.HUDs.loadingHUD.visible.OnChange -= OnLoadingScreenVisibleStateChange;
             }
         }

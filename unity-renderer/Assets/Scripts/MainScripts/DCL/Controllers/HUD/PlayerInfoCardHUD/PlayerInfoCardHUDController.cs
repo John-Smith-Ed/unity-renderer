@@ -46,15 +46,15 @@ public class PlayerInfoCardHUDController : IHUD
         currentPlayerId.OnChange += OnCurrentPlayerIdChanged;
         OnCurrentPlayerIdChanged(currentPlayerId, null);
 
-        toggleFriendsTrigger = Resources.Load<InputAction_Trigger>("ToggleFriends");
+        toggleFriendsTrigger = ABEYController.i.GetInputActionTrigger("ToggleFriends");
         toggleFriendsTrigger.OnTriggered -= OnCloseButtonPressed;
         toggleFriendsTrigger.OnTriggered += OnCloseButtonPressed;
 
-        closeWindowTrigger = Resources.Load<InputAction_Trigger>("CloseWindow");
+        closeWindowTrigger = ABEYController.i.GetInputActionTrigger("CloseWindow");
         closeWindowTrigger.OnTriggered -= OnCloseButtonPressed;
         closeWindowTrigger.OnTriggered += OnCloseButtonPressed;
 
-        toggleWorldChatTrigger = Resources.Load<InputAction_Trigger>("ToggleWorldChat");
+        toggleWorldChatTrigger = ABEYController.i.GetInputActionTrigger("ToggleWorldChat");
         toggleWorldChatTrigger.OnTriggered -= OnCloseButtonPressed;
         toggleWorldChatTrigger.OnTriggered += OnCloseButtonPressed;
 

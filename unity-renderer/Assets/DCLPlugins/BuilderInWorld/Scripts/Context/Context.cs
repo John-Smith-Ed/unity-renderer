@@ -49,8 +49,8 @@ namespace DCL.Builder
             IBIWGizmosController gizmosController,
             ISceneReferences sceneReferences)
         {
-            projectReferencesAsset = Resources.Load<BIWProjectReferences>(PROJECT_REFERENCES_PATH);
-            inputsReferencesAsset = Resources.Load<BIWInputsReferences>(INPUTS_PATH);
+            projectReferencesAsset = ABEYController.i.OtherRefs.ProjectReferences;
+            inputsReferencesAsset = ABEYController.i.OtherRefs.InputsReferences;
 
             this.sceneReferences = sceneReferences;
 
@@ -136,8 +136,8 @@ namespace DCL.Builder
             IBIWGizmosController gizmosController,
             ISceneReferences sceneReferences)
         {
-            godModeDynamicVariablesAssetReference = Resources.Load<BIWGodModeDynamicVariables>(GOD_MODE_DYNAMIC_VARIABLE_PATH);
-            firstPersonDynamicVariablesAssetReference = Resources.Load<BIWFirstPersonDynamicVariables>(FIRST_PERSON_DYNAMIC_VARIABLE_PATH);
+            godModeDynamicVariablesAssetReference       = ABEYController.i.OtherRefs.GodModeDynamicVariables;
+            firstPersonDynamicVariablesAssetReference   = ABEYController.i.OtherRefs.FirstPersonDynamicVariables;
 
             this.editorHUD = editorHUD;
 

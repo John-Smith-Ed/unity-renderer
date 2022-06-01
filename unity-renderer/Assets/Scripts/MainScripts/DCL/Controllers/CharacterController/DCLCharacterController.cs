@@ -72,7 +72,7 @@ public class DCLCharacterController : MonoSingleton<DCLCharacterController>
     private InputAction_Hold.Started walkStartedDelegate;
     private InputAction_Hold.Finished walkFinishedDelegate;
 
-    private Vector3NullableVariable characterForward => CommonScriptableObjects.characterForward;
+    private Vector3NullableVariable characterForward => ABEYController.i.CommonScriptables.characterForward;
 
     public static System.Action<DCLCharacterPosition> OnCharacterMoved;
     public static System.Action<DCLCharacterPosition> OnPositionSet;
@@ -87,8 +87,8 @@ public class DCLCharacterController : MonoSingleton<DCLCharacterController>
     [SerializeField]
     private InputAction_Measurable characterXAxis;
 
-    private Vector3Variable cameraForward => CommonScriptableObjects.cameraForward;
-    private Vector3Variable cameraRight => CommonScriptableObjects.cameraRight;
+    private Vector3Variable cameraForward => ABEYController.i.CommonScriptables.cameraForward;
+    private Vector3Variable cameraRight => ABEYController.i.CommonScriptables.cameraRight;
 
     [System.NonSerialized]
     public float movingPlatformSpeed;
@@ -100,28 +100,30 @@ public class DCLCharacterController : MonoSingleton<DCLCharacterController>
     
     private void Awake(){
         base.Awake();// I dont think this should ever destroy do to the nature of the app, for now we will not make it presist
-
+    }
+    
+    void Start(){
         originalGravity = gravity;
 
         SubscribeToInput();
-        CommonScriptableObjects.playerUnityPosition.Set(Vector3.zero);
-        CommonScriptableObjects.playerWorldPosition.Set(Vector3.zero);
-        CommonScriptableObjects.playerCoords.Set(Vector2Int.zero);
+        ABEYController.i.CommonScriptables.playerUnityPosition.Set(Vector3.zero);
+        ABEYController.i.CommonScriptables.playerWorldPosition.Set(Vector3.zero);
+        ABEYController.i.CommonScriptables.playerCoords.Set(Vector2Int.zero);
         DataStore.i.player.playerPosition.Set(Vector2Int.zero);
-        CommonScriptableObjects.playerUnityEulerAngles.Set(Vector3.zero);
+        ABEYController.i.CommonScriptables.playerUnityEulerAngles.Set(Vector3.zero);
 
         characterPosition = new DCLCharacterPosition();
         characterController = GetComponent<CharacterController>();
         freeMovementController = GetComponent<FreeMovementController>();
         collider = GetComponent<Collider>();
 
-        CommonScriptableObjects.worldOffset.OnChange += OnWorldReposition;
+        ABEYController.i.CommonScriptables.worldOffset.OnChange += OnWorldReposition;
 
         lastPosition = transform.position;
         transform.parent = null;
 
-        CommonScriptableObjects.rendererState.OnChange += OnRenderingStateChanged;
-        OnRenderingStateChanged(CommonScriptableObjects.rendererState.Get(), false);
+        ABEYController.i.CommonScriptables.rendererState.OnChange += OnRenderingStateChanged;
+        OnRenderingStateChanged(ABEYController.i.CommonScriptables.rendererState.Get(), false);
 
         if (avatarGameObject == null || firstPersonCameraGameObject == null)
         {
@@ -151,17 +153,17 @@ public class DCLCharacterController : MonoSingleton<DCLCharacterController>
     }
 
     void OnDestroy() {
-        CommonScriptableObjects.worldOffset.OnChange -= OnWorldReposition;
+        ABEYController.i.CommonScriptables.worldOffset.OnChange -= OnWorldReposition;
         jumpAction.OnStarted -= jumpStartedDelegate;
         jumpAction.OnFinished -= jumpFinishedDelegate;
         sprintAction.OnStarted -= walkStartedDelegate;
         sprintAction.OnFinished -= walkFinishedDelegate;
-        CommonScriptableObjects.rendererState.OnChange -= OnRenderingStateChanged;        
+        ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRenderingStateChanged;        
     }
 
     void OnWorldReposition(Vector3 current, Vector3 previous) {
         Vector3 oldPos = this.transform.position;
-        this.transform.position = characterPosition.unityPosition; //CommonScriptableObjects.playerUnityPosition;
+        this.transform.position = characterPosition.unityPosition; //ABEYController.i.CommonScriptables.playerUnityPosition;
 
         if (CinemachineCore.Instance.BrainCount > 0)
         {
@@ -185,10 +187,10 @@ public class DCLCharacterController : MonoSingleton<DCLCharacterController>
         // updates physics - no need I turned it back on, this game does not reuqire manual udates, at least not now and it run better unity default, and all collision/tiggers work again
         //Environment.i.platform.physicsSyncController?.MarkDirty();
 
-        CommonScriptableObjects.playerUnityPosition.Set(characterPosition.unityPosition);
-        CommonScriptableObjects.playerWorldPosition.Set(characterPosition.worldPosition);
+        ABEYController.i.CommonScriptables.playerUnityPosition.Set(characterPosition.unityPosition);
+        ABEYController.i.CommonScriptables.playerWorldPosition.Set(characterPosition.worldPosition);
         Vector2Int playerPosition = Utils.WorldToGridPosition(characterPosition.worldPosition);
-        CommonScriptableObjects.playerCoords.Set(playerPosition);
+        ABEYController.i.CommonScriptables.playerCoords.Set(playerPosition);
         DataStore.i.player.playerPosition.Set(playerPosition);
 
         if (Moved(lastPosition)){
@@ -295,7 +297,7 @@ public class DCLCharacterController : MonoSingleton<DCLCharacterController>
 
                 forwardTarget.Normalize();
                 velocity += forwardTarget * speed;
-                CommonScriptableObjects.playerUnityEulerAngles.Set(transform.eulerAngles);
+                ABEYController.i.CommonScriptables.playerUnityEulerAngles.Set(transform.eulerAngles);
             }
 
             bool jumpButtonPressedWithGraceTime = jumpButtonPressed && (Time.time - lastJumpButtonPressedTime < 0.15f);
@@ -343,10 +345,10 @@ public class DCLCharacterController : MonoSingleton<DCLCharacterController>
     {
         lastLocalGroundPosition = groundTransform.InverseTransformPoint(transform.position);
 
-        if (CommonScriptableObjects.characterForward.HasValue())
+        if (ABEYController.i.CommonScriptables.characterForward.HasValue())
         {
-            lastCharacterRotation = groundTransform.InverseTransformDirection(CommonScriptableObjects.characterForward.Get().Value);
-            lastGlobalCharacterRotation = CommonScriptableObjects.characterForward.Get().Value;
+            lastCharacterRotation = groundTransform.InverseTransformDirection(ABEYController.i.CommonScriptables.characterForward.Get().Value);
+            lastGlobalCharacterRotation = ABEYController.i.CommonScriptables.characterForward.Get().Value;
         }
     }
 
@@ -369,7 +371,7 @@ public class DCLCharacterController : MonoSingleton<DCLCharacterController>
     public void ResetGround()
     {
         if (isOnMovingPlatform)
-            CommonScriptableObjects.playerIsOnMovingPlatform.Set(false);
+            ABEYController.i.CommonScriptables.playerIsOnMovingPlatform.Set(false);
 
         isOnMovingPlatform = false;
         groundTransform = null;
@@ -391,14 +393,14 @@ public class DCLCharacterController : MonoSingleton<DCLCharacterController>
 
             Vector3 newCharacterForward = groundTransform.TransformDirection(lastCharacterRotation);
             Vector3 lastFrameDifference = Vector3.zero;
-            if (CommonScriptableObjects.characterForward.HasValue())
+            if (ABEYController.i.CommonScriptables.characterForward.HasValue())
             {
-                lastFrameDifference = CommonScriptableObjects.characterForward.Get().Value - lastGlobalCharacterRotation;
+                lastFrameDifference = ABEYController.i.CommonScriptables.characterForward.Get().Value - lastGlobalCharacterRotation;
             }
 
             //NOTE(Kinerius) CameraStateTPS rotates the character between frames so we add the difference.
             //               if we dont do this, the character wont rotate when moving, only when the platform rotates
-            CommonScriptableObjects.characterForward.Set(newCharacterForward + lastFrameDifference);
+            ABEYController.i.CommonScriptables.characterForward.Set(newCharacterForward + lastFrameDifference);
         }
 
         Transform transformHit = CastGroundCheckingRays();
@@ -413,18 +415,18 @@ public class DCLCharacterController : MonoSingleton<DCLCharacterController>
                     && groundHasMoved)
                 {
                     isOnMovingPlatform = true;
-                    CommonScriptableObjects.playerIsOnMovingPlatform.Set(true);
+                    ABEYController.i.CommonScriptables.playerIsOnMovingPlatform.Set(true);
                     Physics.SyncTransforms();
                     SaveLateUpdateGroundTransforms();
 
                     Quaternion deltaRotation = groundTransform.rotation * Quaternion.Inverse(groundLastRotation);
-                    CommonScriptableObjects.movingPlatformRotationDelta.Set(deltaRotation);
+                    ABEYController.i.CommonScriptables.movingPlatformRotationDelta.Set(deltaRotation);
                 }
             }
             else
             {
                 groundTransform = transformHit;
-                CommonScriptableObjects.movingPlatformRotationDelta.Set(Quaternion.identity);
+                ABEYController.i.CommonScriptables.movingPlatformRotationDelta.Set(Quaternion.identity);
             }
         }
         else

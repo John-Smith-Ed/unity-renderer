@@ -6,22 +6,22 @@ public class GraphicCardWarningHUDController : IHUD
 
     public void SetVisibility(bool visible)
     {
-        CommonScriptableObjects.tutorialActive.OnChange -= TutorialActiveChanged;
-        CommonScriptableObjects.rendererState.OnChange -= RendererStateChanged;
+        ABEYController.i.CommonScriptables.tutorialActive.OnChange -= TutorialActiveChanged;
+        ABEYController.i.CommonScriptables.rendererState.OnChange -= RendererStateChanged;
 
         if (!visible)
             return;
 
-        if (!CommonScriptableObjects.tutorialActive.Get() && CommonScriptableObjects.rendererState)
+        if (!ABEYController.i.CommonScriptables.tutorialActive.Get() && ABEYController.i.CommonScriptables.rendererState)
         {
             TryShowNotification();
         }
         else
         {
-            if (CommonScriptableObjects.tutorialActive)
-                CommonScriptableObjects.tutorialActive.OnChange += TutorialActiveChanged;
+            if (ABEYController.i.CommonScriptables.tutorialActive)
+                ABEYController.i.CommonScriptables.tutorialActive.OnChange += TutorialActiveChanged;
             else
-                CommonScriptableObjects.rendererState.OnChange += RendererStateChanged;
+                ABEYController.i.CommonScriptables.rendererState.OnChange += RendererStateChanged;
 
         }
 
@@ -32,7 +32,7 @@ public class GraphicCardWarningHUDController : IHUD
         if (newState)
             return;
 
-        CommonScriptableObjects.tutorialActive.OnChange -= TutorialActiveChanged;
+        ABEYController.i.CommonScriptables.tutorialActive.OnChange -= TutorialActiveChanged;
         TryShowNotification();
     }
 
@@ -41,7 +41,7 @@ public class GraphicCardWarningHUDController : IHUD
         if (!newState)
             return;
 
-        CommonScriptableObjects.rendererState.OnChange -= RendererStateChanged;
+        ABEYController.i.CommonScriptables.rendererState.OnChange -= RendererStateChanged;
         TryShowNotification();
     }
 

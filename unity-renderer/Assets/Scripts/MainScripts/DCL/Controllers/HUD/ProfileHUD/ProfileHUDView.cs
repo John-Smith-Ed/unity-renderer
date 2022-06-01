@@ -212,7 +212,7 @@ public class ProfileHUDView : MonoBehaviour
         else
         {
             menuShowHideAnimator.Show();
-            CommonScriptableObjects.isProfileHUDOpen.Set(true);
+            ABEYController.i.CommonScriptables.isProfileHUDOpen.Set(true);
             OnOpen?.Invoke();
         }
     }
@@ -222,7 +222,7 @@ public class ProfileHUDView : MonoBehaviour
         if (menuShowHideAnimator.isVisible)
         {
             menuShowHideAnimator.Hide();
-            CommonScriptableObjects.isProfileHUDOpen.Set(false);
+            ABEYController.i.CommonScriptables.isProfileHUDOpen.Set(false);
             OnClose?.Invoke();
         }
     }

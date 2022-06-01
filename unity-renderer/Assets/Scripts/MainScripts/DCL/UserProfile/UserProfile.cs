@@ -119,12 +119,12 @@ public class UserProfile : ScriptableObject //TODO Move to base variable
     public string[] GetInventoryItemsIds() { return inventory.Keys.ToArray(); }
 
     internal static UserProfile ownUserProfile;
-
+    
     public static UserProfile GetOwnUserProfile()
     {
         if (ownUserProfile == null)
         {
-            ownUserProfile = Resources.Load<UserProfile>("ScriptableObjects/OwnUserProfile");
+            ownUserProfile = ABEYController.i.OtherRefs.UserProfile;
         }
 
         return ownUserProfile;

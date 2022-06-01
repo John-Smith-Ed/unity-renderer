@@ -13,7 +13,7 @@ internal class SpawnPointIndicatorInstantiator : ISpawnPointIndicatorInstantiato
 
     public SpawnPointIndicatorInstantiator()
     {
-        resource = Resources.Load<SpawnPointIndicatorMonoBehaviour>(RESOURCE_PATH);
+        resource = ABEYController.i.GetPrefab(RESOURCE_PATH).GetComponent<SpawnPointIndicatorMonoBehaviour>(); 
     }
 
     ISpawnPointIndicator ISpawnPointIndicatorInstantiator.Instantiate()

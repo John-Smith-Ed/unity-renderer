@@ -75,8 +75,8 @@ public class PlayerName : MonoBehaviour, IPlayerName
             gameObject.SetActive(false);
             return;
         }
-        Vector3 cameraPosition = CommonScriptableObjects.cameraPosition.Get();
-        Vector3 cameraRight = CommonScriptableObjects.cameraRight.Get();
+        Vector3 cameraPosition = ABEYController.i.CommonScriptables.cameraPosition.Get();
+        Vector3 cameraRight = ABEYController.i.CommonScriptables.cameraRight.Get();
         Quaternion cameraRotation = DataStore.i.camera.rotation.Get();
 
         /*

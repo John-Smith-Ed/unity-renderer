@@ -3,13 +3,17 @@
     using UnityEngine;
     using System.Collections;
     using ABEY;
+    using DCL.Skybox;
 
     using WebSocketSharp;
     // this will be used as our main
     // Game controller for the whole app
 
     public class ABEYController : MonoSingleton<ABEYController>{
-
+        /**
+        Not sure what the diff is with world to unity, grid to position makes sense, and so dose world to local
+        what do they mean by 'grid -> world to *unity' position, never seen anyone add an extra made up process
+        **/   
        // Vector3 sceneWorldPos = Utils.GridToWorldPosition(sceneData.basePosition.x, sceneData.basePosition.y);
        //gameObject.transform.position = PositionUtils.WorldToUnityPosition(sceneWorldPos);
 
@@ -33,10 +37,36 @@
         public UIConfigScriptable                   UIConfig                => abeyConfig.UIConfig;
         public NFTDataFetchingConfigScriptable      NFTDataFetchingConfig   => abeyConfig.NFTDataFetchingConfig;
         public PhysicsLayersConfigScriptable        PhysicsLayersConfig     => abeyConfig.PhysicsLayersConfig;
+        public CommonConfigScriptable               CommonScriptables       => abeyConfig.CommonScriptables;
+        public NotificationConfigScriptable         NotificationScriptables => abeyConfig.NotificationScriptables;
+       
         
-        [Header("Prefab Refs")]
-        [SerializeField] PrefabRefsScriptableObject prefabRefs;
-        public GameObject GetPrefab(string name) => prefabRefs.GetPrefab(name);
+        [Header("Resources Refs")]
+        [SerializeField] PrefabRefsScriptableObject                 prefabRefs;
+        [SerializeField] InputAction_TriggerRefsScriptableObject    inputActionTriggerRefs;
+        [SerializeField] InputAction_HoldRefsScriptableObject       inputActionHoldRefs;
+        [SerializeField] ColorListRefsScriptableObject              colorListRefs;
+        [SerializeField] Texture2DRefsScriptableObject              texture2DRefs;
+        [SerializeField] TextAssetRefsScriptableObject              textAssetRefs;
+        [SerializeField] MaterialRefsScriptableObject               matetialRefs;
+        [SerializeField] ShaderRefsScriptableObject                 shaderRefs;
+        [SerializeField] ShaderVariantRefsScriptableObject          shaderVariantRefs;
+        [SerializeField] OthersScriptableObject                     otherRefs;
+        [SerializeField] SkyboxConfigurationRefsScriptableObject    skyboxConfigurationRefs;
+
+        public GameObject           GetPrefab(string name)              => prefabRefs.GetPrefab(name);
+        public SkyboxConfiguration  GetskyboxConfiguration(string name)  => skyboxConfigurationRefs.GetRef(name);
+        public InputAction_Trigger  GetInputActionTrigger(string name)  => inputActionTriggerRefs.GetRef(name);
+        public InputAction_Hold     GetInputActionHold(string name)     => inputActionHoldRefs.GetRef(name); 
+        public ColorList            GetColorList(string name)           => colorListRefs.GetRef(name);   
+        public Texture2D            GetTexture2D(string name)           => texture2DRefs.GetRef(name); 
+        public TextAsset            GetTextAsset(string name)           => textAssetRefs.GetRef(name);  
+        public Material             GetMaterial(string name)            => matetialRefs.GetRef(name);
+        public Shader               GetShader(string name)              => shaderRefs.GetRef(name);
+        public ShaderVariantCollection GetShaderVariant(string name)    => shaderVariantRefs.GetRef(name);
+        public OthersScriptableObject OtherRefs                         => otherRefs;
+
+        public SkyboxConfigurationRefsScriptableObject SkyboxConfiguration => skyboxConfigurationRefs;
 
         // Do not modify the base call
         // true passed will ensure this does not destroy on a scene change 
@@ -50,7 +80,7 @@
             
             yield return null;
           //  HUDController.i.ConfigureHUDElement(DCL.HUDElementID.LOADING, new HUDConfiguration(){active=true, visible=true}, null);
-            while(!DCLCharacterController.i.enabled){
+            while(DCLCharacterController.i==null || !DCLCharacterController.i.enabled){
                 yield return null;
             }
         //    yield return new WaitForSeconds(5f);
@@ -60,6 +90,10 @@
             // Vector3(21,120.579994,-3.77999997)
           //  DCLCharacterController.i.enabled=true;
             DCLCharacterController.i.Teleport(new Vector3(18f, 122f,-10.7f));
+        }
+
+        void Update() {
+            ((AbeyCommunicationBridge)DCL.Main.i.KernelCommunication).ProccessQueue();
         }
 
        

@@ -38,7 +38,7 @@ public class ChatHUDController : IDisposable
             this.view.contextMenu.OnShowMenu += ContextMenu_OnShowMenu;
         }
 
-        closeWindowTrigger = Resources.Load<InputAction_Trigger>("CloseWindow");
+        closeWindowTrigger = ABEYController.i.GetInputActionTrigger("CloseWindow");
         closeWindowTrigger.OnTriggered -= OnCloseButtonPressed;
         closeWindowTrigger.OnTriggered += OnCloseButtonPressed;
     }

@@ -7,8 +7,8 @@ namespace DCL.Camera
 {
     public class CameraStateFreeBuildingMovement : CameraStateBase
     {
-        protected Vector3Variable cameraForward => CommonScriptableObjects.cameraForward;
-        protected Vector3NullableVariable characterForward => CommonScriptableObjects.characterForward;
+        protected Vector3Variable cameraForward => ABEYController.i.CommonScriptables.cameraForward;
+        protected Vector3NullableVariable characterForward => ABEYController.i.CommonScriptables.characterForward;
 
         float localCameraDistForward;
         float localCameraDistY;

@@ -12,7 +12,7 @@ public class PrivateChatHUDView : ChatHUDView
     {
         AddSeparatorEntryIfNeeded(chatEntryModel);
 
-        var chatEntryGO = Instantiate(Resources.Load(chatEntryModel.subType == ChatEntry.Model.SubType.PRIVATE_TO ? ENTRY_PATH_SENT : ENTRY_PATH_RECEIVED) as GameObject, chatEntriesContainer);
+        var chatEntryGO = Instantiate(ABEYController.i.GetPrefab(chatEntryModel.subType == ChatEntry.Model.SubType.PRIVATE_TO ? ENTRY_PATH_SENT : ENTRY_PATH_RECEIVED) as GameObject, chatEntriesContainer);
         ChatEntry chatEntry = chatEntryGO.GetComponent<ChatEntry>();
 
         chatEntry.SetFadeout(false);
@@ -45,7 +45,7 @@ public class PrivateChatHUDView : ChatHUDView
             separator.model.date.Month == entryDateTime.Month &&
             separator.model.date.Day == entryDateTime.Day))
         {
-            var chatEntrySeparatorGO = Instantiate(Resources.Load(ENTRY_PATH_SEPARATOR) as GameObject, chatEntriesContainer);
+            var chatEntrySeparatorGO = Instantiate(ABEYController.i.GetPrefab(ENTRY_PATH_SEPARATOR) as GameObject, chatEntriesContainer);
             DateSeparatorEntry dateSeparatorEntry = chatEntrySeparatorGO.GetComponent<DateSeparatorEntry>();
             dateSeparatorEntry.Populate(new DateSeparatorEntry.Model
             {

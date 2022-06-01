@@ -74,7 +74,7 @@ public class Notification : MonoBehaviour, INotification
         }
 
         if (!string.IsNullOrEmpty(this.model.scene)){
-            string sceneID = CommonScriptableObjects.sceneID ?? string.Empty;
+            string sceneID = ABEYController.i.CommonScriptables.sceneID ?? string.Empty;
             CurrentSceneUpdated(sceneID, string.Empty);
         }
 

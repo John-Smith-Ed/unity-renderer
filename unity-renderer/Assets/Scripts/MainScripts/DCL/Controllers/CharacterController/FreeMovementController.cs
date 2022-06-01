@@ -21,10 +21,10 @@ public class FreeMovementController : MonoBehaviour
 
     Vector3 velocity = Vector3.zero;
 
-    private Vector3NullableVariable characterForward => CommonScriptableObjects.characterForward;
+    private Vector3NullableVariable characterForward => ABEYController.i.CommonScriptables.characterForward;
 
-    private Vector3Variable cameraForward => CommonScriptableObjects.cameraForward;
-    private Vector3Variable cameraRight => CommonScriptableObjects.cameraRight;
+    private Vector3Variable cameraForward => ABEYController.i.CommonScriptables.cameraForward;
+    private Vector3Variable cameraRight => ABEYController.i.CommonScriptables.cameraRight;
 
     [SerializeField] private InputAction_Measurable characterYAxis;
     [SerializeField] private InputAction_Measurable characterXAxis;
@@ -74,7 +74,7 @@ public class FreeMovementController : MonoBehaviour
 
 
             velocity += forwardTarget * speed;
-            CommonScriptableObjects.playerUnityEulerAngles.Set(transform.eulerAngles);
+            ABEYController.i.CommonScriptables.playerUnityEulerAngles.Set(transform.eulerAngles);
 
             characterController.Move(velocity * Time.deltaTime);
         }

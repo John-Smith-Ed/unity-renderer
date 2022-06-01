@@ -46,13 +46,13 @@ namespace DCL.Camera
 
         private float mouseWheelThreshold = 0.04f;
 
-        private Vector3Variable cameraForward => CommonScriptableObjects.cameraForward;
-        private Vector3Variable cameraRight => CommonScriptableObjects.cameraRight;
-        private Vector3Variable cameraPosition => CommonScriptableObjects.cameraPosition;
-        private Vector3Variable worldOffset => CommonScriptableObjects.worldOffset;
-        private BooleanVariable cameraIsBlending => CommonScriptableObjects.cameraIsBlending;
+        private Vector3Variable cameraForward => ABEYController.i.CommonScriptables.cameraForward;
+        private Vector3Variable cameraRight => ABEYController.i.CommonScriptables.cameraRight;
+        private Vector3Variable cameraPosition => ABEYController.i.CommonScriptables.cameraPosition;
+        private Vector3Variable worldOffset => ABEYController.i.CommonScriptables.worldOffset;
+        private BooleanVariable cameraIsBlending => ABEYController.i.CommonScriptables.cameraIsBlending;
 
-        public CameraStateBase currentCameraState => cachedModeToVirtualCamera[CommonScriptableObjects.cameraMode];
+        public CameraStateBase currentCameraState => cachedModeToVirtualCamera[ABEYController.i.CommonScriptables.cameraMode];
 
         [HideInInspector]
         public Action<CameraMode.ModeId> onSetCameraMode;
@@ -61,10 +61,10 @@ namespace DCL.Camera
         {
             cameraTransform = this.camera.transform;
 
-            CommonScriptableObjects.rendererState.OnChange += OnRenderingStateChanged;
-            OnRenderingStateChanged(CommonScriptableObjects.rendererState.Get(), false);
+            ABEYController.i.CommonScriptables.rendererState.OnChange += OnRenderingStateChanged;
+            OnRenderingStateChanged(ABEYController.i.CommonScriptables.rendererState.Get(), false);
 
-            CommonScriptableObjects.cameraBlocked.OnChange += CameraBlocked_OnChange;
+            ABEYController.i.CommonScriptables.cameraBlocked.OnChange += CameraBlocked_OnChange;
 
             cachedModeToVirtualCamera = cameraModes.ToDictionary(x => x.cameraModeId, x => x);
 
@@ -79,14 +79,14 @@ namespace DCL.Camera
             cameraChangeAction.OnTriggered += OnCameraChangeAction;
             mouseWheelAction.OnValueChanged += OnMouseWheelChangeValue;
             worldOffset.OnChange += OnWorldReposition;
-            CommonScriptableObjects.cameraMode.OnChange += OnCameraModeChange;
+            ABEYController.i.CommonScriptables.cameraMode.OnChange += OnCameraModeChange;
 
-            OnCameraModeChange(CommonScriptableObjects.cameraMode, CameraMode.ModeId.FirstPerson);
+            OnCameraModeChange(ABEYController.i.CommonScriptables.cameraMode, CameraMode.ModeId.FirstPerson);
 
-            if (CommonScriptableObjects.isFullscreenHUDOpen)
-                OnFullscreenUIVisibilityChange(CommonScriptableObjects.isFullscreenHUDOpen.Get(), !CommonScriptableObjects.isFullscreenHUDOpen.Get());
+            if (ABEYController.i.CommonScriptables.isFullscreenHUDOpen)
+                OnFullscreenUIVisibilityChange(ABEYController.i.CommonScriptables.isFullscreenHUDOpen.Get(), !ABEYController.i.CommonScriptables.isFullscreenHUDOpen.Get());
 
-            CommonScriptableObjects.isFullscreenHUDOpen.OnChange += OnFullscreenUIVisibilityChange;
+            ABEYController.i.CommonScriptables.isFullscreenHUDOpen.OnChange += OnFullscreenUIVisibilityChange;
 
             DataStore.i.camera.outputTexture.OnChange += OnOutputTextureChange;
             OnOutputTextureChange(DataStore.i.camera.outputTexture.Get(), null);
@@ -105,7 +105,7 @@ namespace DCL.Camera
                 //return;
             //TODO:A.B    
             // THIS IS JUST STUPID! - one camera should always be enabled
-            //camera.enabled = !visibleState && CommonScriptableObjects.rendererState.Get();
+            //camera.enabled = !visibleState && ABEYController.i.CommonScriptables.rendererState.Get();
             camera.enabled = true;
         }
 
@@ -132,7 +132,7 @@ namespace DCL.Camera
         //TODO:A.B - why would they disable the one camera??? noobs!
         private void OnRenderingStateChanged(bool enabled, bool prevState) {  
             camera.enabled =true; 
-            //camera.enabled = enabled && !CommonScriptableObjects.isFullscreenHUDOpen;
+            //camera.enabled = enabled && !ABEYController.i.CommonScriptables.isFullscreenHUDOpen;
         }
 
         private void CameraBlocked_OnChange(bool current, bool previous)
@@ -145,19 +145,19 @@ namespace DCL.Camera
 
         private void OnMouseWheelChangeValue(DCLAction_Measurable action, float value)
         {
-            if ((value > -mouseWheelThreshold && value < mouseWheelThreshold) || CommonScriptableObjects.cameraModeInputLocked.Get()) return;
+            if ((value > -mouseWheelThreshold && value < mouseWheelThreshold) || ABEYController.i.CommonScriptables.cameraModeInputLocked.Get()) return;
             if (Utils.IsPointerOverUIElement()) return;
 
-            if (CommonScriptableObjects.cameraMode == CameraMode.ModeId.FirstPerson && value < -mouseWheelThreshold)
+            if (ABEYController.i.CommonScriptables.cameraMode == CameraMode.ModeId.FirstPerson && value < -mouseWheelThreshold)
                 SetCameraMode(CameraMode.ModeId.ThirdPerson);   
 
-            if (CommonScriptableObjects.cameraMode == CameraMode.ModeId.ThirdPerson && value > mouseWheelThreshold)
+            if (ABEYController.i.CommonScriptables.cameraMode == CameraMode.ModeId.ThirdPerson && value > mouseWheelThreshold)
                 SetCameraMode(CameraMode.ModeId.FirstPerson);
         }
 
         private void OnCameraChangeAction(DCLAction_Trigger action)
         {
-            if (CommonScriptableObjects.cameraMode == CameraMode.ModeId.FirstPerson)
+            if (ABEYController.i.CommonScriptables.cameraMode == CameraMode.ModeId.FirstPerson)
             {
                 SetCameraMode(CameraMode.ModeId.ThirdPerson);
             }
@@ -171,7 +171,7 @@ namespace DCL.Camera
 
         public void SetCulling(LayerMask mask) => camera.cullingMask = mask;
 
-        public void SetCameraMode(CameraMode.ModeId newMode) { CommonScriptableObjects.cameraMode.Set(newMode); }
+        public void SetCameraMode(CameraMode.ModeId newMode) { ABEYController.i.CommonScriptables.cameraMode.Set(newMode); }
 
         private void OnCameraModeChange(CameraMode.ModeId current, CameraMode.ModeId previous)
         {
@@ -254,10 +254,10 @@ namespace DCL.Camera
             worldOffset.OnChange -= OnWorldReposition;
             cameraChangeAction.OnTriggered -= OnCameraChangeAction;
             mouseWheelAction.OnValueChanged -= OnMouseWheelChangeValue;
-            CommonScriptableObjects.rendererState.OnChange -= OnRenderingStateChanged;
-            CommonScriptableObjects.cameraBlocked.OnChange -= CameraBlocked_OnChange;
-            CommonScriptableObjects.isFullscreenHUDOpen.OnChange -= OnFullscreenUIVisibilityChange;
-            CommonScriptableObjects.cameraMode.OnChange -= OnCameraModeChange;
+            ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRenderingStateChanged;
+            ABEYController.i.CommonScriptables.cameraBlocked.OnChange -= CameraBlocked_OnChange;
+            ABEYController.i.CommonScriptables.isFullscreenHUDOpen.OnChange -= OnFullscreenUIVisibilityChange;
+            ABEYController.i.CommonScriptables.cameraMode.OnChange -= OnCameraModeChange;
             DataStore.i.camera.outputTexture.OnChange -= OnOutputTextureChange;
             DataStore.i.camera.invertYAxis.OnChange -= SetInvertYAxis;
         }

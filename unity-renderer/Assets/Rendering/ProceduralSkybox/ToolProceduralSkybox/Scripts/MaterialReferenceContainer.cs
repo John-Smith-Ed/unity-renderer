@@ -15,17 +15,9 @@ namespace DCL.Skybox
         }
 
         private static MaterialReferenceContainer instance;
-        public static MaterialReferenceContainer i => GetOrLoad(ref instance, "Skybox Materials/SkyboxMaterialData");
+        public static MaterialReferenceContainer i => ABEYController.i.OtherRefs.SkyboxMaterialData;
 
-        private static T GetOrLoad<T>(ref T variable, string path) where T : Object
-        {
-            if (variable == null)
-            {
-                variable = Resources.Load<T>(path);
-            }
-
-            return variable;
-        }
+   
 
         public Mat_Layer[] materials;
 

@@ -38,7 +38,7 @@ namespace DCL
             Environment.i.world.sceneController.OnNewSceneAdded += SceneController_OnNewSceneAdded;
             GLTFComponent.OnDownloadingProgressUpdate += GLTFComponent_OnDownloadingProgressUpdate;
             AssetPromise_AB.OnDownloadingProgressUpdate += AssetPromise_AB_OnDownloadingProgressUpdate;
-            CommonScriptableObjects.rendererState.OnChange += RendererState_OnChange;
+            ABEYController.i.CommonScriptables.rendererState.OnChange += RendererState_OnChange;
         }
 
         public void Dispose()
@@ -46,7 +46,7 @@ namespace DCL
             Environment.i.world.sceneController.OnNewSceneAdded -= SceneController_OnNewSceneAdded;
             GLTFComponent.OnDownloadingProgressUpdate -= GLTFComponent_OnDownloadingProgressUpdate;
             AssetPromise_AB.OnDownloadingProgressUpdate -= AssetPromise_AB_OnDownloadingProgressUpdate;
-            CommonScriptableObjects.rendererState.OnChange -= RendererState_OnChange;
+            ABEYController.i.CommonScriptables.rendererState.OnChange -= RendererState_OnChange;
         }
 
         private void SceneController_OnNewSceneAdded(IParcelScene scene)

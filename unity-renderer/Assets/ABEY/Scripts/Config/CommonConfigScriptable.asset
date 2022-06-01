@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f28d40666933948a9313d21501157a, type: 3}
+  m_Name: CommonConfigScriptable
+  m_EditorClassIdentifier: 
+  playerUnityPositionValue: {fileID: 11400000, guid: fe58b774611dc5b4f9553a149527fd0b,
+    type: 2}
+  playerWorldPositionValue: {fileID: 11400000, guid: aeab9887b9c6da44eac1388e4e95948b,
+    type: 2}
+  playerUnityEulerAnglesValue: {fileID: 11400000, guid: 3a55c1f4b7c0ea6468cda9856c18edc8,
+    type: 2}
+  worldOffsetValue: {fileID: 11400000, guid: 2d4c161dc48cfdb488fc8438776893b1, type: 2}
+  playerCoordsValue: {fileID: 11400000, guid: 023540eae39732342b247dbb6c265528, type: 2}
+  playerIsOnMovingPlatformValue: {fileID: 11400000, guid: 6afcc92deaade494ab43847ee0434628,
+    type: 2}
+  movingPlatformRotationDeltaValue: {fileID: 11400000, guid: f22c7f72207994e6b91f4d3607f39f84,
+    type: 2}
+  sceneIDValue: {fileID: 11400000, guid: 516a7094fdd5a429189331550ac9fb84, type: 2}
+  minimapZoomValue: {fileID: 11400000, guid: 3f90ae595450342aea3f5a9e64f24ec5, type: 2}
+  characterForwardValue: {fileID: 11400000, guid: 21e684f3e06248343868fc0aa7c4f3fc,
+    type: 2}
+  cameraForwardValue: {fileID: 11400000, guid: 4148c1b844a23af4b8436b890de533a6, type: 2}
+  cameraPositionValue: {fileID: 11400000, guid: 93c5a7196a8d2914b8ea823b3d0ac480,
+    type: 2}
+  cameraRightValue: {fileID: 11400000, guid: 2b7301f5f6e00ee4c8bf04eaaaffa001, type: 2}
+  cameraIsBlendingValue: {fileID: 11400000, guid: 63c90c1e945ffde429e5e13b29fa39b8,
+    type: 2}
+  cameraBlockedValue: {fileID: 11400000, guid: 49425ac4589eb0f48a3cb6545dbfaa95, type: 2}
+  playerInfoCardVisibleStateValue: {fileID: 11400000, guid: 5c13e3269fe3f4c91946fa2c21f5eb20,
+    type: 2}
+  rendererStateValue: {fileID: 11400000, guid: bf347feb746c847258901427095c08c8, type: 2}
+  focusStateValue: {fileID: 11400000, guid: 458eb0dddfd977d42b38920c1e069e48, type: 2}
+  lastReadChatMessagesDictionary: {fileID: 11400000, guid: d62ae8f2996fb03458c099a1eba484d6,
+    type: 2}
+  lastReadChatMessagesValue: {fileID: 11400000, guid: 83a7d9d10caa433409aba74bba96e4c9,
+    type: 2}
+  allUIHiddenValue: {fileID: 11400000, guid: 1f5669409c6cfe64a8ae2eb33b64a080, type: 2}
+  builderInWorldNotNecessaryUIVisibilityStatusValue: {fileID: 11400000, guid: 9a0c1bf073214164bbafea3dad039dd7,
+    type: 2}
+  latestOpenChatsValue: {fileID: 11400000, guid: 44f9e46a8b7254e40b105322ad2d7b1c,
+    type: 2}
+  cameraModeValue: {fileID: 11400000, guid: 15ed1855036be4d90ab6aa2a50ef1a49, type: 2}
+  cameraModeInputLockedValue: {fileID: 11400000, guid: 795ce6956a7674855a05c710a4a288c5,
+    type: 2}
+  isProfileHUDOpenValue: {fileID: 11400000, guid: ddb0bd4ecf4f47144863e98f2354a272,
+    type: 2}
+  isFullscreenHUDOpenValue: {fileID: 11400000, guid: da3063bc5836199498c750cb17d1dbe6,
+    type: 2}
+  isTaskbarHUDInitializedValue: {fileID: 11400000, guid: 01a9171f088aa6f4d91bf88a55659ff1,
+    type: 2}
+  tutorialActiveValue: {fileID: 11400000, guid: 995b6b1343a23a84fb853b7ec599bffb,
+    type: 2}
+  featureKeyTriggersBlockedValue: {fileID: 11400000, guid: 184d6891e429a8f4e978d2d25e50b36e,
+    type: 2}
+  emailPromptActiveValue: {fileID: 11400000, guid: 34fc8f4b381beaa4189f51ed33822f9b,
+    type: 2}
+  voiceChatDisabledValue: {fileID: 11400000, guid: 63b6398e29765df44be31980cacd9cc9,
+    type: 2}
+  shadowsDisabledValue: {fileID: 11400000, guid: fdeb14ee220a14e40a71ecf4fc17b0c3,
+    type: 2}
+  detailObjectCullingDisabledValue: {fileID: 11400000, guid: 3b9bf6ed63d2fed4daf45c97572647d4,
+    type: 2}
+  dynamicSkyboxDisabledValue: {fileID: 11400000, guid: c84c4299b3ff3884a8d875603332941b,
+    type: 2}

@@ -53,8 +53,7 @@ public class LandPublisherController : ILandPublisherController
 
     public void Initialize()
     {
-        var template = Resources.Load<LandPublisherView>(PREFAB_PATH);
-        Initialize(GameObject.Instantiate(template));
+        Initialize(GameObject.Instantiate(ABEYController.i.GetPrefab(PREFAB_PATH).GetComponent<LandPublisherView>()));
     }
 
     public void Initialize(ILandPublisherView landPublisherView)

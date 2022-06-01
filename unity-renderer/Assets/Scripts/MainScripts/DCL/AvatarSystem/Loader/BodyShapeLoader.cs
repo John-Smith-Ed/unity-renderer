@@ -77,7 +77,7 @@ namespace AvatarSystem
         {
             if (mouth == null) return;
             (Texture main, Texture mask) = await mouthRetriever.Retrieve(mouth, wearable.id, ct);
-            mouthRenderer.material = new Material(Resources.Load<Material>("Mouth Material"));
+            mouthRenderer.material = new Material(ABEYController.i.GetMaterial("Mouth Material"));
             if (main == null)
                 throw new Exception($"Couldn't fetch main texture for {mouth.id}");
             mouthRenderer.material.SetTexture(ShaderUtils.BaseMap, main);
@@ -89,7 +89,7 @@ namespace AvatarSystem
         {
             if (eyebrows == null) return;
             (Texture main, Texture mask) = await eyebrowsRetriever.Retrieve(eyebrows, wearable.id, ct);
-            eyebrowsRenderer.material = new Material(Resources.Load<Material>("Eyebrow Material"));
+            eyebrowsRenderer.material = new Material(ABEYController.i.GetMaterial("Eyebrow Material"));
             if (main == null)
                 throw new Exception($"Couldn't fetch main texture for {eyebrows.id}");
             eyebrowsRenderer.material.SetTexture(ShaderUtils.BaseMap, main);
@@ -101,7 +101,7 @@ namespace AvatarSystem
         {
             if (eyes == null) return;
             (Texture main, Texture mask) = await eyesRetriever.Retrieve(eyes, wearable.id, ct);
-            eyesRenderer.material = new Material(Resources.Load<Material>("Eye Material"));
+            eyesRenderer.material = new Material(ABEYController.i.GetMaterial("Eye Material"));
             if (main == null)
                 throw new Exception($"Couldn't fetch main texture for {eyes.id}");
             eyesRenderer.material.SetTexture(ShaderUtils.EyesTexture, main);

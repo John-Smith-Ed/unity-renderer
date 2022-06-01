@@ -14,21 +14,21 @@ public class RenderingController : MonoBehaviour
 
     void Awake()
     {
-        CommonScriptableObjects.rendererState.OnLockAdded += AddLock;
-        CommonScriptableObjects.rendererState.OnLockRemoved += RemoveLock;
-        CommonScriptableObjects.rendererState.Set(false);
+        ABEYController.i.CommonScriptables.rendererState.OnLockAdded += AddLock;
+        ABEYController.i.CommonScriptables.rendererState.OnLockRemoved += RemoveLock;
+        ABEYController.i.CommonScriptables.rendererState.Set(false);
     }
 
     void OnDestroy()
     {
-        CommonScriptableObjects.rendererState.OnLockAdded -= AddLock;
-        CommonScriptableObjects.rendererState.OnLockRemoved -= RemoveLock;
+        ABEYController.i.CommonScriptables.rendererState.OnLockAdded -= AddLock;
+        ABEYController.i.CommonScriptables.rendererState.OnLockRemoved -= RemoveLock;
     }
 
     [ContextMenu("Disable Rendering")]
     public void DeactivateRendering()
     {
-        if (!CommonScriptableObjects.rendererState.Get())
+        if (!ABEYController.i.CommonScriptables.rendererState.Get())
             return;
 
         DeactivateRendering_Internal();
@@ -37,7 +37,7 @@ public class RenderingController : MonoBehaviour
     void DeactivateRendering_Internal()
     {
         DCL.Configuration.ParcelSettings.VISUAL_LOADING_ENABLED = false;
-        CommonScriptableObjects.rendererState.Set(false);
+        ABEYController.i.CommonScriptables.rendererState.Set(false);
         WebInterface.ReportControlEvent(new WebInterface.DeactivateRenderingACK());
     }
 
@@ -48,7 +48,7 @@ public class RenderingController : MonoBehaviour
 
     public void ActivateRendering(bool forceActivate)
     {
-        if (CommonScriptableObjects.rendererState.Get())
+        if (ABEYController.i.CommonScriptables.rendererState.Get())
             return;
 
         if (!firstActivationTimeHasBeenSet)
@@ -78,14 +78,14 @@ public class RenderingController : MonoBehaviour
         }
 
         DCL.Configuration.ParcelSettings.VISUAL_LOADING_ENABLED = true;
-        CommonScriptableObjects.rendererState.Set(true);
+        ABEYController.i.CommonScriptables.rendererState.Set(true);
 
         WebInterface.ReportControlEvent(new WebInterface.ActivateRenderingACK());
     }
 
     private void AddLock(object id)
     {
-        if (CommonScriptableObjects.rendererState.Get())
+        if (ABEYController.i.CommonScriptables.rendererState.Get())
             return;
 
         if (VERBOSE)

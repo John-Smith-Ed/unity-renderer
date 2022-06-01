@@ -18,6 +18,8 @@ namespace ABEY {
         [SerializeField] UIConfigScriptable                 uIConfig;
         [SerializeField] NFTDataFetchingConfigScriptable    nFTDataFetchingConfig;
         [SerializeField] PhysicsLayersConfigScriptable      physicsLayersConfig;
+        [SerializeField] CommonConfigScriptable             commonScriptables;
+        [SerializeField] NotificationConfigScriptable       notificationScriptables;
 
         public ApplicationConfigScriptable          ApplicationConfig       => applicationConfig;
         public EnvironmentConfigScriptable          EnvironmentConfig       => environmentConfig;
@@ -32,7 +34,8 @@ namespace ABEY {
         public UIConfigScriptable                   UIConfig                => uIConfig;
         public NFTDataFetchingConfigScriptable      NFTDataFetchingConfig   => nFTDataFetchingConfig;
         public PhysicsLayersConfigScriptable        PhysicsLayersConfig     => physicsLayersConfig;
-
+        public CommonConfigScriptable               CommonScriptables       => commonScriptables;
+        public NotificationConfigScriptable         NotificationScriptables => notificationScriptables;
 
         
     

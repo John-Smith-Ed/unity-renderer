@@ -72,7 +72,7 @@ namespace DCL
         private int totalFrames;
         private float totalFramesTimeInSeconds;
 
-        public PerformanceMeterController() { metricsData = Resources.Load<PerformanceMetricsDataVariable>("ScriptableObjects/PerformanceMetricsData"); }
+        public PerformanceMeterController() { metricsData = ABEYController.i.OtherRefs.PerformanceMetricsDataVariable; }
 
         private void ResetDataValues()
         {

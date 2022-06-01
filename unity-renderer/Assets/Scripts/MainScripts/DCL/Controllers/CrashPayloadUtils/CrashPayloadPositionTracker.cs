@@ -15,13 +15,13 @@ namespace DCL.Helpers
 
         public CrashPayloadPositionTracker ()
         {
-            CommonScriptableObjects.playerWorldPosition.OnChange += OnPositionChange;
+            ABEYController.i.CommonScriptables.playerWorldPosition.OnChange += OnPositionChange;
             DataStore.i.player.lastTeleportPosition.OnChange += OnTeleport;
         }
 
         public void Dispose()
         {
-            CommonScriptableObjects.playerWorldPosition.OnChange -= OnPositionChange;
+            ABEYController.i.CommonScriptables.playerWorldPosition.OnChange -= OnPositionChange;
             DataStore.i.player.lastTeleportPosition.OnChange -= OnTeleport;
         }
 

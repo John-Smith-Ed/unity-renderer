@@ -48,8 +48,8 @@ public class AvatarAudioHandlerRemote : MonoBehaviour
             blackBoard = avatarAnimatorLegacy.blackboard;
         }
 
-        globalRendererIsReady = CommonScriptableObjects.rendererState.Get();
-        CommonScriptableObjects.rendererState.OnChange += OnGlobalRendererStateChange;
+        globalRendererIsReady = ABEYController.i.CommonScriptables.rendererState.Get();
+        ABEYController.i.CommonScriptables.rendererState.OnChange += OnGlobalRendererStateChange;
     }
 
     void OnGlobalRendererStateChange(bool current, bool previous) { globalRendererIsReady = current; }

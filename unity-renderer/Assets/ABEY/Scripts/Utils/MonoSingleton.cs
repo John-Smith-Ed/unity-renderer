@@ -35,7 +35,8 @@ public class MonoSingleton<T> : MonoBehaviour where T : Object {
 	/// The instance
 	/// </summary>
 	/// <value></value>
-	public static T i {
+	public static T i =>instance;
+	/*{
 		get {
 			if (instance == null) {
 				// This is by design, there is two ways your coding wrong and one other possible issue that brought you here
@@ -48,7 +49,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : Object {
 			}
 			return instance;
 		}
-	}
+	}*/
 	
 	protected void Awake(bool dontDestroy = false) {
 		if (instance == null) {

@@ -6,7 +6,7 @@ namespace DCL
     {
         private StickersFactory stickersFactory;
 
-        private void Awake() { stickersFactory = Resources.Load<StickersFactory>("StickersFactory"); }
+        private void Awake() { stickersFactory = ABEYController.i.OtherRefs.StickersFactory; }
 
         public void PlaySticker(string id)
         {

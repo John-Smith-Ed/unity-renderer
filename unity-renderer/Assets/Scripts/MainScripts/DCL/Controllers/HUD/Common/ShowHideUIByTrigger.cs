@@ -15,11 +15,11 @@ public class ShowHideUIByTrigger : MonoBehaviour
         canvasGroup = GetComponent<CanvasGroup>();
         showHideAnimator = GetComponent<ShowHideAnimator>();
         animator = GetComponent<Animator>();
-        CommonScriptableObjects.allUIHidden.OnChange += AllUIVisible_OnChange;
-        SetUIVisibility(!CommonScriptableObjects.allUIHidden.Get());
+        ABEYController.i.CommonScriptables.allUIHidden.OnChange += AllUIVisible_OnChange;
+        SetUIVisibility(!ABEYController.i.CommonScriptables.allUIHidden.Get());
     }
 
-    private void OnDestroy() { CommonScriptableObjects.allUIHidden.OnChange -= AllUIVisible_OnChange; }
+    private void OnDestroy() { ABEYController.i.CommonScriptables.allUIHidden.OnChange -= AllUIVisible_OnChange; }
 
     private void AllUIVisible_OnChange(bool current, bool previous) { SetUIVisibility(!current); }
 

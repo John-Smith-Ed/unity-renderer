@@ -61,7 +61,7 @@ namespace DCL.Components
 
         public override IEnumerator ApplyChanges(BaseModel newModel)
         {
-            yield return new WaitUntil(() => CommonScriptableObjects.rendererState.Get());
+            yield return new WaitUntil(() => ABEYController.i.CommonScriptables.rendererState.Get());
 
             //If the scene creates and destroy the component before our renderer has been turned on bad things happen!
             //TODO: Analyze if we can catch this upstream and stop the IEnumerator
@@ -159,13 +159,13 @@ namespace DCL.Components
             string videoId = (!string.IsNullOrEmpty(scene.sceneData.id)) ? scene.sceneData.id + id : scene.GetHashCode().ToString() + id;
             texturePlayer = new WebVideoPlayer(videoId, dclVideoClip.GetUrl(), dclVideoClip.isStream, videoPluginWrapperBuilder.Invoke());
             texturePlayerUpdateRoutine = CoroutineStarter.Start(OnUpdate());
-            CommonScriptableObjects.playerCoords.OnChange += OnPlayerCoordsChanged;
-            CommonScriptableObjects.sceneID.OnChange += OnSceneIDChanged;
+            ABEYController.i.CommonScriptables.playerCoords.OnChange += OnPlayerCoordsChanged;
+            ABEYController.i.CommonScriptables.sceneID.OnChange += OnSceneIDChanged;
             scene.OnEntityRemoved += SetPlayStateDirty;
 
             Settings.i.audioSettings.OnChanged += OnAudioSettingsChanged;
 
-            OnSceneIDChanged(CommonScriptableObjects.sceneID.Get(), null);
+            OnSceneIDChanged(ABEYController.i.CommonScriptables.sceneID.Get(), null);
         }
 
         public float GetVolume() { return ((Model) model).volume; }
@@ -252,7 +252,7 @@ namespace DCL.Components
                             isVisible = true;
 
                             var entityDist = DCLVideoTextureUtils.GetClosestDistanceSqr(materialInfo.Value,
-                                CommonScriptableObjects.playerUnityPosition);
+                                ABEYController.i.CommonScriptables.playerUnityPosition);
                             
                             if (entityDist < minDistance)
                                 minDistance = entityDist;
@@ -289,7 +289,7 @@ namespace DCL.Components
 
             float targetVolume = 0f;
 
-            if (CommonScriptableObjects.rendererState.Get() && IsPlayerInSameSceneAsComponent(CommonScriptableObjects.sceneID.Get()))
+            if (ABEYController.i.CommonScriptables.rendererState.Get() && IsPlayerInSameSceneAsComponent(ABEYController.i.CommonScriptables.sceneID.Get()))
             {
                 targetVolume = baseVolume * distanceVolumeModifier;
                 float virtualMixerVolume = DataStore.i.virtualAudioMixer.sceneSFXVolume.Get();
@@ -366,8 +366,8 @@ namespace DCL.Components
         {
             DataStore.i.virtualAudioMixer.sceneSFXVolume.OnChange -= OnVirtualAudioMixerChangedValue;
             Settings.i.audioSettings.OnChanged -= OnAudioSettingsChanged;
-            CommonScriptableObjects.playerCoords.OnChange -= OnPlayerCoordsChanged;
-            CommonScriptableObjects.sceneID.OnChange -= OnSceneIDChanged;
+            ABEYController.i.CommonScriptables.playerCoords.OnChange -= OnPlayerCoordsChanged;
+            ABEYController.i.CommonScriptables.sceneID.OnChange -= OnSceneIDChanged;
 
             if (scene != null)
                 scene.OnEntityRemoved -= SetPlayStateDirty;

@@ -155,7 +155,7 @@ public class MaterialTransitionController : MonoBehaviour
         newMeshFilter.sharedMesh = GetComponent<MeshFilter>().sharedMesh;
 
         if (hologramMaterial == null)
-            hologramMaterial = Resources.Load("Materials/HologramMaterial") as Material;
+            hologramMaterial = ABEYController.i.GetMaterial("Materials/HologramMaterial") as Material;
 
         hologramMaterialCopy = new Material(hologramMaterial);
         placeholderRenderer.sharedMaterials = new Material[] { hologramMaterialCopy };

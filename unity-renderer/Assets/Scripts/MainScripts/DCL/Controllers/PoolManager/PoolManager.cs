@@ -69,8 +69,8 @@ namespace DCL
         {
             EnsureContainer();
 
-            initializing = !CommonScriptableObjects.rendererState.Get();
-            CommonScriptableObjects.rendererState.OnChange += OnRenderingStateChanged;
+            initializing = !ABEYController.i.CommonScriptables.rendererState.Get();
+            ABEYController.i.CommonScriptables.rendererState.OnChange += OnRenderingStateChanged;
         }
 
         void OnRenderingStateChanged(bool renderingEnabled, bool prevState) { initializing = !renderingEnabled; }
@@ -261,7 +261,7 @@ namespace DCL
         public void Dispose()
         {
             Cleanup();
-            CommonScriptableObjects.rendererState.OnChange -= OnRenderingStateChanged;
+            ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRenderingStateChanged;
         }
 
         public void ReleaseAllFromPool(object id)

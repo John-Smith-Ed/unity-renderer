@@ -28,7 +28,7 @@ namespace DCL.Builder
         private readonly Queue<LandElementView> landElementViewsPool = new Queue<LandElementView>();
 
         public SectionLandController() : this(
-            Object.Instantiate(Resources.Load<SectionLandView>(VIEW_PREFAB_PATH))
+            Object.Instantiate(ABEYController.i.GetPrefab(VIEW_PREFAB_PATH).GetComponent<SectionLandView>())
         ) { }
 
         public SectionLandController(SectionLandView view)

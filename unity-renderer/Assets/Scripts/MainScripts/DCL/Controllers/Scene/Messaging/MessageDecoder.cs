@@ -161,7 +161,7 @@ namespace DCL
 #if UNITY_EDITOR
         public static void DumpMessage(string payload, string filename, ref string dumpString, ref int counter)
         {
-            if (DUMP_MESSAGES_FOR_PERFORMANCE_TESTS && CommonScriptableObjects.rendererState.Get())
+            if (DUMP_MESSAGES_FOR_PERFORMANCE_TESTS && ABEYController.i.CommonScriptables.rendererState.Get())
             {
                 if (counter < MESSAGES_COUNT)
                 {

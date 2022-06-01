@@ -133,7 +133,7 @@ public class PlayerInfoCardHUDView : MonoBehaviour
         }
 
         cardCanvas.enabled = active;
-        CommonScriptableObjects.playerInfoCardVisibleState.Set(active);
+        ABEYController.i.CommonScriptables.playerInfoCardVisibleState.Set(active);
     }
 
     private void UpdateTabs()

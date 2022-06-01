@@ -78,15 +78,15 @@ public class TaskbarHUDController : IHUD
         view.OnExperiencesToggleOff += View_OnExperiencesToggleOff;
         view.OnExperiencesToggleOn += View_OnExperiencesToggleOn;
 
-        toggleFriendsTrigger = Resources.Load<InputAction_Trigger>("ToggleFriends");
+        toggleFriendsTrigger = ABEYController.i.GetInputActionTrigger("ToggleFriends");
         toggleFriendsTrigger.OnTriggered -= ToggleFriendsTrigger_OnTriggered;
         toggleFriendsTrigger.OnTriggered += ToggleFriendsTrigger_OnTriggered;
 
-        closeWindowTrigger = Resources.Load<InputAction_Trigger>("CloseWindow");
+        closeWindowTrigger = ABEYController.i.GetInputActionTrigger("CloseWindow");
         closeWindowTrigger.OnTriggered -= CloseWindowTrigger_OnTriggered;
         closeWindowTrigger.OnTriggered += CloseWindowTrigger_OnTriggered;
 
-        toggleWorldChatTrigger = Resources.Load<InputAction_Trigger>("ToggleWorldChat");
+        toggleWorldChatTrigger = ABEYController.i.GetInputActionTrigger("ToggleWorldChat");
         toggleWorldChatTrigger.OnTriggered -= ToggleWorldChatTrigger_OnTriggered;
         toggleWorldChatTrigger.OnTriggered += ToggleWorldChatTrigger_OnTriggered;
 
@@ -104,7 +104,7 @@ public class TaskbarHUDController : IHUD
 
         view.leftWindowContainerAnimator.Show();
 
-        CommonScriptableObjects.isTaskbarHUDInitialized.Set(true);
+        ABEYController.i.CommonScriptables.isTaskbarHUDInitialized.Set(true);
         DataStore.i.builderInWorld.showTaskBar.OnChange += SetVisibility;
 
         isExperiencesViewerInitialized.OnChange += InitializeExperiencesViewer;

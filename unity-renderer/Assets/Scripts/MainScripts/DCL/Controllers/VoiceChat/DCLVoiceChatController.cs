@@ -36,7 +36,7 @@ namespace DCL
 
         void OnKernelConfigChanged(KernelConfigModel current, KernelConfigModel previous) { EnableVoiceChat(current.comms.voiceChatEnabled); }
 
-        void EnableVoiceChat(bool enable) { CommonScriptableObjects.voiceChatDisabled.Set(!enable); }
+        void EnableVoiceChat(bool enable) { ABEYController.i.CommonScriptables.voiceChatDisabled.Set(!enable); }
 
         private void StartVoiceChatRecording()
         {

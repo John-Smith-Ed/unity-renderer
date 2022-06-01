@@ -55,7 +55,7 @@ namespace DCL
         private AssetBundleInfo assetBundleInfoToLoad;
         private float lastQueuesReprioritizationTime = 0;
 
-        private bool limitTimeBudget => CommonScriptableObjects.rendererState.Get();
+        private bool limitTimeBudget => ABEYController.i.CommonScriptables.rendererState.Get();
 
         public void Start()
         {
@@ -219,6 +219,6 @@ namespace DCL
             }
         }
 
-        private float GetDistanceFromPlayer(Transform containerTransform) { return (containerTransform != null && limitTimeBudget) ? Vector3.SqrMagnitude(containerTransform.position - CommonScriptableObjects.playerUnityPosition.Get()) : 0f; }
+        private float GetDistanceFromPlayer(Transform containerTransform) { return (containerTransform != null && limitTimeBudget) ? Vector3.SqrMagnitude(containerTransform.position - ABEYController.i.CommonScriptables.playerUnityPosition.Get()) : 0f; }
     }
 }

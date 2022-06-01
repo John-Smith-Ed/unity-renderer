@@ -16,7 +16,7 @@ public class UserProfileController : MonoBehaviour
         {
             if (userProfilesCatalogValue == null)
             {
-                userProfilesCatalogValue = Resources.Load<UserProfileDictionary>("UserProfilesCatalog");
+                userProfilesCatalogValue = ABEYController.i.OtherRefs.UserProfilesCatalog;
             }
 
             return userProfilesCatalogValue;

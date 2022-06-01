@@ -26,12 +26,12 @@ public class FollowWithDamping : MonoBehaviour
 
     private void OnEnable()
     {
-        CommonScriptableObjects.worldOffset.OnChange += OnWorldOffsetChange;
+        ABEYController.i.CommonScriptables.worldOffset.OnChange += OnWorldOffsetChange;
     }
 
     private void OnDisable()
     {
-        CommonScriptableObjects.worldOffset.OnChange -= OnWorldOffsetChange;
+        ABEYController.i.CommonScriptables.worldOffset.OnChange -= OnWorldOffsetChange;
     }
 
     public void LateUpdate()

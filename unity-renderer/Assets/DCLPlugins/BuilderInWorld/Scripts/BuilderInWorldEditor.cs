@@ -65,7 +65,7 @@ public class BuilderInWorldEditor : IBIWEditor
 
         InitControllers();
 
-        CommonScriptableObjects.builderInWorldNotNecessaryUIVisibilityStatus.Set(true);
+        ABEYController.i.CommonScriptables.builderInWorldNotNecessaryUIVisibilityStatus.Set(true);
 
         mainCameraController = context.sceneReferences.cameraController.GetComponent<DCL.Camera.CameraController>();
         biwAudioHandler = UnityEngine.Object.Instantiate(context.projectReferencesAsset.audioPrefab, Vector3.zero, Quaternion.identity).GetComponent<BuilderInWorldAudioHandler>();
@@ -238,7 +238,7 @@ public class BuilderInWorldEditor : IBIWEditor
         var culling = mainCameraController.GetCulling();
         mainCameraController.SetCulling(  BIWUtils.GetBIWCulling(culling));
 
-        CommonScriptableObjects.builderInWorldNotNecessaryUIVisibilityStatus.Set(false);
+        ABEYController.i.CommonScriptables.builderInWorldNotNecessaryUIVisibilityStatus.Set(false);
         DataStore.i.builderInWorld.showTaskBar.Set(true);
 
         EnterBiwControllers();
@@ -271,7 +271,7 @@ public class BuilderInWorldEditor : IBIWEditor
         Environment.i.platform.cullingController.Start();
         BIWNFTController.i.ExitEditMode();
 
-        CommonScriptableObjects.builderInWorldNotNecessaryUIVisibilityStatus.Set(true);
+        ABEYController.i.CommonScriptables.builderInWorldNotNecessaryUIVisibilityStatus.Set(true);
         DataStore.i.builderInWorld.showTaskBar.Set(true);
 
         ParcelSettings.VISUAL_LOADING_ENABLED = true;

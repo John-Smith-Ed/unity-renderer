@@ -198,7 +198,7 @@ namespace DCL.Controllers
 
             if (entity.meshRootGameObject == null || entity.meshesInfo.renderers == null || entity.meshesInfo.renderers.Length == 0)
             {
-                UpdateComponents(entity, entity.scene.IsInsideSceneBoundaries(entity.gameObject.transform.position + CommonScriptableObjects.worldOffset.Get()));
+                UpdateComponents(entity, entity.scene.IsInsideSceneBoundaries(entity.gameObject.transform.position + ABEYController.i.CommonScriptables.worldOffset.Get()));
                 return;
             }
 

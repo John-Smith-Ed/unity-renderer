@@ -92,7 +92,7 @@ namespace DCL.Controllers
                 return;
 #endif
             
-            CommonScriptableObjects.worldOffset.OnChange -= OnWorldReposition;
+            ABEYController.i.CommonScriptables.worldOffset.OnChange -= OnWorldReposition;
             blockerInstanceHandler.DestroyAllBlockers();
 
             if (blockersParent != null)
@@ -118,11 +118,11 @@ namespace DCL.Controllers
 
             blockerInstanceHandler.SetParent(blockersParent);
 
-            CommonScriptableObjects.worldOffset.OnChange -= OnWorldReposition;
-            CommonScriptableObjects.worldOffset.OnChange += OnWorldReposition;
+            ABEYController.i.CommonScriptables.worldOffset.OnChange -= OnWorldReposition;
+            ABEYController.i.CommonScriptables.worldOffset.OnChange += OnWorldReposition;
 
-            CommonScriptableObjects.rendererState.OnChange -= OnRendererStateChange;
-            CommonScriptableObjects.rendererState.OnChange += OnRendererStateChange;
+            ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRendererStateChange;
+            ABEYController.i.CommonScriptables.rendererState.OnChange += OnRendererStateChange;
         }
 
         internal void SetupWorldBlockers(HashSet<Vector2Int> allLoadedParcelCoords)
@@ -191,7 +191,7 @@ namespace DCL.Controllers
             // Add missing blockers
             foreach (var coords in blockersToAdd)
             {
-                blockerInstanceHandler.ShowBlocker(coords, false, CommonScriptableObjects.rendererState.Get());
+                blockerInstanceHandler.ShowBlocker(coords, false, ABEYController.i.CommonScriptables.rendererState.Get());
             }
         }
     }

@@ -32,7 +32,7 @@ public class HUDFactory : IHUDFactory
                 break;
             case HUDElementID.PLAYER_INFO_CARD:
                 hudElement = new PlayerInfoCardHUDController(FriendsController.i,
-                    Resources.Load<StringVariable>("CurrentPlayerInfoCardId"),
+                   ABEYController.i.OtherRefs.CurrentPlayerInfoCardId,
                     new UserProfileWebInterfaceBridge(),
                     new WearablesCatalogControllerBridge(),
                     ProfanityFilterSharedInstances.regexFilter,

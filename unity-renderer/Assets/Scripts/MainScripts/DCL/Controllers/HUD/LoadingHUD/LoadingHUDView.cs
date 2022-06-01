@@ -8,6 +8,7 @@ public class LoadingHUDView : MonoBehaviour
 {
     [SerializeField] internal TextMeshProUGUI text;
     [SerializeField] internal Image loadingBar;
+    [SerializeField] internal GameObject loadingHUD;
     [SerializeField] internal GameObject tipsContainer;
     [SerializeField] internal GameObject noTipsContainer;
     [SerializeField] internal ShowHideAnimator showHideAnimator;
@@ -18,10 +19,10 @@ public class LoadingHUDView : MonoBehaviour
     public static LoadingHUDView CreateView() 
     {
         Debug.Log($"CreateView");
-        GameObject go = ABEYController.i.GetPrefab("LoadingHUD");
+        GameObject go = Instantiate(ABEYController.i.GetPrefab("LoadingHUD"));
         //ABEYController.i.GetPrefab("LoadingHUD");
         Debug.Log($"CreateView go is {go}"); 
-        LoadingHUDView view = Instantiate(go).GetComponent<LoadingHUDView>();
+        LoadingHUDView view = go.GetComponent<LoadingHUDView>();
         Debug.Log($"CreateView go is {go} view is {view}"); 
         view.gameObject.name = "_LoadingHUD";
         return view;
@@ -71,7 +72,7 @@ public class LoadingHUDView : MonoBehaviour
         noTipsContainer.gameObject.SetActive(!showTips);
     }
 
-    private void OnDestroy() {Debug.LogError("Loading destroyed?"); isDestroyed = true; }
+    private void OnDestroy() {isDestroyed = true; }
 
     public void Dispose()
     {

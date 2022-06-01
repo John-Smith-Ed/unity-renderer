@@ -22,12 +22,12 @@ namespace DCL.Components
         {
             if (!IsPlayerInsideAnyArea())
             {
-                initialCameraMode = CommonScriptableObjects.cameraMode.Get();
-                CommonScriptableObjects.cameraModeInputLocked.Set(true);
+                initialCameraMode = ABEYController.i.CommonScriptables.cameraMode.Get();
+                ABEYController.i.CommonScriptables.cameraModeInputLocked.Set(true);
                 ShowCameraModeLockedNotification();
             }
 
-            CommonScriptableObjects.cameraMode.Set(area.cameraMode);
+            ABEYController.i.CommonScriptables.cameraMode.Set(area.cameraMode);
             insideAreasList.Add(area);
         }
 
@@ -51,7 +51,7 @@ namespace DCL.Components
             else if (IsTheActivelyAffectingArea(area))
             {
                 // set camera mode to the previous area the player is in
-                CommonScriptableObjects.cameraMode.Set(insideAreasList[affectingAreasCount - 2].cameraMode);
+                ABEYController.i.CommonScriptables.cameraMode.Set(insideAreasList[affectingAreasCount - 2].cameraMode);
             }
 
             insideAreasList.Remove(area);
@@ -61,7 +61,7 @@ namespace DCL.Components
         {
             if (IsTheActivelyAffectingArea(area))
             {
-                CommonScriptableObjects.cameraMode.Set(mode);
+                ABEYController.i.CommonScriptables.cameraMode.Set(mode);
             }
         }
 
@@ -72,8 +72,8 @@ namespace DCL.Components
 
         private void ResetCameraMode()
         {
-            CommonScriptableObjects.cameraMode.Set(initialCameraMode);
-            CommonScriptableObjects.cameraModeInputLocked.Set(false);
+            ABEYController.i.CommonScriptables.cameraMode.Set(initialCameraMode);
+            ABEYController.i.CommonScriptables.cameraModeInputLocked.Set(false);
         }
 
         private bool IsTheActivelyAffectingArea(in ICameraModeArea area)

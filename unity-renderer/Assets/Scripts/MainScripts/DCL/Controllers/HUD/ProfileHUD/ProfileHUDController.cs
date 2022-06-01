@@ -46,7 +46,7 @@ public class ProfileHUDController : IHUD
         view = UnityEngine.Object.Instantiate(GetViewPrefab()).GetComponent<ProfileHUDView>();
         view.name = "_ProfileHUD";
 
-        CommonScriptableObjects.builderInWorldNotNecessaryUIVisibilityStatus.OnChange += ChangeVisibilityForBuilderInWorld;
+        ABEYController.i.CommonScriptables.builderInWorldNotNecessaryUIVisibilityStatus.OnChange += ChangeVisibilityForBuilderInWorld;
         DataStore.i.exploreV2.profileCardIsOpen.OnChange += SetAsFullScreenMenuMode;
 
         view.connectedWalletSection.SetActive(false);
@@ -141,7 +141,7 @@ public class ProfileHUDController : IHUD
         }
 
         ownUserProfile.OnUpdate -= OnProfileUpdated;
-        CommonScriptableObjects.builderInWorldNotNecessaryUIVisibilityStatus.OnChange -= ChangeVisibilityForBuilderInWorld;
+        ABEYController.i.CommonScriptables.builderInWorldNotNecessaryUIVisibilityStatus.OnChange -= ChangeVisibilityForBuilderInWorld;
         if (mouseCatcher != null)
             mouseCatcher.OnMouseLock -= OnMouseLocked;
 
@@ -242,7 +242,7 @@ public class ProfileHUDController : IHUD
     {
         view.SetCardAsFullScreenMenuMode(currentIsFullScreenMenuMode);
 
-        if (currentIsFullScreenMenuMode != CommonScriptableObjects.isProfileHUDOpen.Get())
+        if (currentIsFullScreenMenuMode != ABEYController.i.CommonScriptables.isProfileHUDOpen.Get())
             view.ToggleMenu();
     }
 

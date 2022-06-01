@@ -164,8 +164,8 @@ public class InputController : MonoBehaviour
     public InputAction_Hold[] builderHoldActions;
     public InputAction_Trigger[] loadingBuilderTriggerTimeActions;
 
-    bool renderingEnabled => CommonScriptableObjects.rendererState.Get();
-    bool allUIHidden => CommonScriptableObjects.allUIHidden.Get();
+    bool renderingEnabled => ABEYController.i.CommonScriptables.rendererState.Get();
+    bool allUIHidden => ABEYController.i.CommonScriptables.allUIHidden.Get();
     public InputTypeMode inputTypeMode { get; set; } = InputTypeMode.GENERAL;
 
     private void Update()
@@ -213,7 +213,7 @@ public class InputController : MonoBehaviour
             switch (action.GetDCLAction())
             {
                 case DCLAction_Trigger.CameraChange:
-                    if (CommonScriptableObjects.cameraModeInputLocked.Get()) 
+                    if (ABEYController.i.CommonScriptables.cameraModeInputLocked.Get()) 
                         break;
 
                     //Disable until the fine-tuning is ready

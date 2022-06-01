@@ -48,14 +48,14 @@ namespace DCL.Controllers
         
         public void Awake()
         {
-            CommonScriptableObjects.worldOffset.OnChange += OnWorldReposition;
+            ABEYController.i.CommonScriptables.worldOffset.OnChange += OnWorldReposition;
             sceneLifecycleHandler = new SceneLifecycleHandler(this);
             metricsCounter = new SceneMetricsCounter(DataStore.i.sceneWorldObjects);
         }
 
         private void OnDestroy()
         {
-            CommonScriptableObjects.worldOffset.OnChange -= OnWorldReposition;
+            ABEYController.i.CommonScriptables.worldOffset.OnChange -= OnWorldReposition;
             metricsCounter?.Dispose();
         }
 
@@ -64,7 +64,7 @@ namespace DCL.Controllers
         private void Update()
         {
             if (sceneLifecycleHandler.state == SceneLifecycleHandler.State.READY
-                && CommonScriptableObjects.rendererState.Get())
+                && ABEYController.i.CommonScriptables.rendererState.Get())
                 SendMetricsEvent();
         }
 
@@ -145,7 +145,7 @@ namespace DCL.Controllers
 
             DisposeAllSceneComponents();
 
-            if (immediate) //!CommonScriptableObjects.rendererState.Get())
+            if (immediate) //!ABEYController.i.CommonScriptables.rendererState.Get())
             {
                 RemoveAllEntitiesImmediate();
                 PoolManager.i.Cleanup(true, true);
@@ -179,9 +179,9 @@ namespace DCL.Controllers
 
         public bool IsInsideSceneBoundaries(Bounds objectBounds)
         {
-            if (!IsInsideSceneBoundaries(objectBounds.min + CommonScriptableObjects.worldOffset, objectBounds.max.y))
+            if (!IsInsideSceneBoundaries(objectBounds.min + ABEYController.i.CommonScriptables.worldOffset, objectBounds.max.y))
                 return false;
-            if (!IsInsideSceneBoundaries(objectBounds.max + CommonScriptableObjects.worldOffset, objectBounds.max.y))
+            if (!IsInsideSceneBoundaries(objectBounds.max + ABEYController.i.CommonScriptables.worldOffset, objectBounds.max.y))
                 return false;
 
             return true;

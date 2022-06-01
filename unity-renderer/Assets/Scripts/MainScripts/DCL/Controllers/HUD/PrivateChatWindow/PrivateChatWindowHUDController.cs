@@ -163,15 +163,15 @@ public class PrivateChatWindowHUDController : IHUD
         if (timestamp != null && timestamp.Value > timeMark)
             timeMark = timestamp.Value;
 
-        CommonScriptableObjects.lastReadChatMessages.Remove(userId);
-        CommonScriptableObjects.lastReadChatMessages.Add(userId, timeMark);
+        ABEYController.i.CommonScriptables.lastReadChatMessages.Remove(userId);
+        ABEYController.i.CommonScriptables.lastReadChatMessages.Add(userId, timeMark);
         SaveLatestReadChatMessagesStatus();
     }
 
     private void SaveLatestReadChatMessagesStatus()
     {
         List<KeyValuePair<string, long>> lastReadChatMessagesList = new List<KeyValuePair<string, long>>();
-        using (var iterator = CommonScriptableObjects.lastReadChatMessages.GetEnumerator())
+        using (var iterator = ABEYController.i.CommonScriptables.lastReadChatMessages.GetEnumerator())
         {
             while (iterator.MoveNext())
             {
@@ -185,14 +185,14 @@ public class PrivateChatWindowHUDController : IHUD
 
     private void LoadLatestReadChatMessagesStatus()
     {
-        CommonScriptableObjects.lastReadChatMessages.Clear();
+        ABEYController.i.CommonScriptables.lastReadChatMessages.Clear();
 
         List<KeyValuePair<string, long>> lastReadChatMessagesList = JsonConvert.DeserializeObject<List<KeyValuePair<string, long>>>(PlayerPrefs.GetString(PLAYER_PREFS_LAST_READ_CHAT_MESSAGES));
         if (lastReadChatMessagesList != null)
         {
             foreach (var item in lastReadChatMessagesList)
             {
-                CommonScriptableObjects.lastReadChatMessages.Add(item.Key, item.Value);
+                ABEYController.i.CommonScriptables.lastReadChatMessages.Add(item.Key, item.Value);
             }
         }
     }

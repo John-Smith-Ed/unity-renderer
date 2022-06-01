@@ -24,7 +24,7 @@ public class AssetCatalogBridge : MonoBehaviour
         {
             if (sceneAssetPackCatalogValue == null)
             {
-                sceneAssetPackCatalogValue = Resources.Load<SceneAssetPackDictionary>("SceneAssetPackCatalog");
+                sceneAssetPackCatalogValue = ABEYController.i.OtherRefs.SceneAssetPackDictionary;
             }
 
             return sceneAssetPackCatalogValue;
@@ -39,7 +39,7 @@ public class AssetCatalogBridge : MonoBehaviour
         {
             if (sceneObjectCatalogValue == null)
             {
-                sceneObjectCatalogValue = Resources.Load<SceneObjectDictionary>("SceneObjectCatalog");
+                sceneObjectCatalogValue = ABEYController.i.OtherRefs.SceneObjectDictionary;
             }
 
             return sceneObjectCatalogValue;

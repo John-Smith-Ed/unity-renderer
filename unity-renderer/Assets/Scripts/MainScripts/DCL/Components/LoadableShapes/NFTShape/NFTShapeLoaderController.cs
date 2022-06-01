@@ -194,7 +194,7 @@ public class NFTShapeLoaderController : MonoBehaviour
     internal IEnumerator LoadNFTAssetCoroutine(NFTInfo nftInfo)
     {
         var config = DataStore.i.Get<DataStore_NFTShape>();
-        yield return new DCL.WaitUntil(() => (CommonScriptableObjects.playerUnityPosition - transform.position).sqrMagnitude < (config.loadingMinDistance * config.loadingMinDistance));
+        yield return new DCL.WaitUntil(() => (ABEYController.i.CommonScriptables.playerUnityPosition - transform.position).sqrMagnitude < (config.loadingMinDistance * config.loadingMinDistance));
 
         // We download the "preview" 256px image
         yield return nftAssetLoadHelper.LoadNFTAsset(

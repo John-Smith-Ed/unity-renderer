@@ -23,7 +23,7 @@ namespace DCL.Components
 
         public UIScreenSpace()
         {
-            CommonScriptableObjects.playerWorldPosition.OnChange += OnPlayerWorldPositionChanged;
+            ABEYController.i.CommonScriptables.playerWorldPosition.OnChange += OnPlayerWorldPositionChanged;
             DataStore.i.HUDs.isSceneUIEnabled.OnChange += OnChangeSceneUI;
             OnChangeSceneUI(isUIEnabled.Get(), true);
             model = new Model();
@@ -50,7 +50,7 @@ namespace DCL.Components
             }
             else
             {
-                OnPlayerWorldPositionChanged(CommonScriptableObjects.playerWorldPosition.Get(), CommonScriptableObjects.playerWorldPosition.Get());
+                OnPlayerWorldPositionChanged(ABEYController.i.CommonScriptables.playerWorldPosition.Get(), ABEYController.i.CommonScriptables.playerWorldPosition.Get());
             }
 
             //We have to wait a frame for the Canvas Scaler to act
@@ -59,9 +59,9 @@ namespace DCL.Components
 
         public override void Dispose()
         {
-            CommonScriptableObjects.playerWorldPosition.OnChange -= OnPlayerWorldPositionChanged;
+            ABEYController.i.CommonScriptables.playerWorldPosition.OnChange -= OnPlayerWorldPositionChanged;
             DataStore.i.HUDs.isSceneUIEnabled.OnChange -= OnChangeSceneUI;
-            CommonScriptableObjects.allUIHidden.OnChange -= AllUIHidden_OnChange;
+            ABEYController.i.CommonScriptables.allUIHidden.OnChange -= AllUIHidden_OnChange;
 
             if (childHookRectTransform != null)
             {
@@ -96,8 +96,8 @@ namespace DCL.Components
 
             var model = (Model) this.model;
 
-            isInsideSceneBounds = scene.IsInsideSceneBoundaries(Utils.WorldToGridPosition(CommonScriptableObjects.playerWorldPosition));
-            bool shouldBeVisible = scene.isPersistent || (model.visible && isInsideSceneBounds && !CommonScriptableObjects.allUIHidden.Get() && isUIEnabled.Get());
+            isInsideSceneBounds = scene.IsInsideSceneBoundaries(Utils.WorldToGridPosition(ABEYController.i.CommonScriptables.playerWorldPosition));
+            bool shouldBeVisible = scene.isPersistent || (model.visible && isInsideSceneBounds && !ABEYController.i.CommonScriptables.allUIHidden.Get() && isUIEnabled.Get());
 
             canvasGroup.alpha = shouldBeVisible ? 1f : 0f;
             canvasGroup.blocksRaycasts = shouldBeVisible;
@@ -169,7 +169,7 @@ namespace DCL.Components
                 Debug.Log("canvas initialized, height: " + childHookRectTransform.rect.height);
             }
 
-            OnPlayerWorldPositionChanged(CommonScriptableObjects.playerWorldPosition, CommonScriptableObjects.playerWorldPosition);
+            OnPlayerWorldPositionChanged(ABEYController.i.CommonScriptables.playerWorldPosition, ABEYController.i.CommonScriptables.playerWorldPosition);
 
             if (VERBOSE)
             {
@@ -179,7 +179,7 @@ namespace DCL.Components
             if (!scene.isPersistent)
             {
                 UpdateCanvasVisibility();
-                CommonScriptableObjects.allUIHidden.OnChange += AllUIHidden_OnChange;
+                ABEYController.i.CommonScriptables.allUIHidden.OnChange += AllUIHidden_OnChange;
             }
         }
     }

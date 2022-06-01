@@ -43,7 +43,7 @@ namespace DCL.SettingsCommon.SettingsControllers.SpecificControllers
                 SceneReferences.i.environmentLight.shadows = shadowType;
             }
 
-            CommonSettingsScriptableObjects.shadowsDisabled.Set(!currentQualitySetting.shadows);
+            ABEYController.i.CommonScriptables.shadowsDisabled.Set(!currentQualitySetting.shadows);
         }
     }
 }

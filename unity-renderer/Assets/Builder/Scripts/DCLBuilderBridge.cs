@@ -388,7 +388,7 @@ namespace Builder
             // NOTE: no third person camera in builder yet, so avoid rendering being locked waiting for avatar.
             if (playerAvatarController)
             {
-                CommonScriptableObjects.rendererState.RemoveLock(playerAvatarController);
+                ABEYController.i.CommonScriptables.rendererState.RemoveLock(playerAvatarController);
             }
 
             DataStore.i.debugConfig.isFPSPanelVisible.Set(false);
@@ -453,7 +453,7 @@ namespace Builder
                 DCLBuilderGizmoManager.OnGizmoTransformObject += OnGizmoTransformObject;
                 DCLBuilderEntity.OnEntityShapeUpdated += ProcessEntityBoundaries;
                 DCLBuilderEntity.OnEntityTransformUpdated += ProcessEntityBoundaries;
-                CommonScriptableObjects.rendererState.OnChange += OnRenderingStateChanged;
+                ABEYController.i.CommonScriptables.rendererState.OnChange += OnRenderingStateChanged;
             }
 
             isGameObjectActive = true;
@@ -471,7 +471,7 @@ namespace Builder
             DCLBuilderGizmoManager.OnGizmoTransformObject -= OnGizmoTransformObject;
             DCLBuilderEntity.OnEntityShapeUpdated -= ProcessEntityBoundaries;
             DCLBuilderEntity.OnEntityTransformUpdated -= ProcessEntityBoundaries;
-            CommonScriptableObjects.rendererState.OnChange -= OnRenderingStateChanged;
+            ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRenderingStateChanged;
         }
 
         private void OnObjectDragEnd()

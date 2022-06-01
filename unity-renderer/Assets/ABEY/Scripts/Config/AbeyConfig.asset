@@ -28,3 +28,6 @@ MonoBehaviour:
     type: 2}
   physicsLayersConfig: {fileID: 11400000, guid: 5bab84cc9824bb94791e81a85773421f,
     type: 2}
+  commonScriptables: {fileID: 11400000, guid: 220401c21effaa94fbc6d176c4d14683, type: 2}
+  notificationScriptables: {fileID: 11400000, guid: 8d1dc72f2cbb0434ab92de21299edd62,
+    type: 2}

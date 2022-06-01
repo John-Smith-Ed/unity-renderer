@@ -8,7 +8,7 @@ public static class WelcomeNotification
     public static Model Get()
     {
         string notificationText = $"Welcome, {UserProfile.GetOwnUserProfile().userName}!";
-        Vector2Int currentCoords = CommonScriptableObjects.playerCoords.Get();
+        Vector2Int currentCoords = ABEYController.i.CommonScriptables.playerCoords.Get();
         string parcelName = MinimapMetadata.GetMetadata().GetSceneInfo(currentCoords.x, currentCoords.y)?.name;
 
         if (!string.IsNullOrEmpty(parcelName))

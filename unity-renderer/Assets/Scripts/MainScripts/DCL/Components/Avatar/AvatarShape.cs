@@ -53,7 +53,7 @@ namespace DCL
         private void Awake()
         {
             model = new AvatarModel();
-            currentPlayerInfoCardId = Resources.Load<StringVariable>(CURRENT_PLAYER_ID);
+            currentPlayerInfoCardId = ABEYController.i.OtherRefs.CurrentPlayerInfoCardId;
             Visibility visibility = new Visibility();
             LOD avatarLOD = new LOD(avatarContainer, visibility, avatarMovementController);
             AvatarAnimatorLegacy animator = GetComponentInChildren<AvatarAnimatorLegacy>();
@@ -134,7 +134,7 @@ namespace DCL
             wearableItems.Add(model.bodyShape);
 
             //temporarily hardcoding the embedded emotes until the user profile provides the equipped ones
-            var embeddedEmotesSo = Resources.Load<EmbeddedEmotesSO>("EmbeddedEmotes");
+            var embeddedEmotesSo = ABEYController.i.OtherRefs.EmbeddedEmotes;
             wearableItems.AddRange(embeddedEmotesSo.emotes.Select(x => x.id));
 
             if (avatar.status != IAvatar.Status.Loaded || needsLoading)

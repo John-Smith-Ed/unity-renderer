@@ -74,7 +74,7 @@ namespace DCL
 
         public override IEnumerator ApplyChanges(BaseModel newModel)
         {
-            yield return new WaitUntil(() => CommonScriptableObjects.rendererState.Get());
+            yield return new WaitUntil(() => ABEYController.i.CommonScriptables.rendererState.Get());
 
             //If the scene creates and destroy the component before our renderer has been turned on bad things happen!
             //TODO: Analyze if we can catch this upstream and stop the IEnumerator

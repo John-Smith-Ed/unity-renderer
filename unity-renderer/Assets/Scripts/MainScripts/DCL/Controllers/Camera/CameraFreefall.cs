@@ -23,7 +23,7 @@ namespace DCL.Camera
 
         private Vector3 lastPosition;
         private float fallDetectionTimer;
-        protected Vector3Variable characterPosition => CommonScriptableObjects.playerUnityPosition;
+        protected Vector3Variable characterPosition => ABEYController.i.CommonScriptables.playerUnityPosition;
 
         public CameraFreefall (Settings settings, CinemachineFreeLook defaultFreeLookCamera)
         {

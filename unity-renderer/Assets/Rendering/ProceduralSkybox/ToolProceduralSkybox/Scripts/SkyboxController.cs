@@ -366,7 +366,7 @@ namespace DCL.Skybox
                 return tempConfigLoaded;
             }
 
-            SkyboxConfiguration newConfiguration = Resources.Load<SkyboxConfiguration>("Skybox Configurations/" + configToLoad);
+            SkyboxConfiguration newConfiguration = ABEYController.i.GetskyboxConfiguration("Skybox Configurations/" + configToLoad);
 
             if (newConfiguration == null)
             {
@@ -375,7 +375,7 @@ namespace DCL.Skybox
 #endif
                 // Try to load default config
                 configToLoad = DEFAULT_SKYBOX_ID;
-                newConfiguration = Resources.Load<SkyboxConfiguration>("Skybox Configurations/" + configToLoad);
+                newConfiguration = ABEYController.i.GetskyboxConfiguration("Skybox Configurations/" + configToLoad);
 
                 if (newConfiguration == null)
                 {
@@ -468,7 +468,7 @@ namespace DCL.Skybox
             DataStore.i.skyboxConfig.objectUpdated.OnChange -= UpdateConfig;
 
             DataStore.i.worldTimer.OnTimeChanged -= GetTimeFromTheServer;
-            configuration.OnTimelineEvent -= Configuration_OnTimelineEvent;
+            if(configuration!=null){configuration.OnTimelineEvent -= Configuration_OnTimelineEvent;}
             KernelConfig.i.OnChange -= KernelConfig_OnChange;
             DCL.Environment.i.platform.updateEventHandler.RemoveListener(IUpdateEventHandler.EventType.Update, Update);
             DataStore.i.skyboxConfig.useDynamicSkybox.OnChange -= UseDynamicSkybox_OnChange;

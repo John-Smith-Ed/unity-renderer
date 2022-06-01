@@ -86,10 +86,10 @@ namespace UnityGLTF
         {
             _retrieveTexturePathDelegate = retrieveTexturePathDelegate;
 
-            var metalGlossChannelSwapShader = Resources.Load("MetalGlossChannelSwap", typeof(Shader)) as Shader;
+            var metalGlossChannelSwapShader = ABEYController.i.GetShader("MetalGlossChannelSwap") as Shader;
             _metalGlossChannelSwapMaterial = new Material(metalGlossChannelSwapShader);
 
-            var normalChannelShader = Resources.Load("NormalChannel", typeof(Shader)) as Shader;
+            var normalChannelShader = ABEYController.i.GetShader("NormalChannel") as Shader;
             _normalChannelMaterial = new Material(normalChannelShader);
 
             _rootTransforms = rootTransforms;

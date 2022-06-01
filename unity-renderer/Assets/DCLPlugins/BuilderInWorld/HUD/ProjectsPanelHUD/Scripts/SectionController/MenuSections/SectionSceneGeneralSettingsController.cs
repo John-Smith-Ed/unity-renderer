@@ -20,7 +20,7 @@ namespace DCL.Builder
         public event Action<string, SceneDataUpdatePayload> OnRequestUpdateSceneData;
 
         public SectionSceneGeneralSettingsController() : this(
-            Object.Instantiate(Resources.Load<SectionSceneGeneralSettingsView>(VIEW_PREFAB_PATH))
+            Object.Instantiate(ABEYController.i.GetPrefab(VIEW_PREFAB_PATH).GetComponent<SectionSceneGeneralSettingsView>())
         ) { }
 
         public SectionSceneGeneralSettingsController(SectionSceneGeneralSettingsView view)

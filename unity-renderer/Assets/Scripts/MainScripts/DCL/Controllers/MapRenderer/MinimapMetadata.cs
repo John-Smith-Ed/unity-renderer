@@ -128,7 +128,7 @@ public class MinimapMetadata : ScriptableObject
     {
         if (minimapMetadata == null)
         {
-            minimapMetadata = Resources.Load<MinimapMetadata>("ScriptableObjects/MinimapMetadata");
+            minimapMetadata = ABEYController.i.OtherRefs.MinimapMetadata;
         }
 
         return minimapMetadata;

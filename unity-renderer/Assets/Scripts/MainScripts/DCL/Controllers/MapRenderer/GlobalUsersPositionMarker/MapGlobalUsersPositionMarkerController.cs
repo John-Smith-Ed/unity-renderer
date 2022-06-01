@@ -42,7 +42,7 @@ namespace DCL
 
             fetchScenesHandler.OnScenesFetched += OnScenesFetched;
             userPositionHandler.OnPlayerCoordsChanged += OnPlayerCoordsChanged;
-            CommonScriptableObjects.rendererState.OnChange += OnRenderStateChanged;
+            ABEYController.i.CommonScriptables.rendererState.OnChange += OnRenderStateChanged;
 
             KernelConfig.i.EnsureConfigInitialized()
                         .Then(config =>
@@ -50,7 +50,7 @@ namespace DCL
                             commsRadius = (int) config.comms.commRadius + COMMS_RADIUS_THRESHOLD;
                             OnPlayerCoordsChanged(userPositionHandler.playerCoords);
                         });
-            OnRenderStateChanged(CommonScriptableObjects.rendererState.Get(), false);
+            OnRenderStateChanged(ABEYController.i.CommonScriptables.rendererState.Get(), false);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace DCL
         {
             fetchScenesHandler.OnScenesFetched -= OnScenesFetched;
             userPositionHandler.OnPlayerCoordsChanged -= OnPlayerCoordsChanged;
-            CommonScriptableObjects.rendererState.OnChange -= OnRenderStateChanged;
+            ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRenderStateChanged;
 
             fetchScenesHandler.Dispose();
             markersHandler.Dispose();
@@ -84,7 +84,7 @@ namespace DCL
                 return;
 
             // NOTE: we start fetching scenes after the renderer is activated for the first time
-            CommonScriptableObjects.rendererState.OnChange -= OnRenderStateChanged;
+            ABEYController.i.CommonScriptables.rendererState.OnChange -= OnRenderStateChanged;
             fetchScenesHandler.Init();
         }
     }

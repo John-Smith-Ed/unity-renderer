@@ -33,8 +33,8 @@ namespace DCL
         [SerializeField] private Image selectParcelHighlighImagePrefab;
 
         private float parcelSizeInMap;
-        private Vector3Variable playerWorldPosition => CommonScriptableObjects.playerWorldPosition;
-        private Vector3Variable playerRotation => CommonScriptableObjects.cameraForward;
+        private Vector3Variable playerWorldPosition => ABEYController.i.CommonScriptables.playerWorldPosition;
+        private Vector3Variable playerRotation => ABEYController.i.CommonScriptables.cameraForward;
         private Vector3[] mapWorldspaceCorners = new Vector3[4];
         private Vector3 worldCoordsOriginInMap;
         private List<RaycastResult> uiRaycastResults = new List<RaycastResult>();
@@ -497,7 +497,7 @@ namespace DCL
         void UpdateOverlayLayer()
         {
             //NOTE(Brian): Player icon
-            Vector3 f = CommonScriptableObjects.cameraForward.Get();
+            Vector3 f = ABEYController.i.CommonScriptables.cameraForward.Get();
             Quaternion playerAngle = Quaternion.Euler(0, 0, Mathf.Atan2(-f.x, f.z) * Mathf.Rad2Deg);
 
             var gridPosition = playerGridPosition;

@@ -11,19 +11,19 @@ public class UserContextMenu : MonoBehaviour
 {
     internal const string CURRENT_PLAYER_ID = "CurrentPlayerInfoCardId";
 
-    const string BLOCK_BTN_BLOCK_TEXT = "Block";
+    const string BLOCK_BTN_BLOCK_TEXT   = "Block";
     const string BLOCK_BTN_UNBLOCK_TEXT = "Unblock";
-    const string DELETE_MSG_PATTERN = "Are you sure you want to delete {0} as a friend?";
+    const string DELETE_MSG_PATTERN     = "Are you sure you want to delete {0} as a friend?";
 
     [System.Flags]
     public enum MenuConfigFlags
     {
-        Name = 1,
-        Friendship = 2,
-        Message = 4,
-        Passport = 8,
-        Block = 16,
-        Report = 32
+        Name        = 1,
+        Friendship  = 2,
+        Message     = 4,
+        Passport    = 8,
+        Block       = 16,
+        Report      = 32
     }
 
     const MenuConfigFlags headerFlags = MenuConfigFlags.Name | MenuConfigFlags.Friendship;
@@ -111,11 +111,11 @@ public class UserContextMenu : MonoBehaviour
     /// </summary>
     public void Hide() { gameObject.SetActive(false); }
 
-    private void Awake()
-    {
+    //private void Awake()
+    void Start(){//switch to start because we are accessing another mono, never in awake, object might not be ready!
         if (!currentPlayerId)
         {
-            currentPlayerId = Resources.Load<StringVariable>(CURRENT_PLAYER_ID);
+            currentPlayerId = ABEYController.i.OtherRefs.CurrentPlayerInfoCardId;
         }
 
         rectTransform = GetComponent<RectTransform>();

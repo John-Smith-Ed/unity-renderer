@@ -42,10 +42,10 @@ public class HUDController : IHUDController
         if ( this.hudFactory == null )
             this.hudFactory = DCL.Environment.i.hud.factory;
 
-        toggleUIVisibilityTrigger = Resources.Load<InputAction_Trigger>(TOGGLE_UI_VISIBILITY_ASSET_NAME);
+        toggleUIVisibilityTrigger = ABEYController.i.GetInputActionTrigger(TOGGLE_UI_VISIBILITY_ASSET_NAME);
         toggleUIVisibilityTrigger.OnTriggered += ToggleUIVisibility_OnTriggered;
 
-        CommonScriptableObjects.allUIHidden.OnChange += AllUIHiddenOnOnChange;
+        ABEYController.i.CommonScriptables.allUIHidden.OnChange += AllUIHiddenOnOnChange;
         UserContextMenu.OnOpenPrivateChatRequest += OpenPrivateChatWindow;
     }
 
@@ -120,10 +120,10 @@ public class HUDController : IHUDController
             settingsPanelHud.view.isOpen ||
             avatarEditorHud.view.isOpen ||
             DataStore.i.HUDs.navmapVisible.Get() ||
-            CommonScriptableObjects.tutorialActive)
+            ABEYController.i.CommonScriptables.tutorialActive)
             return;
 
-        CommonScriptableObjects.allUIHidden.Set(!CommonScriptableObjects.allUIHidden.Get());
+        ABEYController.i.CommonScriptables.allUIHidden.Set(!ABEYController.i.CommonScriptables.allUIHidden.Get());
     }
 
     private void AllUIHiddenOnOnChange(bool current, bool previous)
@@ -345,7 +345,7 @@ public class HUDController : IHUDController
                     if (loadingHud != null && configuration.active){
                         loadingHud.Initialize();
                     }
-                    Debug.LogError($"loadingHud null {(loadingHud != null)} active {configuration.active}");
+                   // Debug.LogError($"loadingHud null {(loadingHud != null)} active {configuration.active}");
                     
                 }
                 break;
@@ -395,7 +395,7 @@ public class HUDController : IHUDController
     public void Cleanup()
     {
         toggleUIVisibilityTrigger.OnTriggered -= ToggleUIVisibility_OnTriggered;
-        CommonScriptableObjects.allUIHidden.OnChange -= AllUIHiddenOnOnChange;
+        ABEYController.i.CommonScriptables.allUIHidden.OnChange -= AllUIHiddenOnOnChange;
 
         if (worldChatWindowHud != null)
         {
@@ -455,7 +455,7 @@ public class HUDController : IHUDController
         };
 
         UserProfileController.i.AddUserProfileToCatalog(newModel);
-        Resources.Load<StringVariable>("CurrentPlayerInfoCardId").Set(newModel.userId);
+        ABEYController.i.OtherRefs.CurrentPlayerInfoCardId.Set(newModel.userId);
     }
 #endif
     public void Dispose() { Cleanup(); }

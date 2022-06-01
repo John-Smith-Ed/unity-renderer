@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2e20039be971c4f8b3cdd5d605885a, type: 3}
+  m_Name: OthersScriptableObject
+  m_EditorClassIdentifier: 
+  userProfile: {fileID: 11400000, guid: 25aec1357b37f3146b4dc1588cd4d1ca, type: 2}
+  userProfilesCatalog: {fileID: 11400000, guid: 06204f1e39011884d825de02db69f41f,
+    type: 2}
+  embeddedEmotes: {fileID: 11400000, guid: 1d1d09408e4e00c4b99f60953e0f4569, type: 2}
+  qualitySettingsData: {fileID: 11400000, guid: 78564e482127e4ca7aef974c0c551d60,
+    type: 2}
+  audioMixer: {fileID: 24100000, guid: 97507d628c02bcf47859b9f108ab1823, type: 2}
+  currentPlayerInfoCardId: {fileID: 11400000, guid: 0b4e2210a68af904b84fb0581a9bd4a1,
+    type: 2}
+  nFTShapeFactory: {fileID: 11400000, guid: dc5d7f2658fe246d18764c03b5e7a7cb, type: 2}
+  minimapMetadata: {fileID: 11400000, guid: 5eeb387f267008b44a6ef478479e9637, type: 2}
+  performanceMetricsDataVariable: {fileID: 11400000, guid: 38cb55938716a6c4c84605022422df76,
+    type: 2}
+  gPUSkinningThrottlingCurveSO: {fileID: 11400000, guid: 5b81221e119b60e4d8af29838839a517,
+    type: 2}
+  poolableComponentFactory: {fileID: 11400000, guid: 6710053fa2d5d5446b6a599e0e003053,
+    type: 2}
+  sceneAssetPackDictionary: {fileID: 11400000, guid: be8abc58b7e95984c851e23948f370a6,
+    type: 2}
+  sceneObjectDictionary: {fileID: 11400000, guid: ccc8c91a8d59c9f44b59c633a8d9375b,
+    type: 2}
+  stickersFactory: {fileID: 11400000, guid: e7939076fce173842a7dc40c2b870908, type: 2}
+  skyboxMaterialData: {fileID: 11400000, guid: 4b89ee2270ac7d54ab7e4ab2b4cf1e47, type: 2}
+  projectReferences: {fileID: 11400000, guid: 1a8c40ff29992834ab4c230704b00fc6, type: 2}
+  inputsReferences: {fileID: 11400000, guid: 38fb98c4590ad244984c3004792606ae, type: 2}
+  godModeVariables: {fileID: 11400000, guid: 436073745cb659c4486202fa6ad5b435, type: 2}
+  firstPersonDynamicVariables: {fileID: 11400000, guid: 16270f1fe63a1c34196370a2f7e252fd,
+    type: 2}

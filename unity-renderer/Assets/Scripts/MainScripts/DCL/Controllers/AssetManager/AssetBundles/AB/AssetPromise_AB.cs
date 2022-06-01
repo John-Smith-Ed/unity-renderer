@@ -11,7 +11,7 @@ namespace DCL
         const string METADATA_FILENAME = "metadata.json";
 
         public static bool VERBOSE = false;
-        public static int MAX_CONCURRENT_REQUESTS => CommonScriptableObjects.rendererState.Get() ? 30 : 256;
+        public static int MAX_CONCURRENT_REQUESTS => ABEYController.i.CommonScriptables.rendererState.Get() ? 30 : 256;
 
         public static int concurrentRequests = 0;
         public static event Action OnDownloadingProgressUpdate;

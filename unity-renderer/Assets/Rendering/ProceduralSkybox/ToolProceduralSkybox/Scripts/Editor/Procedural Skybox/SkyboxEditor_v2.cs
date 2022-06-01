@@ -605,7 +605,7 @@ namespace DCL.Skybox
 
         private void UpdateConfigurationsList()
         {
-            SkyboxConfiguration[] tConfigurations = Resources.LoadAll<SkyboxConfiguration>("Skybox Configurations/");
+            SkyboxConfiguration[] tConfigurations = ABEYController.i.SkyboxConfiguration.Refs;
             configurations = new List<SkyboxConfiguration>(tConfigurations);
             configurationNames = new List<string>();
 

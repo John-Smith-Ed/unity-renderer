@@ -88,7 +88,7 @@ namespace DCL.Components
             // that might be added in the future. Only first and third person camera are allowed
             if (!IsValidCameraMode(newModel.cameraMode))
             {
-                newModel.cameraMode = CommonScriptableObjects.cameraMode.Get();
+                newModel.cameraMode = ABEYController.i.CommonScriptables.cameraMode.Get();
             }
 
             bool cameraModeChanged = newModel.cameraMode != areaModel.cameraMode;
@@ -147,7 +147,7 @@ namespace DCL.Components
                 return false;
             }
 
-            if (areaScene.sceneData.id != CommonScriptableObjects.sceneID.Get())
+            if (areaScene.sceneData.id != ABEYController.i.CommonScriptables.sceneID.Get())
             {
                 return false;
             }

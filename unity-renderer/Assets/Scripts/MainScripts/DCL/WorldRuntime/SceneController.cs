@@ -47,7 +47,7 @@ namespace DCL
 
             DCLCharacterController.OnCharacterMoved += SetPositionDirty;
 
-            CommonScriptableObjects.sceneID.OnChange += OnCurrentSceneIdChange;
+            ABEYController.i.CommonScriptables.sceneID.OnChange += OnCurrentSceneIdChange;
 
             // TODO(Brian): Move this later to Main.cs
             if ( !EnvironmentSettings.RUNNING_TESTS )
@@ -114,7 +114,7 @@ namespace DCL
             DCLCharacterController.OnCharacterMoved -= SetPositionDirty;
             DataStore.i.debugConfig.isDebugMode.OnChange -= OnDebugModeSet;
 
-            CommonScriptableObjects.sceneID.OnChange -= OnCurrentSceneIdChange;
+            ABEYController.i.CommonScriptables.sceneID.OnChange -= OnCurrentSceneIdChange;
 
             UnloadAllScenes(includePersistent: true);
 
@@ -366,7 +366,7 @@ namespace DCL
 
         public void SendSceneMessage(string chunk)
         {
-            var renderer = CommonScriptableObjects.rendererState.Get();
+            var renderer = ABEYController.i.CommonScriptables.rendererState.Get();
 
             if (!renderer)
             {
@@ -405,7 +405,7 @@ namespace DCL
 
             while (true)
             {
-                maxTimeForDecode = CommonScriptableObjects.rendererState.Get() ? MAX_TIME_FOR_DECODE : float.MaxValue;
+                maxTimeForDecode = ABEYController.i.CommonScriptables.rendererState.Get() ? MAX_TIME_FOR_DECODE : float.MaxValue;
 
                 if (chunksToDecode.Count > 0)
                 {
@@ -524,7 +524,7 @@ namespace DCL
             messagingControllersManager.SetSceneReady(sceneId);
 
             WebInterface.ReportControlEvent(new WebInterface.SceneReady(sceneId));
-            WebInterface.ReportCameraChanged(CommonScriptableObjects.cameraMode.Get(), sceneId);
+            WebInterface.ReportCameraChanged(ABEYController.i.CommonScriptables.cameraMode.Get(), sceneId);
 
             Environment.i.world.blockersController.SetupWorldBlockers();
 
@@ -551,7 +551,7 @@ namespace DCL
                 // Since the first position for the character is not sent from Kernel until just-before calling
                 // the rendering activation from Kernel, we need to sort the scenes to get the current scene id
                 // to lock the rendering accordingly...
-                if (!CommonScriptableObjects.rendererState.Get())
+                if (!ABEYController.i.CommonScriptables.rendererState.Get())
                 {
                     SortScenesByDistance();
                 }
@@ -595,15 +595,15 @@ namespace DCL
             if (!DataStore.i.debugConfig.isDebugMode.Get() && string.IsNullOrEmpty(worldState.currentSceneId))
             {
                 // When we don't know the current scene yet, we must lock the rendering from enabling until it is set
-                CommonScriptableObjects.rendererState.AddLock(this);
+                ABEYController.i.CommonScriptables.rendererState.AddLock(this);
             }
             else
             {
                 // 1. Set current scene id
-                CommonScriptableObjects.sceneID.Set(worldState.currentSceneId);
+                ABEYController.i.CommonScriptables.sceneID.Set(worldState.currentSceneId);
 
                 // 2. Attempt to remove SceneController's lock on rendering
-                CommonScriptableObjects.rendererState.RemoveLock(this);
+                ABEYController.i.CommonScriptables.rendererState.RemoveLock(this);
             }
 
             OnSortScenes?.Invoke();
@@ -625,9 +625,9 @@ namespace DCL
             if (Environment.i.world.state.TryGetScene(newSceneId, out IParcelScene newCurrentScene)
                 && !(newCurrentScene as ParcelScene).sceneLifecycleHandler.isReady)
             {
-                CommonScriptableObjects.rendererState.AddLock(newCurrentScene);
+                ABEYController.i.CommonScriptables.rendererState.AddLock(newCurrentScene);
 
-                (newCurrentScene as ParcelScene).sceneLifecycleHandler.OnSceneReady += (readyScene) => { CommonScriptableObjects.rendererState.RemoveLock(readyScene); };
+                (newCurrentScene as ParcelScene).sceneLifecycleHandler.OnSceneReady += (readyScene) => { ABEYController.i.CommonScriptables.rendererState.RemoveLock(readyScene); };
             }
         }
 
@@ -772,7 +772,7 @@ namespace DCL
             // Remove messaging controller for unloaded scene
             messagingControllersManager.RemoveController(scene.sceneData.id);
 
-            scene.Cleanup(!CommonScriptableObjects.rendererState.Get());
+            scene.Cleanup(!ABEYController.i.CommonScriptables.rendererState.Get());
 
             if (VERBOSE)
             {

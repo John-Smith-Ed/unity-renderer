@@ -45,7 +45,7 @@ namespace DCL.Emotes
             const string FEMALE = "urn:decentraland:off-chain:base-avatars:BaseFemale";
             const string MALE = "urn:decentraland:off-chain:base-avatars:BaseMale";
 
-            EmbeddedEmotesSO embeddedEmotes = Resources.Load<EmbeddedEmotesSO>("EmbeddedEmotes");
+            EmbeddedEmotesSO embeddedEmotes = ABEYController.i.OtherRefs.EmbeddedEmotes;
 
             foreach (EmbeddedEmote embeddedEmote in embeddedEmotes.emotes)
             {
